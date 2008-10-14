@@ -1,0 +1,5 @@
+Pheanstalk is a native PHP client for the Beanstalkd workqueue.
+Current status is work in progress.
+
+Beanstalkd:
+http://xph.us/software/beanstalkd/
