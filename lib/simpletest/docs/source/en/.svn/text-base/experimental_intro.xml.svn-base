@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!-- $Id$ -->
+<page title="Experimental stuff (in CVS only)" here="Experimental stuff">
+    <long_title>Experimental stuff, found in CVS only</long_title>
+    <content>
+        <section name="intro" title="Why only in CVS">
+            <p>
+                If a bug is found in SimpleTest, chances are it'll get corrected
+                inside the CVS tree with the corresponding test case : just to make
+                sure the bug doesn't make a come back later on. 
+            </p>
+            <p>
+                Also the SimpleTest CVS trunk is usually full of little known
+                experiments with code : new ideas are usually tried out there
+                before a general release. Before it happens, the documentation need
+                to be completed : that's where this section comes into place. You'll
+                find here new features the dev team is happy with : we're looking
+                for comments...  
+            </p>
+            <p>
+                The mailing-list is usually the best place to give feedback. Other options
+                includes submitting a bug or a patch directly on the Sourceforge trackers...
+            </p>
+            <p class="experimental">
+                Note : some of these features may never make to a release or not before
+                a long time !  
+            </p>
+        </section>
+    </content>
+    <external>
+        <link>
+            SimpleTest <a href="http://sourceforge.net/mail/?group_id=76550">mailing-lists' page on SourceForge</a>.
+        </link>
+        <link>
+            SimpleTest <a href="http://sourceforge.net/tracker/?group_id=76550">trackers' page on Sourceforge</a> as well.
+        </link>
+    </external>
+    <meta>
+        <keywords>
+            php unit testing,
+            test integration,
+            documentation,
+            marcus baker,
+            simple test,
+            simpletest documentation,
+            phpunit,
+            pear,
+            experimental,
+            cvs,
+            code experiment,
+            feedback
+        </keywords>
+    </meta>
+</page>

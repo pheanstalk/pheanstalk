@@ -1,0 +1,7 @@
+.*.d
+*.o
+beanstalkd
+gmon.out
+tags
+tests/cutcheck*
+tests/cutgen

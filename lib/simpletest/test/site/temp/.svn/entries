@@ -1,0 +1,41 @@
+8
+
+dir
+1774
+https://simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/Release1-0-1/test/site/temp
+https://simpletest.svn.sourceforge.net/svnroot/simpletest
+
+
+
+2007-07-09T23:24:09.000000Z
+1552
+lastcraft
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9ad96551-d73f-0410-9433-afe301b4b3ac
+
+.stop_cvs_removing_temp
+file
+
+
+
+
+2008-04-15T11:31:21.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2007-07-09T23:24:09.000000Z
+1552
+lastcraft
+has-props
+

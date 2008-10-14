@@ -1,0 +1,89 @@
+8
+
+dir
+1774
+https://simpletest.svn.sourceforge.net/svnroot/simpletest/simpletest/tags/Release1-0-1/docs/simpletest.org
+https://simpletest.svn.sourceforge.net/svnroot/simpletest
+
+
+
+2008-03-30T19:07:00.113835Z
+1712
+pp11
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9ad96551-d73f-0410-9433-afe301b4b3ac
+
+simpletest.css
+file
+
+
+
+
+2008-04-15T11:31:19.000000Z
+dfb2b2737fbb5e3f7580204852b5e271
+2008-03-30T18:07:48.800658Z
+1711
+pp11
+has-props
+
+images
+dir
+
+index.html
+file
+
+
+
+
+2008-04-15T11:31:19.000000Z
+43281a6a6af5952b91e75e5911a0f610
+2008-03-25T09:24:32.433066Z
+1706
+pp11
+has-props
+
+js
+dir
+
+views
+dir
+
+README
+file
+
+
+
+
+2008-04-15T11:31:19.000000Z
+acccb858df6e845ce4fd96414bc68e0b
+2006-12-31T10:36:12.000000Z
+1465
+pp11
+has-props
+
+favicon.ico
+file
+
+
+
+
+2008-04-15T11:31:19.000000Z
+3da65fcd78587c78f4318766920adbf7
+2007-02-18T14:24:24.000000Z
+1480
+pp11
+has-props
+

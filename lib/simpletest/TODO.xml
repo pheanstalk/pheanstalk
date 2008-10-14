@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<page title="TODO items for the current iteration" here="TODO">
+    <long_title>TODO items for the current iteration</long_title>
+    <content>
+        <section name="iteration" title="Current iteration">
+            <p>
+                This is immediate stuff only for
+                this iteration (1.0.1RC1) of 38 hours.
+            </p>
+        </section>
+        <section name="unit-tester" title="Unit tester">
+            <dl>
+                <dt class="done">
+                    Make sure expectException() works correctly
+                    with setUp() and tearDown() methods (3).
+                </dt>
+                <dd>
+                    In particular:
+                    <ul>
+                        <li>tearDown() is always run unless an exception is thrown in tearDown()/</li>
+                    </ul>
+                </dd>
+            </dl>
+        </section>
+        <section name="reporter" title="Reporter">
+            <dl>
+                <dt class="postponed">
+                    Add Eclipse support to DefaultReporter (2).
+                </dt>
+                <dd>
+                    Need a way to detect the Eclipse environment (must talk to Steve) and
+                    to use the EclipseReporter within the DefaultReporter in this case.
+                    This removes a significant piece of set up from Steve&apos;s side.
+                </dd>
+            </dl>
+        </section>
+        <section name="mock-objects" title="Mock objects">
+            <dl>
+                <dt>
+                    Add throwOn() method for generating exceptions (4/6).
+                </dt>
+                <dd>
+                    Can throw exceptions on certain method call or parameters in the
+                    same way that a return value can be set.
+                </dd>
+            </dl>
+        </section>
+        <section name="parser" title="Parser">
+            <dl>
+                <dt class="done">
+                    Fix bug 1688238 with lost paths when absoluting a link (2).
+                </dt>
+                <dt class="done">
+                    Fix bug 1671539 with assertText picking up JavaScript (1).
+                </dt>
+                <dt class="done">
+                    Add U flag to regexes to allow unicode (3).
+                </dt>
+            </dl>
+        </section>
+        <section name="browser" title="Browser">
+            <dl>
+                <dt>
+                    Acknowledge target attribute in base tag (3).
+                </dt>
+                <dt>
+                    Investigate bug 1706283 with incorrect proxy requests (3).
+                </dt>
+                <dd>
+                    <a href="https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1706283&amp;group_id=76550&amp;atid=547455">
+                        see bug tracker 1706283
+                    </a>
+                </dd>
+                <dt class="done">
+                    Confirm bug 1656650 forms appearing as null is fixed (1).
+                </dt>
+                <dd>
+                    <a href="https://sourceforge.net/tracker/index.php?func=detail&amp;aid=1656650&amp;group_id=76550&amp;atid=547455">
+                        see bug tracker 1656650
+                    </a>
+                </dd>
+                <dt class="done">
+                    Fix bug 1642529 with radio buttons not working (3).
+                </dt>
+                <dt>
+                    Look at adding a file() loading command (4).
+                </dt>
+                <dd>
+                    This is just a scoping exercise.
+                    There are times when you want to click on an HTML email, or you want
+                    to start the test by loading the page with something other than the
+                    SimpleTest web browser.
+                    Is it easy (sub a couple of days work) to load a file when given
+                    the file:// prefix on a URL?
+                </dd>
+            </dl>
+        </section>
+        <section name="web-tester" title="Web tester">
+            <dl>
+                <dt class="done">
+                    Fix issue 1605972 missing isLink(), probably by changing docs (1).
+                </dt>
+            </dl>
+        </section>
+        <section name="documentation" title="Documentation">
+            <dl>
+                <dt>
+                    Update core documentation snippets
+                    with the new features such as autoload (8).
+                </dt>
+                <dd>
+                    Bit of a major job.
+                    It means going through all of the core documentation and updating
+                    it with new methods and features.
+                    In particular, the introductory pages should switch to autoload.
+                    Should be checked : addTestFile.
+                </dd>
+                <dt class="done">
+                    Extension docs (1).
+                </dt>
+                <dd>
+                    Document the file structure for extension writers.
+                    Also, deprecate the simpletest/ui/ folder in favour of putting everything
+                    into simpletest/extension/.
+                </dd>
+            </dl>
+        </section>
+        <section name="build" title="Build">
+        </section>
+    </content>
+    <internal>
+        <link>
+            <a href="#iteration">Current iteration</a> is 1.0.1RC1.
+        </link>
+        <link>
+            Items for
+            <a href="#unit-tester">Unit tester</a>,
+            <a href="#reporter">Reporter</a>,
+            <a href="#mock-objects">Mock objects</a>,
+            <a href="#parser">Parser</a>,
+            <a href="#browser">Browser</a>,
+            <a href="#web-tester">Web tester</a>,
+            <a href="#documentation">Documentation</a> and
+            <a href="#build">Build</a>.
+        </link>
+    </internal>
+    <external>
+        <link>
+            Trackers for :
+            <a href="https://sourceforge.net/tracker/?group_id=76550&amp;atid=547458">feature requests</a>,
+            <a href="https://sourceforge.net/tracker/?group_id=76550&amp;atid=547455">bugs</a> and
+            <a href="https://sourceforge.net/tracker/?group_id=76550&amp;atid=547457">patches</a>.
+        </link>
+    </external>
+    <meta>
+        <keywords>
+            software development,
+            computer programmer,
+            php programming,
+            programming php,
+            software development company,
+            software development uk,
+            php tutorial,
+            bespoke software development uk,
+            corporate web development,
+            architecture,
+            freelancer,
+            php resources,
+            wordtracker,
+            web marketing,
+            serach engines,
+            web positioning,
+            internet marketing
+        </keywords>
+    </meta>
+</page>

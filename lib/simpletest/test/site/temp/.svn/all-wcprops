@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/temp
+END
+.stop_cvs_removing_temp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/temp/.stop_cvs_removing_temp
+END

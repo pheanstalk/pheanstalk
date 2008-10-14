@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected
+END
+local_redirect.php
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/local_redirect.php
+END
+1.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/1.html
+END
+2.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/2.html
+END
+3.html
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/3.html
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/.htaccess
+END
+.htpasswd
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/.htpasswd
+END
+network_confirm.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/network_confirm.php
+END
+htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/test/site/protected/htaccess
+END

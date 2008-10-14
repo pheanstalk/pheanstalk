@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package
+END
+content_without_section.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/content_without_section.xml
+END
+one_section_with_php_code.xml
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/one_section_with_php_code.xml
+END
+one_section_with_autorum_php.xml
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/one_section_with_autorum_php.xml
+END
+here_unit-tester.xml
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/here_unit-tester.xml
+END
+here_overview.xml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/here_overview.xml
+END
+here_download.xml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/here_download.xml
+END
+here_simpletest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/here_simpletest.xml
+END
+here_start_testing.xml
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/here_start_testing.xml
+END
+map.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/map.xml
+END
+here_support.xml
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svnroot/simpletest/!svn/ver/1728/simpletest/tags/Release1-0-1/packages/simpletest.org/test/package/here_support.xml
+END
