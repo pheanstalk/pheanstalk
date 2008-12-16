@@ -52,6 +52,9 @@ class Pheanstalk_Connection
 		{
 			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
 		}
+
+		// prevent timeouts on the socket, hopefully?
+		stream_set_timeout($this->_socket,-1);
 	}
 
 	/**
