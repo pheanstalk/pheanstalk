@@ -9,7 +9,6 @@
  */
 class Pheanstalk_Connection
 {
-
 	const CONNECT_TIMEOUT = 2;
 	const CRLF = "\r\n";
 	const CRLF_LENGTH = 2;
@@ -34,27 +33,18 @@ class Pheanstalk_Connection
 		Pheanstalk_Response::RESPONSE_OK,
 	);
 
-	/**
-	 * The socket file pointer for the connection.
-	 *
-	 * @var resource $_socket
-	 */
 	private $_socket;
+	private $_hostname;
+	private $_port;
 
 	/**
 	 * @param string $hostname
 	 * @param int $port
-	 * @throws Pheanstalk_Exception_ClientException
 	 */
 	public function __construct($hostname, $port)
 	{
-		if (!$this->_socket = @fsockopen($hostname, $port, $errno, $errstr, self::CONNECT_TIMEOUT))
-		{
-			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
-		}
-
-		// prevent timeouts on the socket, hopefully?
-		stream_set_timeout($this->_socket,-1);
+		$this->_hostname = $hostname;
+		$this->_port = $port;
 	}
 
 	/**
@@ -211,20 +201,44 @@ class Pheanstalk_Connection
 	// ----------------------------------------
 
 	/**
+	 * Socket handle for the connection to beanstalkd
+	 * @return resource
+	 * @throws Pheanstalk_Exception_ConnectionException
+	 */
+	private function _getSocket()
+	{
+		if (!isset($this->_socket))
+		{
+			if (!$this->_socket = @fsockopen($this->_hostname, $this->_port, $errno, $errstr, self::CONNECT_TIMEOUT))
+			{
+				throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
+			}
+
+			// prevent timeouts on the socket, hopefully?
+			stream_set_timeout($this->_socket,-1);
+		}
+
+		return $this->_socket;
+	}
+
+	/**
 	 * @param object $command Pheanstalk_Command
 	 * @param object $parser Pheanstalk_ResponseParser
 	 * @return object Pheanstalk_Response
+	 * @throws Pheanstalk_Exception_ClientException
 	 */
 	private function _sendCommand($command, $responseParser)
 	{
-		fwrite($this->_socket, $command->getCommandLine().self::CRLF);
+		$socket = $this->_getSocket();
+
+		fwrite($socket, $command->getCommandLine().self::CRLF);
 
 		if ($command->hasData())
 		{
-			fwrite($this->_socket, $command->getData().self::CRLF);
+			fwrite($socket, $command->getData().self::CRLF);
 		}
 
-		$responseLine = rtrim(fgets($this->_socket));
+		$responseLine = rtrim(fgets($socket));
 		$responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
 		if (in_array($responseName, $this->_errorResponses))
@@ -240,9 +254,9 @@ class Pheanstalk_Connection
 		if (in_array($responseName, $this->_dataResponses))
 		{
 			$dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
-			$data = fread($this->_socket, $dataLength);
+			$data = fread($socket, $dataLength);
 
-			$crlf = fread($this->_socket, self::CRLF_LENGTH);
+			$crlf = fread($socket, self::CRLF_LENGTH);
 			if ($crlf !== self::CRLF)
 			{
 				throw new Pheanstalk_Exception_ClientException(sprintf(
@@ -259,7 +273,6 @@ class Pheanstalk_Connection
 
 		return $command->parseResponse($responseLine, $data);
 	}
-
 }
 
 ?>

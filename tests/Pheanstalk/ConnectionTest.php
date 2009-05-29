@@ -17,11 +17,12 @@ class Pheanstalk_ConnectionTest
 
 	public function testConnectionFailsToIncorrectPort()
 	{
-		$this->expectException('Pheanstalk_Exception_ConnectionException');
 		$connection = new Pheanstalk_Connection(
 			self::SERVER_HOST,
 			self::SERVER_PORT + 1
 		);
+		$this->expectException('Pheanstalk_Exception_ConnectionException');
+		$connection->useTube('test');
 	}
 
 	public function testUseTube()
