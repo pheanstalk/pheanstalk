@@ -67,17 +67,13 @@ class Pheanstalk_ConnectionTest
 		$connection->delete($job);
 	}
 
-	public function testReleaseAndCannotDeleteReleaseJob()
+	public function testRelease()
 	{
 		$connection = $this->_getConnection();
 
 		$connection->put(__METHOD__);
 		$job = $connection->reserve();
 		$connection->release($job);
-
-		// cannot delete job after releasing it
-		$this->expectException('Pheanstalk_Exception');
-		$connection->delete($job);
 	}
 
 	public function testPutBuryAndKick()
