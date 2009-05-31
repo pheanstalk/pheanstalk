@@ -11,8 +11,7 @@
 class Pheanstalk_ConnectionTest
 	extends UnitTestCase
 {
-
-	const SERVER_HOST = 'macbuntupro.vm';
+	const SERVER_HOST = 'localhost';
 	const SERVER_PORT = '11300';
 
 	public function testConnectionFailsToIncorrectPort()
