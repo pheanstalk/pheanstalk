@@ -11,7 +11,6 @@ class Pheanstalk_Response_ArrayResponse
 	extends ArrayObject
 	implements Pheanstalk_Response
 {
-
 	private $_name;
 
 	/**
@@ -30,6 +29,4 @@ class Pheanstalk_Response_ArrayResponse
 	{
 		return $this->_name;
 	}
-
 }
-

@@ -10,7 +10,6 @@
 class Pheanstalk_Command_ListTubeUsedCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	/* (non-phpdoc)
 	 * @see Pheanstalk_Command::getCommandLine()
 	 */
@@ -28,7 +27,4 @@ class Pheanstalk_Command_ListTubeUsedCommand
 			'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine)
 		));
 	}
-
 }
-
-?>

@@ -10,7 +10,6 @@
 class Pheanstalk_Command_PutCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_data;
 	private $_priority;
 	private $_delay;
@@ -101,9 +100,5 @@ class Pheanstalk_Command_PutCommand
 				$responseLine
 			));
 		}
-
 	}
-
 }
-
-?>

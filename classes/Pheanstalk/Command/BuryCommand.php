@@ -11,7 +11,6 @@
 class Pheanstalk_Command_BuryCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_job;
 	private $_priority;
 
@@ -59,7 +58,4 @@ class Pheanstalk_Command_BuryCommand
 			throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
 		}
 	}
-
 }
-
-?>

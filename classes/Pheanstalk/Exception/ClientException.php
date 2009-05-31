@@ -11,4 +11,3 @@ class Pheanstalk_Exception_ClientException
 	extends Pheanstalk_Exception
 {
 }
-

@@ -11,7 +11,6 @@
 class Pheanstalk_Command_DeleteCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_job;
 
 	/**
@@ -46,7 +45,4 @@ class Pheanstalk_Command_DeleteCommand
 
 		return $this->_createResponse($responseLine);
 	}
-
 }
-
-?>

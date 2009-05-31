@@ -274,5 +274,3 @@ class Pheanstalk_Connection
 		return $command->parseResponse($responseLine, $data);
 	}
 }
-
-?>

@@ -9,7 +9,6 @@
  */
 class Pheanstalk_Job
 {
-
 	const STATUS_READY = 'ready';
 	const STATUS_RESERVED = 'reserved';
 	const STATUS_DELAYED = 'delayed';
@@ -48,6 +47,4 @@ class Pheanstalk_Job
 	{
 		return $this->_data;
 	}
-
 }
-

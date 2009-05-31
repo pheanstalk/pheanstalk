@@ -10,7 +10,6 @@
 class Pheanstalk_ExceptionsTest
 	extends UnitTestCase
 {
-
 	public function testPheanstalkException()
 	{
 		$e = new Pheanstalk_Exception();
@@ -70,5 +69,4 @@ class Pheanstalk_ExceptionsTest
 		$e = new Pheanstalk_Exception_ServerUnknownCommandException();
 		$this->assertIsA($e, 'Pheanstalk_Exception_ServerException');
 	}
-
 }

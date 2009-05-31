@@ -11,4 +11,3 @@ class Pheanstalk_Exception_ServerBadFormatException
 	extends Pheanstalk_Exception_ServerException
 {
 }
-

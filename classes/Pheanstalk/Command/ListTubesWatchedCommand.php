@@ -11,7 +11,6 @@
 class Pheanstalk_Command_ListTubesWatchedCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	/* (non-phpdoc)
 	 * @see Pheanstalk_Command::getCommandLine()
 	 */
@@ -37,7 +36,4 @@ class Pheanstalk_Command_ListTubesWatchedCommand
 	{
 		return ltrim($line, "- ");
 	}
-
 }
-
-?>

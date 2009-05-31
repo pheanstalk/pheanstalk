@@ -10,7 +10,6 @@
 class Pheanstalk_Command_UseCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_tube;
 
 	/**
@@ -38,7 +37,4 @@ class Pheanstalk_Command_UseCommand
 			'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine)
 		));
 	}
-
 }
-
-?>

@@ -11,7 +11,6 @@
 class Pheanstalk_Command_WatchCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_tube;
 
 	/**
@@ -36,7 +35,4 @@ class Pheanstalk_Command_WatchCommand
 	public function parseResponse($responseLine, $responseData)
 	{
 	}
-
 }
-
-?>

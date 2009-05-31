@@ -11,4 +11,3 @@ class Pheanstalk_Exception_ServerUnknownCommandException
 	extends Pheanstalk_Exception_ServerException
 {
 }
-

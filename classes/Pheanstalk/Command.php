@@ -9,7 +9,6 @@
  */
 interface Pheanstalk_Command
 {
-
 	const COMMAND_PUT = 'put';
 	const COMMAND_USE = 'use';
 	const COMMAND_RESERVE = 'reserve';
@@ -51,6 +50,4 @@ interface Pheanstalk_Command
 	 * @throws Pheanstalk_Exception_CommandException If command has no data
 	 */
 	public function getDataLength();
-
 }
-

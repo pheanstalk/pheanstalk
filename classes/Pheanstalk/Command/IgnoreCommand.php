@@ -11,7 +11,6 @@
 class Pheanstalk_Command_IgnoreCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_tube;
 
 	/**
@@ -51,7 +50,4 @@ class Pheanstalk_Command_IgnoreCommand
 			throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
 		}
 	}
-
 }
-
-?>

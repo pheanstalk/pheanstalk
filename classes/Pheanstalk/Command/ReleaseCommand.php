@@ -11,7 +11,6 @@
 class Pheanstalk_Command_ReleaseCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_job;
 	private $_priority;
 	private $_delay;
@@ -47,7 +46,4 @@ class Pheanstalk_Command_ReleaseCommand
 	public function parseResponse($responseLine, $responseData)
 	{
 	}
-
 }
-
-?>

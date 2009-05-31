@@ -10,7 +10,6 @@
 class Pheanstalk_Command_TemplateCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	/**
 	 *
 	 */
@@ -32,7 +31,4 @@ class Pheanstalk_Command_TemplateCommand
 	public function parseResponse($responseLine, $responseData)
 	{
 	}
-
 }
-
-?>

@@ -13,7 +13,6 @@
 class Pheanstalk_Command_KickCommand
 	extends Pheanstalk_Command_AbstractCommand
 {
-
 	private $_max;
 
 	/**
@@ -43,7 +42,4 @@ class Pheanstalk_Command_KickCommand
 			'kicked' => (int)$count,
 		));
 	}
-
 }
-
-?>
