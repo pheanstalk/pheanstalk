@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Basic command line test runner for Pheanstalk.
