@@ -11,7 +11,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
-require(dirname(__FILE__).'/../include/init.php');
+require(dirname(__FILE__).'/../tests/init.php');
 
 $basedir = realpath(dirname(__FILE__).'/..');
 pheanstalk_unshift_include_path(array(
