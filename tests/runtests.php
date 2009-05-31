@@ -15,7 +15,7 @@ require(dirname(__FILE__).'/../include/init.php');
 
 $basedir = realpath(dirname(__FILE__).'/..');
 pheanstalk_unshift_include_path(array(
-	"$basedir/lib/simpletest",
+	"$basedir/tests/simpletest",
 	"$basedir/tests")
 );
 
