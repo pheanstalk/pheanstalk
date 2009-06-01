@@ -45,5 +45,24 @@ class Pheanstalk_Command_ReleaseCommand
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
+		if ($responseLine == Pheanstalk_Response::RESPONSE_BURIED)
+		{
+			throw new Pheanstalk_Exception_ServerException(sprintf(
+				'Job %s %d: out of memory trying to grow data structure',
+				$this->_job->getId(),
+				$responseLine
+			));
+		}
+
+		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
+		{
+			throw new Pheanstalk_Exception_ServerException(sprintf(
+				'Job %d %s: does not exist or is not reserved by client',
+				$this->_job->getId(),
+				$responseLine
+			));
+		}
+
+		return $this->_createResponse($responseLine);
 	}
 }

@@ -34,5 +34,8 @@ class Pheanstalk_Command_WatchCommand
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
+		return $this->_createResponse('WATCHING', array(
+			'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine)
+		));
 	}
 }

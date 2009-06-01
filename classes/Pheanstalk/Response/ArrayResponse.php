@@ -14,7 +14,8 @@ class Pheanstalk_Response_ArrayResponse
 	private $_name;
 
 	/**
-	 * Constructor
+	 * @param string $name
+	 * @param array $data
 	 */
 	public function __construct($name, $data)
 	{
