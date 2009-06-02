@@ -7,17 +7,17 @@ Pheanstalk is a work in progress by [Paul Annesley][2], but the existing code is
 
 Not all commands are supported yet, but those that are supported are fully implemented:
 
-  * Bury
-  * Delete
-  * Ignore
-  * Kick
-  * ListTubesWatched
-  * ListTubeUsed
-  * Put
-  * Release
-  * Reserve
-  * Use
-  * Watch
+  * bury
+  * delete
+  * ignore
+  * kick
+  * listTubesWatched
+  * listTubeUsed
+  * put
+  * release
+  * reserve
+  * use
+  * watch
 
   [1]: http://xph.us/software/beanstalkd/
   [2]: http://paul.annesley.cc/
