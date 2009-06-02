@@ -43,7 +43,7 @@ class Pheanstalk_Command_BuryCommand
 	{
 		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
 		{
-			throw new Pheanstalk_Exception(sprintf(
+			throw new Pheanstalk_Exception_ServerException(sprintf(
 				'%s: Job %d is not reserved or does not exist.',
 				$responseLine,
 				$this->_job->getId()

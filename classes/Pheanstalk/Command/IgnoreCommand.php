@@ -42,7 +42,7 @@ class Pheanstalk_Command_IgnoreCommand
 		}
 		elseif ($responseLine == Pheanstalk_Response::RESPONSE_NOT_IGNORED)
 		{
-			throw new Pheanstalk_Exception($responseLine .
+			throw new Pheanstalk_Exception_ServerException($responseLine .
 				': cannot ignore last tube in watchlist');
 		}
 		else

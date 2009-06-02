@@ -14,9 +14,42 @@ class Pheanstalk_CommandExceptionTest
 {
 	public function testDeleteNotFound()
 	{
-		$command = new Pheanstalk_Command_DeleteCommand($this->_mockJob(5));
-		$this->expectException('Pheanstalk_Exception_ServerException');
-		$command->parseResponse('NOT_FOUND', null);
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_DeleteCommand($this->_mockJob(5)),
+			'NOT_FOUND'
+		);
+	}
+
+	public function testReleaseBuried()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_ReleaseCommand($this->_mockJob(5), 1, 0),
+			'BURIED'
+		);
+	}
+
+	public function testReleaseNotFound()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_ReleaseCommand($this->_mockJob(5), 1, 0),
+			'NOT_FOUND'
+		);
+	}
+
+	public function testBuryNotFound()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_BuryCommand($this->_mockJob(5), 1),
+			'NOT_FOUND'
+		);
+	}
+
+	public function testIgnoreNotIgnored()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_IgnoreCommand('test'),
+			'NOT_IGNORED'
+		);
 	}
 
 	// ----------------------------------------
@@ -29,5 +62,15 @@ class Pheanstalk_CommandExceptionTest
 		$job = new MockJob();
 		$job->setReturnValue('getId', $id);
 		return $job;
+	}
+
+	/**
+	 * @param Pheanstalk_Command
+	 * @param string the response line to parse.
+	 */
+	private function _expectServerExceptionForResponse($command, $response)
+	{
+		$this->expectException('Pheanstalk_Exception_ServerException');
+		$command->parseResponse($response, null);
 	}
 }
