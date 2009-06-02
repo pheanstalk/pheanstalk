@@ -20,7 +20,15 @@ class Pheanstalk
 	 */
 	public function __construct($host, $port = self::DEFAULT_PORT)
 	{
-		$this->_connection = new Pheanstalk_Connection($host, $port);
+		$this->setConnection(new Pheanstalk_Connection($host, $port));
+	}
+
+	/**
+	 * @param Pheanstalk_Connection
+	 */
+	public function setConnection($connection)
+	{
+		$this->_connection = $connection;
 	}
 
 	/**
