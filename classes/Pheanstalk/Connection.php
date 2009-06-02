@@ -207,21 +207,28 @@ class Pheanstalk_Connection
 	// ----------------------------------------
 
 	/**
+	 * Sets a manually created socket, used for unit testing.
+	 * @param Pheanstalk_Socket $socket
+	 */
+	public function setSocket(Pheanstalk_Socket $socket)
+	{
+		$this->_socket = $socket;
+	}
+
+	/**
 	 * Socket handle for the connection to beanstalkd
-	 * @return resource
+	 * @return Pheanstalk_Socket
 	 * @throws Pheanstalk_Exception_ConnectionException
 	 */
 	private function _getSocket()
 	{
 		if (!isset($this->_socket))
 		{
-			if (!$this->_socket = @fsockopen($this->_hostname, $this->_port, $errno, $errstr, self::CONNECT_TIMEOUT))
-			{
-				throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
-			}
-
-			// prevent timeouts on the socket, hopefully?
-			stream_set_timeout($this->_socket,-1);
+			$this->_socket = new Pheanstalk_Socket_NativeSocket(
+				$this->_hostname,
+				$this->_port,
+				self::CONNECT_TIMEOUT
+			);
 		}
 
 		return $this->_socket;
@@ -237,14 +244,14 @@ class Pheanstalk_Connection
 	{
 		$socket = $this->_getSocket();
 
-		fwrite($socket, $command->getCommandLine().self::CRLF);
+		$socket->write($command->getCommandLine().self::CRLF);
 
 		if ($command->hasData())
 		{
-			fwrite($socket, $command->getData().self::CRLF);
+			$socket->write($command->getData().self::CRLF);
 		}
 
-		$responseLine = rtrim(fgets($socket));
+		$responseLine = $socket->getLine();
 		$responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
 		if (in_array($responseName, $this->_errorResponses))
@@ -260,9 +267,9 @@ class Pheanstalk_Connection
 		if (in_array($responseName, $this->_dataResponses))
 		{
 			$dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
-			$data = fread($socket, $dataLength);
+			$data = $socket->read($dataLength);
 
-			$crlf = fread($socket, self::CRLF_LENGTH);
+			$crlf = $socket->read(self::CRLF_LENGTH);
 			if ($crlf !== self::CRLF)
 			{
 				throw new Pheanstalk_Exception_ClientException(sprintf(
