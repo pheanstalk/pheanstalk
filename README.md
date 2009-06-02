@@ -16,6 +16,7 @@ Not all commands are supported yet, but those that are supported are fully imple
   * put
   * release
   * reserve
+  * reserve-with-timeout
   * use
   * watch
 

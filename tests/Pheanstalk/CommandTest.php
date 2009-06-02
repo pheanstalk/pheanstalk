@@ -143,6 +143,17 @@ class Pheanstalk_CommandTest
 		);
 	}
 
+	public function testReserveWithTimeout()
+	{
+		$command = new Pheanstalk_Command_ReserveCommand(10);
+		$this->_assertCommandLine($command, 'reserve-with-timeout 10');
+
+		$this->_assertResponse(
+			$command->parseResponse('TIMED_OUT', null),
+			Pheanstalk_Response::RESPONSE_TIMED_OUT
+		);
+	}
+
 	// ----------------------------------------
 
 	/**

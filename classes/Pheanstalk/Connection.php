@@ -71,11 +71,17 @@ class Pheanstalk_Connection
 	/**
 	 * Reserves/locks a ready job in a watched tube.
 	 *
+	 * A timeout value of 0 will cause the server to immediately return either a
+	 * response or TIMED_OUT.  A positive value of timeout will limit the amount of
+	 * time the client will block on the reserve request until a job becomes
+	 * available.
+	 *
+	 * @param int $timeout
 	 * @return object Pheanstalk_Job
 	 */
-	public function reserve()
+	public function reserve($timeout = null)
 	{
-		$command = new Pheanstalk_Command_ReserveCommand();
+		$command = new Pheanstalk_Command_ReserveCommand($timeout);
 		$response = $this->_sendCommand($command, $command);
 		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
 	}
