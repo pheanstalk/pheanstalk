@@ -165,6 +165,18 @@ class Pheanstalk_CommandTest
 		);
 	}
 
+	public function testListTubes()
+	{
+		$command = new Pheanstalk_Command_ListTubesCommand();
+		$this->_assertCommandLine($command, 'list-tubes');
+
+		$this->_assertResponse(
+			$command->parseResponse('OK 16', "---\n- one\n- two\n"),
+			Pheanstalk_Response::RESPONSE_OK,
+			array('tubes' => array('one', 'two'))
+		);
+	}
+
 	// ----------------------------------------
 
 	/**

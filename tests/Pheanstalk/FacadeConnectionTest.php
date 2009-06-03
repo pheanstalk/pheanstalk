@@ -102,6 +102,24 @@ class Pheanstalk_FacadeConnectionTest
 		$pheanstalk->touch($job);
 	}
 
+	public function testListTubes()
+	{
+		$pheanstalk = $this->_getFacade();
+		$this->assertEqual($pheanstalk->listTubes(), array('default'));
+
+		$pheanstalk->useTube('test1');
+		$this->assertEqual(
+			$pheanstalk->listTubes(),
+			array('default', 'test1')
+		);
+
+		$pheanstalk->watchTube('test2');
+		$this->assertEqual(
+			$pheanstalk->listTubes(),
+			array('default', 'test1', 'test2')
+		);
+	}
+
 	// ----------------------------------------
 	// private
 

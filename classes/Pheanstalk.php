@@ -85,6 +85,20 @@ class Pheanstalk
 	}
 
 	/**
+	 * The names of all tubes on the server.
+	 *
+	 * @return array
+	 */
+	public function listTubes()
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_ListTubesCommand()
+		);
+
+		return $response['tubes'];
+	}
+
+	/**
 	 * The names of the tubes being watched, to reserve jobs from.
 	 *
 	 * @return array

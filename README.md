@@ -11,6 +11,7 @@ Not all commands are supported yet, but those that are supported are fully imple
   * delete
   * ignore
   * kick
+  * list-tubes
   * list-tubes-watched
   * list-tube-used
   * put
@@ -23,7 +24,6 @@ Not all commands are supported yet, but those that are supported are fully imple
 
 Commands yet to be implemented:
 
-  * list-tubes
   * peek
   * peek-ready
   * peek-delayed
