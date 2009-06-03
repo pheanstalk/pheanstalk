@@ -187,4 +187,15 @@ class Pheanstalk
 		$response = $this->_connection->dispatchCommand($command);
 		return $response['count'];
 	}
+
+	/**
+	 * @param Pheanstalk_Job $job
+	 * @return void
+	 */
+	public function touch($job)
+	{
+		$this->_connection->dispatchCommand(
+			new Pheanstalk_Command_TouchCommand($job)
+		);
+	}
 }

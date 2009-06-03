@@ -11,14 +11,15 @@ Not all commands are supported yet, but those that are supported are fully imple
   * delete
   * ignore
   * kick
-  * listTubesWatched
-  * listTubeUsed
+  * list-tubes-watched
+  * list-tube-used
   * put
   * release
   * reserve
   * reserve-with-timeout
   * use
   * watch
+  * touch
 
   [1]: http://xph.us/software/beanstalkd/
   [2]: http://paul.annesley.cc/

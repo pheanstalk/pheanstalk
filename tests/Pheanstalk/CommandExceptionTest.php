@@ -52,6 +52,14 @@ class Pheanstalk_CommandExceptionTest
 		);
 	}
 
+	public function testTouchNotFound()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_TouchCommand($this->_mockJob(5)),
+			'NOT_FOUND'
+		);
+	}
+
 	// ----------------------------------------
 
 	/**

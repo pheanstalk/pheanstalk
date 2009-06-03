@@ -33,6 +33,7 @@ interface Pheanstalk_Response
 	const RESPONSE_KICKED = 'KICKED';
 	const RESPONSE_OK = 'OK';
 	const RESPONSE_TIMED_OUT = 'TIMED_OUT';
+	const RESPONSE_TOUCHED = 'TOUCHED';
 
 	/**
 	 * The name of the response

@@ -154,6 +154,17 @@ class Pheanstalk_CommandTest
 		);
 	}
 
+	public function testTouch()
+	{
+		$command = new Pheanstalk_Command_TouchCommand($this->_mockJob(5));
+		$this->_assertCommandLine($command, 'touch 5');
+
+		$this->_assertResponse(
+			$command->parseResponse('TOUCHED', null),
+			Pheanstalk_Response::RESPONSE_TOUCHED
+		);
+	}
+
 	// ----------------------------------------
 
 	/**

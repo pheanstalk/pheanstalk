@@ -94,6 +94,15 @@ class Pheanstalk_FacadeConnectionTest
 		$pheanstalk->put(str_repeat('0', 0x10000));
 	}
 
+	public function testTouch()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$pheanstalk->put(__METHOD__);
+		$job = $pheanstalk->reserve();
+		$pheanstalk->touch($job);
+	}
+
 	// ----------------------------------------
 	// private
 
