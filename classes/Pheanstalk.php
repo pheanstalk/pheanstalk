@@ -50,26 +50,24 @@ class Pheanstalk
 	 * Permanently deletes a job.
 	 *
 	 * @param object $job Pheanstalk_Job
-	 * @return void
+	 * @chainable
 	 */
 	public function delete($job)
 	{
 		$this->_dispatch(new Pheanstalk_Command_DeleteCommand($job));
+		return $this;
 	}
 
 	/**
 	 * Remove the specified tube from the watchlist
 	 *
 	 * @param string $tube
-	 * @return int Count of remaining tubes watched
+	 * @chainable
 	 */
 	public function ignoreTube($tube)
 	{
-		$response = $this->_dispatch(
-			new Pheanstalk_Command_IgnoreCommand($tube)
-		);
-
-		return $response['count'];
+		$this->_dispatch(new Pheanstalk_Command_IgnoreCommand($tube));
+		return $this;
 	}
 
 	/**
@@ -143,7 +141,7 @@ class Pheanstalk
 	 * @param object $job Pheanstalk_Job
 	 * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
 	 * @param int $delay Seconds to wait before job becomes ready
-	 * @return void
+	 * @chainable
 	 */
 	public function release(
 		$job,
@@ -154,6 +152,8 @@ class Pheanstalk
 		$this->_dispatch(
 			new Pheanstalk_Command_ReleaseCommand($job, $priority, $delay)
 		);
+
+		return $this;
 	}
 
 	/**
@@ -180,33 +180,36 @@ class Pheanstalk
 
 	/**
 	 * @param Pheanstalk_Job $job
-	 * @return void
+	 * @chainable
 	 */
 	public function touch($job)
 	{
 		$this->_dispatch(new Pheanstalk_Command_TouchCommand($job));
+		return $this;
 	}
 
 	/**
 	 * Change to the specified tube name for publishing jobs to
 	 *
 	 * @param string $tube
-	 * @return void
+	 * @chainable
 	 */
 	public function useTube($tube)
 	{
 		$this->_dispatch(new Pheanstalk_Command_UseCommand($tube));
+		return $this;
 	}
 
 	/**
 	 * Add the specified tube to the watchlist, to reserve jobs from.
 	 *
 	 * @param string $tube
-	 * @return void
+	 * @chainable
 	 */
 	public function watchTube($tube)
 	{
 		$this->_dispatch(new Pheanstalk_Command_WatchCommand($tube));
+		return $this;
 	}
 
 	// ----------------------------------------

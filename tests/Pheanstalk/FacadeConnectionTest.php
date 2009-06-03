@@ -29,8 +29,7 @@ class Pheanstalk_FacadeConnectionTest
 		$this->assertEqual($pheanstalk->getWatchedTubes(), array('default'));
 		$pheanstalk->watchTube('test');
 		$this->assertEqual($pheanstalk->getWatchedTubes(), array('default', 'test'));
-		$count = $pheanstalk->ignoreTube('default');
-		$this->assertEqual($count, 1);
+		$pheanstalk->ignoreTube('default');
 		$this->assertEqual($pheanstalk->getWatchedTubes(), array('test'));
 	}
 

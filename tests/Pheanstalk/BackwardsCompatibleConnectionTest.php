@@ -54,8 +54,7 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 		$this->assertEqual($connection->getWatchedTubes(), array('default', 'test'));
 
 		$this->_expectDeprecated('ignoreTube');
-		$count = $connection->ignoreTube('default');
-		$this->assertEqual($count, 1);
+		$connection->ignoreTube('default');
 
 		$this->_expectDeprecated('getWatchedTubes');
 		$this->assertEqual($connection->getWatchedTubes(), array('test'));
