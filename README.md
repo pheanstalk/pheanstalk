@@ -17,9 +17,20 @@ Not all commands are supported yet, but those that are supported are fully imple
   * release
   * reserve
   * reserve-with-timeout
+  * touch
   * use
   * watch
-  * touch
+
+Commands yet to be implemented:
+
+  * list-tubes
+  * peek
+  * peek-ready
+  * peek-delayed
+  * peek-buried
+  * stats
+  * stats-job
+  * stats-tube
 
   [1]: http://xph.us/software/beanstalkd/
   [2]: http://paul.annesley.cc/
