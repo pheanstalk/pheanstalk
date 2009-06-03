@@ -25,10 +25,93 @@ class Pheanstalk
 
 	/**
 	 * @param Pheanstalk_Connection
+	 * @chainable
 	 */
 	public function setConnection($connection)
 	{
 		$this->_connection = $connection;
+		return $this;
+	}
+
+	// ----------------------------------------
+
+	/**
+	 * Puts a job into a 'buried' state, revived only by 'kick' command.
+	 *
+	 * @param Pheanstalk_Job $job
+	 * @return void
+	 */
+	public function bury($job, $priority = self::DEFAULT_PRIORITY)
+	{
+		$this->_dispatch(new Pheanstalk_Command_BuryCommand($job, $priority));
+	}
+
+	/**
+	 * Permanently deletes a job.
+	 *
+	 * @param object $job Pheanstalk_Job
+	 * @return void
+	 */
+	public function delete($job)
+	{
+		$this->_dispatch(new Pheanstalk_Command_DeleteCommand($job));
+	}
+
+	/**
+	 * Remove the specified tube from the watchlist
+	 *
+	 * @param string $tube
+	 * @return int Count of remaining tubes watched
+	 */
+	public function ignoreTube($tube)
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_IgnoreCommand($tube)
+		);
+
+		return $response['count'];
+	}
+
+	/**
+	 * Kicks buried or delayed jobs into a 'ready' state.
+	 * If there are buried jobs, it will kick up to $max of them.
+	 * Otherwise, it will kick up to $max delayed jobs.
+	 *
+	 * @param int $max The maximum jobs to kick
+	 * @return int Number of jobs kicked
+	 */
+	public function kick($max)
+	{
+		$response = $this->_dispatch(new Pheanstalk_Command_KickCommand($max));
+		return $response['kicked'];
+	}
+
+	/**
+	 * The names of the tubes being watched, to reserve jobs from.
+	 *
+	 * @return array
+	 */
+	public function getWatchedTubes()
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_ListTubesWatchedCommand()
+		);
+
+		return $response['tubes'];
+	}
+
+	/**
+	 * The name of the current tube used for publishing jobs to.
+	 *
+	 * @return string
+	 */
+	public function getCurrentTube()
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_ListTubeUsedCommand()
+		);
+
+		return $response['tube'];
 	}
 
 	/**
@@ -47,27 +130,11 @@ class Pheanstalk
 		$ttr = self::DEFAULT_TTR
 	)
 	{
-		$command = new Pheanstalk_Command_PutCommand($data, $priority, $delay, $ttr);
-		$response = $this->_connection->dispatchCommand($command);
-		return $response['id'];
-	}
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_PutCommand($data, $priority, $delay, $ttr)
+		);
 
-	/**
-	 * Reserves/locks a ready job in a watched tube.
-	 *
-	 * A timeout value of 0 will cause the server to immediately return either a
-	 * response or TIMED_OUT.  A positive value of timeout will limit the amount of
-	 * time the client will block on the reserve request until a job becomes
-	 * available.
-	 *
-	 * @param int $timeout
-	 * @return object Pheanstalk_Job
-	 */
-	public function reserve($timeout = null)
-	{
-		$command = new Pheanstalk_Command_ReserveCommand($timeout);
-		$response = $this->_connection->dispatchCommand($command);
-		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		return $response['id'];
 	}
 
 	/**
@@ -84,59 +151,40 @@ class Pheanstalk
 		$delay = self::DEFAULT_DELAY
 	)
 	{
-		$command = new Pheanstalk_Command_ReleaseCommand($job, $priority, $delay);
-		$this->_connection->dispatchCommand($command);
+		$this->_dispatch(
+			new Pheanstalk_Command_ReleaseCommand($job, $priority, $delay)
+		);
 	}
 
 	/**
-	 * Permanently deletes an already-reserved job.
+	 * Reserves/locks a ready job in a watched tube.
 	 *
-	 * @param object $job Pheanstalk_Job
+	 * A non-null timeout uses the 'reserve-with-timeout' instead of 'reserve'.
+	 *
+	 * A timeout value of 0 will cause the server to immediately return either a
+	 * response or TIMED_OUT.  A positive value of timeout will limit the amount of
+	 * time the client will block on the reserve request until a job becomes
+	 * available.
+	 *
+	 * @param int $timeout
+	 * @return object Pheanstalk_Job
+	 */
+	public function reserve($timeout = null)
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_ReserveCommand($timeout)
+		);
+
+		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+	}
+
+	/**
+	 * @param Pheanstalk_Job $job
 	 * @return void
 	 */
-	public function delete($job)
+	public function touch($job)
 	{
-		$command = new Pheanstalk_Command_DeleteCommand($job);
-		$this->_connection->dispatchCommand($command);
-	}
-
-	/**
-	 * Puts a job into a 'buried' state, revived only by 'kick' command.
-	 *
-	 * @param object $job Pheanstalk_Job
-	 * @return void
-	 */
-	public function bury($job, $priority = self::DEFAULT_PRIORITY)
-	{
-		$command = new Pheanstalk_Command_BuryCommand($job, $priority);
-		$this->_connection->dispatchCommand($command);
-	}
-
-	/**
-	 * Kicks buried or delayed jobs into a 'ready' state.
-	 * If there are buried jobs, it will kick up to $max of them.
-	 * Otherwise, it will kick up to $max delayed jobs.
-	 *
-	 * @param int $max The maximum jobs to kick
-	 * @return int Number of jobs kicked
-	 */
-	public function kick($max)
-	{
-		$command = new Pheanstalk_Command_KickCommand($max);
-		$response = $this->_connection->dispatchCommand($command);
-		return $response['kicked'];
-	}
-
-	/**
-	 * The name of the current tube used for publishing jobs to
-	 *
-	 * @return string
-	 */
-	public function getCurrentTube()
-	{
-		$command = new Pheanstalk_Command_ListTubeUsedCommand();
-		$response = $this->_connection->dispatchCommand($command);
-		return $response['tube'];
+		$this->_dispatch(new Pheanstalk_Command_TouchCommand($job));
 	}
 
 	/**
@@ -147,20 +195,7 @@ class Pheanstalk
 	 */
 	public function useTube($tube)
 	{
-		$command = new Pheanstalk_Command_UseCommand($tube);
-		$this->_connection->dispatchCommand($command);
-	}
-
-	/**
-	 * The names of the tubes being watched, to reserve jobs from.
-	 *
-	 * @return array
-	 */
-	public function getWatchedTubes()
-	{
-		$command = new Pheanstalk_Command_ListTubesWatchedCommand();
-		$response = $this->_connection->dispatchCommand($command);
-		return $response['tubes'];
+		$this->_dispatch(new Pheanstalk_Command_UseCommand($tube));
 	}
 
 	/**
@@ -171,31 +206,17 @@ class Pheanstalk
 	 */
 	public function watchTube($tube)
 	{
-		$command = new Pheanstalk_Command_WatchCommand($tube);
-		$this->_connection->dispatchCommand($command);
+		$this->_dispatch(new Pheanstalk_Command_WatchCommand($tube));
 	}
 
-	/**
-	 * Remove the specified tube from the watchlist
-	 *
-	 * @param string $tube
-	 * @return void
-	 */
-	public function ignoreTube($tube)
-	{
-		$command = new Pheanstalk_Command_IgnoreCommand($tube);
-		$response = $this->_connection->dispatchCommand($command);
-		return $response['count'];
-	}
+	// ----------------------------------------
 
 	/**
-	 * @param Pheanstalk_Job $job
-	 * @return void
+	 * @param Pheanstalk_Command $command
+	 * @return Pheanstalk_Response
 	 */
-	public function touch($job)
+	private function _dispatch($command)
 	{
-		$this->_connection->dispatchCommand(
-			new Pheanstalk_Command_TouchCommand($job)
-		);
+		return $this->_connection->dispatchCommand($command);
 	}
 }
