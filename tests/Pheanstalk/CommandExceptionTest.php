@@ -60,6 +60,20 @@ class Pheanstalk_CommandExceptionTest
 		);
 	}
 
+	public function testPeekNotFound()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_PeekCommand(5),
+			'NOT_FOUND'
+		);
+	}
+
+	public function testPeekInvalidSubject()
+	{
+		$this->expectException('Pheanstalk_Exception_CommandException');
+		new Pheanstalk_Command_PeekCommand('invalid');
+	}
+
 	// ----------------------------------------
 
 	/**

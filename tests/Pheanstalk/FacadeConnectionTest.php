@@ -105,19 +105,77 @@ class Pheanstalk_FacadeConnectionTest
 	public function testListTubes()
 	{
 		$pheanstalk = $this->_getFacade();
-		$this->assertEqual($pheanstalk->listTubes(), array('default'));
+		$this->assertIsA($pheanstalk->listTubes(), 'array');
+		$this->assertTrue(in_array('default', $pheanstalk->listTubes()));
 
 		$pheanstalk->useTube('test1');
-		$this->assertEqual(
-			$pheanstalk->listTubes(),
-			array('default', 'test1')
-		);
+		$this->assertTrue(in_array('test1', $pheanstalk->listTubes()));
 
 		$pheanstalk->watchTube('test2');
-		$this->assertEqual(
-			$pheanstalk->listTubes(),
-			array('default', 'test1', 'test2')
-		);
+		$this->assertTrue(in_array('test2', $pheanstalk->listTubes()));
+	}
+
+	public function testPeek()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$id = $pheanstalk
+			->useTube('testpeek')
+			->watchTube('testpeek')
+			->ignoreTube('default')
+			->put('test');
+
+		$job = $pheanstalk->peek($id);
+
+		$this->assertEqual($job->getData(), 'test');
+	}
+
+	public function testPeekReady()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$id = $pheanstalk
+			->useTube('testpeekready')
+			->watchTube('testpeekready')
+			->ignoreTube('default')
+			->put('test');
+
+		$job = $pheanstalk->peekReady();
+
+		$this->assertEqual($job->getData(), 'test');
+	}
+
+	public function testPeekDelayed()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$id = $pheanstalk
+			->useTube('testpeekdelayed')
+			->watchTube('testpeekdelayed')
+			->ignoreTube('default')
+			->put('test', 0, 2);
+
+		$job = $pheanstalk->peekDelayed();
+
+		$this->assertEqual($job->getData(), 'test');
+	}
+
+	public function testPeekBuried()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$id = $pheanstalk
+			->useTube('testpeekburied')
+			->watchTube('testpeekburied')
+			->ignoreTube('default')
+			->put('test');
+
+		$job = $pheanstalk->reserve($id);
+		$pheanstalk->bury($job);
+
+		$job = $pheanstalk->peekBuried();
+
+		$this->assertEqual($job->getData(), 'test');
 	}
 
 	// ----------------------------------------

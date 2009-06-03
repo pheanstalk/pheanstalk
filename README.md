@@ -14,6 +14,10 @@ Not all commands are supported yet, but those that are supported are fully imple
   * list-tubes
   * list-tubes-watched
   * list-tube-used
+  * peek
+  * peek-ready
+  * peek-delayed
+  * peek-buried
   * put
   * release
   * reserve
@@ -24,10 +28,6 @@ Not all commands are supported yet, but those that are supported are fully imple
 
 Commands yet to be implemented:
 
-  * peek
-  * peek-ready
-  * peek-delayed
-  * peek-buried
   * stats
   * stats-job
   * stats-tube

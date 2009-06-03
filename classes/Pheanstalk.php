@@ -127,6 +127,63 @@ class Pheanstalk
 	}
 
 	/**
+	 * Inspect a job in the system, regardless of what tube it is in.
+	 *
+	 * @param int $jobId
+	 * @return object Pheanstalk_Job
+	 */
+	public function peek($jobId)
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_PeekCommand($jobId)
+		);
+
+		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+	}
+
+	/**
+	 * Inspect the next ready job in the currently used tube.
+	 *
+	 * @return object Pheanstalk_Job
+	 */
+	public function peekReady()
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_READY)
+		);
+
+		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+	}
+
+	/**
+	 * Inspect the shortest-remaining-delayed job in the currently used tube.
+	 *
+	 * @return object Pheanstalk_Job
+	 */
+	public function peekDelayed()
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_DELAYED)
+		);
+
+		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+	}
+
+	/**
+	 * Inspect the next job in the list of buried jobs of the currently used tube.
+	 *
+	 * @return object Pheanstalk_Job
+	 */
+	public function peekBuried()
+	{
+		$response = $this->_dispatch(
+			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_BURIED)
+		);
+
+		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+	}
+
+	/**
 	 * Puts a job on the queue.
 	 *
 	 * @param string $data The job data

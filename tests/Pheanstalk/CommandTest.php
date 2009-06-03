@@ -177,6 +177,36 @@ class Pheanstalk_CommandTest
 		);
 	}
 
+	public function testPeek()
+	{
+		$command = new Pheanstalk_Command_PeekCommand(5);
+		$this->_assertCommandLine($command, 'peek 5');
+
+		$this->_assertResponse(
+			$command->parseResponse('FOUND 5 9', "test data"),
+			Pheanstalk_Response::RESPONSE_FOUND,
+			array('id' => 5, 'jobdata' => 'test data')
+		);
+	}
+
+	public function testPeekReady()
+	{
+		$command = new Pheanstalk_Command_PeekCommand('ready');
+		$this->_assertCommandLine($command, 'peek-ready');
+	}
+
+	public function testPeekDelayed()
+	{
+		$command = new Pheanstalk_Command_PeekCommand('delayed');
+		$this->_assertCommandLine($command, 'peek-delayed');
+	}
+
+	public function testPeekBuried()
+	{
+		$command = new Pheanstalk_Command_PeekCommand('buried');
+		$this->_assertCommandLine($command, 'peek-buried');
+	}
+
 	// ----------------------------------------
 
 	/**
