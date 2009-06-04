@@ -7,21 +7,26 @@
  */
 class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 {
+	/**
+	 * The default timeout for a blocking read on the socket
+	 */
+	const SOCKET_TIMEOUT = 1;
+
 	private $_socket;
 
 	/**
 	 * @param string $host
 	 * @param int $port
-	 * @param int $timeout
+	 * @param int $connectTimeout
 	 */
-	public function __construct($host, $port, $timeout)
+	public function __construct($host, $port, $connectTimeout)
 	{
-		if (!$this->_socket = @fsockopen($host, $port, $errno, $errstr, $timeout))
+		if (!$this->_socket = @fsockopen($host, $port, $errno, $errstr, $connectTimeout))
 		{
 			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
 		}
 
-		stream_set_timeout($this->_socket, -1);
+		stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
 	}
 
 	/* (non-phpdoc)
@@ -45,8 +50,12 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function getLine($length = null)
 	{
-		$data = isset($length) ?
-			fgets($this->_socket, $length) : fgets($this->_socket);
+		do
+		{
+			$data = isset($length) ?
+				fgets($this->_socket, $length) : fgets($this->_socket);
+		}
+		while ($data === false);
 
 		return rtrim($data);
 	}
