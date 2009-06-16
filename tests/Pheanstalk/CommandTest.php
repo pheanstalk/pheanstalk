@@ -18,7 +18,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'bury 5 2');
 
 		$this->_assertResponse(
-			$command->parseResponse('BURIED', null),
+			$command->getResponseParser()->parseResponse('BURIED', null),
 			Pheanstalk_Response::RESPONSE_BURIED
 		);
 	}
@@ -29,7 +29,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'delete 5');
 
 		$this->_assertResponse(
-			$command->parseResponse('DELETED', null),
+			$command->getResponseParser()->parseResponse('DELETED', null),
 			Pheanstalk_Response::RESPONSE_DELETED
 		);
 	}
@@ -40,7 +40,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'ignore tube1');
 
 		$this->_assertResponse(
-			$command->parseResponse('WATCHING 2', null),
+			$command->getResponseParser()->parseResponse('WATCHING 2', null),
 			Pheanstalk_Response::RESPONSE_WATCHING,
 			array('count' => 2)
 		);
@@ -52,7 +52,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'kick 5');
 
 		$this->_assertResponse(
-			$command->parseResponse('KICKED 2', null),
+			$command->getResponseParser()->parseResponse('KICKED 2', null),
 			Pheanstalk_Response::RESPONSE_KICKED,
 			array('kicked' => 2)
 		);
@@ -64,9 +64,9 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'list-tubes-watched');
 
 		$this->_assertResponse(
-			$command->parseResponse('OK 16', "---\n- one\n- two\n"),
+			$command->getResponseParser()->parseResponse('OK 16', "---\n- one\n- two\n"),
 			Pheanstalk_Response::RESPONSE_OK,
-			array('tubes' => array('one', 'two'))
+			array('one', 'two')
 		);
 	}
 
@@ -76,7 +76,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'list-tube-used');
 
 		$this->_assertResponse(
-			$command->parseResponse('USING default', null),
+			$command->getResponseParser()->parseResponse('USING default', null),
 			Pheanstalk_Response::RESPONSE_USING,
 			array('tube' => 'default')
 		);
@@ -89,7 +89,7 @@ class Pheanstalk_CommandTest
 		$this->assertEqual($command->getData(), 'data');
 
 		$this->_assertResponse(
-			$command->parseResponse('INSERTED 4', null),
+			$command->getResponseParser()->parseResponse('INSERTED 4', null),
 			Pheanstalk_Response::RESPONSE_INSERTED,
 			array('id' => '4')
 		);
@@ -102,7 +102,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'release 3 1 0');
 
 		$this->_assertResponse(
-			$command->parseResponse('RELEASED', null),
+			$command->getResponseParser()->parseResponse('RELEASED', null),
 			Pheanstalk_Response::RESPONSE_RELEASED
 		);
 	}
@@ -113,7 +113,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'reserve');
 
 		$this->_assertResponse(
-			$command->parseResponse('RESERVED 5 9', "test data"),
+			$command->getResponseParser()->parseResponse('RESERVED 5 9', "test data"),
 			Pheanstalk_Response::RESPONSE_RESERVED,
 			array('id' => 5, 'jobdata' => 'test data')
 		);
@@ -125,7 +125,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'use tube5');
 
 		$this->_assertResponse(
-			$command->parseResponse('USING tube5', null),
+			$command->getResponseParser()->parseResponse('USING tube5', null),
 			Pheanstalk_Response::RESPONSE_USING,
 			array('tube' => 'tube5')
 		);
@@ -137,7 +137,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'watch tube6');
 
 		$this->_assertResponse(
-			$command->parseResponse('WATCHING 3', null),
+			$command->getResponseParser()->parseResponse('WATCHING 3', null),
 			Pheanstalk_Response::RESPONSE_WATCHING,
 			array('count' => '3')
 		);
@@ -149,7 +149,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'reserve-with-timeout 10');
 
 		$this->_assertResponse(
-			$command->parseResponse('TIMED_OUT', null),
+			$command->getResponseParser()->parseResponse('TIMED_OUT', null),
 			Pheanstalk_Response::RESPONSE_TIMED_OUT
 		);
 	}
@@ -160,7 +160,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'touch 5');
 
 		$this->_assertResponse(
-			$command->parseResponse('TOUCHED', null),
+			$command->getResponseParser()->parseResponse('TOUCHED', null),
 			Pheanstalk_Response::RESPONSE_TOUCHED
 		);
 	}
@@ -171,9 +171,9 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'list-tubes');
 
 		$this->_assertResponse(
-			$command->parseResponse('OK 16', "---\n- one\n- two\n"),
+			$command->getResponseParser()->parseResponse('OK 16', "---\n- one\n- two\n"),
 			Pheanstalk_Response::RESPONSE_OK,
-			array('tubes' => array('one', 'two'))
+			array('one', 'two')
 		);
 	}
 
@@ -183,7 +183,7 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'peek 5');
 
 		$this->_assertResponse(
-			$command->parseResponse('FOUND 5 9', "test data"),
+			$command->getResponseParser()->parseResponse('FOUND 5 9', "test data"),
 			Pheanstalk_Response::RESPONSE_FOUND,
 			array('id' => 5, 'jobdata' => 'test data')
 		);

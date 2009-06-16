@@ -10,6 +10,7 @@
  */
 class Pheanstalk_Command_WatchCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	private $_tube;
 

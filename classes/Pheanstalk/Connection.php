@@ -92,15 +92,11 @@ class Pheanstalk_Connection
 
 	/**
 	 * @param object $command Pheanstalk_Command
-	 * @param object $parser Pheanstalk_ResponseParser
 	 * @return object Pheanstalk_Response
 	 * @throws Pheanstalk_Exception_ClientException
 	 */
-	public function dispatchCommand($command, $responseParser = null)
+	public function dispatchCommand($command)
 	{
-		if (empty($responseParser))
-			$responseParser = $command;
-
 		$socket = $this->_getSocket();
 
 		$socket->write($command->getCommandLine().self::CRLF);
@@ -147,7 +143,9 @@ class Pheanstalk_Connection
 			$data = null;
 		}
 
-		return $command->parseResponse($responseLine, $data);
+		return $command
+			->getResponseParser()
+			->parseResponse($responseLine, $data);
 	}
 
 	// ----------------------------------------

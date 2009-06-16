@@ -10,6 +10,7 @@
  */
 class Pheanstalk_Command_BuryCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	private $_job;
 	private $_priority;

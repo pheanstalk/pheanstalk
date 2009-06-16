@@ -9,6 +9,7 @@
  */
 class Pheanstalk_Command_PutCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	private $_data;
 	private $_priority;

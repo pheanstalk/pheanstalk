@@ -9,6 +9,7 @@
  */
 class Pheanstalk_Command_TouchCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	private $_job;
 

@@ -9,6 +9,7 @@
  */
 class Pheanstalk_Command_PeekCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	const TYPE_ID = 'id';
 	const TYPE_READY = 'ready';

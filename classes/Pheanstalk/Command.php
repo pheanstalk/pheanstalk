@@ -50,4 +50,10 @@ interface Pheanstalk_Command
 	 * @throws Pheanstalk_Exception_CommandException If command has no data
 	 */
 	public function getDataLength();
+
+	/**
+	 * The response parser for the command.
+	 * @return Pheanstalk_ResponseParser
+	 */
+	public function getResponseParser();
 }

@@ -8,7 +8,7 @@
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
 abstract class Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_Command, Pheanstalk_ResponseParser
+	implements Pheanstalk_Command
 {
 	/* (non-phpdoc)
 	 * @see Pheanstalk_Command::hasData()
@@ -32,6 +32,17 @@ abstract class Pheanstalk_Command_AbstractCommand
 	public function getDataLength()
 	{
 		throw new Pheanstalk_Exception_CommandException('Command has no data');
+	}
+
+	/* (non-phpdoc)
+	 * @see Pheanstalk_Command::getResponseParser()
+	 */
+	public function getResponseParser()
+	{
+		// concrete implementation must either:
+		// a) implement Pheanstalk_ResponseParser
+		// b) override this getResponseParser method
+		return $this;
 	}
 
 	/**

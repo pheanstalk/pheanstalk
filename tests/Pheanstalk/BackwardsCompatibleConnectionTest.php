@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Tests for the Pheanstalk_Connection.
+ * Tests methods that have been moved from Pheanstalk_Connection to Pheanstalk.
  * Relies on a running beanstalkd server.
  *
  * @author Paul Annesley

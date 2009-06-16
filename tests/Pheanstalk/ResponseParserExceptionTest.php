@@ -3,13 +3,13 @@
 Mock::generate('Pheanstalk_Job', 'MockJob');
 
 /**
- * Tests exceptions are thrown correctly by Pheanstalk_Command implementations.
+ * Tests exceptions thrown by Pheanstalk_ResponseParser implementations.
  *
  * @author Paul Annesley
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_CommandExceptionTest
+class Pheanstalk_ResponseParserExceptionTest
 	extends UnitTestCase
 {
 	public function testDeleteNotFound()
@@ -72,6 +72,14 @@ class Pheanstalk_CommandExceptionTest
 	{
 		$this->expectException('Pheanstalk_Exception_CommandException');
 		new Pheanstalk_Command_PeekCommand('invalid');
+	}
+
+	public function testYamlResponseParserNotFound()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_YamlResponseParser(Pheanstalk_YamlResponseParser::MODE_DICT),
+			'NOT_FOUND'
+		);
 	}
 
 	// ----------------------------------------

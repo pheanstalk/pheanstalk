@@ -9,6 +9,7 @@
  */
 class Pheanstalk_Command_ListTubeUsedCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	/* (non-phpdoc)
 	 * @see Pheanstalk_Command::getCommandLine()

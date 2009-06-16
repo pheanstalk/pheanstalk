@@ -9,6 +9,7 @@
  */
 class Pheanstalk_Command_UseCommand
 	extends Pheanstalk_Command_AbstractCommand
+	implements Pheanstalk_ResponseParser
 {
 	private $_tube;
 

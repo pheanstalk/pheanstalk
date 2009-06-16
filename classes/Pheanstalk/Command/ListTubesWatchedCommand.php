@@ -20,20 +20,12 @@ class Pheanstalk_Command_ListTubesWatchedCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see Pheanstalk_Command::getResponseParser()
 	 */
-	public function parseResponse($responseLine, $responseData)
+	public function getResponseParser()
 	{
-		$dataLines = explode("\n", rtrim($responseData));
-		array_shift($dataLines); // discard header line
-
-		return $this->_createResponse('OK', array(
-			'tubes' => array_map(array($this, '_mapResponseListLines'), $dataLines),
-		));
-	}
-
-	private function _mapResponseListLines($line)
-	{
-		return ltrim($line, "- ");
+		return new Pheanstalk_YamlResponseParser(
+			Pheanstalk_YamlResponseParser::MODE_LIST
+		);
 	}
 }

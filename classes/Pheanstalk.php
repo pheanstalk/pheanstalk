@@ -91,11 +91,9 @@ class Pheanstalk
 	 */
 	public function listTubes()
 	{
-		$response = $this->_dispatch(
+		return (array) $this->_dispatch(
 			new Pheanstalk_Command_ListTubesCommand()
 		);
-
-		return $response['tubes'];
 	}
 
 	/**
@@ -105,11 +103,9 @@ class Pheanstalk
 	 */
 	public function getWatchedTubes()
 	{
-		$response = $this->_dispatch(
+		return (array) $this->_dispatch(
 			new Pheanstalk_Command_ListTubesWatchedCommand()
 		);
-
-		return $response['tubes'];
 	}
 
 	/**
