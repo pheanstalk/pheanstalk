@@ -1,11 +1,11 @@
 Pheanstalk
 ==========
 
-Pheanstalk is a pure PHP client for the [beanstalkd workqueue][1].
+Pheanstalk, created by [Paul Annesley][1], is a pure PHP 5.2+ client for the [beanstalkd workqueue][2].
 
-Pheanstalk is a work in progress by [Paul Annesley][2], but the existing code is stable and tested.
+Pheanstalk is rigorously unit tested and written using encapsulated, maintainable object oriented design.
 
-Not all commands are supported yet, but those that are supported are fully implemented:
+All commands specified in the beanstalkd 1.3 protocol documentation (latest as at June 2009) are supported:
 
   * bury
   * delete
@@ -22,15 +22,12 @@ Not all commands are supported yet, but those that are supported are fully imple
   * release
   * reserve
   * reserve-with-timeout
+  * stats
+  * stats-job
+  * stats-tube
   * touch
   * use
   * watch
 
-Commands yet to be implemented:
-
-  * stats
-  * stats-job
-  * stats-tube
-
-  [1]: http://xph.us/software/beanstalkd/
-  [2]: http://paul.annesley.cc/
+  [1]: http://paul.annesley.cc/
+  [2]: http://xph.us/software/beanstalkd/

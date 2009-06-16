@@ -30,4 +30,34 @@ class Pheanstalk_Response_ArrayResponse
 	{
 		return $this->_name;
 	}
+
+	/**
+	 * Object property access to ArrayObject data.
+	 */
+	public function __get($property)
+	{
+		$key = $this->_transformPropertyName($property);
+		return isset($this[$key]) ? $this[$key] : null;
+	}
+
+	/**
+	 * Object property access to ArrayObject data.
+	 */
+	public function __isset($property)
+	{
+		$key = $this->_transformPropertyName($property);
+		return isset($this[$key]);
+	}
+
+	// ----------------------------------------
+
+	/**
+	 * Tranform underscored property name to hyphenated array key.
+	 * @param string
+	 * @return string
+	 */
+	private function _transformPropertyName($propertyName)
+	{
+		return str_replace('_', '-', $propertyName);
+	}
 }

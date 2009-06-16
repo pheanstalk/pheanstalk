@@ -246,6 +246,32 @@ class Pheanstalk
 	}
 
 	/**
+	 * @param Pheanstalk_Job or int $job
+	 * @return object
+	 */
+	public function statsJob($job)
+	{
+		return $this->_dispatch(new Pheanstalk_Command_StatsJobCommand($job));
+	}
+
+	/**
+	 * @param string $tube
+	 * @return object
+	 */
+	public function statsTube($tube)
+	{
+		return $this->_dispatch(new Pheanstalk_Command_StatsTubeCommand($tube));
+	}
+
+	/**
+	 * @return object
+	 */
+	public function stats()
+	{
+		return $this->_dispatch(new Pheanstalk_Command_StatsCommand());
+	}
+
+	/**
 	 * @param Pheanstalk_Job $job
 	 * @chainable
 	 */

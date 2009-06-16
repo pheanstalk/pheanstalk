@@ -207,6 +207,48 @@ class Pheanstalk_CommandTest
 		$this->_assertCommandLine($command, 'peek-buried');
 	}
 
+	public function testStatsJob()
+	{
+		$command = new Pheanstalk_Command_StatsJobCommand(5);
+		$this->_assertCommandLine($command, 'stats-job 5');
+
+		$data = "---\r\nid: 8\r\ntube: test\r\nstate: delayed\r\n";
+
+		$this->_assertResponse(
+			$command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+			Pheanstalk_Response::RESPONSE_OK,
+			array('id' => '8', 'tube' => 'test', 'state' => 'delayed')
+		);
+	}
+
+	public function testStatsTube()
+	{
+		$command = new Pheanstalk_Command_StatsTubeCommand('test');
+		$this->_assertCommandLine($command, 'stats-tube test');
+
+		$data = "---\r\nname: test\r\ncurrent-jobs-ready: 5\r\n";
+
+		$this->_assertResponse(
+			$command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+			Pheanstalk_Response::RESPONSE_OK,
+			array('name' => 'test', 'current-jobs-ready' => '5')
+		);
+	}
+
+	public function testStats()
+	{
+		$command = new Pheanstalk_Command_StatsCommand();
+		$this->_assertCommandLine($command, 'stats');
+
+		$data = "---\r\npid: 123\r\nversion: 1.3\r\n";
+
+		$this->_assertResponse(
+			$command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+			Pheanstalk_Response::RESPONSE_OK,
+			array('pid' => '123', 'version' => '1.3')
+		);
+	}
+
 	// ----------------------------------------
 
 	/**

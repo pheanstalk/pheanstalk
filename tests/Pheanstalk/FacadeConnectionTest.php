@@ -178,6 +178,62 @@ class Pheanstalk_FacadeConnectionTest
 		$this->assertEqual($job->getData(), 'test');
 	}
 
+	public function testStatsJob()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$id = $pheanstalk
+			->useTube('testpeekburied')
+			->watchTube('testpeekburied')
+			->ignoreTube('default')
+			->put('test');
+
+		$stats = $pheanstalk->statsJob($id);
+
+		$this->assertEqual($stats->id, $id);
+		$this->assertEqual($stats->tube, 'testpeekburied');
+		$this->assertEqual($stats->state, 'ready');
+		$this->assertEqual($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
+		$this->assertEqual($stats->delay, Pheanstalk::DEFAULT_DELAY);
+		$this->assertEqual($stats->ttr, Pheanstalk::DEFAULT_TTR);
+		$this->assertEqual($stats->timeouts, 0);
+		$this->assertEqual($stats->releases, 0);
+		$this->assertEqual($stats->buries, 0);
+		$this->assertEqual($stats->kicks, 0);
+	}
+
+	public function testStatsTube()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$tube = 'test-stats-tube';
+		$pheanstalk->useTube($tube);
+
+		$stats = $pheanstalk->statsTube($tube);
+
+		$this->assertEqual($stats->name, $tube);
+		$this->assertEqual($stats->current_jobs_reserved, '0');
+	}
+
+	public function testStats()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$stats = $pheanstalk->useTube('test-stats')->stats();
+
+		$properties = array('pid', 'cmd_put', 'cmd_stats_job');
+		foreach ($properties as $property)
+		{
+			$this->assertTrue(
+				isset($stats->$property),
+				"property $property should exist"
+			);
+		}
+
+		$this->assertTrue($stats->pid > 0, 'stats should have pid > 0');
+		$this->assertTrue($stats->cmd_use > 0, 'stats should have cmd_use > 0');
+	}
+
 	// ----------------------------------------
 	// private
 
