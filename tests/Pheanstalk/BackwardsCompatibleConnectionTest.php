@@ -1,7 +1,10 @@
 <?php
 
 /**
- * Tests methods that have been moved from Pheanstalk_Connection to Pheanstalk.
+ * Tests deprecated methods.
+ *  - methods that have been moved from Pheanstalk_Connection to Pheanstalk,
+ *  - methods that have been renamed.
+ *
  * Relies on a running beanstalkd server.
  *
  * @author Paul Annesley
@@ -21,7 +24,7 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 			self::SERVER_PORT + 1
 		);
 
-		$this->_expectDeprecated('useTube');
+		$this->_expectDeprecatedConnectionMethod('useTube');
 		$this->expectException('Pheanstalk_Exception_ConnectionException');
 		$connection->useTube('test');
 	}
@@ -30,13 +33,15 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('getCurrentTube');
+		$this->_expectDeprecatedConnectionMethod('getCurrentTube');
+		$this->_expectDeprecatedFacadeMethod('getCurrentTube', 'listTubeUsed');
 		$this->assertEqual($connection->getCurrentTube(), 'default');
 
-		$this->_expectDeprecated('useTube');
+		$this->_expectDeprecatedConnectionMethod('useTube');
 		$connection->useTube('test');
 
-		$this->_expectDeprecated('getCurrentTube');
+		$this->_expectDeprecatedConnectionMethod('getCurrentTube');
+		$this->_expectDeprecatedFacadeMethod('getCurrentTube', 'listTubeUsed');
 		$this->assertEqual($connection->getCurrentTube(), 'test');
 	}
 
@@ -44,19 +49,24 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('getWatchedTubes');
+		$this->_expectDeprecatedConnectionMethod('getWatchedTubes');
+		$this->_expectDeprecatedFacadeMethod('getWatchedTubes', 'listTubesWatched');
 		$this->assertEqual($connection->getWatchedTubes(), array('default'));
 
-		$this->_expectDeprecated('watchTube');
+		$this->_expectDeprecatedConnectionMethod('watchTube');
+		$this->_expectDeprecatedFacadeMethod('watchTube', 'watch');
 		$connection->watchTube('test');
 
-		$this->_expectDeprecated('getWatchedTubes');
+		$this->_expectDeprecatedConnectionMethod('getWatchedTubes');
+		$this->_expectDeprecatedFacadeMethod('getWatchedTubes', 'listTubesWatched');
 		$this->assertEqual($connection->getWatchedTubes(), array('default', 'test'));
 
-		$this->_expectDeprecated('ignoreTube');
+		$this->_expectDeprecatedConnectionMethod('ignoreTube');
+		$this->_expectDeprecatedFacadeMethod('ignoreTube', 'ignore');
 		$connection->ignoreTube('default');
 
-		$this->_expectDeprecated('getWatchedTubes');
+		$this->_expectDeprecatedConnectionMethod('getWatchedTubes');
+		$this->_expectDeprecatedFacadeMethod('getWatchedTubes', 'listTubesWatched');
 		$this->assertEqual($connection->getWatchedTubes(), array('test'));
 	}
 
@@ -64,7 +74,8 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('ignoreTube');
+		$this->_expectDeprecatedConnectionMethod('ignoreTube');
+		$this->_expectDeprecatedFacadeMethod('ignoreTube', 'ignore');
 		$this->expectException('Pheanstalk_Exception');
 		$connection->ignoreTube('default');
 	}
@@ -73,17 +84,17 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('put');
+		$this->_expectDeprecatedConnectionMethod('put');
 		$id = $connection->put(__METHOD__);
 		$this->assertIsA($id, 'int');
 
 		// reserve a job - can't assume it is the one just added
-		$this->_expectDeprecated('reserve');
+		$this->_expectDeprecatedConnectionMethod('reserve');
 		$job = $connection->reserve();
 		$this->assertIsA($job, 'Pheanstalk_Job');
 
 		// delete the reserved job
-		$this->_expectDeprecated('delete');
+		$this->_expectDeprecatedConnectionMethod('delete');
 		$connection->delete($job);
 	}
 
@@ -91,13 +102,13 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('put');
+		$this->_expectDeprecatedConnectionMethod('put');
 		$connection->put(__METHOD__);
 
-		$this->_expectDeprecated('reserve');
+		$this->_expectDeprecatedConnectionMethod('reserve');
 		$job = $connection->reserve();
 
-		$this->_expectDeprecated('release');
+		$this->_expectDeprecatedConnectionMethod('release');
 		$connection->release($job);
 	}
 
@@ -105,21 +116,21 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('put');
+		$this->_expectDeprecatedConnectionMethod('put');
 		$id = $connection->put(__METHOD__);
 		$this->assertIsA($id, 'int');
 
 		// reserve a job - can't assume it is the one just added
-		$this->_expectDeprecated('reserve');
+		$this->_expectDeprecatedConnectionMethod('reserve');
 		$job = $connection->reserve();
 		$this->assertIsA($job, 'Pheanstalk_Job');
 
 		// bury the reserved job
-		$this->_expectDeprecated('bury');
+		$this->_expectDeprecatedConnectionMethod('bury');
 		$connection->bury($job);
 
 		// kick up to one job
-		$this->_expectDeprecated('kick');
+		$this->_expectDeprecatedConnectionMethod('kick');
 		$kickedCount = $connection->kick(1);
 		$this->assertIsA($kickedCount, 'int');
 		$this->assertEqual($kickedCount, 1,
@@ -130,18 +141,52 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 	{
 		$connection = $this->_getConnection();
 
-		$this->_expectDeprecated('put');
+		$this->_expectDeprecatedConnectionMethod('put');
 		$this->expectException('Pheanstalk_Exception');
 		$connection->put(str_repeat('0', 0x10000));
+	}
+
+	public function testFacadeUseTube()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$this->_expectDeprecatedFacadeMethod('getCurrentTube', 'listTubeUsed');
+		$this->assertEqual($pheanstalk->getCurrentTube(), 'default');
+
+		$pheanstalk->useTube('test');
+
+		$this->_expectDeprecatedFacadeMethod('getCurrentTube', 'listTubeUsed');
+		$this->assertEqual($pheanstalk->getCurrentTube(), 'test');
+	}
+
+	public function testFacadeWatchlist()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$this->_expectDeprecatedFacadeMethod('getWatchedTubes', 'listTubesWatched');
+		$this->assertEqual($pheanstalk->getWatchedTubes(), array('default'));
+
+		$this->_expectDeprecatedFacadeMethod('watchTube', 'watch');
+		$pheanstalk->watchTube('test');
+
+		$this->_expectDeprecatedFacadeMethod('getWatchedTubes', 'listTubesWatched');
+		$this->assertEqual($pheanstalk->getWatchedTubes(), array('default', 'test'));
+
+		$this->_expectDeprecatedFacadeMethod('ignoreTube', 'ignore');
+		$pheanstalk->ignoreTube('default');
+
+		$this->_expectDeprecatedFacadeMethod('getWatchedTubes', 'listTubesWatched');
+		$this->assertEqual($pheanstalk->getWatchedTubes(), array('test'));
 	}
 
 	// ----------------------------------------
 	// private
 
 	/**
-	 * $method
+	 * Expect a 'method deprecated' PHP warning
+	 * @param string $method
 	 */
-	private function _expectDeprecated($method)
+	private function _expectDeprecatedConnectionMethod($method)
 	{
 		$this->expectError(sprintf(
 			'Pheanstalk_Connection::%s() deprecated, use Pheanstalk::%s()',
@@ -150,9 +195,27 @@ class Pheanstalk_BackwardsCompatibleConnectionTest
 		));
 	}
 
+	/**
+	 * Expect a 'method deprecated' PHP warning
+	 * @param string $old
+	 * @param string $new
+	 */
+	private function _expectDeprecatedFacadeMethod($old, $new)
+	{
+		$this->expectError(sprintf(
+			'Pheanstalk::%s() deprecated, use Pheanstalk::%s()',
+			$old,
+			$new
+		));
+	}
+
 	private function _getConnection()
 	{
 		return new Pheanstalk_Connection(self::SERVER_HOST, self::SERVER_PORT);
 	}
-}
 
+	private function _getFacade()
+	{
+		return new Pheanstalk(self::SERVER_HOST, self::SERVER_PORT);
+	}
+}

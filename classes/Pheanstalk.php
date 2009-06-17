@@ -64,10 +64,23 @@ class Pheanstalk
 	 * @param string $tube
 	 * @chainable
 	 */
-	public function ignoreTube($tube)
+	public function ignore($tube)
 	{
 		$this->_dispatch(new Pheanstalk_Command_IgnoreCommand($tube));
 		return $this;
+	}
+
+	/**
+	 * Remove the specified tube from the watchlist
+	 *
+	 * @param string $tube
+	 * @chainable
+	 * @deprecated Pheanstalk::ignore()
+	 */
+	public function ignoreTube($tube)
+	{
+		$this->_deprecatedNotice(__FUNCTION__, 'ignore');
+		return $this->ignore($tube);
 	}
 
 	/**
@@ -101,7 +114,7 @@ class Pheanstalk
 	 *
 	 * @return array
 	 */
-	public function getWatchedTubes()
+	public function listTubesWatched()
 	{
 		return (array) $this->_dispatch(
 			new Pheanstalk_Command_ListTubesWatchedCommand()
@@ -109,17 +122,41 @@ class Pheanstalk
 	}
 
 	/**
+	 * The names of the tubes being watched, to reserve jobs from.
+	 *
+	 * @return array
+	 * @deprecated Pheanstalk::listTubesWatched()
+	 */
+	public function getWatchedTubes()
+	{
+		$this->_deprecatedNotice(__FUNCTION__, 'listTubesWatched');
+		return $this->listTubesWatched();
+	}
+
+	/**
 	 * The name of the current tube used for publishing jobs to.
 	 *
 	 * @return string
 	 */
-	public function getCurrentTube()
+	public function listTubeUsed()
 	{
 		$response = $this->_dispatch(
 			new Pheanstalk_Command_ListTubeUsedCommand()
 		);
 
 		return $response['tube'];
+	}
+
+	/**
+	 * The name of the current tube used for publishing jobs to.
+	 *
+	 * @return string
+	 * @deprecated Pheanstalk::listTubeUsed()
+	 */
+	public function getCurrentTube()
+	{
+		$this->_deprecatedNotice(__FUNCTION__, 'listTubeUsed');
+		return $this->listTubeUsed();
 	}
 
 	/**
@@ -282,7 +319,8 @@ class Pheanstalk
 	}
 
 	/**
-	 * Change to the specified tube name for publishing jobs to
+	 * Change to the specified tube name for publishing jobs to.
+	 * This method would be called 'use' if it were not a PHP reserved word.
 	 *
 	 * @param string $tube
 	 * @chainable
@@ -299,10 +337,23 @@ class Pheanstalk
 	 * @param string $tube
 	 * @chainable
 	 */
-	public function watchTube($tube)
+	public function watch($tube)
 	{
 		$this->_dispatch(new Pheanstalk_Command_WatchCommand($tube));
 		return $this;
+	}
+
+	/**
+	 * Add the specified tube to the watchlist, to reserve jobs from.
+	 *
+	 * @param string $tube
+	 * @chainable
+	 * @deprecated Pheanstalk::watch()
+	 */
+	public function watchTube($tube)
+	{
+		$this->_deprecatedNotice(__FUNCTION__, 'watch');
+		return $this->watch($tube);
 	}
 
 	// ----------------------------------------
@@ -314,5 +365,17 @@ class Pheanstalk
 	private function _dispatch($command)
 	{
 		return $this->_connection->dispatchCommand($command);
+	}
+
+	/**
+	 * Triggers an E_USER_NOTICE PHP error warning of method deprecation.
+	 */
+	private function _deprecatedNotice($oldMethod, $newMethod)
+	{
+		trigger_error(sprintf(
+			'Pheanstalk::%s() deprecated, use Pheanstalk::%s()',
+			$oldMethod,
+			$newMethod
+		), E_USER_NOTICE);
 	}
 }

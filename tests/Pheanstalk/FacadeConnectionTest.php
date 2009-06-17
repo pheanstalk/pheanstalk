@@ -17,27 +17,28 @@ class Pheanstalk_FacadeConnectionTest
 	{
 		$pheanstalk = $this->_getFacade();
 
-		$this->assertEqual($pheanstalk->getCurrentTube(), 'default');
+		$this->assertEqual($pheanstalk->listTubeUsed(), 'default');
 		$pheanstalk->useTube('test');
-		$this->assertEqual($pheanstalk->getCurrentTube(), 'test');
+		$this->assertEqual($pheanstalk->listTubeUsed(), 'test');
 	}
 
 	public function testWatchlist()
 	{
 		$pheanstalk = $this->_getFacade();
 
-		$this->assertEqual($pheanstalk->getWatchedTubes(), array('default'));
-		$pheanstalk->watchTube('test');
-		$this->assertEqual($pheanstalk->getWatchedTubes(), array('default', 'test'));
-		$pheanstalk->ignoreTube('default');
-		$this->assertEqual($pheanstalk->getWatchedTubes(), array('test'));
+		$this->assertEqual($pheanstalk->listTubesWatched(), array('default'));
+		$pheanstalk->watch('test');
+		$this->assertEqual($pheanstalk->listTubesWatched(), array('default', 'test'));
+		$pheanstalk->ignore('default');
+		$this->assertEqual($pheanstalk->listTubesWatched(), array('test'));
 	}
 
 	public function testIgnoreLastTube()
 	{
 		$pheanstalk = $this->_getFacade();
+
 		$this->expectException('Pheanstalk_Exception');
-		$pheanstalk->ignoreTube('default');
+		$pheanstalk->ignore('default');
 	}
 
 	public function testPutReserveAndDeleteData()
@@ -111,7 +112,7 @@ class Pheanstalk_FacadeConnectionTest
 		$pheanstalk->useTube('test1');
 		$this->assertTrue(in_array('test1', $pheanstalk->listTubes()));
 
-		$pheanstalk->watchTube('test2');
+		$pheanstalk->watch('test2');
 		$this->assertTrue(in_array('test2', $pheanstalk->listTubes()));
 	}
 
@@ -121,8 +122,8 @@ class Pheanstalk_FacadeConnectionTest
 
 		$id = $pheanstalk
 			->useTube('testpeek')
-			->watchTube('testpeek')
-			->ignoreTube('default')
+			->watch('testpeek')
+			->ignore('default')
 			->put('test');
 
 		$job = $pheanstalk->peek($id);
@@ -136,8 +137,8 @@ class Pheanstalk_FacadeConnectionTest
 
 		$id = $pheanstalk
 			->useTube('testpeekready')
-			->watchTube('testpeekready')
-			->ignoreTube('default')
+			->watch('testpeekready')
+			->ignore('default')
 			->put('test');
 
 		$job = $pheanstalk->peekReady();
@@ -151,8 +152,8 @@ class Pheanstalk_FacadeConnectionTest
 
 		$id = $pheanstalk
 			->useTube('testpeekdelayed')
-			->watchTube('testpeekdelayed')
-			->ignoreTube('default')
+			->watch('testpeekdelayed')
+			->ignore('default')
 			->put('test', 0, 2);
 
 		$job = $pheanstalk->peekDelayed();
@@ -166,8 +167,8 @@ class Pheanstalk_FacadeConnectionTest
 
 		$id = $pheanstalk
 			->useTube('testpeekburied')
-			->watchTube('testpeekburied')
-			->ignoreTube('default')
+			->watch('testpeekburied')
+			->ignore('default')
 			->put('test');
 
 		$job = $pheanstalk->reserve($id);
@@ -184,8 +185,8 @@ class Pheanstalk_FacadeConnectionTest
 
 		$id = $pheanstalk
 			->useTube('testpeekburied')
-			->watchTube('testpeekburied')
-			->ignoreTube('default')
+			->watch('testpeekburied')
+			->ignore('default')
 			->put('test');
 
 		$stats = $pheanstalk->statsJob($id);
