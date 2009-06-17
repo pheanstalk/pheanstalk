@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Common functionality for commands
+ * Common functionality for Pheanstalk_Command implementations.
  *
  * @author Paul Annesley
  * @package Pheanstalk

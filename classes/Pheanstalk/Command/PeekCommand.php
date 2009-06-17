@@ -3,6 +3,9 @@
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
  *
+ * The peek commands let the client inspect a job in the system. There are four
+ * variations. All but the first (peek) operate only on the currently used tube.
+ *
  * @author Paul Annesley
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php

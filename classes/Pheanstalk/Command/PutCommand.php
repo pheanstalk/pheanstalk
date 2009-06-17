@@ -1,7 +1,9 @@
 <?php
 
 /**
- * The 'put' command
+ * The 'put' command.
+ * Inserts a job into the client's currently used tube.
+ * @see Pheanstalk_Command_UseCommand
  *
  * @author Paul Annesley
  * @package Pheanstalk

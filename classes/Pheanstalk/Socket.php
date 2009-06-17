@@ -4,7 +4,9 @@
  * A mockable wrapper around PHP "socket" or "file pointer" access.
  * Only the subset of socket actions required by Pheanstalk are provided.
  *
- * @author Paul Annesley <paul@annesley.cc>
+ * @author Paul Annesley
+ * @package Pheanstalk
+ * @licence http://www.opensource.org/licenses/mit-license.php
  */
 interface Pheanstalk_Socket
 {

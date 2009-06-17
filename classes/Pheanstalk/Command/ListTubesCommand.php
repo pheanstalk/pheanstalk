@@ -1,7 +1,8 @@
 <?php
 
 /**
- * The 'list-tubes' command
+ * The 'list-tubes' command.
+ * List all existing tubes.
  *
  * @author Paul Annesley
  * @package Pheanstalk

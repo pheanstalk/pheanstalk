@@ -2,6 +2,7 @@
 
 /**
  * The 'stats' command.
+ * Statistical information about the system as a whole.
  *
  * @author Paul Annesley
  * @package Pheanstalk

@@ -1,7 +1,11 @@
 <?php
 
 /**
- * The 'use' command
+ * The 'use' command.
+ *
+ * The "use" command is for producers. Subsequent put commands will put jobs into
+ * the tube specified by this command. If no use command has been issued, jobs
+ * will be put into the tube named "default".
  *
  * @author Paul Annesley
  * @package Pheanstalk

@@ -2,6 +2,7 @@
 
 /**
  * The 'stats-job' command.
+ * Gives statistical information about the specified job if it exists.
  *
  * @author Paul Annesley
  * @package Pheanstalk

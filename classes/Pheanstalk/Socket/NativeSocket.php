@@ -3,7 +3,9 @@
 /**
  * A Pheanstalk_Socket implementation around a fsockopen() stream.
  *
- * @author Paul Annesley <paul@annesley.cc>
+ * @author Paul Annesley
+ * @package Pheanstalk
+ * @licence http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 {

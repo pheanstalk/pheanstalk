@@ -1,7 +1,8 @@
 <?php
 
 /**
- * The 'list-tube-used' command
+ * The 'list-tube-used' command.
+ * Returns the tube currently being used by the client.
  *
  * @author Paul Annesley
  * @package Pheanstalk
