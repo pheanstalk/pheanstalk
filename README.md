@@ -15,6 +15,9 @@ Usage Example
 <pre><code class="php">
 &lt;?php
 
+// register Pheanstalk class loader
+require_once('pheanstalk_init.php');
+
 $pheanstalk = new Pheanstalk('127.0.0.1');
 
 // ----------------------------------------
