@@ -99,12 +99,14 @@ class Pheanstalk_Connection
 	{
 		$socket = $this->_getSocket();
 
-		$socket->write($command->getCommandLine().self::CRLF);
+		$to_send = $command->getCommandLine().self::CRLF;
 
 		if ($command->hasData())
 		{
-			$socket->write($command->getData().self::CRLF);
+			$to_send .= $command->getData().self::CRLF;
 		}
+
+		$socket->write($to_send);
 
 		$responseLine = $socket->getLine();
 		$responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
