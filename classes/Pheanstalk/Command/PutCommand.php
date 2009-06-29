@@ -68,7 +68,7 @@ class Pheanstalk_Command_PutCommand
 	 */
 	public function getDataLength()
 	{
-		return strlen($this->_data);
+		return mb_strlen($this->_data, "latin1");
 	}
 
 	/* (non-phpdoc)
@@ -93,6 +93,13 @@ class Pheanstalk_Command_PutCommand
 		{
 			throw new Pheanstalk_Exception(sprintf(
 				'%s: job data exceeds server-enforced limit',
+				$responseLine
+			));
+		}
+		elseif (preg_match('#^EXPECTED_CRLF#', $responseLine))
+		{
+			throw new Pheanstalk_Exception(sprintf(
+				'%s: CRLF expected',
 				$responseLine
 			));
 		}
