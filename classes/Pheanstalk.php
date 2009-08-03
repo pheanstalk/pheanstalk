@@ -17,6 +17,7 @@ class Pheanstalk
 	const DEFAULT_DELAY = 0; // no delay
 	const DEFAULT_PRIORITY = 0; // highest priority
 	const DEFAULT_TTR = 60; // 1 minute
+	const DEFAULT_CONNECT_TIMEOUT = 2;
 
 	private $_connection;
 
@@ -24,9 +25,9 @@ class Pheanstalk
 	 * @param string $host
 	 * @param int $port
 	 */
-	public function __construct($host, $port = self::DEFAULT_PORT)
+	public function __construct($host, $port = self::DEFAULT_PORT, $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT)
 	{
-		$this->setConnection(new Pheanstalk_Connection($host, $port));
+		$this->setConnection(new Pheanstalk_Connection($host, $port, $connectTimeout));
 	}
 
 	/**

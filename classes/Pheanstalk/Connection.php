@@ -9,7 +9,6 @@
  */
 class Pheanstalk_Connection
 {
-	const CONNECT_TIMEOUT = 2;
 	const CRLF = "\r\n";
 	const CRLF_LENGTH = 2;
 
@@ -32,15 +31,18 @@ class Pheanstalk_Connection
 	private $_socket;
 	private $_hostname;
 	private $_port;
+	private $_connectTimeout;
 
 	/**
 	 * @param string $hostname
 	 * @param int $port
+	 * @param float $connectTimeout
 	 */
-	public function __construct($hostname, $port)
+	public function __construct($hostname, $port, $connectTimeout)
 	{
 		$this->_hostname = $hostname;
 		$this->_port = $port;
+		$this->_connectTimeout = $connectTimeout;
 	}
 
 	/**
@@ -164,7 +166,7 @@ class Pheanstalk_Connection
 			$this->_socket = new Pheanstalk_Socket_NativeSocket(
 				$this->_hostname,
 				$this->_port,
-				self::CONNECT_TIMEOUT
+				$this->_connectTimeout
 			);
 		}
 
