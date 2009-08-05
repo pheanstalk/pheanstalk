@@ -56,6 +56,10 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		{
 			$data = isset($length) ?
 				fgets($this->_socket, $length) : fgets($this->_socket);
+			if (feof($this->_socket))
+			{
+				throw new Pheanstalk_Exception_ConnectionException(666, "Socket closed by server!");
+			}
 		}
 		while ($data === false);
 
