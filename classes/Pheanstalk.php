@@ -285,8 +285,14 @@ class Pheanstalk
 		$response = $this->_dispatch(
 			new Pheanstalk_Command_ReserveCommand($timeout)
 		);
-
-		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		
+		if ($response->getResponseName() === Pheanstalk_Response::RESPONSE_DEADLINE_SOON ||
+			$response->getResponseName() === Pheanstalk_Response::RESPONSE_TIMED_OUT)
+		{
+			return FALSE;
+		} else {
+			return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		}
 	}
 
 	/**
