@@ -246,7 +246,10 @@ class Pheanstalk
 	}
 
 	/**
-	 * Puts a job into a 'buried' state, revived only by 'kick' command.
+	 * Puts a reserved job back into the ready queue.
+	 *
+	 * Marks the jobs state as "ready" to be run by any client.
+	 * It is normally used when the job fails because of a transitory error.
 	 *
 	 * @param object $job Pheanstalk_Job
 	 * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
