@@ -46,9 +46,9 @@ class Pheanstalk_YamlResponseParser
 			));
 		}
 
-		$dataLines = explode("\n", rtrim($responseData));
-		array_shift($dataLines); // discard header line
-
+		$dataLines = preg_split("#[\r\n]+#", rtrim($responseData));
+		if (isset($dataLines[0]) && $dataLines[0] == '---')
+			array_shift($dataLines); // discard header line
 
 		$data = array_map(array($this, '_mapYamlList'), $dataLines);
 
