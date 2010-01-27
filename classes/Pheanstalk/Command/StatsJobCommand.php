@@ -18,7 +18,7 @@ class Pheanstalk_Command_StatsJobCommand
 	 */
 	public function __construct($job)
 	{
-		$this->_jobId = is_object($job) ? $job->getJobId() : $job;
+		$this->_jobId = is_object($job) ? $job->getId() : $job;
 	}
 
 	/* (non-phpdoc)

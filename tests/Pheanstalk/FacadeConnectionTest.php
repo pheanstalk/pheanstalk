@@ -184,16 +184,43 @@ class Pheanstalk_FacadeConnectionTest
 		$pheanstalk = $this->_getFacade();
 
 		$id = $pheanstalk
-			->useTube('testpeekburied')
-			->watch('testpeekburied')
+			->useTube('teststatsjob')
+			->watch('teststatsjob')
 			->ignore('default')
 			->put('test');
 
 		$stats = $pheanstalk->statsJob($id);
 
 		$this->assertEqual($stats->id, $id);
-		$this->assertEqual($stats->tube, 'testpeekburied');
+		$this->assertEqual($stats->tube, 'teststatsjob');
 		$this->assertEqual($stats->state, 'ready');
+		$this->assertEqual($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
+		$this->assertEqual($stats->delay, Pheanstalk::DEFAULT_DELAY);
+		$this->assertEqual($stats->ttr, Pheanstalk::DEFAULT_TTR);
+		$this->assertEqual($stats->timeouts, 0);
+		$this->assertEqual($stats->releases, 0);
+		$this->assertEqual($stats->buries, 0);
+		$this->assertEqual($stats->kicks, 0);
+	}
+
+	public function testStatsJobWithJobObject()
+	{
+		$pheanstalk = $this->_getFacade();
+
+		$pheanstalk
+			->useTube('teststatsjobwithjobobject')
+			->watch('teststatsjobwithjobobject')
+			->ignore('default')
+			->put('test');
+
+		$job = $pheanstalk
+			->reserve();
+
+		$stats = $pheanstalk->statsJob($job);
+
+		$this->assertEqual($stats->id, $job->getId());
+		$this->assertEqual($stats->tube, 'teststatsjobwithjobobject');
+		$this->assertEqual($stats->state, 'reserved');
 		$this->assertEqual($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
 		$this->assertEqual($stats->delay, Pheanstalk::DEFAULT_DELAY);
 		$this->assertEqual($stats->ttr, Pheanstalk::DEFAULT_TTR);
