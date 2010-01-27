@@ -11,6 +11,7 @@ class Pheanstalk_Connection
 {
 	const CRLF = "\r\n";
 	const CRLF_LENGTH = 2;
+	const DEFAULT_CONNECT_TIMEOUT = 2;
 
 	// responses which are global errors, mapped to their exception short-names
 	private $_errorResponses = array(
@@ -38,8 +39,11 @@ class Pheanstalk_Connection
 	 * @param int $port
 	 * @param float $connectTimeout
 	 */
-	public function __construct($hostname, $port, $connectTimeout)
+	public function __construct($hostname, $port, $connectTimeout = null)
 	{
+		if (is_null($connectTimeout))
+			$connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
+
 		$this->_hostname = $hostname;
 		$this->_port = $port;
 		$this->_connectTimeout = $connectTimeout;
