@@ -298,6 +298,8 @@ class Pheanstalk
 	}
 
 	/**
+	 * Gives statistical information about the specified job if it exists.
+	 *
 	 * @param Pheanstalk_Job or int $job
 	 * @return object
 	 */
@@ -307,6 +309,8 @@ class Pheanstalk
 	}
 
 	/**
+	 * Gives statistical information about the specified tube if it exists.
+	 *
 	 * @param string $tube
 	 * @return object
 	 */
@@ -316,6 +320,8 @@ class Pheanstalk
 	}
 
 	/**
+	 * Gives statistical information about the beanstalkd system as a whole.
+	 *
 	 * @return object
 	 */
 	public function stats()
@@ -324,6 +330,13 @@ class Pheanstalk
 	}
 
 	/**
+	 * Allows a worker to request more time to work on a job.
+	 *
+	 * This is useful for jobs that potentially take a long time, but you still want
+	 * the benefits of a TTR pulling a job away from an unresponsive worker.  A worker
+	 * may periodically tell the server that it's still alive and processing a job
+	 * (e.g. it may do this on DEADLINE_SOON).
+	 *
 	 * @param Pheanstalk_Job $job
 	 * @chainable
 	 */
