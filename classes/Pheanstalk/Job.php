@@ -14,18 +14,15 @@ class Pheanstalk_Job
 	const STATUS_DELAYED = 'delayed';
 	const STATUS_BURIED = 'buried';
 
-	private $_connection;
 	private $_id;
 	private $_data;
 
 	/**
-	 * @param object $connection Pheanstalk_Connection
 	 * @param int $id The job ID
 	 * @param string $data The job data
 	 */
-	public function __construct($connection, $id, $data)
+	public function __construct($id, $data)
 	{
-		$this->_connection = $connection;
 		$this->_id = (int)$id;
 		$this->_data = $data;
 	}

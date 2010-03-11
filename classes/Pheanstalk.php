@@ -177,7 +177,7 @@ class Pheanstalk
 			new Pheanstalk_Command_PeekCommand($jobId)
 		);
 
-		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		return new Pheanstalk_Job($response['id'], $response['jobdata']);
 	}
 
 	/**
@@ -191,7 +191,7 @@ class Pheanstalk
 			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_READY)
 		);
 
-		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		return new Pheanstalk_Job($response['id'], $response['jobdata']);
 	}
 
 	/**
@@ -205,7 +205,7 @@ class Pheanstalk
 			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_DELAYED)
 		);
 
-		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		return new Pheanstalk_Job($response['id'], $response['jobdata']);
 	}
 
 	/**
@@ -219,7 +219,7 @@ class Pheanstalk
 			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_BURIED)
 		);
 
-		return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+		return new Pheanstalk_Job($response['id'], $response['jobdata']);
 	}
 
 	/**
@@ -293,7 +293,7 @@ class Pheanstalk
 		{
 			return FALSE;
 		} else {
-			return new Pheanstalk_Job($this, $response['id'], $response['jobdata']);
+			return new Pheanstalk_Job($response['id'], $response['jobdata']);
 		}
 	}
 
