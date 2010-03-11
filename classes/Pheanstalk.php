@@ -77,19 +77,6 @@ class Pheanstalk
 	}
 
 	/**
-	 * Remove the specified tube from the watchlist
-	 *
-	 * @param string $tube
-	 * @chainable
-	 * @deprecated Pheanstalk::ignore()
-	 */
-	public function ignoreTube($tube)
-	{
-		$this->_deprecatedNotice(__FUNCTION__, 'ignore');
-		return $this->ignore($tube);
-	}
-
-	/**
 	 * Kicks buried or delayed jobs into a 'ready' state.
 	 * If there are buried jobs, it will kick up to $max of them.
 	 * Otherwise, it will kick up to $max delayed jobs.
@@ -128,18 +115,6 @@ class Pheanstalk
 	}
 
 	/**
-	 * The names of the tubes being watched, to reserve jobs from.
-	 *
-	 * @return array
-	 * @deprecated Pheanstalk::listTubesWatched()
-	 */
-	public function getWatchedTubes()
-	{
-		$this->_deprecatedNotice(__FUNCTION__, 'listTubesWatched');
-		return $this->listTubesWatched();
-	}
-
-	/**
 	 * The name of the current tube used for publishing jobs to.
 	 *
 	 * @return string
@@ -151,18 +126,6 @@ class Pheanstalk
 		);
 
 		return $response['tube'];
-	}
-
-	/**
-	 * The name of the current tube used for publishing jobs to.
-	 *
-	 * @return string
-	 * @deprecated Pheanstalk::listTubeUsed()
-	 */
-	public function getCurrentTube()
-	{
-		$this->_deprecatedNotice(__FUNCTION__, 'listTubeUsed');
-		return $this->listTubeUsed();
 	}
 
 	/**
@@ -371,19 +334,6 @@ class Pheanstalk
 		return $this;
 	}
 
-	/**
-	 * Add the specified tube to the watchlist, to reserve jobs from.
-	 *
-	 * @param string $tube
-	 * @chainable
-	 * @deprecated Pheanstalk::watch()
-	 */
-	public function watchTube($tube)
-	{
-		$this->_deprecatedNotice(__FUNCTION__, 'watch');
-		return $this->watch($tube);
-	}
-
 	// ----------------------------------------
 
 	/**
@@ -393,17 +343,5 @@ class Pheanstalk
 	private function _dispatch($command)
 	{
 		return $this->_connection->dispatchCommand($command);
-	}
-
-	/**
-	 * Triggers an E_USER_NOTICE PHP error warning of method deprecation.
-	 */
-	private function _deprecatedNotice($oldMethod, $newMethod)
-	{
-		trigger_error(sprintf(
-			'Pheanstalk::%s() deprecated, use Pheanstalk::%s()',
-			$oldMethod,
-			$newMethod
-		), E_USER_NOTICE);
 	}
 }

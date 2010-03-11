@@ -50,42 +50,6 @@ class Pheanstalk_Connection
 	}
 
 	/**
-	 * Provides backwards compatibility - older versions used this
-	 * class as the "facade" rather than the Pheanstalk class.
-	 *
-	 * @param string $name
-	 * @param array $arguments
-	 */
-	public function __call($name, $arguments)
-	{
-		$methods = array(
-			'put',
-			'reserve',
-			'release',
-			'delete',
-			'bury',
-			'kick',
-			'getCurrentTube',
-			'useTube',
-			'getWatchedTubes',
-			'watchTube',
-			'ignoreTube',
-		);
-
-		if (!in_array($name, $methods))
-			throw new BadMethodCallException(__METHOD__ . ' not implemented');
-
-		trigger_error(
-			sprintf('%s::%s() deprecated, use Pheanstalk::%s()', __CLASS__, $name, $name),
-			E_USER_NOTICE
-		);
-
-		$pheanstalk = new Pheanstalk($this->_hostname, $this->_port);
-		$pheanstalk->setConnection($this);
-		return call_user_func_array(array($pheanstalk, $name), $arguments);
-	}
-
-	/**
 	 * Sets a manually created socket, used for unit testing.
 	 * @param Pheanstalk_Socket $socket
 	 * @chainable
