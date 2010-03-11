@@ -58,7 +58,7 @@ class Pheanstalk_YamlResponseParser
 			$array = array();
 			foreach ($data as $line)
 			{
-				if (!preg_match('#(\S+):\s*(\S+)#', $line, $matches))
+				if (!preg_match('#(\S+):\s*(.*)#', $line, $matches))
 					throw new Pheanstalk_Exception("YAML parse error for line: $line");
 
 				list(, $key, $value) = $matches;

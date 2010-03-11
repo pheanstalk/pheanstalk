@@ -3,6 +3,7 @@
 /**
  * Tests for reported/discovered issues & bugs.
  * Relies on a running beanstalkd server.
+ * @see http://github.com/pda/pheanstalk/issues
  *
  * @author Paul Annesley
  * @package Pheanstalk
