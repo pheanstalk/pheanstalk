@@ -13,6 +13,7 @@ interface Pheanstalk_Socket
 	/**
 	 * Writes data to the socket.
 	 * @param string $data
+	 * @return void
 	 */
 	public function write($data);
 

@@ -36,7 +36,15 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function write($data)
 	{
-		return fwrite($this->_socket, $data);
+		for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite)
+		{
+			$fwrite = fwrite($this->_socket, substr($data, $written));
+
+			if ($fwrite === false)
+			{
+				throw new Pheanstalk_Exception_SocketException('fwrite() returned false');
+			}
+		}
 	}
 
 	/* (non-phpdoc)
@@ -44,7 +52,23 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function read($length)
 	{
-		return fread($this->_socket, $length);
+		// optimize single read
+		if ($length <= 8192)
+		{
+			return fread($this->_socket, $length);
+		}
+
+		$read = 0;
+		$parts = array();
+
+		while ($read < $length && !feof($this->_socket))
+		{
+			$data = fread($this->_socket, $length - $read);
+			$read += strlen($data);
+			$parts []= $data;
+		}
+
+		return implode($parts);
 	}
 
 	/* (non-phpdoc)
@@ -56,6 +80,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		{
 			$data = isset($length) ?
 				fgets($this->_socket, $length) : fgets($this->_socket);
+
 			if (feof($this->_socket))
 			{
 				throw new Pheanstalk_Exception_ConnectionException(666, "Socket closed by server!");
