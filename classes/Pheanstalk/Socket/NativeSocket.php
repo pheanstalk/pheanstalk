@@ -52,12 +52,6 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function read($length)
 	{
-		// optimize single read
-		if ($length <= 8192)
-		{
-			return fread($this->_socket, $length);
-		}
-
 		$read = 0;
 		$parts = array();
 

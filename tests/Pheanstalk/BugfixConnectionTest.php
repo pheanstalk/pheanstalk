@@ -31,6 +31,28 @@ class Pheanstalk_BugfixConnectionTest
 		$this->assertEqual(strlen($job->getData()), $length, 'data length: %s');
 	}
 
+	/**
+	 * Issue: NativeSocket's read() cannot read all the bytes we want at once
+	 * @see http://github.com/pda/pheanstalk/issues/issue/16
+	 * @author SlNPacifist
+	 */
+	public function testIssue4ReadingDifferentNumberOfBytes()
+	{
+		$pheanstalk = $this->_createPheanstalk();
+		$maxLength = 16000;
+		$delta = str_repeat('a', 1000);
+		// Let's repeat 30 times to make problem more obvious on Linux OS (it happens randomly)
+		for ($i = 0; $i < 30; $i++) {
+			for ($message = $delta; strlen($message) < $maxLength; $message .= $delta)
+			{
+				$pheanstalk->put($message);
+				$job = $pheanstalk->peekReady();
+				$pheanstalk->delete($job);
+				$this->assertEqual($job->getData(), $message);
+			}
+		}
+	}
+
 	// ----------------------------------------
 	// private
 
