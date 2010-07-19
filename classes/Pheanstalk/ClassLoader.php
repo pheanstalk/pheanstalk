@@ -29,7 +29,7 @@ class Pheanstalk_ClassLoader
 		else
 			$loaders = function_exists('__autoload') ? array('__autoload') : array();
 
-		$loaders []= array(__CLASS__, 'load');
+		array_unshift($loaders, array(__CLASS__, 'load'));
 		array_map('spl_autoload_register', $loaders);
 	}
 
