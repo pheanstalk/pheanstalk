@@ -82,6 +82,14 @@ class Pheanstalk_ResponseParserExceptionTest
 		);
 	}
 
+	public function testPauseTubeNotFound()
+	{
+		$this->_expectServerExceptionForResponse(
+			new Pheanstalk_Command_PauseTubeCommand('not-a-tube', 1),
+			'NOT_FOUND'
+		);
+	}
+
 	// ----------------------------------------
 
 	/**

@@ -262,6 +262,24 @@ class Pheanstalk_FacadeConnectionTest
 		$this->assertTrue($stats->cmd_use > 0, 'stats should have cmd_use > 0');
 	}
 
+	public function testPauseTube()
+	{
+		$tube = 'test-pause-tube';
+		$pheanstalk = $this->_getFacade();
+
+		$pheanstalk
+			->useTube($tube)
+			->watch($tube)
+			->ignore('default')
+			->put(__METHOD__);
+
+		$response = $pheanstalk
+			->pauseTube($tube, 1)
+			->reserve(0);
+
+		$this->assertIdentical($response, false);
+	}
+
 	// ----------------------------------------
 	// private
 

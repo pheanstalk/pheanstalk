@@ -34,6 +34,7 @@ interface Pheanstalk_Response
 	const RESPONSE_OK = 'OK';
 	const RESPONSE_TIMED_OUT = 'TIMED_OUT';
 	const RESPONSE_TOUCHED = 'TOUCHED';
+	const RESPONSE_PAUSED = 'PAUSED';
 
 	/**
 	 * The name of the response

@@ -129,6 +129,19 @@ class Pheanstalk
 	}
 
 	/**
+	 * Temporarily prevent jobs being reserved from the given tube.
+	 *
+	 * @param string $tube The tube to pause
+	 * @param int $delay Seconds before jobs may be reserved from this queue.
+	 * @chainable
+	 */
+	public function pauseTube($tube, $delay)
+	{
+		$this->_dispatch(new Pheanstalk_Command_PauseTubeCommand($tube, $delay));
+		return $this;
+	}
+
+	/**
 	 * Inspect a job in the system, regardless of what tube it is in.
 	 *
 	 * @param int $jobId

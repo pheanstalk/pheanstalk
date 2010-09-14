@@ -249,6 +249,16 @@ class Pheanstalk_CommandTest
 		);
 	}
 
+	public function testPauseTube()
+	{
+		$command = new Pheanstalk_Command_PauseTubeCommand('testtube7', 10);
+		$this->_assertCommandLine($command, 'pause-tube testtube7 10');
+		$this->_assertResponse(
+			$command->getResponseParser()->parseResponse('PAUSED', null),
+			Pheanstalk_Response::RESPONSE_PAUSED
+		);
+	}
+
 	// ----------------------------------------
 
 	/**
