@@ -251,11 +251,17 @@ class Pheanstalk
 			new Pheanstalk_Command_ReserveCommand($timeout)
 		);
 
-		if ($response->getResponseName() === Pheanstalk_Response::RESPONSE_DEADLINE_SOON ||
-			$response->getResponseName() === Pheanstalk_Response::RESPONSE_TIMED_OUT)
+		$falseResponses = array(
+			Pheanstalk_Response::RESPONSE_DEADLINE_SOON,
+			Pheanstalk_Response::RESPONSE_TIMED_OUT,
+		);
+
+		if (in_array($response->getResponseName(), $falseResponses))
 		{
-			return FALSE;
-		} else {
+			return false;
+		}
+		else
+		{
 			return new Pheanstalk_Job($response['id'], $response['jobdata']);
 		}
 	}
