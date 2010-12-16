@@ -36,17 +36,25 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function write($data)
 	{
+		$WriteLengths = array();
 		for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite)
 		{
 			$fwrite = fwrite($this->_socket, substr($data, $written));
 
+			$WriteLengths[] = $fwrite;
+			if( count( $WriteLengths ) === 6 )
+			{
+				array_shift( $WriteLengths );
+			}
+
+			if( count( $WriteLengths ) >= 5 && array_sum( $WriteLengths ) === 0 )
+			{
+				throw new Pheanstalk_Exception_SocketException( 'fwrite() returned 0; preventing infinite loop' );
+			}
+
 			if ($fwrite === false )
 			{
 				throw new Pheanstalk_Exception_SocketException('fwrite() returned false');
-			}
-			else if( $fwrite === 0 )
-			{
-				throw new Pheanstalk_Exception_SocketException( 'fwrite() returned 0; preventing infinite loop' );
 			}
 		}
 	}
