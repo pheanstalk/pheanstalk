@@ -40,9 +40,13 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		{
 			$fwrite = fwrite($this->_socket, substr($data, $written));
 
-			if ($fwrite === false)
+			if ($fwrite === false )
 			{
 				throw new Pheanstalk_Exception_SocketException('fwrite() returned false');
+			}
+			else if( $fwrite === 0 )
+			{
+				throw new Pheanstalk_Exception_SocketException( 'fwrite() returned 0; preventing infinite loop' );
 			}
 		}
 	}
