@@ -14,6 +14,11 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	const SOCKET_TIMEOUT = 1;
 
+	/**
+	 * Number of retries for attempted writes which return zero length.
+	 */
+	const WRITE_RETRIES = 8;
+
 	private $_socket;
 
 	/**
@@ -36,25 +41,20 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function write($data)
 	{
-		$WriteLengths = array();
+		$history = new Pheanstalk_Socket_WriteHistory(self::WRITE_RETRIES);
+
 		for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite)
 		{
 			$fwrite = fwrite($this->_socket, substr($data, $written));
 
-			$WriteLengths[] = $fwrite;
-			if( count( $WriteLengths ) === 6 )
-			{
-				array_shift( $WriteLengths );
-			}
+			$history->log($fwrite);
 
-			if( count( $WriteLengths ) >= 5 && array_sum( $WriteLengths ) === 0 )
+			if ($history->isFullWithNoWrites())
 			{
-				throw new Pheanstalk_Exception_SocketException( 'fwrite() returned 0; preventing infinite loop' );
-			}
-
-			if ($fwrite === false )
-			{
-				throw new Pheanstalk_Exception_SocketException('fwrite() returned false');
+				throw new Pheanstalk_Exception_SocketException(sprintf(
+					'fwrite() failed to write data after %d tries',
+					self::WRITE_RETRIES
+				));
 			}
 		}
 	}
