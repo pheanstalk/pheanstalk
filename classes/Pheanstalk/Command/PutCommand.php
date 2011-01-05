@@ -103,7 +103,7 @@ class Pheanstalk_Command_PutCommand
 				$responseLine
 			));
 		}
-		elseif (preg_match())
+		else
 		{
 			throw new Pheanstalk_Exception(sprintf(
 				'Unhandled response: %s',
