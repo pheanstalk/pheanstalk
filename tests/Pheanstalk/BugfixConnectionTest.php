@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Tests for reported/discovered issues & bugs.
+ * Tests for reported/discovered issues & bugs which don't fall into
+ * an existing category of tests.
  * Relies on a running beanstalkd server.
  * @see http://github.com/pda/pheanstalk/issues
  *

@@ -90,6 +90,14 @@ class Pheanstalk_ResponseParserExceptionTest
 		);
 	}
 
+	public function testPutUnhandledResponse()
+	{
+		$this->_expectExceptionForResponse(
+			new Pheanstalk_Command_PutCommand('data', 0, 0, 0),
+			'unhandled response'
+		);
+	}
+
 	// ----------------------------------------
 
 	/**
@@ -105,10 +113,21 @@ class Pheanstalk_ResponseParserExceptionTest
 	/**
 	 * @param Pheanstalk_Command
 	 * @param string the response line to parse.
+	 * @param string the type of exception to expect.
+	 */
+	private function _expectExceptionForResponse($command, $response, $type = 'Pheanstalk_Exception')
+	{
+		$this->expectException($type);
+		$command->parseResponse($response, null);
+	}
+
+	/**
+	 * @param Pheanstalk_Command
+	 * @param string the response line to parse.
 	 */
 	private function _expectServerExceptionForResponse($command, $response)
 	{
-		$this->expectException('Pheanstalk_Exception_ServerException');
-		$command->parseResponse($response, null);
+		$this->_expectExceptionForResponse($command, $response,
+			'Pheanstalk_Exception_ServerException');
 	}
 }
