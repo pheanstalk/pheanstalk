@@ -19,7 +19,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	const WRITE_RETRIES = 8;
 
-	private $_socket;
+	protected $_socket;
 
 	/**
 	 * @param string $host
@@ -70,6 +70,10 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		while ($read < $length && !feof($this->_socket))
 		{
 			$data = fread($this->_socket, $length - $read);
+			if ($data === false)
+			{
+				throw new Pheanstalk_Exception_SocketException('fread() returned false');
+			}
 			$read += strlen($data);
 			$parts []= $data;
 		}
