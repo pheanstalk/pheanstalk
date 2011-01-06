@@ -28,12 +28,16 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	public function __construct($host, $port, $connectTimeout)
 	{
-		if (!$this->_socket = @fsockopen($host, $port, $errno, $errstr, $connectTimeout))
+		$this->_socket = $this->_wrapper()
+			->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
+
+		if (!$this->_socket)
 		{
 			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
 		}
 
-		stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
+		$this->_wrapper()
+			->stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
 	}
 
 	/* (non-phpdoc)
@@ -45,7 +49,8 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 		for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite)
 		{
-			$fwrite = fwrite($this->_socket, substr($data, $written));
+			$fwrite = $this->_wrapper()
+				->fwrite($this->_socket, substr($data, $written));
 
 			$history->log($fwrite);
 
@@ -67,9 +72,16 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		$read = 0;
 		$parts = array();
 
-		while ($read < $length && !feof($this->_socket))
+		while ($read < $length && !$this->_wrapper()->feof($this->_socket))
 		{
-			$data = fread($this->_socket, $length - $read);
+			$data = $this->_wrapper()
+				->fread($this->_socket, $length - $read);
+
+			if ($data === false)
+			{
+				throw new Pheanstalk_Exception_SocketException('fread() returned false');
+			}
+
 			$read += strlen($data);
 			$parts []= $data;
 		}
@@ -85,9 +97,10 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		do
 		{
 			$data = isset($length) ?
-				fgets($this->_socket, $length) : fgets($this->_socket);
+				$this->_wrapper()->fgets($this->_socket, $length) :
+				$this->_wrapper()->fgets($this->_socket);
 
-			if (feof($this->_socket))
+			if ($this->_wrapper()->feof($this->_socket))
 			{
 				throw new Pheanstalk_Exception_ConnectionException(666, "Socket closed by server!");
 			}
@@ -95,5 +108,16 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 		while ($data === false);
 
 		return rtrim($data);
+	}
+
+	// ----------------------------------------
+
+	/**
+	 * Wrapper class for all stream functions.
+	 * Facilitates mocking/stubbing stream operations in unit tests.
+	 */
+	private function _wrapper()
+	{
+		return Pheanstalk_Socket_StreamFunctions::instance();
 	}
 }
