@@ -80,3 +80,24 @@ Available options:
   --testfile <path>  Only run the specified test file.
   --help             This documentation.
 </code></pre>
+
+
+Contributors
+------------
+
+  * [Paul Annesley](https://github.com/pda)
+  * [Lachlan Donald](https://github.com/lox)
+  * [Joakim Bick](https://github.com/minimoe)
+  * [SlNPacifist](https://github.com/SlNPacifist)
+  * [leprechaun](https://github.com/leprechaun)
+  * [Peter McArthur](https://github.com/ptrmcrthr)
+  * [robbiehudson](https://github.com/robbiehudson)
+  * .. more? Let me know if you're missing.
+
+
+Licence
+-------
+
+(c) Paul Annesley
+
+Released under the [The MIT License](http://www.opensource.org/licenses/mit-license.php)
