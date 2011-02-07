@@ -12,6 +12,8 @@ class Pheanstalk_Socket_StreamFunctions
 {
 	private static $_instance;
 
+    private $_socket = NULL;
+
 	/**
 	 * Singleton accessor.
 	 */
@@ -64,11 +66,16 @@ class Pheanstalk_Socket_StreamFunctions
 		return fread($handle, $length);
 	}
 
-	public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null)
+	public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null, $persistent = false)
 	{
 		// Warnings (e.g. connection refused) suppressed;
 		// return value, $errno and $errstr should be checked instead.
-		return @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+
+        if ($this->_socket === NULL || !$persistent) {
+            $this->_socket = @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+        }
+
+		return $this->_socket;
 	}
 
 	public function fwrite($handle, $string, $length = null)
