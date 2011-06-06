@@ -18,8 +18,11 @@ class Pheanstalk_FacadeConnectionTest
 		$pheanstalk = $this->_getFacade();
 
 		$this->assertEqual($pheanstalk->listTubeUsed(), 'default');
+		$this->assertEqual($pheanstalk->listTubeUsed(true), 'default');
+
 		$pheanstalk->useTube('test');
 		$this->assertEqual($pheanstalk->listTubeUsed(), 'test');
+		$this->assertEqual($pheanstalk->listTubeUsed(true), 'test');
 	}
 
 	public function testWatchlist()
@@ -27,10 +30,19 @@ class Pheanstalk_FacadeConnectionTest
 		$pheanstalk = $this->_getFacade();
 
 		$this->assertEqual($pheanstalk->listTubesWatched(), array('default'));
+		$this->assertEqual($pheanstalk->listTubesWatched(true), array('default'));
+
 		$pheanstalk->watch('test');
 		$this->assertEqual($pheanstalk->listTubesWatched(), array('default', 'test'));
+		$this->assertEqual($pheanstalk->listTubesWatched(true), array('default', 'test'));
+
 		$pheanstalk->ignore('default');
 		$this->assertEqual($pheanstalk->listTubesWatched(), array('test'));
+		$this->assertEqual($pheanstalk->listTubesWatched(true), array('test'));
+
+		$pheanstalk->watchOnly('default');
+		$this->assertEqual($pheanstalk->listTubesWatched(), array('default'));
+		$this->assertEqual($pheanstalk->listTubesWatched(true), array('default'));
 	}
 
 	public function testIgnoreLastTube()
@@ -50,6 +62,17 @@ class Pheanstalk_FacadeConnectionTest
 
 		// reserve a job - can't assume it is the one just added
 		$job = $pheanstalk->reserve();
+		$this->assertIsA($job, 'Pheanstalk_Job');
+
+		// delete the reserved job
+		$pheanstalk->delete($job);
+
+		// put a job into an unused tube
+		$id = $pheanstalk->putInTube('test', __METHOD__);
+		$this->assertIsA($id, 'int');
+
+		// reserve a job from an unwatched tube - can't assume it is the one just added
+		$job = $pheanstalk->reserveFromTube('test');
 		$this->assertIsA($job, 'Pheanstalk_Job');
 
 		// delete the reserved job
@@ -129,6 +152,13 @@ class Pheanstalk_FacadeConnectionTest
 		$job = $pheanstalk->peek($id);
 
 		$this->assertEqual($job->getData(), 'test');
+
+		// put job in an unused tube
+		$id = $pheanstalk->putInTube('testpeek2', 'test2');
+
+		$job = $pheanstalk->peek($id);
+
+		$this->assertEqual($job->getData(), 'test2');
 	}
 
 	public function testPeekReady()
@@ -144,6 +174,17 @@ class Pheanstalk_FacadeConnectionTest
 		$job = $pheanstalk->peekReady();
 
 		$this->assertEqual($job->getData(), 'test');
+
+		// put job in an unused tube
+		$id = $pheanstalk->putInTube('testpeekready2', 'test2');
+
+		// use default tube
+		$pheanstalk->useTube('default');
+
+		// peek the tube that has the job
+		$job = $pheanstalk->peekReady('testpeekready2');
+
+		$this->assertEqual($job->getData(), 'test2');
 	}
 
 	public function testPeekDelayed()
@@ -159,6 +200,17 @@ class Pheanstalk_FacadeConnectionTest
 		$job = $pheanstalk->peekDelayed();
 
 		$this->assertEqual($job->getData(), 'test');
+
+		// put job in an unused tube
+		$id = $pheanstalk->putInTube('testpeekdelayed2', 'test2');
+
+		// use default tube
+		$pheanstalk->useTube('default');
+
+		// peek the tube that has the job
+		$job = $pheanstalk->peekReady('testpeekdelayed2');
+
+		$this->assertEqual($job->getData(), 'test2');
 	}
 
 	public function testPeekBuried()
@@ -177,6 +229,17 @@ class Pheanstalk_FacadeConnectionTest
 		$job = $pheanstalk->peekBuried();
 
 		$this->assertEqual($job->getData(), 'test');
+
+		// put job in an unused tube
+		$id = $pheanstalk->putInTube('testpeekburied2', 'test2');
+
+		// use default tube
+		$pheanstalk->useTube('default');
+
+		// peek the tube that has the job
+		$job = $pheanstalk->peekReady('testpeekburied2');
+
+		$this->assertEqual($job->getData(), 'test2');
 	}
 
 	public function testStatsJob()
