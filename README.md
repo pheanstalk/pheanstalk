@@ -92,6 +92,7 @@ Contributors
   * [leprechaun](https://github.com/leprechaun)
   * [Peter McArthur](https://github.com/ptrmcrthr)
   * [robbiehudson](https://github.com/robbiehudson)
+  * [gcatlin](https://github.com/gcatlin)
   * .. more? Let me know if you're missing.
 
 
