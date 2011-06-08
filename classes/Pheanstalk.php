@@ -71,6 +71,9 @@ class Pheanstalk
 	/**
 	 * Remove the specified tube from the watchlist.
 	 *
+	 * Does not execute an IGNORE command if the specified tube is not in the
+	 * cached watchlist.
+	 *
 	 * @param string $tube
 	 * @chainable
 	 */
@@ -184,7 +187,8 @@ class Pheanstalk
 	}
 
 	/**
-	 * Inspect the next ready job in the currently used tube.
+	 * Inspect the next ready job in the specified tube. If no tube is
+	 * specified, the currently used tube in used.
 	 *
 	 * @param string $tube
 	 * @return object Pheanstalk_Job
@@ -204,7 +208,8 @@ class Pheanstalk
 	}
 
 	/**
-	 * Inspect the shortest-remaining-delayed job in the currently used tube.
+	 * Inspect the shortest-remaining-delayed job in the specified tube. If no
+	 * tube is specified, the currently used tube in used.
 	 *
 	 * @param string $tube
 	 * @return object Pheanstalk_Job
@@ -224,7 +229,8 @@ class Pheanstalk
 	}
 
 	/**
-	 * Inspect the next job in the list of buried jobs of the currently used tube.
+	 * Inspect the next job in the list of buried jobs of the specified tube.
+	 * If no tube is specified, the currently used tube in used.
 	 *
 	 * @param string $tube
 	 * @return object Pheanstalk_Job
@@ -429,6 +435,9 @@ class Pheanstalk
 	 * Change to the specified tube name for publishing jobs to.
 	 * This method would be called 'use' if it were not a PHP reserved word.
 	 *
+	 * Does not execute a USE command if the client is already using the
+	 * specified tube.
+	 *
 	 * @param string $tube
 	 * @chainable
 	 */
@@ -445,6 +454,9 @@ class Pheanstalk
 	/**
 	 * Add the specified tube to the watchlist, to reserve jobs from.
 	 *
+	 * Does not execute a WATCH command if the client is already watching the
+	 * specified tube.
+	 *
 	 * @param string $tube
 	 * @chainable
 	 */
@@ -460,7 +472,7 @@ class Pheanstalk
 
 	/**
 	 * Adds the specified tube to the watchlist, to reserve jobs from, and
-	 * ignores any other tubes on the watchlist.
+	 * ignores any other tubes remaining on the watchlist.
 	 *
 	 * @param string $tube
 	 * @chainable
@@ -481,11 +493,62 @@ class Pheanstalk
 	// ----------------------------------------
 
 	/**
+	 * Dispatches the specified command to the connection object.
+	 *
+	 * If a SocketException occurs, the connection is reset, and the command is
+	 * re-attempted once.
+	 *
 	 * @param Pheanstalk_Command $command
 	 * @return Pheanstalk_Response
 	 */
 	private function _dispatch($command)
 	{
-		return $this->_connection->dispatchCommand($command);
+		try
+		{
+			$response = $this->_connection->dispatchCommand($command);
+		}
+		catch (Pheanstalk_Exception_SocketException $e)
+		{
+			$this->_reconnect();
+			$response = $this->_connection->dispatchCommand($command);
+		}
+
+		return $response;
+	}
+
+	/**
+	 * Creates a new connection object, based on the existing connection object,
+	 * and re-establishes the used tube and watchlist.
+	 */
+	private function _reconnect()
+	{
+		$new_connection = new Pheanstalk_Connection(
+			$this->_connection->getHost(),
+			$this->_connection->getPort(),
+			$this->_connection->getConnectTimeout()
+		);
+
+		$this->setConnection($new_connection);
+
+		if ($this->_using != self::DEFAULT_TUBE)
+		{
+			$tube = $this->_using;
+			$this->_using = null;
+			$this->useTube($tube);
+		}
+
+		foreach ($this->_watching as $tube => $true)
+		{
+			if ($tube != self::DEFAULT_TUBE)
+			{
+				unset($this->_watching[$tube]);
+				$this->watch($tube);
+			}
+		}
+
+		if (!isset($this->_watching[self::DEFAULT_TUBE]))
+		{
+			$this->ignore(self::DEFAULT_TUBE);
+		}
 	}
 }
