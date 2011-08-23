@@ -93,6 +93,7 @@ Contributors
   * [Peter McArthur](https://github.com/ptrmcrthr)
   * [robbiehudson](https://github.com/robbiehudson)
   * [Geoff Catlin](https://github.com/gcatlin)
+  * [srjlewis](https://github.com/srjlewis)
   * .. more? Let me know if you're missing.
 
 
