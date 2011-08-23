@@ -41,7 +41,7 @@ class Pheanstalk_Connection
 	 */
 	public function __construct($hostname, $port, $connectTimeout = null)
 	{
-		if (is_null($connectTimeout))
+		if (is_null($connectTimeout) || !is_numeric($connectTimeout))
 			$connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
 
 		$this->_hostname = $hostname;
