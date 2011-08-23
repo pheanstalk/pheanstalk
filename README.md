@@ -94,7 +94,7 @@ Contributors
   * [robbiehudson](https://github.com/robbiehudson)
   * [Geoff Catlin](https://github.com/gcatlin)
   * [srjlewis](https://github.com/srjlewis)
-  * .. more? Let me know if you're missing.
+  * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
 Licence
