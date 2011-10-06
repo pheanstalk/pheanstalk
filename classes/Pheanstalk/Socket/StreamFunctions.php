@@ -72,7 +72,7 @@ class Pheanstalk_Socket_StreamFunctions
 		// return value, $errno and $errstr should be checked instead.
 
         if ($this->_socket === NULL || !$persistent) {
-            $this->_socket = @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+            $this->_socket = @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
         }
 
 		return $this->_socket;
