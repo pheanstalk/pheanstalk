@@ -23,6 +23,8 @@ class Pheanstalk
 	/**
 	 * @param string $host
 	 * @param int $port
+	 * @param int $connectTimeout
+	 * @param bool $connectPersistent
 	 */
 	public function __construct($host, $port = self::DEFAULT_PORT, $connectTimeout = null, $connectPersistent = false)
 	{

@@ -66,13 +66,21 @@ class Pheanstalk_Socket_StreamFunctions
 		return fread($handle, $length);
 	}
 
-	public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null, $persistent = false)
+	public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null, $persistent = FALSE)
 	{
 		// Warnings (e.g. connection refused) suppressed;
 		// return value, $errno and $errstr should be checked instead.
 
-        if ($this->_socket === NULL || !$persistent) {
-            $this->_socket = @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
+		// TODO:  we really need a host/port test here - otherwise we're going to reuse an existing 
+		// connection when we really want a new connection.
+
+
+		// thisis only true if we dont have a connection and we want to do persistence
+        if ($this->_socket === NULL && $persistent === TRUE ) {
+	            $this->_socket = @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
+		// otherwise, we dont care if we have the socket - force the connection.
+		} elseif ( $persistent === FALSE) {
+	            $this->_socket = @fsockopen($hostname, $port, $errno, $errstr, $timeout);			
         }
 
 		return $this->_socket;
