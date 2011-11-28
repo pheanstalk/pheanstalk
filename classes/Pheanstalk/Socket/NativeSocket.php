@@ -33,7 +33,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 		if (!$this->_socket)
 		{
-			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
+			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr . " (connecting to $host:$port)");
 		}
 
 		$this->_wrapper()
