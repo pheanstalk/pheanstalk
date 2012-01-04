@@ -51,6 +51,13 @@ interface Pheanstalk_Command
 	 */
 	public function getDataLength();
 
+    
+    /**
+     * Boolean specifiying is the command wants a response from the server
+     * @return bool
+     */
+    public function wantResponse();
+    
 	/**
 	 * The response parser for the command.
 	 * @return Pheanstalk_ResponseParser
