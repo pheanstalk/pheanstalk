@@ -298,6 +298,15 @@ class Pheanstalk
 
 		return $this->put($data, $priority, $delay, $ttr);
 	}
+    
+    /**
+     * Closes the connection with beanstlkd
+     */
+    public function quit(){
+        $this->_dispatch(
+            new Pheanstalk_Command_QuitCommand()
+        );
+    }
 
 	/**
 	 * Puts a reserved job back into the ready queue.
