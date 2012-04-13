@@ -7,7 +7,7 @@
     $bootstrapFile = file_get_contents(__DIR__ . '/pheanstalk_init.php');
     $bootstrapFile = str_replace('<?php', '', $bootstrapFile);
 
-    $stub .= "<?php" . PHP_EOL;
+    $stub  = "<?php" . PHP_EOL;
     $stub .= "Phar::mapPhar();" . PHP_EOL;
     $stub .= $bootstrapFile . PHP_EOL;
     $stub .= "__HALT_COMPILER();" . PHP_EOL;
