@@ -93,6 +93,9 @@ Contributors
   * [robbiehudson](https://github.com/robbiehudson)
   * [Geoff Catlin](https://github.com/gcatlin)
   * [srjlewis](https://github.com/srjlewis)
+  * [Lars Yencken](https://github.com/larsyencken)
+  * [Josh Butts](https://github.com/jimbojsb)
+  * [Henry Smith](https://github.com/h2s)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
