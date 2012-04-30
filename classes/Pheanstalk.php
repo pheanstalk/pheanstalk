@@ -17,8 +17,11 @@ class Pheanstalk
 	const DEFAULT_DELAY = 0; // no delay
 	const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
 	const DEFAULT_TTR = 60; // 1 minute
+	const DEFAULT_TUBE = 'default';
 
 	private $_connection;
+	private $_using = self::DEFAULT_TUBE;
+	private $_watching = array(self::DEFAULT_TUBE => true);
 
 	/**
 	 * @param string $host
@@ -67,14 +70,21 @@ class Pheanstalk
 	}
 
 	/**
-	 * Remove the specified tube from the watchlist
+	 * Remove the specified tube from the watchlist.
+	 *
+	 * Does not execute an IGNORE command if the specified tube is not in the
+	 * cached watchlist.
 	 *
 	 * @param string $tube
 	 * @chainable
 	 */
 	public function ignore($tube)
 	{
-		$this->_dispatch(new Pheanstalk_Command_IgnoreCommand($tube));
+		if (isset($this->_watching[$tube]))
+		{
+			$this->_dispatch(new Pheanstalk_Command_IgnoreCommand($tube));
+			unset($this->_watching[$tube]);
+		}
 		return $this;
 	}
 
@@ -107,27 +117,46 @@ class Pheanstalk
 	/**
 	 * The names of the tubes being watched, to reserve jobs from.
 	 *
+	 * Returns the cached watchlist if $askServer is false (the default),
+	 * or queries the server for the watchlist if $askServer is true.
+	 *
+	 * @param bool $askServer
 	 * @return array
 	 */
-	public function listTubesWatched()
+	public function listTubesWatched($askServer = false)
 	{
-		return (array) $this->_dispatch(
-			new Pheanstalk_Command_ListTubesWatchedCommand()
-		);
+		if ($askServer)
+		{
+			$response = (array) $this->_dispatch(
+				new Pheanstalk_Command_ListTubesWatchedCommand()
+			);
+			$this->_watching = array_fill_keys($response, true);
+		}
+
+		return array_keys($this->_watching);
 	}
 
 	/**
 	 * The name of the current tube used for publishing jobs to.
 	 *
+	 * Returns the cached value if $askServer is false (the default),
+	 * or queries the server for the currently used tube if $askServer
+	 * is true.
+	 *
+	 * @param bool $askServer
 	 * @return string
 	 */
-	public function listTubeUsed()
+	public function listTubeUsed($askServer = false)
 	{
-		$response = $this->_dispatch(
-			new Pheanstalk_Command_ListTubeUsedCommand()
-		);
+		if ($askServer)
+		{
+			$response = $this->_dispatch(
+				new Pheanstalk_Command_ListTubeUsedCommand()
+			);
+			$this->_using = $response['tube'];
+		}
 
-		return $response['tube'];
+		return $this->_using;
 	}
 
 	/**
@@ -159,12 +188,19 @@ class Pheanstalk
 	}
 
 	/**
-	 * Inspect the next ready job in the currently used tube.
+	 * Inspect the next ready job in the specified tube. If no tube is
+	 * specified, the currently used tube in used.
 	 *
+	 * @param string $tube
 	 * @return object Pheanstalk_Job
 	 */
-	public function peekReady()
+	public function peekReady($tube = null)
 	{
+		if ($tube !== null)
+		{
+			$this->useTube($tube);
+		}
+
 		$response = $this->_dispatch(
 			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_READY)
 		);
@@ -173,12 +209,19 @@ class Pheanstalk
 	}
 
 	/**
-	 * Inspect the shortest-remaining-delayed job in the currently used tube.
+	 * Inspect the shortest-remaining-delayed job in the specified tube. If no
+	 * tube is specified, the currently used tube in used.
 	 *
+	 * @param string $tube
 	 * @return object Pheanstalk_Job
 	 */
-	public function peekDelayed()
+	public function peekDelayed($tube = null)
 	{
+		if ($tube !== null)
+		{
+			$this->useTube($tube);
+		}
+
 		$response = $this->_dispatch(
 			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_DELAYED)
 		);
@@ -187,12 +230,19 @@ class Pheanstalk
 	}
 
 	/**
-	 * Inspect the next job in the list of buried jobs of the currently used tube.
+	 * Inspect the next job in the list of buried jobs of the specified tube.
+	 * If no tube is specified, the currently used tube in used.
 	 *
+	 * @param string $tube
 	 * @return object Pheanstalk_Job
 	 */
-	public function peekBuried()
+	public function peekBuried($tube = null)
 	{
+		if ($tube !== null)
+		{
+			$this->useTube($tube);
+		}
+
 		$response = $this->_dispatch(
 			new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_BURIED)
 		);
@@ -221,6 +271,33 @@ class Pheanstalk
 		);
 
 		return $response['id'];
+	}
+
+	/**
+	 * Puts a job on the queue using specified tube.
+	 *
+	 * Using this method is equivalent to calling useTube() then put(), with
+	 * the added benefit that it will not execute the USE command if the client
+	 * is already using the specified tube.
+	 *
+	 * @param string $tube The tube to use
+	 * @param string $data The job data
+	 * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
+	 * @param int $delay Seconds to wait before job becomes ready
+	 * @param int $ttr Time To Run: seconds a job can be reserved for
+	 * @return int The new job ID
+	 */
+	public function putInTube(
+		$tube,
+		$data,
+		$priority = self::DEFAULT_PRIORITY,
+		$delay = self::DEFAULT_DELAY,
+		$ttr = self::DEFAULT_TTR
+	)
+	{
+		$this->useTube($tube);
+
+		return $this->put($data, $priority, $delay, $ttr);
 	}
 
 	/**
@@ -282,6 +359,31 @@ class Pheanstalk
 	}
 
 	/**
+	 * Reserves/locks a ready job from the specified tube.
+	 *
+	 * A non-null timeout uses the 'reserve-with-timeout' instead of 'reserve'.
+	 *
+	 * A timeout value of 0 will cause the server to immediately return either a
+	 * response or TIMED_OUT.  A positive value of timeout will limit the amount of
+	 * time the client will block on the reserve request until a job becomes
+	 * available.
+	 *
+	 * Using this method is equivalent to calling watch(), ignore() then 
+	 * reserve(), with the added benefit that it will not execute uneccessary
+	 * WATCH or IGNORE commands if the client is already watching the
+	 * specified tube.
+	 *
+	 * @param string $tube
+	 * @param int $timeout
+	 * @return object Pheanstalk_Job
+	 */
+	public function reserveFromTube($tube, $timeout = null)
+	{
+		$this->watchOnly($tube);
+		return $this->reserve($timeout);
+	}
+
+	/**
 	 * Gives statistical information about the specified job if it exists.
 	 *
 	 * @param Pheanstalk_Job or int $job
@@ -334,35 +436,120 @@ class Pheanstalk
 	 * Change to the specified tube name for publishing jobs to.
 	 * This method would be called 'use' if it were not a PHP reserved word.
 	 *
+	 * Does not execute a USE command if the client is already using the
+	 * specified tube.
+	 *
 	 * @param string $tube
 	 * @chainable
 	 */
 	public function useTube($tube)
 	{
-		$this->_dispatch(new Pheanstalk_Command_UseCommand($tube));
+		if ($this->_using != $tube)
+		{
+			$this->_dispatch(new Pheanstalk_Command_UseCommand($tube));
+			$this->_using = $tube;
+		}
 		return $this;
 	}
 
 	/**
 	 * Add the specified tube to the watchlist, to reserve jobs from.
 	 *
+	 * Does not execute a WATCH command if the client is already watching the
+	 * specified tube.
+	 *
 	 * @param string $tube
 	 * @chainable
 	 */
 	public function watch($tube)
 	{
-		$this->_dispatch(new Pheanstalk_Command_WatchCommand($tube));
+		if (!isset($this->_watching[$tube]))
+		{
+			$this->_dispatch(new Pheanstalk_Command_WatchCommand($tube));
+			$this->_watching[$tube] = true;
+		}
+		return $this;
+	}
+
+	/**
+	 * Adds the specified tube to the watchlist, to reserve jobs from, and
+	 * ignores any other tubes remaining on the watchlist.
+	 *
+	 * @param string $tube
+	 * @chainable
+	 */
+	public function watchOnly($tube)
+	{
+		$this->watch($tube);
+		
+		$ignoreTubes = array_diff_key($this->_watching, array($tube => true));
+		foreach ($ignoreTubes as $ignoreTube => $true)
+		{
+			$this->ignore($ignoreTube);
+		}
+		
 		return $this;
 	}
 
 	// ----------------------------------------
 
 	/**
+	 * Dispatches the specified command to the connection object.
+	 *
+	 * If a SocketException occurs, the connection is reset, and the command is
+	 * re-attempted once.
+	 *
 	 * @param Pheanstalk_Command $command
 	 * @return Pheanstalk_Response
 	 */
 	private function _dispatch($command)
 	{
-		return $this->_connection->dispatchCommand($command);
+		try
+		{
+			$response = $this->_connection->dispatchCommand($command);
+		}
+		catch (Pheanstalk_Exception_SocketException $e)
+		{
+			$this->_reconnect();
+			$response = $this->_connection->dispatchCommand($command);
+		}
+
+		return $response;
+	}
+
+	/**
+	 * Creates a new connection object, based on the existing connection object,
+	 * and re-establishes the used tube and watchlist.
+	 */
+	private function _reconnect()
+	{
+		$new_connection = new Pheanstalk_Connection(
+			$this->_connection->getHost(),
+			$this->_connection->getPort(),
+			$this->_connection->getConnectTimeout()
+		);
+
+		$this->setConnection($new_connection);
+
+		if ($this->_using != self::DEFAULT_TUBE)
+		{
+			$tube = $this->_using;
+			$this->_using = null;
+			$this->useTube($tube);
+		}
+
+		foreach ($this->_watching as $tube => $true)
+		{
+			if ($tube != self::DEFAULT_TUBE)
+			{
+				unset($this->_watching[$tube]);
+				$this->watch($tube);
+			}
+		}
+
+		if (!isset($this->_watching[self::DEFAULT_TUBE]))
+		{
+			$this->ignore(self::DEFAULT_TUBE);
+		}
 	}
 }

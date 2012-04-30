@@ -34,7 +34,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 		if (!$this->_socket)
 		{
-			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr);
+			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr . " (connecting to $host:$port)");
 		}
 
 		$this->_wrapper()
@@ -103,7 +103,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 			if ($this->_wrapper()->feof($this->_socket))
 			{
-				throw new Pheanstalk_Exception_ConnectionException(666, "Socket closed by server!");
+				throw new Pheanstalk_Exception_SocketException("Socket closed by server!");
 			}
 		}
 		while ($data === false);
