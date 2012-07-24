@@ -1,5 +1,11 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\IResponse;
+
+use Pheanstalk\Exception\ServerException;
+
 /**
  * The 'watch' command.
  * Adds a tube to the watchlist to reserve jobs from.
@@ -8,9 +14,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_WatchCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class WatchCommand extends AbstractCommand implements IResponseParser
 {
 	private $_tube;
 
@@ -23,7 +27,7 @@ class Pheanstalk_Command_WatchCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -31,7 +35,7 @@ class Pheanstalk_Command_WatchCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{

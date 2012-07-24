@@ -1,5 +1,9 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\IResponse;
+
 /**
  * The 'reserve' command.
  * Reserves/locks a ready job in a watched tube.
@@ -8,9 +12,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_ReserveCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class ReserveCommand extends AbstractCommand implements IResponseParser
 {
 	private $_timeout;
 
@@ -28,7 +30,7 @@ class Pheanstalk_Command_ReserveCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -38,12 +40,12 @@ class Pheanstalk_Command_ReserveCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
-		if ($responseLine === Pheanstalk_Response::RESPONSE_DEADLINE_SOON ||
-			$responseLine === Pheanstalk_Response::RESPONSE_TIMED_OUT)
+		if ($responseLine === IResponse::RESPONSE_DEADLINE_SOON ||
+			$responseLine === IResponse::RESPONSE_TIMED_OUT)
 		{
 			return $this->_createResponse($responseLine);
 		}

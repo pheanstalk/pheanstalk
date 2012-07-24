@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk\Socket;
+
 /**
  * Wrapper around PHP stream functions.
  * Facilitates mocking/stubbing stream operations in unit tests.
@@ -8,7 +10,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Socket_StreamFunctions
+class StreamFunctions
 {
 	private static $_instance;
 

@@ -1,5 +1,8 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\YamlResponseParser;
+
 /**
  * The 'list-tubes' command.
  * List all existing tubes.
@@ -8,11 +11,10 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_ListTubesCommand
-	extends Pheanstalk_Command_AbstractCommand
+class ListTubesCommand extends AbstractCommand
 {
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -20,12 +22,12 @@ class Pheanstalk_Command_ListTubesCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getResponseParser()
+	 * @see \Pheanstalk\ICommand::getResponseParser()
 	 */
 	public function getResponseParser()
 	{
-		return new Pheanstalk_YamlResponseParser(
-			Pheanstalk_YamlResponseParser::MODE_LIST
+		return new YamlResponseParser(
+			YamlResponseParser::MODE_LIST
 		);
 	}
 }

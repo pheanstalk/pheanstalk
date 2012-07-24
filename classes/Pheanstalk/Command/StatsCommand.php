@@ -1,5 +1,8 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\YamlResponseParser;
+
 /**
  * The 'stats' command.
  * Statistical information about the system as a whole.
@@ -8,11 +11,10 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_StatsCommand
-	extends Pheanstalk_Command_AbstractCommand
+class StatsCommand extends AbstractCommand
 {
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -20,12 +22,12 @@ class Pheanstalk_Command_StatsCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getResponseParser()
+	 * @see \Pheanstalk\ICommand::getResponseParser()
 	 */
 	public function getResponseParser()
 	{
-		return new Pheanstalk_YamlResponseParser(
-			Pheanstalk_YamlResponseParser::MODE_DICT
+		return new YamlResponseParser(
+			YamlResponseParser::MODE_DICT
 		);
 	}
 }

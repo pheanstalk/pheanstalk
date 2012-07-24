@@ -1,5 +1,11 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\IResponse;
+
+use Pheanstalk\Exception\ServerException;
+
 /**
  * The 'ignore' command.
  * Removes a tube from the watch list to reserve jobs from.
@@ -8,9 +14,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_IgnoreCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class IgnoreCommand extends AbstractCommand implements IResponseParser
 {
 	private $_tube;
 
@@ -23,7 +27,7 @@ class Pheanstalk_Command_IgnoreCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -31,7 +35,7 @@ class Pheanstalk_Command_IgnoreCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
@@ -41,14 +45,14 @@ class Pheanstalk_Command_IgnoreCommand
 				'count' => (int)$matches[1]
 			));
 		}
-		elseif ($responseLine == Pheanstalk_Response::RESPONSE_NOT_IGNORED)
+		elseif ($responseLine == IResponse::RESPONSE_NOT_IGNORED)
 		{
-			throw new Pheanstalk_Exception_ServerException($responseLine .
+			throw new ServerException($responseLine .
 				': cannot ignore last tube in watchlist');
 		}
 		else
 		{
-			throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
+			throw new \Pheanstalk\Exception('Unhandled response: '.$responseLine);
 		}
 	}
 }

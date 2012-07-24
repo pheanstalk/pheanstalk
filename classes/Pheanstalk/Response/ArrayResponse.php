@@ -1,5 +1,8 @@
 <?php
 
+namespace Pheanstalk\Response;
+use Pheanstalk\IResponse;
+
 /**
  * A response with an ArrayObject interface to key=>value data
  *
@@ -7,9 +10,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Response_ArrayResponse
-	extends ArrayObject
-	implements Pheanstalk_Response
+class ArrayResponse extends \ArrayObject implements IResponse
 {
 	private $_name;
 
@@ -24,7 +25,7 @@ class Pheanstalk_Response_ArrayResponse
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Response::getResponseName()
+	 * @see \Pheanstalk\IResponse::getResponseName()
 	 */
 	public function getResponseName()
 	{

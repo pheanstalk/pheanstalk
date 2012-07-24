@@ -1,5 +1,11 @@
 <?php
 
+namespace Pheanstalk;
+
+use Pheanstalk\IResponse;
+use Pheanstalk\ISocket;
+use Pheanstalk\Socket\NativeSocket;
+
 /**
  * A connection to a beanstalkd server
  *
@@ -7,7 +13,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Connection
+class Connection
 {
 	const CRLF = "\r\n";
 	const CRLF_LENGTH = 2;
@@ -15,18 +21,18 @@ class Pheanstalk_Connection
 
 	// responses which are global errors, mapped to their exception short-names
 	private static $_errorResponses = array(
-		Pheanstalk_Response::RESPONSE_OUT_OF_MEMORY => 'OutOfMemory',
-		Pheanstalk_Response::RESPONSE_INTERNAL_ERROR => 'InternalError',
-		Pheanstalk_Response::RESPONSE_DRAINING => 'Draining',
-		Pheanstalk_Response::RESPONSE_BAD_FORMAT => 'BadFormat',
-		Pheanstalk_Response::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
+		IResponse::RESPONSE_OUT_OF_MEMORY => 'OutOfMemory',
+		IResponse::RESPONSE_INTERNAL_ERROR => 'InternalError',
+		IResponse::RESPONSE_DRAINING => 'Draining',
+		IResponse::RESPONSE_BAD_FORMAT => 'BadFormat',
+		IResponse::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
 	);
 
 	// responses which are followed by data
 	private static $_dataResponses = array(
-		Pheanstalk_Response::RESPONSE_RESERVED,
-		Pheanstalk_Response::RESPONSE_FOUND,
-		Pheanstalk_Response::RESPONSE_OK,
+		IResponse::RESPONSE_RESERVED,
+		IResponse::RESPONSE_FOUND,
+		IResponse::RESPONSE_OK,
 	);
 
 	private $_socket;
@@ -52,19 +58,19 @@ class Pheanstalk_Connection
 	/**
 	 * Sets a manually created socket, used for unit testing.
 	 *
-	 * @param Pheanstalk_Socket $socket
+	 * @param \Pheanstalk\ISocket $socket
 	 * @chainable
 	 */
-	public function setSocket(Pheanstalk_Socket $socket)
+	public function setSocket(ISocket $socket)
 	{
 		$this->_socket = $socket;
 		return $this;
 	}
 
 	/**
-	 * @param object $command Pheanstalk_Command
-	 * @return object Pheanstalk_Response
-	 * @throws Pheanstalk_Exception_ClientException
+	 * @param object $command \Pheanstalk\Command
+	 * @return object \Pheanstalk\IResponse
+	 * @throws \Pheanstalk\Exception\ClientException
 	 */
 	public function dispatchCommand($command)
 	{
@@ -104,7 +110,7 @@ class Pheanstalk_Connection
 			$crlf = $socket->read(self::CRLF_LENGTH);
 			if ($crlf !== self::CRLF)
 			{
-				throw new Pheanstalk_Exception_ClientException(sprintf(
+				throw new \Pheanstalk\Exception\ClientException(sprintf(
 					'Expected %d bytes of CRLF after %d bytes of data',
 					self::CRLF_LENGTH,
 					$dataLength
@@ -156,14 +162,14 @@ class Pheanstalk_Connection
 	/**
 	 * Socket handle for the connection to beanstalkd
 	 *
-	 * @return Pheanstalk_Socket
-	 * @throws Pheanstalk_Exception_ConnectionException
+	 * @return \Pheanstalk\ISocket
+	 * @throws \Pheanstalk\Exception\ConnectionException
 	 */
 	private function _getSocket()
 	{
 		if (!isset($this->_socket))
 		{
-			$this->_socket = new Pheanstalk_Socket_NativeSocket(
+			$this->_socket = new NativeSocket(
 				$this->_hostname,
 				$this->_port,
 				$this->_connectTimeout

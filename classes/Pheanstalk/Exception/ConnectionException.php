@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk\Exception;
+
 /**
  * An exception relating to the client connection to the beanstalkd server
  *
@@ -7,8 +9,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Exception_ConnectionException
-	extends Pheanstalk_Exception_ClientException
+class ConnectionException extends ClientException
 {
 	/**
 	 * @param int $errno The connection error code

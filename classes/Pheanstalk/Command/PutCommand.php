@@ -1,5 +1,9 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\Exception;
+
 /**
  * The 'put' command.
  * Inserts a job into the client's currently used tube.
@@ -9,9 +13,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_PutCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class PutCommand extends AbstractCommand implements IResponseParser
 {
 	private $_data;
 	private $_priority;
@@ -31,10 +33,13 @@ class Pheanstalk_Command_PutCommand
 		$this->_priority = $priority;
 		$this->_delay = $delay;
 		$this->_ttr = $ttr;
+
+        $json = json_encode($this->_data);
+        $this->_data = false !== $json ? $json : $this->_data;
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -48,7 +53,7 @@ class Pheanstalk_Command_PutCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::hasData()
+	 * @see \Pheanstalk\ICommand::hasData()
 	 */
 	public function hasData()
 	{
@@ -56,7 +61,7 @@ class Pheanstalk_Command_PutCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getData()
+	 * @see \Pheanstalk\ICommand::getData()
 	 */
 	public function getData()
 	{
@@ -64,7 +69,7 @@ class Pheanstalk_Command_PutCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getDataLength()
+	 * @see \Pheanstalk\ICommand::getDataLength()
 	 */
 	public function getDataLength()
 	{
@@ -72,7 +77,7 @@ class Pheanstalk_Command_PutCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
@@ -84,28 +89,28 @@ class Pheanstalk_Command_PutCommand
 		}
 		elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches))
 		{
-			throw new Pheanstalk_Exception(sprintf(
+			throw new Exception(sprintf(
 				'%s: server ran out of memory trying to grow the priority queue data structure.',
 				$responseLine
 			));
 		}
 		elseif (preg_match('#^JOB_TOO_BIG$#', $responseLine))
 		{
-			throw new Pheanstalk_Exception(sprintf(
+			throw new Exception(sprintf(
 				'%s: job data exceeds server-enforced limit',
 				$responseLine
 			));
 		}
 		elseif (preg_match('#^EXPECTED_CRLF#', $responseLine))
 		{
-			throw new Pheanstalk_Exception(sprintf(
+			throw new Exception(sprintf(
 				'%s: CRLF expected',
 				$responseLine
 			));
 		}
 		else
 		{
-			throw new Pheanstalk_Exception(sprintf(
+			throw new Exception(sprintf(
 				'Unhandled response: %s',
 				$responseLine
 			));

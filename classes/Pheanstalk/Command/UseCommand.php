@@ -1,5 +1,8 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+
 /**
  * The 'use' command.
  *
@@ -11,9 +14,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_UseCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class UseCommand extends AbstractCommand implements IResponseParser
 {
 	private $_tube;
 
@@ -26,7 +27,7 @@ class Pheanstalk_Command_UseCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -34,7 +35,7 @@ class Pheanstalk_Command_UseCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{

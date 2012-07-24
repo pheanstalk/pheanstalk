@@ -1,17 +1,21 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\ICommand;
+use Pheanstalk\Exception\CommandException;
+use Pheanstalk\Response\ArrayResponse;
+
 /**
- * Common functionality for Pheanstalk_Command implementations.
+ * Common functionality for \Pheanstalk\Command implementations.
  *
  * @author Paul Annesley
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-abstract class Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_Command
+abstract class AbstractCommand implements ICommand
 {
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::hasData()
+	 * @see \Pheanstalk\ICommand::hasData()
 	 */
 	public function hasData()
 	{
@@ -19,28 +23,28 @@ abstract class Pheanstalk_Command_AbstractCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getData()
+	 * @see \Pheanstalk\ICommand::getData()
 	 */
 	public function getData()
 	{
-		throw new Pheanstalk_Exception_CommandException('Command has no data');
+		throw new CommandException('Command has no data');
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getDataLength()
+	 * @see \Pheanstalk\ICommand::getDataLength()
 	 */
 	public function getDataLength()
 	{
-		throw new Pheanstalk_Exception_CommandException('Command has no data');
+		throw new CommandException('Command has no data');
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getResponseParser()
+	 * @see \Pheanstalk\ICommand::getResponseParser()
 	 */
 	public function getResponseParser()
 	{
 		// concrete implementation must either:
-		// a) implement Pheanstalk_ResponseParser
+		// a) implement \Pheanstalk\IResponseParser
 		// b) override this getResponseParser method
 		return $this;
 	}
@@ -58,12 +62,12 @@ abstract class Pheanstalk_Command_AbstractCommand
 	// protected
 
 	/**
-	 * Creates a Pheanstalk_Response for the given data
+	 * Creates a \Pheanstalk\IResponse for the given data
 	 * @param array
-	 * @return object Pheanstalk_Response
+	 * @return object \Pheanstalk\Response\ArrayResponse
 	 */
 	protected function _createResponse($name, $data = array())
 	{
-		return new Pheanstalk_Response_ArrayResponse($name, $data);
+		return new ArrayResponse($name, $data);
 	}
 }

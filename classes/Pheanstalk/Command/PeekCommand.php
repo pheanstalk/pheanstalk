@@ -1,5 +1,11 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\IResponse;
+
+use Pheanstalk\Exception\ServerException;
+
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
  *
@@ -10,9 +16,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_PeekCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class PeekCommand extends AbstractCommand implements IResponseParser
 {
 	const TYPE_ID = 'id';
 	const TYPE_READY = 'ready';
@@ -43,14 +47,14 @@ class Pheanstalk_Command_PeekCommand
 		}
 		else
 		{
-			throw new Pheanstalk_Exception_CommandException(sprintf(
+			throw new \Pheanstalk\Exception\CommandException(sprintf(
 				'Invalid peek subject: %s', $peekSubject
 			));
 		}
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -60,11 +64,11 @@ class Pheanstalk_Command_PeekCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
-		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
+		if ($responseLine == IResponse::RESPONSE_NOT_FOUND)
 		{
 			if (isset($this->_jobId))
 			{
@@ -83,12 +87,12 @@ class Pheanstalk_Command_PeekCommand
 				);
 			}
 
-			throw new Pheanstalk_Exception_ServerException($message);
+			throw new ServerException($message);
 		}
 		elseif (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches))
 		{
 			return $this->_createResponse(
-				Pheanstalk_Response::RESPONSE_FOUND,
+				IResponse::RESPONSE_FOUND,
 				array(
 					'id' => (int)$matches[1],
 					'jobdata' => $responseData,

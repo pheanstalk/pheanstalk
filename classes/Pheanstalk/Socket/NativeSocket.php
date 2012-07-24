@@ -1,13 +1,19 @@
 <?php
 
+namespace Pheanstalk\Socket;
+use Pheanstalk\ISocket;
+
+use Pheanstalk\Exception\ConnectionException;
+use Pheanstalk\Exception\SocketException;
+
 /**
- * A Pheanstalk_Socket implementation around a fsockopen() stream.
+ * A \Pheanstalk\ISocket implementation around a fsockopen() stream.
  *
  * @author Paul Annesley
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
+class NativeSocket implements ISocket
 {
 	/**
 	 * The default timeout for a blocking read on the socket
@@ -33,7 +39,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 		if (!$this->_socket)
 		{
-			throw new Pheanstalk_Exception_ConnectionException($errno, $errstr . " (connecting to $host:$port)");
+			throw new ConnectionException($errno, $errstr . " (connecting to $host:$port)");
 		}
 
 		$this->_wrapper()
@@ -41,11 +47,11 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Socket::write()
+	 * @see \Pheanstalk\ISocket::write()
 	 */
 	public function write($data)
 	{
-		$history = new Pheanstalk_Socket_WriteHistory(self::WRITE_RETRIES);
+		$history = new WriteHistory(self::WRITE_RETRIES);
 
 		for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite)
 		{
@@ -56,7 +62,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 			if ($history->isFullWithNoWrites())
 			{
-				throw new Pheanstalk_Exception_SocketException(sprintf(
+				throw new SocketException(sprintf(
 					'fwrite() failed to write data after %d tries',
 					self::WRITE_RETRIES
 				));
@@ -65,7 +71,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Socket::write()
+	 * @see \Pheanstalk\ISocket::write()
 	 */
 	public function read($length)
 	{
@@ -79,7 +85,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 			if ($data === false)
 			{
-				throw new Pheanstalk_Exception_SocketException('fread() returned false');
+				throw new SocketException('fread() returned false');
 			}
 
 			$read += strlen($data);
@@ -90,7 +96,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Socket::write()
+	 * @see \Pheanstalk\ISocket::write()
 	 */
 	public function getLine($length = null)
 	{
@@ -102,7 +108,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
 			if ($this->_wrapper()->feof($this->_socket))
 			{
-				throw new Pheanstalk_Exception_SocketException("Socket closed by server!");
+				throw new SocketException("Socket closed by server!");
 			}
 		}
 		while ($data === false);
@@ -118,6 +124,6 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 	 */
 	private function _wrapper()
 	{
-		return Pheanstalk_Socket_StreamFunctions::instance();
+		return StreamFunctions::instance();
 	}
 }

@@ -1,5 +1,11 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\IResponse;
+
+use Pheanstalk\Exception\ServerException;
+
 /**
  * The 'delete' command.
  * Permanently deletes an already-reserved job.
@@ -8,14 +14,12 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_DeleteCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class DeleteCommand extends AbstractCommand implements IResponseParser
 {
 	private $_job;
 
 	/**
-	 * @param object $job Pheanstalk_Job
+	 * @param object $job \Pheanstalk\Job
 	 */
 	public function __construct($job)
 	{
@@ -23,7 +27,7 @@ class Pheanstalk_Command_DeleteCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -31,13 +35,13 @@ class Pheanstalk_Command_DeleteCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
-		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
+		if ($responseLine == IResponse::RESPONSE_NOT_FOUND)
 		{
-			throw new Pheanstalk_Exception_ServerException(sprintf(
+			throw new ServerException(sprintf(
 				'Cannot delete job %d: %s',
 				$this->_job->getId(),
 				$responseLine
