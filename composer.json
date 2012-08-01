@@ -1,0 +1,19 @@
+{
+    "name": "pda/pheanstalk",
+    "type": "library",
+    "description": "PHP client for beanstalkd queue",
+    "keywords": ["beanstalkd"],
+    "homepage": "https://github.com/pda/pheanstalk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paul Annesley",
+            "email": "paul@annesley.cc",
+            "homepage": "http://paul.annesley.cc/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
