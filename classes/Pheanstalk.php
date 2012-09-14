@@ -102,6 +102,18 @@ class Pheanstalk
 	}
 
 	/**
+	 * Kicks buried or delayed jobs into a 'ready' state.
+	 *
+	 * @param Pheanstalk_Job $job Pheanstalk_Job
+	 * @chainable
+	 */
+	public function kickJob($job)
+	{
+		$this->_dispatch(new Pheanstalk_Command_KickJobCommand($job));
+		return $this;
+	}
+
+	/**
 	 * The names of all tubes on the server.
 	 *
 	 * @return array
