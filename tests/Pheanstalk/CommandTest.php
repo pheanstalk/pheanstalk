@@ -55,6 +55,17 @@ class Pheanstalk_CommandTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testKickJob()
+    {
+        $command = new Pheanstalk_Command_KickJobCommand($this->_mockJob(5));
+        $this->_assertCommandLine($command, 'kick-job 5');
+
+        $this->_assertResponse(
+            $command->getResponseParser()->parseResponse('KICKED', null),
+            Pheanstalk_Response::RESPONSE_KICKED
+        );
+    }
+
     public function testListTubesWatched()
     {
         $command = new Pheanstalk_Command_ListTubesWatchedCommand();

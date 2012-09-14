@@ -89,6 +89,15 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     /**
      * {@inheritDoc}
      */
+    public function kickJob($job)
+    {
+        $this->_dispatch(new Pheanstalk_Command_KickJobCommand($job));
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function listTubes()
     {
         return (array) $this->_dispatch(

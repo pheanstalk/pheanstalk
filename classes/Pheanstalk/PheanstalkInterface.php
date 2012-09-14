@@ -60,6 +60,16 @@ interface Pheanstalk_PheanstalkInterface {
     public function kick($max);
 
     /**
+     * A variant of kick that operates with a single job. If the given job
+     * exists and is in a buried or delayed state, it will be moved to the
+     * ready queue of the the same tube where it currently belongs.
+     *
+     * @param Pheanstalk_Job $job Pheanstalk_Job
+     * @chainable
+     */
+    public function kickJob($job);
+
+    /**
      * The names of all tubes on the server.
      *
      * @return array
