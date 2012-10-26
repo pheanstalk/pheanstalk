@@ -174,10 +174,10 @@ class Pheanstalk_Connection
 	}
     
     /**
-	 * Checks connection to the beanstalkd socket
-	 *
-	 * @return true|false
-	 */
+     * Checks connection to the beanstalkd socket
+     *
+     * @return true|false
+     */
     public function isServiceListening()
     {
         try

@@ -44,14 +44,14 @@ class Pheanstalk
 	}
     
     /**
-	 * Returns the connection object
-	 *
-	 * @return Pheanstalk_Connection
-	 */
+     * Returns the connection object
+     *
+     * @return Pheanstalk_Connection
+     */
     public function getConnection()
-	{
-		return $this->_connection;
-	}
+    {
+        return $this->_connection;
+    }
 
 	// ----------------------------------------
 
