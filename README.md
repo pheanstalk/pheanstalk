@@ -25,6 +25,11 @@ require_once('pheanstalk_init.php');
 $pheanstalk = new Pheanstalk('127.0.0.1');
 
 // ----------------------------------------
+// check service availability
+
+$isBeanstalkdListening = $pheanstalk->getConnection()->isServiceListening(); //returns true|false
+
+// ----------------------------------------
 // producer (queues jobs)
 
 $pheanstalk

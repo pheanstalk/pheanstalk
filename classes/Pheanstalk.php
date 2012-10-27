@@ -42,6 +42,16 @@ class Pheanstalk
 		$this->_connection = $connection;
 		return $this;
 	}
+    
+    /**
+     * Returns the connection object
+     *
+     * @return Pheanstalk_Connection
+     */
+    public function getConnection()
+    {
+        return $this->_connection;
+    }
 
 	// ----------------------------------------
 

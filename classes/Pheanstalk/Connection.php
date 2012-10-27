@@ -172,4 +172,22 @@ class Pheanstalk_Connection
 
 		return $this->_socket;
 	}
+    
+    /**
+     * Checks connection to the beanstalkd socket
+     *
+     * @return true|false
+     */
+    public function isServiceListening()
+    {
+        try
+        {
+            $this->_getSocket();            
+        } 
+        catch (Pheanstalk_Exception_ConnectionException $e)
+        {
+            return false;
+        }
+        return true;
+    }
 }
