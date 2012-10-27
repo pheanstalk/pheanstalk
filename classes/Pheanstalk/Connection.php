@@ -79,46 +79,50 @@ class Pheanstalk_Connection
 
 		$socket->write($to_send);
 
-		$responseLine = $socket->getLine();
-		$responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
+        if($command->wantResponse()){
+            $responseLine = $socket->getLine();
+            $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
-		if (isset(self::$_errorResponses[$responseName]))
-		{
-			$exception = sprintf(
-				'Pheanstalk_Exception_Server%sException',
-				self::$_errorResponses[$responseName]
-			);
+            if (isset(self::$_errorResponses[$responseName]))
+            {
+                $exception = sprintf(
+                    'Pheanstalk_Exception_Server%sException',
+                    self::$_errorResponses[$responseName]
+                );
 
-			throw new $exception(sprintf(
-				"%s in response to '%s'",
-				$responseName,
-				$command
-			));
-		}
+                throw new $exception(sprintf(
+                    "%s in response to '%s'",
+                    $responseName,
+                    $command
+                ));
+            }
 
-		if (in_array($responseName, self::$_dataResponses))
-		{
-			$dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
-			$data = $socket->read($dataLength);
+            if (in_array($responseName, self::$_dataResponses))
+            {
+                $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
+                $data = $socket->read($dataLength);
 
-			$crlf = $socket->read(self::CRLF_LENGTH);
-			if ($crlf !== self::CRLF)
-			{
-				throw new Pheanstalk_Exception_ClientException(sprintf(
-					'Expected %d bytes of CRLF after %d bytes of data',
-					self::CRLF_LENGTH,
-					$dataLength
-				));
-			}
-		}
-		else
-		{
-			$data = null;
-		}
+                $crlf = $socket->read(self::CRLF_LENGTH);
+                if ($crlf !== self::CRLF)
+                {
+                    throw new Pheanstalk_Exception_ClientException(sprintf(
+                        'Expected %d bytes of CRLF after %d bytes of data',
+                        self::CRLF_LENGTH,
+                        $dataLength
+                    ));
+                }
+            }
+            else
+            {
+                $data = null;
+            }
 
-		return $command
-			->getResponseParser()
-			->parseResponse($responseLine, $data);
+            return $command
+                ->getResponseParser()
+                ->parseResponse($responseLine, $data);
+        }
+        else 
+            return null;
 	}
 
 	/**

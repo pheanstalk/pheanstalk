@@ -17,6 +17,7 @@ abstract class Pheanstalk_Command_AbstractCommand
 	{
 		return false;
 	}
+    
 
 	/* (non-phpdoc)
 	 * @see Pheanstalk_Command::getData()
@@ -34,6 +35,15 @@ abstract class Pheanstalk_Command_AbstractCommand
 		throw new Pheanstalk_Exception_CommandException('Command has no data');
 	}
 
+    /* (non-phpdoc)
+	 * @see Pheanstalk_Command::hasData()
+	 */
+	public function wantResponse()
+	{
+        //If the command does not wants a response from the server you should return false.
+		return true;
+	}
+    
 	/* (non-phpdoc)
 	 * @see Pheanstalk_Command::getResponseParser()
 	 */
