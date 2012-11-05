@@ -1,3 +1,0 @@
-[submodule "tests/simpletest"]
-	path = tests/simpletest
-	url = git://github.com/99designs/simpletest.git
