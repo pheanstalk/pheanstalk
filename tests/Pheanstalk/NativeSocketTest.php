@@ -45,7 +45,7 @@ class Pheanstalk_NativeSocketTest
 
     /**
      * @expectedException Pheanstalk_Exception_SocketException
-     * @expectedExceptionMessage Write should throw an exception if fwrite returns false
+     * @expectedExceptionMessage fwrite() failed to write data after 
      */
     public function testWrite()
     {
@@ -59,7 +59,7 @@ class Pheanstalk_NativeSocketTest
 
     /**
      * @expectedException Pheanstalk_Exception_SocketException
-     * @expectedExceptionMessage Read should throw an exception if fread returns false
+     * @expectedExceptionMessage fwrite() failed to write data after 
      */
     public function testRead()
     {
