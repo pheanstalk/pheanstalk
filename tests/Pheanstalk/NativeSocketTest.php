@@ -12,11 +12,15 @@ class Pheanstalk_NativeSocketTest
 {
     private $_streamFunctions;
 
+    protected static $MockStreamFunctions;
+
     public function setUp()
     {
-        $this->getMock('Pheanstalk_Socket_StreamFunctions', array(), array(), 'MockStreamFunctions');
-
-        $instance = new MockStreamFunctions();
+        if (null === self::$MockStreamFunctions)
+        {
+            self::$MockStreamFunctions = $this->getMock('Pheanstalk_Socket_StreamFunctions', array(), array(), 'MockStreamFunctions', false);
+        }
+        $instance = self::$MockStreamFunctions;
         $instance->expects($this->any())
              ->method('fsockopen')
              ->will($this->returnValue(true));

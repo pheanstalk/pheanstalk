@@ -12,6 +12,8 @@ class Pheanstalk_ServerErrorExceptionTest
 {
     private $_command;
 
+    protected static $MockSocket;
+
     public function setUp()
     {
         $this->_command = new Pheanstalk_Command_UseCommand('tube5');
@@ -23,8 +25,11 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     private function _connection($line)
     {
-        $this->getMock('Pheanstalk_Socket', array(), array(), 'MockSocket');
-        $socket = new MockSocket();
+        if (null === self::$MockSocket)
+        {
+            self::$MockSocket = $this->getMock('Pheanstalk_Socket', array(), array(), 'MockSocket', false);
+        }
+        $socket = self::$MockSocket;
         $socket->expects($this->any())
              ->method('getLine')
              ->will($this->returnValue($line));

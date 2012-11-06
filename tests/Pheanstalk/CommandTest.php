@@ -10,6 +10,8 @@
 class Pheanstalk_CommandTest
     extends PHPUnit_Framework_TestCase
 {
+    protected static $MockJob;
+
     public function testBury()
     {
         $command = new Pheanstalk_Command_BuryCommand($this->_mockJob(5), 2);
@@ -288,8 +290,12 @@ class Pheanstalk_CommandTest
      */
     private function _mockJob($id)
     {
-        $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob', false);
-        $job = new MockJob();
+        if (null === self::$MockJob)
+        {
+            self::$MockJob = $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob', false);
+        }
+        $job = self::$MockJob;
+
         $job->expects($this->any())
              ->method('getId')
              ->will($this->returnValue($id));

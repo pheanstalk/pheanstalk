@@ -15,6 +15,8 @@ class Pheanstalk_ConnectionTest
     const SERVER_PORT = '11300';
     const CONNECT_TIMEOUT = 2;
 
+    protected static $MockPheanstalk_Connection;
+
     /**
      * @expectedException Pheanstalk_Exception_ConnectionException
      */
@@ -51,21 +53,29 @@ class Pheanstalk_ConnectionTest
             self::CONNECT_TIMEOUT
         );
 
-        $this->getMock('Pheanstalk_Connection', array(), array(), 'MockPheanstalk_Connection');
-        $connection = new MockPheanstalk_Connection('');
-        $connection->returns('getHost', self::SERVER_HOST);
-        $connection->returns('getPort', self::SERVER_PORT);
-        $connection->returns('getConnectTimeout', self::CONNECT_TIMEOUT);
-        $connection->throwOn(
-            'dispatchCommand',
-            new Pheanstalk_Exception_SocketException('socket error simulated')
-        );
+        if (null === self::$MockPheanstalk_Connection)
+        {
+            self::$MockPheanstalk_Connection = $this->getMock('Pheanstalk_Connection', array(), array(), 'MockPheanstalk_Connection', false);
+        }
+
+        $connection = self::$MockPheanstalk_Connection;
+        $connection->expects($this->any())
+             ->method('getHost')
+             ->will($this->returnValue(self::SERVER_HOST));
+        $connection->expects($this->any())
+             ->method('getPort')
+             ->will($this->returnValue( self::SERVER_PORT));
+        $connection->expects($this->any())
+             ->method('getConnectTimeout')
+             ->will($this->returnValue(self::CONNECT_TIMEOUT));
 
         $pheanstalk->putInTube('testconnectionreset', __METHOD__);
         $pheanstalk->watchOnly('testconnectionreset');
 
         $pheanstalk->setConnection($connection);
-        $connection->expectOnce('dispatchCommand');
+        $connection->expects($this->once())
+             ->method('dispatchCommand')
+             ->will($this->throwException(new Pheanstalk_Exception_SocketException('socket error simulated')));
         $job = $pheanstalk->reserve();
 
         $this->assertEquals(__METHOD__, $job->getData());
