@@ -14,6 +14,8 @@ class Pheanstalk_NativeSocketTest
 
     protected static $MockStreamFunctions;
 
+    protected static $Pheanstalk_Socket_StreamFunctions;
+
     public function setUp()
     {
         if (null === self::$MockStreamFunctions)
@@ -25,13 +27,14 @@ class Pheanstalk_NativeSocketTest
              ->method('fsockopen')
              ->will($this->returnValue(true));
 
-        Pheanstalk_Socket_StreamFunctions::setInstance($instance);
+        self::$Pheanstalk_Socket_StreamFunctions = new Pheanstalk_Socket_StreamFunctions();
+        self::$Pheanstalk_Socket_StreamFunctions->setInstance($instance);
         $this->_streamFunctions = $instance;
     }
 
     public function tearDown()
     {
-        Pheanstalk_Socket_StreamFunctions::unsetInstance();
+        self::$Pheanstalk_Socket_StreamFunctions->unsetInstance();
     }
 
     /**
