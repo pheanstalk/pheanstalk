@@ -355,7 +355,7 @@ class Pheanstalk_FacadeConnectionTest
             ->pauseTube($tube, 1)
             ->reserve(0);
 
-        $this->assertIdentical($response, false);
+        $this->assertSame($response, false);
     }
 
     // ----------------------------------------
