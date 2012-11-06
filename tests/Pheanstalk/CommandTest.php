@@ -288,7 +288,8 @@ class Pheanstalk_CommandTest
      */
     private function _mockJob($id)
     {
-        $job = $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob');
+        $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob', false);
+        $job = new MockJob();
         $job->expects($this->any())
              ->method('getId')
              ->will($this->returnValue($id));
