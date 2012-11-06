@@ -14,3 +14,7 @@ before_script:
   - php composer.phar install --dev
 
 script: phpunit --configuration phpunit.xml.dist
+
+branches:
+  only:
+    - unit-tests
