@@ -10,6 +10,12 @@
 class Pheanstalk_NativeSocketTest
     extends PHPUnit_Framework_TestCase
 {
+    const DEFAULT_HOST = 'localhost';
+
+    const DEFAULT_PORT = 11300;
+
+    const DEFAULT_CONNECTION_TIMEOUT = 0;
+
     private $_streamFunctions;
 
     protected static $MockStreamFunctions;
@@ -47,7 +53,7 @@ class Pheanstalk_NativeSocketTest
              ->method('fwrite')
              ->will($this->returnValue(false));
 
-        $socket = new Pheanstalk_Socket_NativeSocket('host', 1024, 0);
+        $socket = new Pheanstalk_Socket_NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT);
         $socket->write('data');
     }
 
@@ -61,7 +67,7 @@ class Pheanstalk_NativeSocketTest
              ->method('fread')
              ->will($this->returnValue(false));
 
-        $socket = new Pheanstalk_Socket_NativeSocket('host', 1024, 0);
+        $socket = new Pheanstalk_Socket_NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT);
         $socket->read(1);
     }
 }
