@@ -12,6 +12,13 @@ class Pheanstalk_CommandTest
 {
     protected static $MockJob;
 
+    protected static $mockCount = 0;
+
+    public function setUp()
+    {
+        self::$MockJob = $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob_' . self::$mockCount++, false);
+    }
+
     public function testBury()
     {
         $command = new Pheanstalk_Command_BuryCommand($this->_mockJob(5), 2);
@@ -290,10 +297,6 @@ class Pheanstalk_CommandTest
      */
     private function _mockJob($id)
     {
-        if (null === self::$MockJob)
-        {
-            self::$MockJob = $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob', false);
-        }
         $job = self::$MockJob;
 
         $job->expects($this->any())
