@@ -23,9 +23,11 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     private function _connection($line)
     {
-        $this->getMock('Pheanstalk_Socket', 'MockSocket');
+        $this->getMock('Pheanstalk_Socket', array(), array(), 'MockSocket');
         $socket = new MockSocket();
-        $socket->setReturnValue('getLine', $line);
+        $socket->expects($this->any())
+             ->method('getLine')
+             ->will($this->returnValue($line));
 
         $connection = new Pheanstalk_Connection(null, null);
         $connection->setSocket($socket);

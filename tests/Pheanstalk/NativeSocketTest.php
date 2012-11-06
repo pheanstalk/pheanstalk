@@ -14,10 +14,12 @@ class Pheanstalk_NativeSocketTest
 
     public function setUp()
     {
-        $this->getMock('Pheanstalk_Socket_StreamFunctions', 'MockStreamFunctions');
+        $this->getMock('Pheanstalk_Socket_StreamFunctions', array(), array(), 'MockStreamFunctions');
 
         $instance = new MockStreamFunctions();
-        $instance->setReturnValue('fsockopen', true);
+        $instance->expects($this->any())
+             ->method('fsockopen')
+             ->will($this->returnValue(true));
 
         Pheanstalk_Socket_StreamFunctions::setInstance($instance);
         $this->_streamFunctions = $instance;
@@ -34,10 +36,9 @@ class Pheanstalk_NativeSocketTest
      */
     public function testWrite()
     {
-        $this->_streamFunctions->setReturnValue('fwrite', false);
-
-        // $this->expectException('Pheanstalk_Exception_SocketException',
-        //    'Write should throw an exception if fwrite returns false');
+        $this->_streamFunctions->expects($this->any())
+             ->method('fwrite')
+             ->will($this->returnValue(false));
 
         $socket = new Pheanstalk_Socket_NativeSocket('host', 1024, 0);
         $socket->write('data');
@@ -49,10 +50,9 @@ class Pheanstalk_NativeSocketTest
      */
     public function testRead()
     {
-        $this->_streamFunctions->setReturnValue('fread', false);
-
-        // $this->expectException('Pheanstalk_Exception_SocketException',
-        //    'Read should throw an exception if fread returns false');
+        $this->_streamFunctions->expects($this->any())
+             ->method('fread')
+             ->will($this->returnValue(false));
 
         $socket = new Pheanstalk_Socket_NativeSocket('host', 1024, 0);
         $socket->read(1);

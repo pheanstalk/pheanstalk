@@ -51,7 +51,7 @@ class Pheanstalk_ConnectionTest
             self::CONNECT_TIMEOUT
         );
 
-        $this->getMock('Pheanstalk_Connection');
+        $this->getMock('Pheanstalk_Connection', array(), array(), 'MockPheanstalk_Connection');
         $connection = new MockPheanstalk_Connection('');
         $connection->returns('getHost', self::SERVER_HOST);
         $connection->returns('getPort', self::SERVER_PORT);

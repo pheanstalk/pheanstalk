@@ -106,9 +106,11 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     private function _mockJob($id)
     {
-        $job = $this->getMock('Pheanstalk_Job', 'MockJob');
+        $job = $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob');
         $job = new MockJob();
-        $job->setReturnValue('getId', $id);
+        $job->expects($this->any())
+             ->method('getId')
+             ->will($this->returnValue($id));
         return $job;
     }
 
