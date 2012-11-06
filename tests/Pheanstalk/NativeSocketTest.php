@@ -59,7 +59,7 @@ class Pheanstalk_NativeSocketTest
 
     /**
      * @expectedException Pheanstalk_Exception_SocketException
-     * @expectedExceptionMessage fwrite() failed to write data after 
+     * @expectedExceptionMessage fread() returned false
      */
     public function testRead()
     {
