@@ -1,6 +1,8 @@
 Pheanstalk
 ==========
 
+[![Build Status](https://secure.travis-ci.org/phansys/pheanstalk.png)](http://travis-ci.org/phansys/pheanstalk)
+
 Pheanstalk is a pure PHP 5.2+ client for the [beanstalkd workqueue][1].  It has been actively developed, and used in production by many, since late 2008.
 
 Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written using encapsulated, maintainable object oriented design.  Community feedback, bug reports and patches has led to a stable 1.0.0 release in 2010.
@@ -12,6 +14,17 @@ beanstalkd up to the latest version 1.4 is supported.  All commands and response
   [3]: http://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true
   [4]: http://semver.org/
 
+Installation with Composer
+-------------
+
+Add the following lines to your `composer.json` requirements:
+
+``` json
+    "require": {
+        "pda/pheanstalk": "dev-master"
+    }
+
+```
 
 Usage Example
 -------------
@@ -19,7 +32,7 @@ Usage Example
 ```php
 <?php
 
-// register Pheanstalk class loader
+// If you aren't using composer, register Pheanstalk class loader
 require_once('pheanstalk_init.php');
 
 $pheanstalk = new Pheanstalk('127.0.0.1');

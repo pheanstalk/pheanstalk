@@ -9,71 +9,80 @@
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk_ConnectionTest
-	extends UnitTestCase
+    extends PHPUnit_Framework_TestCase
 {
-	const SERVER_HOST = 'localhost';
-	const SERVER_PORT = '11300';
-	const CONNECT_TIMEOUT = 2;
+    const SERVER_HOST = 'localhost';
+    const SERVER_PORT = '11300';
+    const CONNECT_TIMEOUT = 2;
 
-	public function testConnectionFailsToIncorrectPort()
-	{
-		$connection = new Pheanstalk_Connection(
-			self::SERVER_HOST,
-			self::SERVER_PORT + 1
-		);
+    /**
+     * @expectedException Pheanstalk_Exception_ConnectionException
+     */
+    public function testConnectionFailsToIncorrectPort()
+    {
+        $connection = new Pheanstalk_Connection(
+            self::SERVER_HOST,
+            self::SERVER_PORT + 1
+        );
 
-		$command = new Pheanstalk_Command_UseCommand('test');
-		$this->expectException('Pheanstalk_Exception_ConnectionException');
-		$connection->dispatchCommand($command);
-	}
+        $command = new Pheanstalk_Command_UseCommand('test');
 
-	public function testDispatchCommandSuccessful()
-	{
-		$connection = new Pheanstalk_Connection(
-			self::SERVER_HOST,
-			self::SERVER_PORT
-		);
+        $connection->dispatchCommand($command);
+    }
 
-		$command = new Pheanstalk_Command_UseCommand('test');
-		$response = $connection->dispatchCommand($command);
+    public function testDispatchCommandSuccessful()
+    {
+        $connection = new Pheanstalk_Connection(
+            self::SERVER_HOST,
+            self::SERVER_PORT
+        );
 
-		$this->assertIsA($response, 'Pheanstalk_Response');
-	}
+        $command = new Pheanstalk_Command_UseCommand('test');
+        $response = $connection->dispatchCommand($command);
 
-	public function testConnectionResetIfSocketExceptionIsThrown()
-	{
-		$pheanstalk = new Pheanstalk(
-			self::SERVER_HOST,
-			self::SERVER_PORT,
-			self::CONNECT_TIMEOUT
-		);
+        $this->assertInstanceOf('Pheanstalk_Response', $response);
+    }
 
-		Mock::generate('Pheanstalk_Connection');
-		$connection = new MockPheanstalk_Connection('');
-		$connection->returns('getHost', self::SERVER_HOST);
-		$connection->returns('getPort', self::SERVER_PORT);
-		$connection->returns('getConnectTimeout', self::CONNECT_TIMEOUT);
-		$connection->throwOn(
-			'dispatchCommand',
-			new Pheanstalk_Exception_SocketException('socket error simulated')
-		);
+    public function testConnectionResetIfSocketExceptionIsThrown()
+    {
+        $pheanstalk = new Pheanstalk(
+            self::SERVER_HOST,
+            self::SERVER_PORT,
+            self::CONNECT_TIMEOUT
+        );
 
-		$pheanstalk->putInTube('testconnectionreset', __METHOD__);
-		$pheanstalk->watchOnly('testconnectionreset');
+        $connection = $this->getMockBuilder('Pheanstalk_Connection')
+                     ->disableOriginalConstructor()
+                     ->getMock();
 
-		$pheanstalk->setConnection($connection);
-		$connection->expectOnce('dispatchCommand');
-		$job = $pheanstalk->reserve();
+        $connection->expects($this->any())
+             ->method('getHost')
+             ->will($this->returnValue(self::SERVER_HOST));
+        $connection->expects($this->any())
+             ->method('getPort')
+             ->will($this->returnValue( self::SERVER_PORT));
+        $connection->expects($this->any())
+             ->method('getConnectTimeout')
+             ->will($this->returnValue(self::CONNECT_TIMEOUT));
 
-		$this->assertEqual(__METHOD__, $job->getData());
-	}
+        $pheanstalk->putInTube('testconnectionreset', __METHOD__);
+        $pheanstalk->watchOnly('testconnectionreset');
 
-	// ----------------------------------------
-	// private
+        $pheanstalk->setConnection($connection);
+        $connection->expects($this->once())
+             ->method('dispatchCommand')
+             ->will($this->throwException(new Pheanstalk_Exception_SocketException('socket error simulated')));
+        $job = $pheanstalk->reserve();
 
-	private function _getConnection()
-	{
-		return new Pheanstalk_Connection(self::SERVER_HOST, self::SERVER_PORT);
-	}
+        $this->assertEquals(__METHOD__, $job->getData());
+    }
+
+    // ----------------------------------------
+    // private
+
+    private function _getConnection()
+    {
+        return new Pheanstalk_Connection(self::SERVER_HOST, self::SERVER_PORT);
+    }
 }
 
