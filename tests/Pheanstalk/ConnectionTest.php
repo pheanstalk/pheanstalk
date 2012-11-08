@@ -15,8 +15,6 @@ class Pheanstalk_ConnectionTest
     const SERVER_PORT = '11300';
     const CONNECT_TIMEOUT = 2;
 
-    protected static $MockPheanstalk_Connection;
-
     /**
      * @expectedException Pheanstalk_Exception_ConnectionException
      */
@@ -28,7 +26,7 @@ class Pheanstalk_ConnectionTest
         );
 
         $command = new Pheanstalk_Command_UseCommand('test');
-        
+
         $connection->dispatchCommand($command);
     }
 
@@ -53,12 +51,10 @@ class Pheanstalk_ConnectionTest
             self::CONNECT_TIMEOUT
         );
 
-        if (null === self::$MockPheanstalk_Connection)
-        {
-            self::$MockPheanstalk_Connection = $this->getMock('Pheanstalk_Connection', array(), array(), 'MockPheanstalk_Connection', false);
-        }
+        $connection = $this->getMockBuilder('Pheanstalk_Connection')
+                     ->disableOriginalConstructor()
+                     ->getMock();
 
-        $connection = self::$MockPheanstalk_Connection;
         $connection->expects($this->any())
              ->method('getHost')
              ->will($this->returnValue(self::SERVER_HOST));

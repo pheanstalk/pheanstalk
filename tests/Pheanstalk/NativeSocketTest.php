@@ -18,17 +18,13 @@ class Pheanstalk_NativeSocketTest
 
     private $_streamFunctions;
 
-    protected static $MockStreamFunctions;
-
     protected static $Pheanstalk_Socket_StreamFunctions;
 
     public function setUp()
     {
-        if (null === self::$MockStreamFunctions)
-        {
-            self::$MockStreamFunctions = $this->getMock('Pheanstalk_Socket_StreamFunctions', array(), array(), 'MockStreamFunctions', false);
-        }
-        $instance = self::$MockStreamFunctions;
+        $instance = $this->getMockBuilder('Pheanstalk_Socket_StreamFunctions')
+                     ->disableOriginalConstructor()
+                     ->getMock();
         $instance->expects($this->any())
              ->method('fsockopen')
              ->will($this->returnValue(true));
@@ -45,7 +41,7 @@ class Pheanstalk_NativeSocketTest
 
     /**
      * @expectedException Pheanstalk_Exception_SocketException
-     * @expectedExceptionMessage fwrite() failed to write data after 
+     * @expectedExceptionMessage fwrite() failed to write data after
      */
     public function testWrite()
     {

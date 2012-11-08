@@ -10,14 +10,6 @@
 class Pheanstalk_CommandTest
     extends PHPUnit_Framework_TestCase
 {
-    protected static $MockJob;
-
-    protected static $mockCount = 0;
-
-    public function setUp()
-    {
-        self::$MockJob = $this->getMock('Pheanstalk_Job', array(), array(), 'MockJob_' . self::$mockCount++, false);
-    }
 
     public function testBury()
     {
@@ -297,11 +289,14 @@ class Pheanstalk_CommandTest
      */
     private function _mockJob($id)
     {
-        $job = self::$MockJob;
+        $job = $this->getMockBuilder('Pheanstalk_Job')
+                     ->disableOriginalConstructor()
+                     ->getMock();
 
         $job->expects($this->any())
-             ->method('getId')
-             ->will($this->returnValue($id));
+                 ->method('getId')
+                 ->will($this->returnValue($id));
+
         return $job;
     }
 }

@@ -12,8 +12,6 @@ class Pheanstalk_ServerErrorExceptionTest
 {
     private $_command;
 
-    protected static $MockSocket;
-
     public function setUp()
     {
         $this->_command = new Pheanstalk_Command_UseCommand('tube5');
@@ -25,11 +23,10 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     private function _connection($line)
     {
-        if (null === self::$MockSocket)
-        {
-            self::$MockSocket = $this->getMock('Pheanstalk_Socket', array(), array(), 'MockSocket', false);
-        }
-        $socket = self::$MockSocket;
+        $socket = $this->getMockBuilder('Pheanstalk_Socket')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+
         $socket->expects($this->any())
              ->method('getLine')
              ->will($this->returnValue($line));
@@ -44,7 +41,7 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleOutOfMemory()
     {
-        
+
         $this->_connection('OUT_OF_MEMORY')->dispatchCommand($this->_command);
     }
 
@@ -54,7 +51,7 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleInternalError()
     {
-        
+
         $this->_connection('INTERNAL_ERROR')->dispatchCommand($this->_command);
     }
 
@@ -63,7 +60,7 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleDraining()
     {
-        
+
         $this->_connection('DRAINING')->dispatchCommand($this->_command);
     }
 
@@ -72,7 +69,7 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleBadFormat()
     {
-        
+
         $this->_connection('BAD_FORMAT')->dispatchCommand($this->_command);
     }
 
@@ -81,7 +78,7 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleUnknownCommand()
     {
-        
+
         $this->_connection('UNKNOWN_COMMAND')->dispatchCommand($this->_command);
     }
 }

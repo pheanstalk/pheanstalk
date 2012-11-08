@@ -14,6 +14,17 @@ beanstalkd up to the latest version 1.4 is supported.  All commands and response
   [3]: http://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true
   [4]: http://semver.org/
 
+Installation with Composer
+-------------
+
+Add the following lines to your `composer.json` requirements:
+
+``` json
+    "require": {
+        "pda/pheanstalk": "dev-master"
+    }
+
+```
 
 Usage Example
 -------------
@@ -21,7 +32,7 @@ Usage Example
 ```php
 <?php
 
-// register Pheanstalk class loader
+// If you aren't using composer, register Pheanstalk class loader
 require_once('pheanstalk_init.php');
 
 $pheanstalk = new Pheanstalk('127.0.0.1');

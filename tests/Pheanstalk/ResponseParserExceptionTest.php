@@ -10,8 +10,6 @@
 class Pheanstalk_ResponseParserExceptionTest
     extends PHPUnit_Framework_TestCase
 {
-    protected static $MockJob;
-
     public function testDeleteNotFound()
     {
         $this->_expectServerExceptionForResponse(
@@ -73,7 +71,7 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     public function testPeekInvalidSubject()
     {
-        
+
         new Pheanstalk_Command_PeekCommand('invalid');
     }
 
@@ -108,11 +106,10 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     private function _mockJob($id)
     {
-        if (null === self::$MockJob)
-        {
-            self::$MockJob = $this->getMock('Pheanstalk_Job', array(), array(), 'MockResponseJob', false);
-        }
-        $job = self::$MockJob;
+
+        $job = $this->getMockBuilder('Pheanstalk_Job')
+                     ->disableOriginalConstructor()
+                     ->getMock();
         $job->expects($this->any())
              ->method('getId')
              ->will($this->returnValue($id));
@@ -126,7 +123,7 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     private function _expectExceptionForResponse($command, $response, $type = 'Pheanstalk_Exception')
     {
-        
+
         $this->setExpectedException($type);
         $command->parseResponse($response, null);
     }
