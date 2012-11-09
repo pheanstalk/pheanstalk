@@ -8,6 +8,6 @@
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk_Exception_ServerDrainingException
-	extends Pheanstalk_Exception_ServerException
+    extends Pheanstalk_Exception_ServerException
 {
 }

@@ -15,13 +15,12 @@ $basedir = realpath(dirname(__FILE__).'/..');
 require("$basedir/pheanstalk_init.php");
 
 Pheanstalk_ClassLoader::addPath(array(
-	"$basedir/tests/simpletest",
-	"$basedir/tests")
+    "$basedir/tests/simpletest",
+    "$basedir/tests")
 );
 
-if (in_array('--help', $argv))
-{
-	echo <<<EOM
+if (in_array('--help', $argv)) {
+    echo <<<EOM
 
 CLI test runner.
 
@@ -34,7 +33,7 @@ Available options:
 
 EOM;
 
-	exit(0);
+    exit(0);
 }
 
 
@@ -44,26 +43,27 @@ require_once('simpletest/mock_objects.php');
 
 $withServer = in_array('--with-server', $argv);
 
-if (($testFileFlagIndex = array_search('--testfile', $argv)) !== false)
-{
-	$testFile = $argv[$testFileFlagIndex + 1];
+if (($testFileFlagIndex = array_search('--testfile', $argv)) !== false) {
+    $testFile = $argv[$testFileFlagIndex + 1];
 
-	$existingClasses = get_declared_classes();
-	require_once($testFile);
-	$newClasses = array_diff(get_declared_classes(), $existingClasses);
-	if (!$testClass = array_shift($newClasses))
-		die('No classes declared in file: '.$testFile);
+    $existingClasses = get_declared_classes();
+    require_once($testFile);
+    $newClasses = array_diff(get_declared_classes(), $existingClasses);
+    if (!$testClass = array_shift($newClasses)) {
+        die('No classes declared in file: '.$testFile);
+    }
 
-	$test = new $testClass($testFile);
+    $test = new $testClass($testFile);
 }
 else
 {
-	$test = new TestSuite('All Tests');
-	foreach (pheanstalk_glob_recursive(dirname(__FILE__), '*Test.php') as $testFile)
-	{
-		if (!$withServer && preg_match('#ConnectionTest#', $testFile)) continue;
-		$test->addFile($testFile);
-	}
+    $test = new TestSuite('All Tests');
+    foreach (pheanstalk_glob_recursive(dirname(__FILE__), '*Test.php') as $testFile) {
+        if (!$withServer && preg_match('#ConnectionTest#', $testFile)) {
+            continue;
+        }
+        $test->addFile($testFile);
+    }
 }
 
 $test->run(new TextReporter());
@@ -79,18 +79,17 @@ $test->run(new TextReporter());
  */
 function pheanstalk_glob_recursive($dir, $pattern)
 {
-		$dir = escapeshellcmd($dir);
+        $dir = escapeshellcmd($dir);
 
-		// list of all matching files currently in the directory.
-		$files = glob("$dir/$pattern");
+        // list of all matching files currently in the directory.
+        $files = glob("$dir/$pattern");
 
-		// get a list of all directories in this directory
-		foreach (glob("$dir/*", GLOB_ONLYDIR) as $subdir)
-		{
-				$subfiles = pheanstalk_glob_recursive($subdir, $pattern);
-				$files = array_merge($files, $subfiles);
-		}
+        // get a list of all directories in this directory
+        foreach (glob("$dir/*", GLOB_ONLYDIR) as $subdir) {
+                $subfiles = pheanstalk_glob_recursive($subdir, $pattern);
+                $files = array_merge($files, $subfiles);
+        }
 
-		return $files;
+        return $files;
 }
 
