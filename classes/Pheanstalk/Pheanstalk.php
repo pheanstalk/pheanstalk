@@ -11,7 +11,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk
+class Pheanstalk_Pheanstalk
 {
 	const DEFAULT_PORT = 11300;
 	const DEFAULT_DELAY = 0; // no delay
@@ -99,6 +99,18 @@ class Pheanstalk
 	{
 		$response = $this->_dispatch(new Pheanstalk_Command_KickCommand($max));
 		return $response['kicked'];
+	}
+
+	/**
+	 * Kicks buried or delayed jobs into a 'ready' state.
+	 *
+	 * @param Pheanstalk_Job $job Pheanstalk_Job
+	 * @chainable
+	 */
+	public function kickJob($job)
+	{
+		$this->_dispatch(new Pheanstalk_Command_KickJobCommand($job));
+		return $this;
 	}
 
 	/**

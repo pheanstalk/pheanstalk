@@ -59,7 +59,7 @@ class Pheanstalk_BugfixConnectionTest
 
 	private function _createPheanstalk()
 	{
-		$pheanstalk = new Pheanstalk(self::SERVER_HOST);
+		$pheanstalk = new Pheanstalk_Pheanstalk(self::SERVER_HOST);
 		$tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));
 
 		$pheanstalk

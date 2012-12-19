@@ -257,9 +257,9 @@ class Pheanstalk_FacadeConnectionTest
 		$this->assertEqual($stats->id, $id);
 		$this->assertEqual($stats->tube, 'teststatsjob');
 		$this->assertEqual($stats->state, 'ready');
-		$this->assertEqual($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
-		$this->assertEqual($stats->delay, Pheanstalk::DEFAULT_DELAY);
-		$this->assertEqual($stats->ttr, Pheanstalk::DEFAULT_TTR);
+		$this->assertEqual($stats->pri, Pheanstalk_Pheanstalk::DEFAULT_PRIORITY);
+		$this->assertEqual($stats->delay, Pheanstalk_Pheanstalk::DEFAULT_DELAY);
+		$this->assertEqual($stats->ttr, Pheanstalk_Pheanstalk::DEFAULT_TTR);
 		$this->assertEqual($stats->timeouts, 0);
 		$this->assertEqual($stats->releases, 0);
 		$this->assertEqual($stats->buries, 0);
@@ -284,9 +284,9 @@ class Pheanstalk_FacadeConnectionTest
 		$this->assertEqual($stats->id, $job->getId());
 		$this->assertEqual($stats->tube, 'teststatsjobwithjobobject');
 		$this->assertEqual($stats->state, 'reserved');
-		$this->assertEqual($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
-		$this->assertEqual($stats->delay, Pheanstalk::DEFAULT_DELAY);
-		$this->assertEqual($stats->ttr, Pheanstalk::DEFAULT_TTR);
+		$this->assertEqual($stats->pri, Pheanstalk_Pheanstalk::DEFAULT_PRIORITY);
+		$this->assertEqual($stats->delay, Pheanstalk_Pheanstalk::DEFAULT_DELAY);
+		$this->assertEqual($stats->ttr, Pheanstalk_Pheanstalk::DEFAULT_TTR);
 		$this->assertEqual($stats->timeouts, 0);
 		$this->assertEqual($stats->releases, 0);
 		$this->assertEqual($stats->buries, 0);
@@ -348,7 +348,7 @@ class Pheanstalk_FacadeConnectionTest
 
 	private function _getFacade()
 	{
-		return new Pheanstalk(self::SERVER_HOST);
+		return new Pheanstalk_Pheanstalk(self::SERVER_HOST);
 	}
 }
 
