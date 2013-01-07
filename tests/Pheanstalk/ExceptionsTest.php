@@ -8,65 +8,76 @@
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk_ExceptionsTest
-	extends UnitTestCase
+    extends PHPUnit_Framework_TestCase
 {
-	public function testPheanstalkException()
-	{
-		$e = new Pheanstalk_Exception();
-		$this->assertIsA($e, 'Exception');
-	}
+    public function testPheanstalkException()
+    {
+        $e = new Pheanstalk_Exception();
+         
+        $this->assertInstanceOf('Exception', $e);
+    }
 
-	public function testClientException()
-	{
-		$e = new Pheanstalk_Exception_ClientException();
-		$this->assertIsA($e, 'Pheanstalk_Exception');
-	}
+    public function testClientException()
+    {
+        $e = new Pheanstalk_Exception_ClientException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception', $e);
+    }
 
-	public function testConnectionException()
-	{
-		$e = new Pheanstalk_Exception_ConnectionException(10, 'test');
-		$this->assertIsA($e, 'Pheanstalk_Exception_ClientException');
-	}
+    public function testConnectionException()
+    {
+        $e = new Pheanstalk_Exception_ConnectionException(10, 'test');
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ClientException', $e);
+        
+    }
 
-	public function testCommandException()
-	{
-		$e = new Pheanstalk_Exception_CommandException('test');
-		$this->assertIsA($e, 'Pheanstalk_Exception_ClientException');
-	}
+    public function testCommandException()
+    {
+        $e = new Pheanstalk_Exception_CommandException('test');
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ClientException', $e);
+    }
 
-	public function testServerException()
-	{
-		$e = new Pheanstalk_Exception_ServerException();
-		$this->assertIsA($e, 'Pheanstalk_Exception');
-	}
+    public function testServerException()
+    {
+        $e = new Pheanstalk_Exception_ServerException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception', $e);
+    }
 
-	public function testServerBadFormatException()
-	{
-		$e = new Pheanstalk_Exception_ServerBadFormatException();
-		$this->assertIsA($e, 'Pheanstalk_Exception_ServerException');
-	}
+    public function testServerBadFormatException()
+    {
+        $e = new Pheanstalk_Exception_ServerBadFormatException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ServerException', $e);
+    }
 
-	public function testServerDrainingException()
-	{
-		$e = new Pheanstalk_Exception_ServerDrainingException();
-		$this->assertIsA($e, 'Pheanstalk_Exception_ServerException');
-	}
+    public function testServerDrainingException()
+    {
+        $e = new Pheanstalk_Exception_ServerDrainingException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ServerException', $e);
+    }
 
-	public function testServerInternalErrorException()
-	{
-		$e = new Pheanstalk_Exception_ServerInternalErrorException();
-		$this->assertIsA($e, 'Pheanstalk_Exception_ServerException');
-	}
+    public function testServerInternalErrorException()
+    {
+        $e = new Pheanstalk_Exception_ServerInternalErrorException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ServerException', $e);
+    }
 
-	public function testServerOutOfMemoryException()
-	{
-		$e = new Pheanstalk_Exception_ServerOutOfMemoryException();
-		$this->assertIsA($e, 'Pheanstalk_Exception_ServerException');
-	}
+    public function testServerOutOfMemoryException()
+    {
+        $e = new Pheanstalk_Exception_ServerOutOfMemoryException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ServerException', $e);
+    }
 
-	public function testServerUnknownCommandException()
-	{
-		$e = new Pheanstalk_Exception_ServerUnknownCommandException();
-		$this->assertIsA($e, 'Pheanstalk_Exception_ServerException');
-	}
+    public function testServerUnknownCommandException()
+    {
+        $e = new Pheanstalk_Exception_ServerUnknownCommandException();
+         
+        $this->assertInstanceOf('Pheanstalk_Exception_ServerException', $e);
+    }
 }

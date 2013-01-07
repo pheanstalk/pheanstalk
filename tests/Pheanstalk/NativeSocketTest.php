@@ -8,45 +8,62 @@
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk_NativeSocketTest
-	extends UnitTestCase
+    extends PHPUnit_Framework_TestCase
 {
-	private $_streamFunctions;
+    const DEFAULT_HOST = 'localhost';
 
-	public function setUp()
-	{
-		Mock::generate('Pheanstalk_Socket_StreamFunctions', 'MockStreamFunctions');
+    const DEFAULT_PORT = 11300;
 
-		$instance = new MockStreamFunctions();
-		$instance->setReturnValue('fsockopen', true);
+    const DEFAULT_CONNECTION_TIMEOUT = 0;
 
-		Pheanstalk_Socket_StreamFunctions::setInstance($instance);
-		$this->_streamFunctions = $instance;
-	}
+    private $_streamFunctions;
 
-	public function tearDown()
-	{
-		Pheanstalk_Socket_StreamFunctions::unsetInstance();
-	}
+    protected static $Pheanstalk_Socket_StreamFunctions;
 
-	public function testWrite()
-	{
-		$this->_streamFunctions->setReturnValue('fwrite', false);
+    public function setUp()
+    {
+        $instance = $this->getMockBuilder('Pheanstalk_Socket_StreamFunctions')
+                     ->disableOriginalConstructor()
+                     ->getMock();
+        $instance->expects($this->any())
+             ->method('fsockopen')
+             ->will($this->returnValue(true));
 
-		$this->expectException('Pheanstalk_Exception_SocketException',
-			'Write should throw an exception if fwrite returns false');
+        self::$Pheanstalk_Socket_StreamFunctions = new Pheanstalk_Socket_StreamFunctions();
+        self::$Pheanstalk_Socket_StreamFunctions->setInstance($instance);
+        $this->_streamFunctions = $instance;
+    }
 
-		$socket = new Pheanstalk_Socket_NativeSocket('host', 1024, 0);
-		$socket->write('data');
-	}
+    public function tearDown()
+    {
+        self::$Pheanstalk_Socket_StreamFunctions->unsetInstance();
+    }
 
-	public function testRead()
-	{
-		$this->_streamFunctions->setReturnValue('fread', false);
+    /**
+     * @expectedException Pheanstalk_Exception_SocketException
+     * @expectedExceptionMessage fwrite() failed to write data after
+     */
+    public function testWrite()
+    {
+        $this->_streamFunctions->expects($this->any())
+             ->method('fwrite')
+             ->will($this->returnValue(false));
 
-		$this->expectException('Pheanstalk_Exception_SocketException',
-			'Read should throw an exception if fread returns false');
+        $socket = new Pheanstalk_Socket_NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT);
+        $socket->write('data');
+    }
 
-		$socket = new Pheanstalk_Socket_NativeSocket('host', 1024, 0);
-		$socket->read(1);
-	}
+    /**
+     * @expectedException Pheanstalk_Exception_SocketException
+     * @expectedExceptionMessage fread() returned false
+     */
+    public function testRead()
+    {
+        $this->_streamFunctions->expects($this->any())
+             ->method('fread')
+             ->will($this->returnValue(false));
+
+        $socket = new Pheanstalk_Socket_NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT);
+        $socket->read(1);
+    }
 }
