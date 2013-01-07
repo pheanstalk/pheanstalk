@@ -114,6 +114,7 @@ Contributors
   * [Lars Yencken](https://github.com/larsyencken)
   * [Josh Butts](https://github.com/jimbojsb)
   * [Henry Smith](https://github.com/h2s)
+  * [Javier Spagnoletti](https://github.com/phansys)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
