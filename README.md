@@ -68,34 +68,34 @@ $pheanstalk->delete($job);
 Running the tests
 -----------------
 
+There is a section of the test suite which depends on a running beanstalkd
+at 127.0.0.1:11300, which was previously opt-in via `--with-server`.
+Since porting to PHPUnit, all tests are run at once. Feel free to submit
+a pull request to rectify this.
+
 ```
-# ensure you have simpletest
-$ git submodule init
-$ git submodule update
+# ensure you have PHPUnit
+$ sudo pear channel-discover pear.phpunit.de
+$ sudo pear channel-discover components.ez.no
+$ sudo pear channel-discover pear.symfony.com
+$ sudo pear install phpunit/PHPUnit
+$ hash -r
 
+# ensure you have Composer set up
+$ wget http://getcomposer.org/composer.phar
+$ php composer.phar install
 
-$ ./tests/runtests.php
-All Tests
-OK
-Test cases run: 4/4, Passes: 103, Failures: 0, Exceptions: 0
+$ phpunit
+PHPUnit 3.7.10 by Sebastian Bergmann.
 
+Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist
 
-# extra tests relying on a beanstalkd on 127.0.0.1:11300
-$ ./tests/runtests.php --with-server
-All Tests
-OK
-Test cases run: 7/7, Passes: 198, Failures: 0, Exceptions: 0
+................................................................. 65 / 79 ( 82%)
+..............
 
+Time: 0 seconds, Memory: 8.75Mb
 
-$ ./tests/runtests.php --help
-
-CLI test runner.
-
-Available options:
-
-  --with-server      Includes tests which connect to a beanstalkd server
-  --testfile <path>  Only run the specified test file.
-  --help             This documentation.
+OK (79 tests, 387 assertions)
 ```
 
 
