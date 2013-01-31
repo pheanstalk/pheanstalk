@@ -68,7 +68,11 @@ class Pheanstalk_Command_PutCommand
      */
     public function getDataLength()
     {
-        return mb_strlen($this->_data, "latin1");
+        if (function_exists('mb_strlen')) {
+            return mb_strlen($this->_data, "latin1");
+        } else {
+            return strlen($this->_data);
+        }
     }
 
     /* (non-phpdoc)
