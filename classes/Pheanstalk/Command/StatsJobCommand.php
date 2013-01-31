@@ -26,7 +26,7 @@ class Pheanstalk_Command_StatsJobCommand
      */
     public function getCommandLine()
     {
-        return sprintf('stats-job %d', $this->_jobId);
+        return sprintf('stats-job %u', $this->_jobId);
     }
 
     /* (non-phpdoc)

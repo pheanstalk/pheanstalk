@@ -31,7 +31,7 @@ class Pheanstalk_Command_PauseTubeCommand
     public function getCommandLine()
     {
         return sprintf(
-            'pause-tube %s %d',
+            'pause-tube %s %u',
             $this->_tube,
             $this->_delay
         );
@@ -44,7 +44,7 @@ class Pheanstalk_Command_PauseTubeCommand
     {
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
-                '%s: tube %d does not exist.',
+                '%s: tube %s does not exist.',
                 $responseLine,
                 $this->_tube
             ));

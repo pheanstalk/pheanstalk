@@ -54,7 +54,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
             if ($history->isFullWithNoWrites()) {
                 throw new Pheanstalk_Exception_SocketException(sprintf(
-                    'fwrite() failed to write data after %d tries',
+                    'fwrite() failed to write data after %u tries',
                     self::WRITE_RETRIES
                 ));
             }

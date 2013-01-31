@@ -34,7 +34,7 @@ class Pheanstalk_Command_ReleaseCommand
     public function getCommandLine()
     {
         return sprintf(
-            'release %d %d %d',
+            'release %u %u %u',
             $this->_job->getId(),
             $this->_priority,
             $this->_delay
@@ -48,7 +48,7 @@ class Pheanstalk_Command_ReleaseCommand
     {
         if ($responseLine == Pheanstalk_Response::RESPONSE_BURIED) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
-                'Job %s %d: out of memory trying to grow data structure',
+                'Job %u %s: out of memory trying to grow data structure',
                 $this->_job->getId(),
                 $responseLine
             ));
@@ -56,7 +56,7 @@ class Pheanstalk_Command_ReleaseCommand
 
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
-                'Job %d %s: does not exist or is not reserved by client',
+                'Job %u %s: does not exist or is not reserved by client',
                 $this->_job->getId(),
                 $responseLine
             ));

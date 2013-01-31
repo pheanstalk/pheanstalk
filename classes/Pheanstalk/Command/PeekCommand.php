@@ -50,7 +50,7 @@ class Pheanstalk_Command_PeekCommand
     public function getCommandLine()
     {
         return isset($this->_jobId) ?
-            sprintf('peek %d', $this->_jobId) :
+            sprintf('peek %u', $this->_jobId) :
             sprintf('peek-%s', $this->_subcommand);
     }
 
@@ -62,7 +62,7 @@ class Pheanstalk_Command_PeekCommand
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             if (isset($this->_jobId)) {
                 $message = sprintf(
-                    '%s: Job %d does not exist.',
+                    '%s: Job %u does not exist.',
                     $responseLine,
                     $this->_jobId
                 );

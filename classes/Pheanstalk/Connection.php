@@ -102,7 +102,7 @@ class Pheanstalk_Connection
             $crlf = $socket->read(self::CRLF_LENGTH);
             if ($crlf !== self::CRLF) {
                 throw new Pheanstalk_Exception_ClientException(sprintf(
-                    'Expected %d bytes of CRLF after %d bytes of data',
+                    'Expected %u bytes of CRLF after %u bytes of data',
                     self::CRLF_LENGTH,
                     $dataLength
                 ));

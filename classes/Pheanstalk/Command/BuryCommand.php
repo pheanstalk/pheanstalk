@@ -31,7 +31,7 @@ class Pheanstalk_Command_BuryCommand
     public function getCommandLine()
     {
         return sprintf(
-            'bury %d %d',
+            'bury %u %u',
             $this->_job->getId(),
             $this->_priority
         );
@@ -44,7 +44,7 @@ class Pheanstalk_Command_BuryCommand
     {
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
-                '%s: Job %d is not reserved or does not exist.',
+                '%s: Job %u is not reserved or does not exist.',
                 $responseLine,
                 $this->_job->getId()
             ));

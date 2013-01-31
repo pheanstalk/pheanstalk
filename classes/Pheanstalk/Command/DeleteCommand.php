@@ -37,7 +37,7 @@ class Pheanstalk_Command_DeleteCommand
     {
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
-                'Cannot delete job %d: %s',
+                'Cannot delete job %u: %s',
                 $this->_job->getId(),
                 $responseLine
             ));

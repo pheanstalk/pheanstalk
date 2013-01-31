@@ -32,7 +32,7 @@ class Pheanstalk_Command_TouchCommand
      */
     public function getCommandLine()
     {
-        return sprintf('touch %d', $this->_job->getId());
+        return sprintf('touch %u', $this->_job->getId());
     }
 
     /* (non-phpdoc)
@@ -42,7 +42,7 @@ class Pheanstalk_Command_TouchCommand
     {
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
-                'Job %d %s: does not exist or is not reserved by client',
+                'Job %u %s: does not exist or is not reserved by client',
                 $this->_job->getId(),
                 $responseLine
             ));

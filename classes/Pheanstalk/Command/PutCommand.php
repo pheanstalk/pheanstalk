@@ -39,7 +39,7 @@ class Pheanstalk_Command_PutCommand
     public function getCommandLine()
     {
         return sprintf(
-            'put %d %d %d %d',
+            'put %u %u %u %u',
             $this->_priority,
             $this->_delay,
             $this->_ttr,
