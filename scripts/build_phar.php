@@ -18,37 +18,35 @@ exit(0);
 // See: http://www.php.net/manual/en/phar.configuration.php#ini.phar.readonly
 function reexecute_if_phar_readonly($argv)
 {
-	if (ini_get('phar.readonly') && !in_array('--ignore-readonly', $argv))
-	{
-		$command = sprintf(
-			'php -d phar.readonly=0 %s --ignore-readonly',
-			implode($argv, ' ')
-		);
+    if (ini_get('phar.readonly') && !in_array('--ignore-readonly', $argv)) {
+        $command = sprintf(
+            'php -d phar.readonly=0 %s --ignore-readonly',
+            implode($argv, ' ')
+        );
 
-		echo "Phar configured readonly in php.ini; attempting to re-execute:\n";
-		echo "$command\n";
+        echo "Phar configured readonly in php.ini; attempting to re-execute:\n";
+        echo "$command\n";
 
-		passthru($command, $exitStatus);
-		exit($exitStatus);
-	}
+        passthru($command, $exitStatus);
+        exit($exitStatus);
+    }
 }
 
 function delete_existing_pheanstalk_phar()
 {
-	if (file_exists(PHAR_PATH))
-	{
-		printf("- Deleting existing %s\n", PHAR_FILENAME);
-		unlink(PHAR_PATH);
-	}
+    if (file_exists(PHAR_PATH)) {
+        printf("- Deleting existing %s\n", PHAR_FILENAME);
+        unlink(PHAR_PATH);
+    }
 }
 
 function build_pheanstalk_phar()
 {
-	$classDir = BASE_DIR . '/classes';
-	printf("- Building %s from %s\n", PHAR_FILENAME, $classDir);
-	$phar = new Phar(PHAR_PATH);
-	$phar->buildFromDirectory($classDir);
-	$phar->setStub(pheanstalk_phar_stub());
+    $classDir = BASE_DIR . '/classes';
+    printf("- Building %s from %s\n", PHAR_FILENAME, $classDir);
+    $phar = new Phar(PHAR_PATH);
+    $phar->buildFromDirectory($classDir);
+    $phar->setStub(pheanstalk_phar_stub());
 }
 
 function pheanstalk_phar_stub()
@@ -68,6 +66,6 @@ function pheanstalk_phar_stub()
 
 function verify_pheanstalk_phar()
 {
-	$phar = new Phar(PHAR_PATH);
-	printf("- %s built with %d files.\n", PHAR_FILENAME, $phar->count());
+    $phar = new Phar(PHAR_PATH);
+    printf("- %s built with %d files.\n", PHAR_FILENAME, $phar->count());
 }

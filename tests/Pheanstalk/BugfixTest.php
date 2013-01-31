@@ -10,8 +10,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_BugfixTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_BugfixTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Issue: Stats() Command fails if Version isn't set

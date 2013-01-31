@@ -8,8 +8,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_FacadeConnectionTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
 {
     const SERVER_HOST = 'localhost';
 
@@ -52,7 +51,6 @@ class Pheanstalk_FacadeConnectionTest
     {
         $pheanstalk = $this->_getFacade();
 
-        
         $pheanstalk->ignore('default');
     }
 
@@ -61,13 +59,12 @@ class Pheanstalk_FacadeConnectionTest
         $pheanstalk = $this->_getFacade();
 
         $id = $pheanstalk->put(__METHOD__);
-        // 
-         
+
         $this->assertInternalType('int', $id);
 
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
-         
+
         $this->assertInstanceOf('Pheanstalk_Job', $job);
 
         // delete the reserved job
@@ -75,12 +72,12 @@ class Pheanstalk_FacadeConnectionTest
 
         // put a job into an unused tube
         $id = $pheanstalk->putInTube('test', __METHOD__);
-         
+
         $this->assertInternalType('int', $id);
 
         // reserve a job from an unwatched tube - can't assume it is the one just added
         $job = $pheanstalk->reserveFromTube('test');
-         
+
         $this->assertInstanceOf('Pheanstalk_Job', $job);
 
         // delete the reserved job
@@ -101,12 +98,12 @@ class Pheanstalk_FacadeConnectionTest
         $pheanstalk = $this->_getFacade();
 
         $id = $pheanstalk->put(__METHOD__);
-         
+
         $this->assertInternalType('int', $id);
 
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
-         
+
         $this->assertInstanceOf('Pheanstalk_Job', $job);
 
         // bury the reserved job
@@ -114,7 +111,7 @@ class Pheanstalk_FacadeConnectionTest
 
         // kick up to one job
         $kickedCount = $pheanstalk->kick(1);
-         
+
         $this->assertInternalType('int', $kickedCount);
         $this->assertEquals($kickedCount, 1,
             'there should be at least one buried (or delayed) job: %s');
@@ -127,7 +124,7 @@ class Pheanstalk_FacadeConnectionTest
     {
         $pheanstalk = $this->_getFacade();
 
-        
+
         $pheanstalk->put(str_repeat('0', 0x10000));
     }
 
@@ -143,7 +140,7 @@ class Pheanstalk_FacadeConnectionTest
     public function testListTubes()
     {
         $pheanstalk = $this->_getFacade();
-         
+
         $this->assertInternalType('array', $pheanstalk->listTubes());
         $this->assertTrue(in_array('default', $pheanstalk->listTubes()));
 
@@ -328,8 +325,7 @@ class Pheanstalk_FacadeConnectionTest
         $stats = $pheanstalk->useTube('test-stats')->stats();
 
         $properties = array('pid', 'cmd_put', 'cmd_stats_job');
-        foreach ($properties as $property)
-        {
+        foreach ($properties as $property) {
             $this->assertTrue(
                 isset($stats->$property),
                 "property $property should exist"

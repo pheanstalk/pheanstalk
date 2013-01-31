@@ -7,8 +7,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_ServerErrorExceptionTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
 {
     private $_command;
 
@@ -24,12 +23,12 @@ class Pheanstalk_ServerErrorExceptionTest
     private function _connection($line)
     {
         $socket = $this->getMockBuilder('Pheanstalk_Socket')
-                     ->disableOriginalConstructor()
-                     ->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $socket->expects($this->any())
-             ->method('getLine')
-             ->will($this->returnValue($line));
+            ->method('getLine')
+            ->will($this->returnValue($line));
 
         $connection = new Pheanstalk_Connection(null, null);
         $connection->setSocket($socket);
@@ -41,17 +40,14 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleOutOfMemory()
     {
-
         $this->_connection('OUT_OF_MEMORY')->dispatchCommand($this->_command);
     }
-
 
     /**
      * @expectedException Pheanstalk_Exception_ServerInternalErrorException
      */
     public function testCommandsHandleInternalError()
     {
-
         $this->_connection('INTERNAL_ERROR')->dispatchCommand($this->_command);
     }
 
@@ -60,7 +56,6 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleDraining()
     {
-
         $this->_connection('DRAINING')->dispatchCommand($this->_command);
     }
 
@@ -69,7 +64,6 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleBadFormat()
     {
-
         $this->_connection('BAD_FORMAT')->dispatchCommand($this->_command);
     }
 
@@ -78,7 +72,6 @@ class Pheanstalk_ServerErrorExceptionTest
      */
     public function testCommandsHandleUnknownCommand()
     {
-
         $this->_connection('UNKNOWN_COMMAND')->dispatchCommand($this->_command);
     }
 }

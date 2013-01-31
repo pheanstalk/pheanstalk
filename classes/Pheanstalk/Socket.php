@@ -10,25 +10,25 @@
  */
 interface Pheanstalk_Socket
 {
-	/**
-	 * Writes data to the socket.
-	 * @param string $data
-	 * @return void
-	 */
-	public function write($data);
+    /**
+     * Writes data to the socket.
+     * @param string $data
+     * @return void
+     */
+    public function write($data);
 
-	/**
-	 * Reads up to $length bytes from the socket.
-	 *
-	 * @return string
-	 */
-	public function read($length);
+    /**
+     * Reads up to $length bytes from the socket.
+     *
+     * @return string
+     */
+    public function read($length);
 
-	/**
-	 * Reads up to the next new-line, or $length - 1 bytes.
-	 * Trailing whitespace is trimmed.
-	 *
-	 * @param int
-	 */
-	public function getLine($length = null);
+    /**
+     * Reads up to the next new-line, or $length - 1 bytes.
+     * Trailing whitespace is trimmed.
+     *
+     * @param int
+     */
+    public function getLine($length = null);
 }

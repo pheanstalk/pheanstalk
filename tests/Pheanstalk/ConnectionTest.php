@@ -8,8 +8,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_ConnectionTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
 {
     const SERVER_HOST = 'localhost';
     const SERVER_PORT = '11300';
@@ -26,7 +25,6 @@ class Pheanstalk_ConnectionTest
         );
 
         $command = new Pheanstalk_Command_UseCommand('test');
-
         $connection->dispatchCommand($command);
     }
 

@@ -10,8 +10,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_BugfixConnectionTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_BugfixConnectionTest extends PHPUnit_Framework_TestCase
 {
     const SERVER_HOST = 'localhost';
 
@@ -44,8 +43,7 @@ class Pheanstalk_BugfixConnectionTest
         $delta = str_repeat('a', 1000);
         // Let's repeat 20 times to make problem more obvious on Linux OS (it happens randomly)
         for ($i = 0; $i < 16; $i++) {
-            for ($message = $delta; strlen($message) < $maxLength; $message .= $delta)
-            {
+            for ($message = $delta; strlen($message) < $maxLength; $message .= $delta) {
                 $pheanstalk->put($message);
                 $job = $pheanstalk->peekReady();
                 $pheanstalk->delete($job);
@@ -67,11 +65,17 @@ class Pheanstalk_BugfixConnectionTest
             ->watch($tube)
             ->ignore('default');
 
-        try { while ($pheanstalk->delete($pheanstalk->peekDelayed())); }
-        catch (Pheanstalk_Exception_ServerException $e) {}
+        try {
+            while ($pheanstalk->delete($pheanstalk->peekDelayed())) {
+            }
+        } catch (Pheanstalk_Exception_ServerException $e) {
+        }
 
-        try { while ($pheanstalk->delete($pheanstalk->peekReady())); }
-        catch (Pheanstalk_Exception_ServerException $e) {}
+        try {
+            while ($pheanstalk->delete($pheanstalk->peekReady())) {
+            }
+        } catch (Pheanstalk_Exception_ServerException $e) {
+        }
 
         return $pheanstalk;
     }

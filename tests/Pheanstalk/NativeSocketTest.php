@@ -7,13 +7,10 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_NativeSocketTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_NativeSocketTest extends PHPUnit_Framework_TestCase
 {
     const DEFAULT_HOST = 'localhost';
-
     const DEFAULT_PORT = 11300;
-
     const DEFAULT_CONNECTION_TIMEOUT = 0;
 
     private $_streamFunctions;
@@ -23,11 +20,12 @@ class Pheanstalk_NativeSocketTest
     public function setUp()
     {
         $instance = $this->getMockBuilder('Pheanstalk_Socket_StreamFunctions')
-                     ->disableOriginalConstructor()
-                     ->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $instance->expects($this->any())
-             ->method('fsockopen')
-             ->will($this->returnValue(true));
+            ->method('fsockopen')
+            ->will($this->returnValue(true));
 
         self::$Pheanstalk_Socket_StreamFunctions = new Pheanstalk_Socket_StreamFunctions();
         self::$Pheanstalk_Socket_StreamFunctions->setInstance($instance);
@@ -46,10 +44,14 @@ class Pheanstalk_NativeSocketTest
     public function testWrite()
     {
         $this->_streamFunctions->expects($this->any())
-             ->method('fwrite')
-             ->will($this->returnValue(false));
+            ->method('fwrite')
+            ->will($this->returnValue(false));
 
-        $socket = new Pheanstalk_Socket_NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT);
+        $socket = new Pheanstalk_Socket_NativeSocket(
+            self::DEFAULT_HOST,
+            self::DEFAULT_HOST,
+            self::DEFAULT_CONNECTION_TIMEOUT
+        );
         $socket->write('data');
     }
 

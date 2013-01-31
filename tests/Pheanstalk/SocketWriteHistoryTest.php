@@ -5,8 +5,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_SocketWriteHistoryTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_SocketWriteHistoryTest extends PHPUnit_Framework_TestCase
 {
     public function testEmptyHistory()
     {
@@ -73,14 +72,12 @@ class Pheanstalk_SocketWriteHistoryTest
     {
         $history = new Pheanstalk_Socket_WriteHistory(1);
 
-        foreach (array(null, false, 0, "", "0") as $input)
-        {
+        foreach (array(null, false, 0, "", "0") as $input) {
             $this->assertEquals($history->log($input), $input);
             $this->assertTrue($history->isFullWithNoWrites());
         }
 
-        foreach (array(true, 1, 2, "1", "2") as $input)
-        {
+        foreach (array(true, 1, 2, "1", "2") as $input) {
             $this->assertEquals($history->log($input), $input);
             $this->assertFalse($history->isFullWithNoWrites());
         }

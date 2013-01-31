@@ -7,10 +7,8 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_CommandTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_CommandTest extends PHPUnit_Framework_TestCase
 {
-
     public function testBury()
     {
         $command = new Pheanstalk_Command_BuryCommand($this->_mockJob(5), 2);
@@ -268,10 +266,11 @@ class Pheanstalk_CommandTest
     {
         $this->assertEquals($command->getCommandLine(), $expected);
 
-        if ($expectData)
+        if ($expectData) {
             $this->assertTrue($command->hasData(), 'should have data');
-        else
+        } else {
             $this->assertFalse($command->hasData(), 'should have no data');
+        }
     }
 
     /**

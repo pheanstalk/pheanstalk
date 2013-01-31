@@ -16,46 +16,47 @@
  */
 class Pheanstalk_Socket_WriteHistory
 {
-	private $_limit;
-	private $_data = array();
+    private $_limit;
+    private $_data = array();
 
-	/**
-	 * @param int $limit
-	 */
-	public function __construct($limit)
-	{
-		$this->_limit = $limit;
-	}
+    /**
+     * @param int $limit
+     */
+    public function __construct($limit)
+    {
+        $this->_limit = $limit;
+    }
 
-	/**
-	 * Whether the history has reached its limit of entries.
-	 */
-	public function isFull()
-	{
-		return count($this->_data) >= $this->_limit;
-	}
+    /**
+     * Whether the history has reached its limit of entries.
+     */
+    public function isFull()
+    {
+        return count($this->_data) >= $this->_limit;
+    }
 
-	public function hasWrites()
-	{
-		return (bool)array_sum($this->_data);
-	}
+    public function hasWrites()
+    {
+        return (bool)array_sum($this->_data);
+    }
 
-	public function isFullWithNoWrites()
-	{
-		return $this->isFull() && !$this->hasWrites();
-	}
+    public function isFullWithNoWrites()
+    {
+        return $this->isFull() && !$this->hasWrites();
+    }
 
-	/**
-	 * Logs the return value from a write call.
-	 * Returns the input value.
-	 */
-	public function log($write)
-	{
-		if ($this->isFull())
-			array_shift($this->_data);
+    /**
+     * Logs the return value from a write call.
+     * Returns the input value.
+     */
+    public function log($write)
+    {
+        if ($this->isFull()) {
+            array_shift($this->_data);
+        }
 
-		$this->_data []= (int)$write;
+        $this->_data[] = (int)$write;
 
-		return $write;
-	}
+        return $write;
+    }
 }

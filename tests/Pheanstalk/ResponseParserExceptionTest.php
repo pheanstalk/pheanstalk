@@ -7,8 +7,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_ResponseParserExceptionTest
-    extends PHPUnit_Framework_TestCase
+class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
 {
     public function testDeleteNotFound()
     {
@@ -71,7 +70,6 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     public function testPeekInvalidSubject()
     {
-
         new Pheanstalk_Command_PeekCommand('invalid');
     }
 
@@ -106,13 +104,12 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     private function _mockJob($id)
     {
-
         $job = $this->getMockBuilder('Pheanstalk_Job')
-                     ->disableOriginalConstructor()
-                     ->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
         $job->expects($this->any())
-             ->method('getId')
-             ->will($this->returnValue($id));
+            ->method('getId')
+            ->will($this->returnValue($id));
         return $job;
     }
 
@@ -123,7 +120,6 @@ class Pheanstalk_ResponseParserExceptionTest
      */
     private function _expectExceptionForResponse($command, $response, $type = 'Pheanstalk_Exception')
     {
-
         $this->setExpectedException($type);
         $command->parseResponse($response, null);
     }
