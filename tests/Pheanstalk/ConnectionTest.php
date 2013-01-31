@@ -43,7 +43,7 @@ class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
 
     public function testConnectionResetIfSocketExceptionIsThrown()
     {
-        $pheanstalk = new Pheanstalk(
+        $pheanstalk = new Pheanstalk_Pheanstalk(
             self::SERVER_HOST,
             self::SERVER_PORT,
             self::CONNECT_TIMEOUT

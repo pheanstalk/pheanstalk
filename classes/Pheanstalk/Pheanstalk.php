@@ -11,7 +11,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk
+class Pheanstalk_Pheanstalk
 {
     const DEFAULT_PORT = 11300;
     const DEFAULT_DELAY = 0; // no delay
@@ -41,16 +41,6 @@ class Pheanstalk
     {
         $this->_connection = $connection;
         return $this;
-    }
-
-    /**
-     * Returns the connection object
-     *
-     * @return Pheanstalk_Connection
-     */
-    public function getConnection()
-    {
-        return $this->_connection;
     }
 
     // ----------------------------------------
