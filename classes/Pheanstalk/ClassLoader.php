@@ -26,7 +26,7 @@ class Pheanstalk_ClassLoader
 
         if ($loaders = spl_autoload_functions()) {
             array_map('spl_autoload_unregister', $loaders);
-        } else }
+        } else {
             $loaders = function_exists('__autoload') ? array('__autoload') : array();
         }
         array_unshift($loaders, array(__CLASS__, 'load'));
