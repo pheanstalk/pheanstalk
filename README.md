@@ -20,10 +20,9 @@ Installation with Composer
 Add the following lines to your `composer.json` requirements:
 
 ``` json
-    "require": {
-        "pda/pheanstalk": "dev-master"
-    }
-
+"require": {
+   "pda/pheanstalk": "dev-master"
+}
 ```
 
 Usage Example
@@ -35,7 +34,7 @@ Usage Example
 // If you aren't using composer, register Pheanstalk class loader
 require_once('pheanstalk_init.php');
 
-$pheanstalk = new Pheanstalk('127.0.0.1');
+$pheanstalk = new Pheanstalk_Pheanstalk('127.0.0.1');
 
 // ----------------------------------------
 // check service availability
@@ -60,8 +59,6 @@ $job = $pheanstalk
 echo $job->getData();
 
 $pheanstalk->delete($job);
-
-?>
 ```
 
 
