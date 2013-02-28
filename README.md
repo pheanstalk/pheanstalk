@@ -17,11 +17,13 @@ beanstalkd up to the latest version 1.4 is supported.  All commands and response
 Installation with Composer
 -------------
 
-Add the following lines to your `composer.json` requirements:
+Declare pheanstalk as a dependency in your projects `composer.json` file:
 
 ``` json
-"require": {
-   "pda/pheanstalk": "dev-master"
+{
+  "require": {
+    "pda/pheanstalk": "dev-master"
+  }
 }
 ```
 
