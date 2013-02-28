@@ -1,7 +1,7 @@
 Pheanstalk
 ==========
 
-[![Build Status](https://secure.travis-ci.org/phansys/pheanstalk.png)](http://travis-ci.org/phansys/pheanstalk)
+[![Build Status](https://travis-ci.org/pda/pheanstalk.png?branch=master)](https://travis-ci.org/pda/pheanstalk)
 
 Pheanstalk is a pure PHP 5.2+ client for the [beanstalkd workqueue][1].  It has been actively developed, and used in production by many, since late 2008.
 
