@@ -43,6 +43,16 @@ class Pheanstalk_Pheanstalk
         return $this;
     }
 
+    /**
+     * The internal connection object.
+     * Not required for general usage.
+     * @return Pheanstalk_Connection
+     */
+    public function getConnection()
+    {
+        return $this->_connection;
+    }
+
     // ----------------------------------------
 
     /**

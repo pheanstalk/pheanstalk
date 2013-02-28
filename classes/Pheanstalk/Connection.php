@@ -175,10 +175,10 @@ class Pheanstalk_Connection
     public function isServiceListening()
     {
         try {
-            $this->_getSocket();            
+            $this->_getSocket();
+            return true;
         } catch (Pheanstalk_Exception_ConnectionException $e) {
             return false;
         }
-        return true;
     }
 }
