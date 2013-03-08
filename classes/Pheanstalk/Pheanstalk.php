@@ -11,24 +11,18 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Pheanstalk
+class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
 {
-    const DEFAULT_PORT = 11300;
-    const DEFAULT_DELAY = 0; // no delay
-    const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
-    const DEFAULT_TTR = 60; // 1 minute
-    const DEFAULT_TUBE = 'default';
-
     private $_connection;
-    private $_using = self::DEFAULT_TUBE;
-    private $_watching = array(self::DEFAULT_TUBE => true);
+    private $_using = Pheanstalk_PheanstalkInterface::DEFAULT_TUBE;
+    private $_watching = array(Pheanstalk_PheanstalkInterface::DEFAULT_TUBE => true);
 
     /**
      * @param string $host
      * @param int $port
      * @param int $connectTimeout
      */
-    public function __construct($host, $port = self::DEFAULT_PORT, $connectTimeout = null)
+    public function __construct($host, $port = Pheanstalk_PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null)
     {
         $this->setConnection(new Pheanstalk_Connection($host, $port, $connectTimeout));
     }
@@ -61,7 +55,7 @@ class Pheanstalk_Pheanstalk
      * @param Pheanstalk_Job $job
      * @return void
      */
-    public function bury($job, $priority = self::DEFAULT_PRIORITY)
+    public function bury($job, $priority = Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY)
     {
         $this->_dispatch(new Pheanstalk_Command_BuryCommand($job, $priority));
     }
@@ -264,9 +258,9 @@ class Pheanstalk_Pheanstalk
      */
     public function put(
         $data,
-        $priority = self::DEFAULT_PRIORITY,
-        $delay = self::DEFAULT_DELAY,
-        $ttr = self::DEFAULT_TTR
+        $priority = Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY,
+        $delay = Pheanstalk_PheanstalkInterface::DEFAULT_DELAY,
+        $ttr = Pheanstalk_PheanstalkInterface::DEFAULT_TTR
     )
     {
         $response = $this->_dispatch(
@@ -293,9 +287,9 @@ class Pheanstalk_Pheanstalk
     public function putInTube(
         $tube,
         $data,
-        $priority = self::DEFAULT_PRIORITY,
-        $delay = self::DEFAULT_DELAY,
-        $ttr = self::DEFAULT_TTR
+        $priority = Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY,
+        $delay = Pheanstalk_PheanstalkInterface::DEFAULT_DELAY,
+        $ttr = Pheanstalk_PheanstalkInterface::DEFAULT_TTR
     )
     {
         $this->useTube($tube);
@@ -316,8 +310,8 @@ class Pheanstalk_Pheanstalk
      */
     public function release(
         $job,
-        $priority = self::DEFAULT_PRIORITY,
-        $delay = self::DEFAULT_DELAY
+        $priority = Pheanstalk_PheanstalkInterface::DEFAULT_PRIORITY,
+        $delay = Pheanstalk_PheanstalkInterface::DEFAULT_DELAY
     )
     {
         $this->_dispatch(
@@ -525,21 +519,21 @@ class Pheanstalk_Pheanstalk
 
         $this->setConnection($new_connection);
 
-        if ($this->_using != self::DEFAULT_TUBE) {
+        if ($this->_using != Pheanstalk_PheanstalkInterface::DEFAULT_TUBE) {
             $tube = $this->_using;
             $this->_using = null;
             $this->useTube($tube);
         }
 
         foreach ($this->_watching as $tube => $true) {
-            if ($tube != self::DEFAULT_TUBE) {
+            if ($tube != Pheanstalk_PheanstalkInterface::DEFAULT_TUBE) {
                 unset($this->_watching[$tube]);
                 $this->watch($tube);
             }
         }
 
-        if (!isset($this->_watching[self::DEFAULT_TUBE])) {
-            $this->ignore(self::DEFAULT_TUBE);
+        if (!isset($this->_watching[Pheanstalk_PheanstalkInterface::DEFAULT_TUBE])) {
+            $this->ignore(Pheanstalk_PheanstalkInterface::DEFAULT_TUBE);
         }
     }
 }
