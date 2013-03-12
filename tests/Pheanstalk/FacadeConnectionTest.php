@@ -357,9 +357,20 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
     public function testGetConnection()
     {
         $facade = $this->_getFacade();
-        $sentinel = "connection";
-        $facade->setConnection($sentinel);
-        $this->assertSame($facade->getConnection(), $sentinel);
+        
+        $connection = $this->getMockBuilder('Pheanstalk_Connection')
+            ->disableOriginalConstructor()
+            ->getMock();
+        
+        $facade->setConnection($connection);
+        $this->assertSame($facade->getConnection(), $connection);
+    }
+    
+    public function testInterface()
+    {
+        $facade = $this->_getFacade();
+        
+        $this->assertInstanceOf('Pheanstalk_PheanstalkInterface', $facade);
     }
 
     // ----------------------------------------
