@@ -30,7 +30,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     /**
      * {@inheritDoc}
      */
-    public function setConnection($connection)
+    public function setConnection(Pheanstalk_Connection $connection)
     {
         $this->_connection = $connection;
         return $this;
