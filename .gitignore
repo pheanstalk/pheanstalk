@@ -1,2 +1,5 @@
 pheanstalk.phar
 .idea
+
+composer.phar
+vendor/
