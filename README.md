@@ -8,7 +8,8 @@ been actively developed, and used in production by many, since late 2008.
 
 Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written
 using encapsulated, maintainable object oriented design.  Community feedback,
-bug reports and patches has led to a stable 1.0.0 release in 2010.
+bug reports and patches has led to a stable 1.0.0 release in 2010, and a 2.0.0
+release in 2013.
 
 beanstalkd up to the latest version 1.4 is supported.  All commands and
 responses specified in the [protocol documentation][3] for beanstalkd 1.3 are
