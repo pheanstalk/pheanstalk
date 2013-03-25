@@ -3,11 +3,16 @@ Pheanstalk
 
 [![Build Status](https://travis-ci.org/pda/pheanstalk.png?branch=master)](https://travis-ci.org/pda/pheanstalk)
 
-Pheanstalk is a pure PHP 5.2+ client for the [beanstalkd workqueue][1].  It has been actively developed, and used in production by many, since late 2008.
+Pheanstalk is a pure PHP 5.2+ client for the [beanstalkd workqueue][1].  It has
+been actively developed, and used in production by many, since late 2008.
 
-Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written using encapsulated, maintainable object oriented design.  Community feedback, bug reports and patches has led to a stable 1.0.0 release in 2010.
+Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written
+using encapsulated, maintainable object oriented design.  Community feedback,
+bug reports and patches has led to a stable 1.0.0 release in 2010.
 
-beanstalkd up to the latest version 1.4 is supported.  All commands and responses specified in the [protocol documentation][3] for beanstalkd 1.3 are implemented.
+beanstalkd up to the latest version 1.4 is supported.  All commands and
+responses specified in the [protocol documentation][3] for beanstalkd 1.3 are
+implemented.
 
   [1]: http://xph.us/software/beanstalkd/
   [2]: http://paul.annesley.cc/
