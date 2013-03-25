@@ -12,6 +12,15 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
 {
     const SERVER_HOST = 'localhost';
 
+    public function testVersion()
+    {
+        // Examples: 1.0.0, 2.0.0, 2.0.0-rc1
+        $this->assertRegExp(
+            '/\d+\.\d+\.\d+(?:-\w+)?/',
+            Pheanstalk_Pheanstalk::VERSION
+        );
+    }
+
     public function testUseTube()
     {
         $pheanstalk = $this->_getFacade();

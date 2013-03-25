@@ -13,6 +13,8 @@
  */
 class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
 {
+    const VERSION = '2.0.0';
+
     private $_connection;
     private $_using = Pheanstalk_PheanstalkInterface::DEFAULT_TUBE;
     private $_watching = array(Pheanstalk_PheanstalkInterface::DEFAULT_TUBE => true);
