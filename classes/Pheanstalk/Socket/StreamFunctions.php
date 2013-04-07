@@ -1,6 +1,7 @@
 <?php
 
 namespace Pheanstalk\Socket;
+use Pheanstalk\ISocket;
 
 /**
  * Wrapper around PHP stream functions.
@@ -10,7 +11,7 @@ namespace Pheanstalk\Socket;
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class StreamFunctions
+class StreamFunctions implements ISocket
 {
     private static $_instance;
 
@@ -87,5 +88,41 @@ class StreamFunctions
     public function stream_set_timeout($stream, $seconds, $microseconds = 0)
     {
         return stream_set_timeout($stream, $seconds, $microseconds);
+    }
+
+
+    /**
+     * Writes data to the socket.
+     *
+     * @param string $data
+     *
+     * @return void
+     */
+    public function write($data)
+    {
+        // TODO: Implement write() method.
+    }
+
+
+    /**
+     * Reads up to $length bytes from the socket.
+     *
+     * @return string
+     */
+    public function read($length)
+    {
+        // TODO: Implement read() method.
+    }
+
+
+    /**
+     * Reads up to the next new-line, or $length - 1 bytes.
+     * Trailing whitespace is trimmed.
+     *
+     * @param int
+     */
+    public function getLine($length = null)
+    {
+        // TODO: Implement getLine() method.
     }
 }

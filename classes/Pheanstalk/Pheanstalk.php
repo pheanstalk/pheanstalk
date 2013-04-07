@@ -36,14 +36,8 @@ use Pheanstalk\Exception\SocketException;
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk
+class Pheanstalk implements PheanstalkInterface
 {
-	const DEFAULT_PORT = 11300;
-	const DEFAULT_DELAY = 0; // no delay
-	const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
-	const DEFAULT_TTR = 60; // 1 minute
-	const DEFAULT_TUBE = 'default';
-
 	private $_connection;
 	private $_using = self::DEFAULT_TUBE;
 	private $_watching = array(self::DEFAULT_TUBE => true);
@@ -62,13 +56,23 @@ class Pheanstalk
 	 * @param Pheanstalk\Connection
 	 * @chainable
 	 */
-	public function setConnection($connection)
+	public function setConnection(\Pheanstalk\Connection $connection)
 	{
 		$this->_connection = $connection;
 		return $this;
 	}
 
-	// ----------------------------------------
+    /**
+     * The internal connection object.
+     * Not required for general usage.
+     * @return \Pheanstalk\Connection
+     */
+    public function getConnection()
+    {
+        return $this->_connection;
+    }
+
+    // ----------------------------------------
 
 	/**
 	 * Puts a job into a 'buried' state, revived only by 'kick' command.
@@ -76,7 +80,7 @@ class Pheanstalk
 	 * @param \Pheanstalk\Job $job
 	 * @return void
 	 */
-	public function bury($job, $priority = self::DEFAULT_PRIORITY)
+	public function bury(\Pheanstalk\Job $job, $priority = self::DEFAULT_PRIORITY)
 	{
 		$this->_dispatch(new BuryCommand($job, $priority));
 	}
@@ -87,7 +91,7 @@ class Pheanstalk
 	 * @param \Pheanstalk\Job $job
 	 * @chainable
 	 */
-	public function delete($job)
+	public function delete(\Pheanstalk\Job $job)
 	{
 		$this->_dispatch(new DeleteCommand($job));
 		return $this;
@@ -336,7 +340,7 @@ class Pheanstalk
 	 * @chainable
 	 */
 	public function release(
-		$job,
+        \Pheanstalk\Job $job,
 		$priority = self::DEFAULT_PRIORITY,
 		$delay = self::DEFAULT_DELAY
 	)
@@ -413,7 +417,7 @@ class Pheanstalk
 	 * @param \Pheanstalk\Job or int $job
 	 * @return object
 	 */
-	public function statsJob($job)
+	public function statsJob(\Pheanstalk\Job $job)
 	{
 		return $this->_dispatch(new StatsJobCommand($job));
 	}
@@ -450,7 +454,7 @@ class Pheanstalk
 	 * @param \Pheanstalk\Job $job
 	 * @chainable
 	 */
-	public function touch($job)
+	public function touch(\Pheanstalk\Job $job)
 	{
 		$this->_dispatch(new TouchCommand($job));
 		return $this;

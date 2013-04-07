@@ -90,7 +90,7 @@ class Connection
 
         if (isset(self::$_errorResponses[$responseName])) {
             $exception = sprintf(
-                'Pheanstalk_Exception_Server%sException',
+                'Pheanstalk\Exception\Server%sException',
                 self::$_errorResponses[$responseName]
             );
 
@@ -185,7 +185,7 @@ class Connection
         try {
             $this->_getSocket();
             return true;
-        } catch (Pheanstalk_Exception_ConnectionException $e) {
+        } catch (\Pheanstalk\Exception\ConnectionException $e) {
             return false;
         }
     }

@@ -9,7 +9,7 @@ class Pheanstalk_SocketWriteHistoryTest extends PHPUnit_Framework_TestCase
 {
     public function testEmptyHistory()
     {
-        $history = new Pheanstalk_Socket_WriteHistory(10);
+        $history = new \Pheanstalk\Socket\WriteHistory(10);
         $this->assertFalse($history->isFull());
         $this->assertFalse($history->hasWrites());
         $this->assertFalse($history->isFullWithNoWrites());
@@ -17,7 +17,7 @@ class Pheanstalk_SocketWriteHistoryTest extends PHPUnit_Framework_TestCase
 
     public function testFullHistoryWithWrites()
     {
-        $history = new Pheanstalk_Socket_WriteHistory(1);
+        $history = new \Pheanstalk\Socket\WriteHistory(1);
         $history->log(1024);
         $this->assertTrue($history->isFull());
         $this->assertTrue($history->hasWrites());
@@ -26,7 +26,7 @@ class Pheanstalk_SocketWriteHistoryTest extends PHPUnit_Framework_TestCase
 
     public function testFullHistoryWithoutWrites()
     {
-        $history = new Pheanstalk_Socket_WriteHistory(1);
+        $history = new \Pheanstalk\Socket\WriteHistory(1);
         $history->log(0);
         $this->assertTrue($history->isFull());
         $this->assertFalse($history->hasWrites());
@@ -35,7 +35,7 @@ class Pheanstalk_SocketWriteHistoryTest extends PHPUnit_Framework_TestCase
 
     public function testFillingHistory()
     {
-        $history = new Pheanstalk_Socket_WriteHistory(4);
+        $history = new \Pheanstalk\Socket\WriteHistory(4);
 
         $history->log(0);
         $this->assertFalse($history->isFull());
@@ -70,7 +70,7 @@ class Pheanstalk_SocketWriteHistoryTest extends PHPUnit_Framework_TestCase
 
     public function testDifferentInputTypes()
     {
-        $history = new Pheanstalk_Socket_WriteHistory(1);
+        $history = new \Pheanstalk\Socket\WriteHistory(1);
 
         foreach (array(null, false, 0, "", "0") as $input) {
             $this->assertEquals($history->log($input), $input);

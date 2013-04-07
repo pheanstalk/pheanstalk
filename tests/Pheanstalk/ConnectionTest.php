@@ -15,41 +15,41 @@ class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
     const CONNECT_TIMEOUT = 2;
 
     /**
-     * @expectedException Pheanstalk_Exception_ConnectionException
+     * @expectedException \Pheanstalk\Exception\ConnectionException
      */
     public function testConnectionFailsToIncorrectPort()
     {
-        $connection = new Pheanstalk_Connection(
+        $connection = new \Pheanstalk\Connection(
             self::SERVER_HOST,
             self::SERVER_PORT + 1
         );
 
-        $command = new Pheanstalk_Command_UseCommand('test');
+        $command = new \Pheanstalk\Command\UseCommand('test');
         $connection->dispatchCommand($command);
     }
 
     public function testDispatchCommandSuccessful()
     {
-        $connection = new Pheanstalk_Connection(
+        $connection = new \Pheanstalk\Connection(
             self::SERVER_HOST,
             self::SERVER_PORT
         );
 
-        $command = new Pheanstalk_Command_UseCommand('test');
+        $command = new \Pheanstalk\Command\UseCommand('test');
         $response = $connection->dispatchCommand($command);
 
-        $this->assertInstanceOf('Pheanstalk_Response', $response);
+        $this->assertInstanceOf('Pheanstalk\IResponse', $response);
     }
 
     public function testConnectionResetIfSocketExceptionIsThrown()
     {
-        $pheanstalk = new Pheanstalk_Pheanstalk(
+        $pheanstalk = new \Pheanstalk\Pheanstalk(
             self::SERVER_HOST,
             self::SERVER_PORT,
             self::CONNECT_TIMEOUT
         );
 
-        $connection = $this->getMockBuilder('Pheanstalk_Connection')
+        $connection = $this->getMockBuilder('Pheanstalk\IConnection')
                      ->disableOriginalConstructor()
                      ->getMock();
 
@@ -69,7 +69,7 @@ class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
         $pheanstalk->setConnection($connection);
         $connection->expects($this->once())
              ->method('dispatchCommand')
-             ->will($this->throwException(new Pheanstalk_Exception_SocketException('socket error simulated')));
+             ->will($this->throwException(new \Pheanstalk\Exception\SocketException('socket error simulated')));
         $job = $pheanstalk->reserve();
 
         $this->assertEquals(__METHOD__, $job->getData());
@@ -78,9 +78,9 @@ class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
     // ----------------------------------------
     // private
 
-    private function _getConnection()
-    {
-        return new Pheanstalk_Connection(self::SERVER_HOST, self::SERVER_PORT);
-    }
+//    private function _getConnection()
+//    {
+//        return new \Pheanstalk\Connection(self::SERVER_HOST, self::SERVER_PORT);
+//    }
 }
 

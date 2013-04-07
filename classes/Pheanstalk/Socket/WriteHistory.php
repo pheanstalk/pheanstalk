@@ -1,6 +1,7 @@
 <?php
 
 namespace Pheanstalk\Socket;
+use Pheanstalk\ISocket;
 
 /**
  * A limited history of recent socket write length/success.
@@ -16,8 +17,9 @@ namespace Pheanstalk\Socket;
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class WriteHistory
+class WriteHistory implements ISocket
 {
+
     private $_limit;
     private $_data = array();
 
@@ -60,5 +62,41 @@ class WriteHistory
         $this->_data[] = (int)$write;
 
         return $write;
+    }
+
+
+    /**
+     * Writes data to the socket.
+     *
+     * @param string $data
+     *
+     * @return void
+     */
+    public function write($data)
+    {
+        // TODO: Implement write() method.
+    }
+
+
+    /**
+     * Reads up to $length bytes from the socket.
+     *
+     * @return string
+     */
+    public function read($length)
+    {
+        // TODO: Implement read() method.
+    }
+
+
+    /**
+     * Reads up to the next new-line, or $length - 1 bytes.
+     * Trailing whitespace is trimmed.
+     *
+     * @param int
+     */
+    public function getLine($length = null)
+    {
+        // TODO: Implement getLine() method.
     }
 }
