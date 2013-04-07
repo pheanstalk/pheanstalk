@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk\Exception;
+
 /**
  * An exception relating to the connection socket.
  *
@@ -7,7 +9,6 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Exception_SocketException
-    extends Pheanstalk_Exception_ClientException
+class SocketException extends ClientException
 {
 }

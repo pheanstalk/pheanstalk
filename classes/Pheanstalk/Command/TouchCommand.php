@@ -1,5 +1,11 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+use Pheanstalk\IResponse;
+
+use Pheanstalk\Exception\ServerException;
+
 /**
  * The 'touch' command.
  *
@@ -13,14 +19,12 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_TouchCommand
-    extends Pheanstalk_Command_AbstractCommand
-    implements Pheanstalk_ResponseParser
+class TouchCommand extends AbstractCommand implements IResponseParser
 {
     private $_job;
 
     /**
-     * @param Pheanstalk_Job $job
+	 * @param \Pheanstalk\Job $job
      */
     public function __construct($job)
     {
@@ -28,7 +32,7 @@ class Pheanstalk_Command_TouchCommand
     }
 
     /* (non-phpdoc)
-     * @see Pheanstalk_Command::getCommandLine()
+	 * @see \Pheanstalk\ICommand::getCommandLine()
      */
     public function getCommandLine()
     {
@@ -36,13 +40,14 @@ class Pheanstalk_Command_TouchCommand
     }
 
     /* (non-phpdoc)
-     * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
-            throw new Pheanstalk_Exception_ServerException(sprintf(
-                'Job %u %s: does not exist or is not reserved by client',
+		if ($responseLine == IResponse::RESPONSE_NOT_FOUND)
+		{
+			throw new ServerException(sprintf(
+				'Job %d %s: does not exist or is not reserved by client',
                 $this->_job->getId(),
                 $responseLine
             ));
