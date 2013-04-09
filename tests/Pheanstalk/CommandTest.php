@@ -93,8 +93,8 @@ class Pheanstalk_CommandTest extends PHPUnit_Framework_TestCase
     public function testPut()
     {
         $command = new \Pheanstalk\Command\PutCommand('data', 5, 6, 7);
-        $this->_assertCommandLine($command, 'put 5 6 7 4', true);
-        $this->assertEquals($command->getData(), 'data');
+        $this->_assertCommandLine($command, 'put 5 6 7 6', true);
+        $this->assertEquals($command->getData(), '"data"');
 
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('INSERTED 4', null),
