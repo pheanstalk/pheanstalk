@@ -1,5 +1,8 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\YamlResponseParser;
+
 /**
  * The 'list-tubes-watched' command.
  * Lists the tubes on the watchlist.
@@ -8,24 +11,23 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_ListTubesWatchedCommand
-    extends Pheanstalk_Command_AbstractCommand
+class ListTubesWatchedCommand extends AbstractCommand
 {
-    /* (non-phpdoc)
-     * @see Pheanstalk_Command::getCommandLine()
-     */
-    public function getCommandLine()
-    {
-        return 'list-tubes-watched';
-    }
+	/* (non-phpdoc)
+	 * @see \Pheanstalk\ICommand::getCommandLine()
+	 */
+	public function getCommandLine()
+	{
+		return 'list-tubes-watched';
+	}
 
-    /* (non-phpdoc)
-     * @see Pheanstalk_Command::getResponseParser()
-     */
-    public function getResponseParser()
-    {
-        return new Pheanstalk_YamlResponseParser(
-            Pheanstalk_YamlResponseParser::MODE_LIST
-        );
-    }
+	/* (non-phpdoc)
+	 * @see \Pheanstalk\ICommand::getResponseParser()
+	 */
+	public function getResponseParser()
+	{
+		return new YamlResponseParser(
+			YamlResponseParser::MODE_LIST
+		);
+	}
 }

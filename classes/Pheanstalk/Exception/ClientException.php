@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk\Exception;
+
 /**
  * An exception originating from the beanstalkd client
  *
@@ -7,7 +9,6 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Exception_ClientException
-    extends Pheanstalk_Exception
+class ClientException extends \Pheanstalk\Exception
 {
 }

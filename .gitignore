@@ -2,4 +2,5 @@ pheanstalk.phar
 .idea
 
 composer.phar
+composer.lock
 vendor/

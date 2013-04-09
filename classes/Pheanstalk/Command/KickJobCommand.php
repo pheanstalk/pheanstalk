@@ -1,5 +1,13 @@
 <?php
 
+namespace Pheanstalk\Command;
+
+use Pheanstalk\IResponseParser;
+use Pheanstalk\Response;
+use Pheanstalk\IResponse;
+use Pheanstalk\Exception;
+use Pheanstalk\Job;
+
 /**
  * The 'kick-job' command.
  * Kicks a specific buried or delayed job into a 'ready' state.
@@ -12,22 +20,22 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_KickJobCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+class KickJobCommand
+	extends AbstractCommand
+	implements IResponseParser
 {
 	private $_job;
 
 	/**
-	 * @param Pheanstalk_Job $job Pheanstalk job
+	 * @param Job $job Pheanstalk job
 	 */
-	public function __construct($job)
+	public function __construct(Job $job)
 	{
 		$this->_job = $job;
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
+	 * @see Pheanstalk\ICommand::getCommandLine()
 	 */
 	public function getCommandLine()
 	{
@@ -35,25 +43,25 @@ class Pheanstalk_Command_KickJobCommand
 	}
 
 	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
+	 * @see IResponseParser::parseRespose()
 	 */
 	public function parseResponse($responseLine, $responseData)
 	{
-		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
+		if ($responseLine == IResponse::RESPONSE_NOT_FOUND)
 		{
-			throw new Pheanstalk_Exception_ServerException(sprintf(
+			throw new Exception\ServerException(sprintf(
 				'%s: Job %d does not exist or is not in a kickable state.',
 				$responseLine,
 				$this->_job->getId()
 			));
 		}
-		elseif ($responseLine == Pheanstalk_Response::RESPONSE_KICKED)
+		elseif ($responseLine == IResponse::RESPONSE_KICKED)
 		{
-			return $this->_createResponse(Pheanstalk_Response::RESPONSE_KICKED);
+			return $this->_createResponse(IResponse::RESPONSE_KICKED);
 		}
 		else
 		{
-			throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
+			throw new Exception('Unhandled response: '.$responseLine);
 		}
 	}
 }

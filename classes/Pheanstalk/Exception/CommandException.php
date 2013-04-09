@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk\Exception;
+
 /**
  * An exception relating to a Pheanstalk_Command
  *
@@ -7,7 +9,6 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Exception_CommandException
-    extends Pheanstalk_Exception_ClientException
+class CommandException extends ClientException
 {
 }

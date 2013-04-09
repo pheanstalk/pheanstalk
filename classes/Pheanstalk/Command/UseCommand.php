@@ -1,5 +1,8 @@
 <?php
 
+namespace Pheanstalk\Command;
+use Pheanstalk\IResponseParser;
+
 /**
  * The 'use' command.
  *
@@ -11,35 +14,33 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_Command_UseCommand
-    extends Pheanstalk_Command_AbstractCommand
-    implements Pheanstalk_ResponseParser
+class UseCommand extends AbstractCommand implements IResponseParser
 {
-    private $_tube;
+	private $_tube;
 
-    /**
-     * @param string $tube The name of the tube to use
-     */
-    public function __construct($tube)
-    {
-        $this->_tube = $tube;
-    }
+	/**
+	 * @param string $tube The name of the tube to use
+	 */
+	public function __construct($tube)
+	{
+		$this->_tube = $tube;
+	}
 
-    /* (non-phpdoc)
-     * @see Pheanstalk_Command::getCommandLine()
-     */
-    public function getCommandLine()
-    {
-        return 'use '.$this->_tube;
-    }
+	/* (non-phpdoc)
+	 * @see \Pheanstalk\ICommand::getCommandLine()
+	 */
+	public function getCommandLine()
+	{
+		return 'use '.$this->_tube;
+	}
 
-    /* (non-phpdoc)
-     * @see Pheanstalk_ResponseParser::parseRespose()
-     */
-    public function parseResponse($responseLine, $responseData)
-    {
-        return $this->_createResponse('USING', array(
-            'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine)
-        ));
-    }
+	/* (non-phpdoc)
+	 * @see \Pheanstalk\IResponseParser::parseRespose()
+	 */
+	public function parseResponse($responseLine, $responseData)
+	{
+		return $this->_createResponse('USING', array(
+			'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine)
+		));
+	}
 }
