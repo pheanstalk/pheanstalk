@@ -417,7 +417,7 @@ class Pheanstalk implements PheanstalkInterface
 	 * @param \Pheanstalk\Job or int $job
 	 * @return object
 	 */
-	public function statsJob(\Pheanstalk\Job $job)
+	public function statsJob($job)
 	{
 		return $this->_dispatch(new StatsJobCommand($job));
 	}

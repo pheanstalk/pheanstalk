@@ -49,7 +49,7 @@ class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
             self::CONNECT_TIMEOUT
         );
 
-        $connection = $this->getMockBuilder('Pheanstalk\IConnection')
+        $connection = $this->getMockBuilder('Pheanstalk\Connection')
                      ->disableOriginalConstructor()
                      ->getMock();
 

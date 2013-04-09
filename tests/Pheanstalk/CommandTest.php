@@ -57,7 +57,7 @@ class Pheanstalk_CommandTest extends PHPUnit_Framework_TestCase
 
     public function testKickJob()
     {
-        $command = new \Pheanstalk\Command\KickCommand($this->_mockJob(5));
+        $command = new \Pheanstalk\Command\KickJobCommand($this->_mockJob(5));
         $this->_assertCommandLine($command, 'kick-job 5');
 
         $this->_assertResponse(

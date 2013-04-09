@@ -227,7 +227,7 @@ interface PheanstalkInterface {
      * @param \Pheanstalk\Job or int $job
      * @return object
      */
-    public function statsJob(\Pheanstalk\Job $job);
+    public function statsJob($job);
 
     /**
      * Gives statistical information about the specified tube if it exists.
