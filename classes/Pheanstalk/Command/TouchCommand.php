@@ -17,14 +17,14 @@ class Pheanstalk_Command_TouchCommand
     extends Pheanstalk_Command_AbstractCommand
     implements Pheanstalk_ResponseParser
 {
-    private $_job;
+    private $_jobId;
 
     /**
-     * @param Pheanstalk_Job $job
+     * @param Pheanstalk_Job $job or $int $job
      */
     public function __construct($job)
     {
-        $this->_job = $job;
+        $this->_jobId = is_object($job) ? $job->getId() : $job;
     }
 
     /* (non-phpdoc)
@@ -32,7 +32,7 @@ class Pheanstalk_Command_TouchCommand
      */
     public function getCommandLine()
     {
-        return sprintf('touch %u', $this->_job->getId());
+        return sprintf('touch %u', $this->_jobId);
     }
 
     /* (non-phpdoc)
@@ -43,7 +43,7 @@ class Pheanstalk_Command_TouchCommand
         if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
                 'Job %u %s: does not exist or is not reserved by client',
-                $this->_job->getId(),
+                $this->_jobId,
                 $responseLine
             ));
         }

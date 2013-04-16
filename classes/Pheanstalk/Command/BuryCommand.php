@@ -12,16 +12,16 @@ class Pheanstalk_Command_BuryCommand
     extends Pheanstalk_Command_AbstractCommand
     implements Pheanstalk_ResponseParser
 {
-    private $_job;
+    private $_jobId;
     private $_priority;
 
     /**
-     * @param object $job Pheanstalk_Job
+     * @param object $job Pheanstalk_Job or int $job
      * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      */
     public function __construct($job, $priority)
     {
-        $this->_job = $job;
+        $this->_jobId = is_object($job) ? $job->getId() : $job;
         $this->_priority = $priority;
     }
 
@@ -32,7 +32,7 @@ class Pheanstalk_Command_BuryCommand
     {
         return sprintf(
             'bury %u %u',
-            $this->_job->getId(),
+            $this->_jobId,
             $this->_priority
         );
     }
@@ -46,7 +46,7 @@ class Pheanstalk_Command_BuryCommand
             throw new Pheanstalk_Exception_ServerException(sprintf(
                 '%s: Job %u is not reserved or does not exist.',
                 $responseLine,
-                $this->_job->getId()
+                $this->_jobId
             ));
         } elseif ($responseLine == Pheanstalk_Response::RESPONSE_BURIED) {
             return $this->_createResponse(Pheanstalk_Response::RESPONSE_BURIED);
