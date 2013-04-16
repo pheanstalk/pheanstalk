@@ -35,6 +35,8 @@ class Pheanstalk_Command_PeekCommand
     {
         if (is_int($peekSubject) || ctype_digit($peekSubject)) {
             $this->_jobId = $peekSubject;
+        } elseif (is_object($peekSubject)) {
+            $this->_jobId = $peekSubject->getId();
         } elseif (in_array($peekSubject, $this->_subcommands)) {
             $this->_subcommand = $peekSubject;
         } else {

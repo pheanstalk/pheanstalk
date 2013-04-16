@@ -16,14 +16,14 @@ class Pheanstalk_Command_KickJobCommand
 	extends Pheanstalk_Command_AbstractCommand
 	implements Pheanstalk_ResponseParser
 {
-	private $_job;
+	private $_jobId;
 
 	/**
 	 * @param Pheanstalk_Job $job Pheanstalk job
 	 */
 	public function __construct($job)
 	{
-		$this->_job = $job;
+		$this->_jobId = is_object($job) ? $job->getId() : $job;
 	}
 
 	/* (non-phpdoc)
@@ -31,7 +31,7 @@ class Pheanstalk_Command_KickJobCommand
 	 */
 	public function getCommandLine()
 	{
-		return 'kick-job '.$this->_job->getId();
+		return sprintf('kick-job %u', $this->_jobId);
 	}
 
 	/* (non-phpdoc)
@@ -42,9 +42,9 @@ class Pheanstalk_Command_KickJobCommand
 		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
 		{
 			throw new Pheanstalk_Exception_ServerException(sprintf(
-				'%s: Job %d does not exist or is not in a kickable state.',
+				'%s: Job %u does not exist or is not in a kickable state.',
 				$responseLine,
-				$this->_job->getId()
+				$this->_jobId
 			));
 		}
 		elseif ($responseLine == Pheanstalk_Response::RESPONSE_KICKED)
