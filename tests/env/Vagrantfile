@@ -1,0 +1,12 @@
+Vagrant::Config.run do |config|
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.network :hostonly, "33.33.33.33"
+  config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+  config.ssh.max_tries = 50
+  config.ssh.timeout = 300
+  Vagrant::Config.run do |config|
+    config.vm.share_folder "v-root", "/vagrant", "../../", :nfs => true
+    config.vm.provision :shell, :path => "provision.sh"
+  end
+end

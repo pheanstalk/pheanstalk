@@ -70,40 +70,26 @@ $pheanstalk->getConnection()->isServiceListening(); // true or false
 
 ```
 
-
 Running the tests
 -----------------
 
-There is a section of the test suite which depends on a running beanstalkd
-at 127.0.0.1:11300, which was previously opt-in via `--with-server`.
-Since porting to PHPUnit, all tests are run at once. Feel free to submit
-a pull request to rectify this.
+We use [Composer](http://getcomposer.org/) to install [PHPUnit](http://www.phpunit.de/manual/3.7/en/index.html), and [Vagrant](http://www.vagrantup.com/) to create, and provision, an isolated test enviroment to run the tests in.
 
 ```
-# ensure you have PHPUnit
-$ sudo pear channel-discover pear.phpunit.de
-$ sudo pear channel-discover components.ez.no
-$ sudo pear channel-discover pear.symfony.com
-$ sudo pear install phpunit/PHPUnit
-$ hash -r
+$ composer install --dev
+$ cd tests/env
+$ vagrant up && vagrant ssh
+$ php /vagrant/vendor/phpunit/phpunit/phpunit.php -c /vagrant/phpunit.xml
 
-# ensure you have Composer set up
-$ wget http://getcomposer.org/composer.phar
-$ php composer.phar install
+Configuration read from /vagrant/phpunit.xml.dist
 
-$ phpunit
-PHPUnit 3.7.10 by Sebastian Bergmann.
+................................................................. 65 / 83 ( 78%)
+..................
 
-Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist
+Time: 1 second, Memory: 9.25Mb
 
-................................................................. 65 / 79 ( 82%)
-..............
-
-Time: 0 seconds, Memory: 8.75Mb
-
-OK (79 tests, 387 assertions)
+OK (83 tests, 395 assertions)
 ```
-
 
 Contributors
 ------------
@@ -121,6 +107,7 @@ Contributors
   * [Josh Butts](https://github.com/jimbojsb)
   * [Henry Smith](https://github.com/h2s)
   * [Javier Spagnoletti](https://github.com/phansys)
+  * [Anthony Sterling](https://github.com/anthonysterling)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
