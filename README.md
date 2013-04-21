@@ -79,7 +79,7 @@ We use [Composer](http://getcomposer.org/) to install [PHPUnit](http://www.phpun
 $ composer install --dev
 $ cd tests/env
 $ vagrant up && vagrant ssh
-$ php /vagrant/vendor/phpunit/phpunit/phpunit.php -c /vagrant/phpunit.xml
+$ php /vagrant/vendor/phpunit/phpunit/phpunit.php -c /vagrant/phpunit.xml.dist
 
 Configuration read from /vagrant/phpunit.xml.dist
 
