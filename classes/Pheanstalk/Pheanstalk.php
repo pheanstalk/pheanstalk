@@ -58,6 +58,22 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
         return $this;
     }
 
+    /**
+     * Instead of repeating the check in all the necessary methods, have it isolated
+     * in a single method called every time a job is returned.
+     *
+     * @param  string
+     * @return string
+     */
+    private function applyInverseTransform($jobdata)
+    {
+        if(false === is_null($this->_transformer)) {
+            return $this->_transformer->inverseTransform($jobdata);
+        }
+
+        return $jobdata;
+    }
+
     // ----------------------------------------
 
     /**
@@ -165,7 +181,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             new Pheanstalk_Command_PeekCommand($jobId)
         );
 
-        return new Pheanstalk_Job($response['id'], $response['jobdata']);
+        return new Pheanstalk_Job($response['id'], $this->applyInverseTransform($response['jobdata']));
     }
 
     /**
@@ -181,7 +197,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_READY)
         );
 
-        return new Pheanstalk_Job($response['id'], $response['jobdata']);
+        return new Pheanstalk_Job($response['id'], $this->applyInverseTransform($response['jobdata']));
     }
 
     /**
@@ -197,7 +213,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_DELAYED)
         );
 
-        return new Pheanstalk_Job($response['id'], $response['jobdata']);
+        return new Pheanstalk_Job($response['id'], $this->applyInverseTransform($response['jobdata']));
     }
 
     /**
@@ -213,7 +229,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             new Pheanstalk_Command_PeekCommand(Pheanstalk_Command_PeekCommand::TYPE_BURIED)
         );
 
-        return new Pheanstalk_Job($response['id'], $response['jobdata']);
+        return new Pheanstalk_Job($response['id'], $this->applyInverseTransform($response['jobdata']));
     }
 
     /**
@@ -226,6 +242,11 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
         $ttr = Pheanstalk_PheanstalkInterface::DEFAULT_TTR
     )
     {
+        if(false === is_null($this->_transformer))
+        {
+            $data = $this->_transformer->transform($data);
+        }
+
         $response = $this->_dispatch(
             new Pheanstalk_Command_PutCommand($data, $priority, $delay, $ttr)
         );
@@ -282,7 +303,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
         if (in_array($response->getResponseName(), $falseResponses)) {
             return false;
         } else {
-            return new Pheanstalk_Job($response['id'], $response['jobdata']);
+            return new Pheanstalk_Job($response['id'], $this->applyInverseTransform($response['jobdata']));
         }
     }
 
