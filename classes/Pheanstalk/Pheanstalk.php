@@ -18,6 +18,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     private $_connection;
     private $_using = Pheanstalk_PheanstalkInterface::DEFAULT_TUBE;
     private $_watching = array(Pheanstalk_PheanstalkInterface::DEFAULT_TUBE => true);
+    private $_transformer = null;
 
     /**
      * @param string $host
@@ -44,6 +45,17 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function getConnection()
     {
         return $this->_connection;
+    }
+
+    // ----------------------------------------
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTransformer(Pheanstalk_TransformerInterface $transformer)
+    {
+        $this->_transformer = $transformer;
+        return $this;
     }
 
     // ----------------------------------------
