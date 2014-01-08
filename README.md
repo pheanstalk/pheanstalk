@@ -18,7 +18,6 @@ implemented.
   [1]: http://xph.us/software/beanstalkd/
   [2]: http://paul.annesley.cc/
   [3]: http://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true
-  [4]: http://semver.org/
 
 Installation with Composer
 -------------
@@ -28,10 +27,14 @@ Declare pheanstalk as a dependency in your projects `composer.json` file:
 ``` json
 {
   "require": {
-    "pda/pheanstalk": "dev-master"
+    "pda/pheanstalk": "$VERSION"
   }
 }
 ```
+
+Replace `$VERSION` with one of the stable versions available on
+[Packagist](https://packagist.org/packages/pda/pheanstalk) or `2.*@dev` to get
+the current development version for the 2.x Pheanstalk API.
 
 Usage Example
 -------------
