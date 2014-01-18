@@ -13,47 +13,47 @@
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk_Command_KickJobCommand
-	extends Pheanstalk_Command_AbstractCommand
-	implements Pheanstalk_ResponseParser
+    extends Pheanstalk_Command_AbstractCommand
+    implements Pheanstalk_ResponseParser
 {
-	private $_job;
+    private $_job;
 
-	/**
-	 * @param Pheanstalk_Job $job Pheanstalk job
-	 */
-	public function __construct($job)
-	{
-		$this->_job = $job;
-	}
+    /**
+     * @param Pheanstalk_Job $job Pheanstalk job
+     */
+    public function __construct($job)
+    {
+        $this->_job = $job;
+    }
 
-	/* (non-phpdoc)
-	 * @see Pheanstalk_Command::getCommandLine()
-	 */
-	public function getCommandLine()
-	{
-		return 'kick-job '.$this->_job->getId();
-	}
+    /* (non-phpdoc)
+     * @see Pheanstalk_Command::getCommandLine()
+     */
+    public function getCommandLine()
+    {
+        return 'kick-job '.$this->_job->getId();
+    }
 
-	/* (non-phpdoc)
-	 * @see Pheanstalk_ResponseParser::parseRespose()
-	 */
-	public function parseResponse($responseLine, $responseData)
-	{
-		if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
-		{
-			throw new Pheanstalk_Exception_ServerException(sprintf(
-				'%s: Job %d does not exist or is not in a kickable state.',
-				$responseLine,
-				$this->_job->getId()
-			));
-		}
-		elseif ($responseLine == Pheanstalk_Response::RESPONSE_KICKED)
-		{
-			return $this->_createResponse(Pheanstalk_Response::RESPONSE_KICKED);
-		}
-		else
-		{
-			throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
-		}
-	}
+    /* (non-phpdoc)
+     * @see Pheanstalk_ResponseParser::parseRespose()
+     */
+    public function parseResponse($responseLine, $responseData)
+    {
+        if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
+        {
+            throw new Pheanstalk_Exception_ServerException(sprintf(
+                '%s: Job %d does not exist or is not in a kickable state.',
+                $responseLine,
+                $this->_job->getId()
+            ));
+        }
+        elseif ($responseLine == Pheanstalk_Response::RESPONSE_KICKED)
+        {
+            return $this->_createResponse(Pheanstalk_Response::RESPONSE_KICKED);
+        }
+        else
+        {
+            throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
+        }
+    }
 }
