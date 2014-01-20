@@ -114,7 +114,7 @@ Contributors
   * [Paul Annesley](https://github.com/pda)
   * [Lachlan Donald](https://github.com/lox)
   * [Joakim Bick](https://github.com/minimoe)
-  * [SlNPacifist](https://github.com/SlNPacifist)
+  * [Vyacheslav](https://github.com/SlNPacifist)
   * [leprechaun](https://github.com/leprechaun)
   * [Peter McArthur](https://github.com/ptrmcrthr)
   * [robbiehudson](https://github.com/robbiehudson)
