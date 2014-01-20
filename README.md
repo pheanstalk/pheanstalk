@@ -119,7 +119,7 @@ Contributors
   * [Peter McArthur](https://github.com/ptrmcrthr)
   * [robbiehudson](https://github.com/robbiehudson)
   * [Geoff Catlin](https://github.com/gcatlin)
-  * [srjlewis](https://github.com/srjlewis)
+  * [Steven Lewis](https://github.com/srjlewis)
   * [Lars Yencken](https://github.com/larsyencken)
   * [Josh Butts](https://github.com/jimbojsb)
   * [Henry Smith](https://github.com/h2s)
