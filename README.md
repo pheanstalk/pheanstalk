@@ -127,6 +127,7 @@ Contributors
   * [Graham Campbell](https://github.com/GrahamCampbell)
   * [Thomas Tourlourat](https://github.com/armetiz)
   * [Matthieu Napoli](https://github.com/mnapoli)
+  * [Christoph](https://github.com/xrstf)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
