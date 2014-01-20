@@ -125,6 +125,7 @@ Contributors
   * [Henry Smith](https://github.com/h2s)
   * [Javier Spagnoletti](https://github.com/phansys)
   * [Graham Campbell](https://github.com/GrahamCampbell)
+  * [Thomas Tourlourat](https://github.com/armetiz)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
