@@ -126,6 +126,7 @@ Contributors
   * [Javier Spagnoletti](https://github.com/phansys)
   * [Graham Campbell](https://github.com/GrahamCampbell)
   * [Thomas Tourlourat](https://github.com/armetiz)
+  * [Matthieu Napoli](https://github.com/mnapoli)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
