@@ -51,17 +51,17 @@ function build_pheanstalk_phar()
 
 function pheanstalk_phar_stub()
 {
-	$pheanstalkInit = BASE_DIR . '/pheanstalk_init.php';
-	printf("- Generating Phar stub based on %s\n", basename($pheanstalkInit));
-	$stub = file_get_contents($pheanstalkInit);
-	$stub = str_replace('<?php', '', $stub);
-	$stub = str_replace("dirname(__FILE__) . '/classes';", "'phar://' . __FILE__;", $stub);
-	return implode(array(
-		'<?php',
-		'Phar::mapPhar();',
-		$stub,
-		'__HALT_COMPILER();'
-	), PHP_EOL);
+    $pheanstalkInit = BASE_DIR . '/pheanstalk_init.php';
+    printf("- Generating Phar stub based on %s\n", basename($pheanstalkInit));
+    $stub = file_get_contents($pheanstalkInit);
+    $stub = str_replace('<?php', '', $stub);
+    $stub = str_replace("dirname(__FILE__) . '/classes';", "'phar://' . __FILE__;", $stub);
+    return implode(array(
+        '<?php',
+        'Phar::mapPhar();',
+        $stub,
+        '__HALT_COMPILER();'
+    ), PHP_EOL);
 }
 
 function verify_pheanstalk_phar()
