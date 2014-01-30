@@ -3,3 +3,5 @@ pheanstalk.phar
 
 composer.phar
 vendor/
+composer.lock
+bin

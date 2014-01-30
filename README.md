@@ -82,19 +82,16 @@ at 127.0.0.1:11300, which was previously opt-in via `--with-server`.
 Since porting to PHPUnit, all tests are run at once. Feel free to submit
 a pull request to rectify this.
 
+### Install composer dev dependencies
+
+    curl http://getcomposer.org/installer | php
+    php composer.phar install
+
+### Run phpunit tests
+
+    ./bin/phpunit
+
 ```
-# ensure you have PHPUnit
-$ sudo pear channel-discover pear.phpunit.de
-$ sudo pear channel-discover components.ez.no
-$ sudo pear channel-discover pear.symfony.com
-$ sudo pear install phpunit/PHPUnit
-$ hash -r
-
-# ensure you have Composer set up
-$ wget http://getcomposer.org/composer.phar
-$ php composer.phar install
-
-$ phpunit
 PHPUnit 3.7.10 by Sebastian Bergmann.
 
 Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist
