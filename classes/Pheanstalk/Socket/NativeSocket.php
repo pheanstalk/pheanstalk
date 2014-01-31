@@ -67,7 +67,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
     public function read($length)
     {
         $read = 0;
-        $parts = array();
+        $parts = '';
 
         while ($read < $length && !$this->_wrapper()->feof($this->_socket)) {
             $data = $this->_wrapper()
@@ -78,10 +78,10 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
             }
 
             $read += strlen($data);
-            $parts []= $data;
+            $parts .= $data;
         }
 
-        return implode($parts);
+        return $parts;
     }
 
     /* (non-phpdoc)
