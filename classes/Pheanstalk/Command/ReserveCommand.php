@@ -51,7 +51,7 @@ class Pheanstalk_Command_ReserveCommand
         list($code, $id) = explode(' ', $responseLine);
 
         return $this->_createResponse($code, array(
-            'id' => (int)$id,
+            'id' => (int) $id,
             'jobdata' => $responseData,
         ));
     }

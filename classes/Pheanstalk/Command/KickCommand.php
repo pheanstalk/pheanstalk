@@ -21,7 +21,7 @@ class Pheanstalk_Command_KickCommand
      */
     public function __construct($max)
     {
-        $this->_max = (int)$max;
+        $this->_max = (int) $max;
     }
 
     /* (non-phpdoc)
@@ -40,7 +40,7 @@ class Pheanstalk_Command_KickCommand
         list($code, $count) = explode(' ', $responseLine);
 
         return $this->_createResponse($code, array(
-            'kicked' => (int)$count,
+            'kicked' => (int) $count,
         ));
     }
 }

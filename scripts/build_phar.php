@@ -56,6 +56,7 @@ function pheanstalk_phar_stub()
     $stub = file_get_contents($pheanstalkInit);
     $stub = str_replace('<?php', '', $stub);
     $stub = str_replace("dirname(__FILE__) . '/classes';", "'phar://' . __FILE__;", $stub);
+
     return implode(array(
         '<?php',
         'Phar::mapPhar();',

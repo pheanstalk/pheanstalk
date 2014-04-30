@@ -20,10 +20,10 @@ class Pheanstalk_Command_PutCommand
 
     /**
      * Puts a job on the queue
-     * @param string $data The job data
-     * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
-     * @param int $delay Seconds to wait before job becomes ready
-     * @param int $ttr Time To Run: seconds a job can be reserved for
+     * @param string $data     The job data
+     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
+     * @param int    $delay    Seconds to wait before job becomes ready
+     * @param int    $ttr      Time To Run: seconds a job can be reserved for
      */
     public function __construct($data, $priority, $delay, $ttr)
     {
@@ -82,7 +82,7 @@ class Pheanstalk_Command_PutCommand
     {
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
             return $this->_createResponse('INSERTED', array(
-                'id' => (int)$matches[1]
+                'id' => (int) $matches[1]
             ));
         } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
             throw new Pheanstalk_Exception(sprintf(

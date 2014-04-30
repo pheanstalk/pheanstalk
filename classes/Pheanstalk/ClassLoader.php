@@ -65,7 +65,7 @@ class Pheanstalk_ClassLoader
 
         set_include_path(implode(
             PATH_SEPARATOR,
-            array_unique(array_merge((array)$items, $elements))
+            array_unique(array_merge((array) $items, $elements))
         ));
     }
 }

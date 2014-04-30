@@ -23,8 +23,8 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 
     /**
      * @param string $host
-     * @param int $port
-     * @param int $connectTimeout
+     * @param int    $port
+     * @param int    $connectTimeout
      */
     public function __construct($host, $port, $connectTimeout)
     {

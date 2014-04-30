@@ -16,8 +16,8 @@ class Pheanstalk_Command_PauseTubeCommand
     private $_delay;
 
     /**
-     * @param string $tube The tube to pause
-     * @param int $delay Seconds before jobs may be reserved from this queue.
+     * @param string $tube  The tube to pause
+     * @param int    $delay Seconds before jobs may be reserved from this queue.
      */
     public function __construct($tube, $delay)
     {

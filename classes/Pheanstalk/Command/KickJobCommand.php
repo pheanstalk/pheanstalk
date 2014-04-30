@@ -39,20 +39,15 @@ class Pheanstalk_Command_KickJobCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND)
-        {
+        if ($responseLine == Pheanstalk_Response::RESPONSE_NOT_FOUND) {
             throw new Pheanstalk_Exception_ServerException(sprintf(
                 '%s: Job %d does not exist or is not in a kickable state.',
                 $responseLine,
                 $this->_job->getId()
             ));
-        }
-        elseif ($responseLine == Pheanstalk_Response::RESPONSE_KICKED)
-        {
+        } elseif ($responseLine == Pheanstalk_Response::RESPONSE_KICKED) {
             return $this->_createResponse(Pheanstalk_Response::RESPONSE_KICKED);
-        }
-        else
-        {
+        } else {
             throw new Pheanstalk_Exception('Unhandled response: '.$responseLine);
         }
     }

@@ -110,6 +110,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
         $job->expects($this->any())
             ->method('getId')
             ->will($this->returnValue($id));
+
         return $job;
     }
 

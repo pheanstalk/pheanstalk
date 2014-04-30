@@ -37,7 +37,7 @@ class Pheanstalk_Socket_WriteHistory
 
     public function hasWrites()
     {
-        return (bool)array_sum($this->_data);
+        return (bool) array_sum($this->_data);
     }
 
     public function isFullWithNoWrites()
@@ -55,7 +55,7 @@ class Pheanstalk_Socket_WriteHistory
             array_shift($this->_data);
         }
 
-        $this->_data[] = (int)$write;
+        $this->_data[] = (int) $write;
 
         return $write;
     }

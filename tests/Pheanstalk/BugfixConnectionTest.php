@@ -80,4 +80,3 @@ class Pheanstalk_BugfixConnectionTest extends PHPUnit_Framework_TestCase
         return $pheanstalk;
     }
 }
-

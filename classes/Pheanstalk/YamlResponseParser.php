@@ -71,7 +71,7 @@ class Pheanstalk_YamlResponseParser
 
     /**
      * Callback for array_map to process YAML lines.
-     * @param string $line
+     * @param  string $line
      * @return string
      */
     private function _mapYamlList($line)

@@ -17,9 +17,9 @@ class Pheanstalk_Command_ReleaseCommand
     private $_delay;
 
     /**
-     * @param object $job Pheanstalk_Job
-     * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
-     * @param int $delay Seconds to wait before job becomes ready
+     * @param object $job      Pheanstalk_Job
+     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
+     * @param int    $delay    Seconds to wait before job becomes ready
      */
     public function __construct($job, $priority, $delay)
     {

@@ -286,7 +286,7 @@ class Pheanstalk_CommandTest extends PHPUnit_Framework_TestCase
 
     /**
      * @param Pheanstalk_Response $response
-     * @param string $expectName
+     * @param string              $expectName
      */
     private function _assertResponse($response, $expectName, $data = array())
     {

@@ -21,8 +21,8 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
 
     /**
      * @param string $host
-     * @param int $port
-     * @param int $connectTimeout
+     * @param int    $port
+     * @param int    $connectTimeout
      */
     public function __construct($host, $port = Pheanstalk_PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null)
     {
@@ -35,6 +35,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function setConnection(Pheanstalk_Connection $connection)
     {
         $this->_connection = $connection;
+
         return $this;
     }
 
@@ -62,6 +63,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function delete($job)
     {
         $this->_dispatch(new Pheanstalk_Command_DeleteCommand($job));
+
         return $this;
     }
 
@@ -74,6 +76,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             $this->_dispatch(new Pheanstalk_Command_IgnoreCommand($tube));
             unset($this->_watching[$tube]);
         }
+
         return $this;
     }
 
@@ -83,6 +86,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function kick($max)
     {
         $response = $this->_dispatch(new Pheanstalk_Command_KickCommand($max));
+
         return $response['kicked'];
     }
 
@@ -92,6 +96,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function kickJob($job)
     {
         $this->_dispatch(new Pheanstalk_Command_KickJobCommand($job));
+
         return $this;
     }
 
@@ -141,6 +146,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function pauseTube($tube, $delay)
     {
         $this->_dispatch(new Pheanstalk_Command_PauseTubeCommand($tube, $delay));
+
         return $this;
     }
 
@@ -280,6 +286,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function reserveFromTube($tube, $timeout = null)
     {
         $this->watchOnly($tube);
+
         return $this->reserve($timeout);
     }
 
@@ -313,6 +320,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
     public function touch($job)
     {
         $this->_dispatch(new Pheanstalk_Command_TouchCommand($job));
+
         return $this;
     }
 
@@ -325,6 +333,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             $this->_dispatch(new Pheanstalk_Command_UseCommand($tube));
             $this->_using = $tube;
         }
+
         return $this;
     }
 
@@ -337,6 +346,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
             $this->_dispatch(new Pheanstalk_Command_WatchCommand($tube));
             $this->_watching[$tube] = true;
         }
+
         return $this;
     }
 
@@ -363,7 +373,7 @@ class Pheanstalk_Pheanstalk implements Pheanstalk_PheanstalkInterface
      * If a SocketException occurs, the connection is reset, and the command is
      * re-attempted once.
      *
-     * @param Pheanstalk_Command $command
+     * @param  Pheanstalk_Command  $command
      * @return Pheanstalk_Response
      */
     private function _dispatch($command)

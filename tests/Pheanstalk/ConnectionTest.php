@@ -83,4 +83,3 @@ class Pheanstalk_ConnectionTest extends PHPUnit_Framework_TestCase
         return new Pheanstalk_Connection(self::SERVER_HOST, self::SERVER_PORT);
     }
 }
-

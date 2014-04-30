@@ -15,7 +15,7 @@ class Pheanstalk_Response_ArrayResponse
 
     /**
      * @param string $name
-     * @param array $data
+     * @param array  $data
      */
     public function __construct($name, $data)
     {
@@ -37,6 +37,7 @@ class Pheanstalk_Response_ArrayResponse
     public function __get($property)
     {
         $key = $this->_transformPropertyName($property);
+
         return isset($this[$key]) ? $this[$key] : null;
     }
 
@@ -46,6 +47,7 @@ class Pheanstalk_Response_ArrayResponse
     public function __isset($property)
     {
         $key = $this->_transformPropertyName($property);
+
         return isset($this[$key]);
     }
 

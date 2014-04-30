@@ -37,7 +37,7 @@ class Pheanstalk_Command_IgnoreCommand
     {
         if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches)) {
             return $this->_createResponse('WATCHING', array(
-                'count' => (int)$matches[1]
+                'count' => (int) $matches[1]
             ));
         } elseif ($responseLine == Pheanstalk_Response::RESPONSE_NOT_IGNORED) {
             throw new Pheanstalk_Exception_ServerException($responseLine .

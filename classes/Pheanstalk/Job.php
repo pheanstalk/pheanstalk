@@ -18,12 +18,12 @@ class Pheanstalk_Job
     private $_data;
 
     /**
-     * @param int $id The job ID
+     * @param int    $id   The job ID
      * @param string $data The job data
      */
     public function __construct($id, $data)
     {
-        $this->_id = (int)$id;
+        $this->_id = (int) $id;
         $this->_data = $data;
     }
 

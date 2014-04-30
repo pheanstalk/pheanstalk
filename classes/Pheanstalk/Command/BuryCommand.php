@@ -16,8 +16,8 @@ class Pheanstalk_Command_BuryCommand
     private $_priority;
 
     /**
-     * @param object $job Pheanstalk_Job
-     * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
+     * @param object $job      Pheanstalk_Job
+     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      */
     public function __construct($job, $priority)
     {

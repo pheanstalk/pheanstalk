@@ -11,7 +11,7 @@ class Pheanstalk_Exception_ConnectionException
     extends Pheanstalk_Exception_ClientException
 {
     /**
-     * @param int $errno The connection error code
+     * @param int    $errno  The connection error code
      * @param string $errstr The connection error message
      */
     public function __construct($errno, $errstr)

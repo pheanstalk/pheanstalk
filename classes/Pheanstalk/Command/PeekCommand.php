@@ -79,7 +79,7 @@ class Pheanstalk_Command_PeekCommand
             return $this->_createResponse(
                 Pheanstalk_Response::RESPONSE_FOUND,
                 array(
-                    'id' => (int)$matches[1],
+                    'id' => (int) $matches[1],
                     'jobdata' => $responseData,
                 )
             );

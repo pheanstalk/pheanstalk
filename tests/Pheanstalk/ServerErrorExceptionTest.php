@@ -32,6 +32,7 @@ class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
 
         $connection = new Pheanstalk_Connection(null, null);
         $connection->setSocket($socket);
+
         return $connection;
     }
 

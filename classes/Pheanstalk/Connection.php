@@ -36,8 +36,8 @@ class Pheanstalk_Connection
 
     /**
      * @param string $hostname
-     * @param int $port
-     * @param float $connectTimeout
+     * @param int    $port
+     * @param float  $connectTimeout
      */
     public function __construct($hostname, $port, $connectTimeout = null)
     {
@@ -59,12 +59,13 @@ class Pheanstalk_Connection
     public function setSocket(Pheanstalk_Socket $socket)
     {
         $this->_socket = $socket;
+
         return $this;
     }
 
     /**
-     * @param object $command Pheanstalk_Command
-     * @return object Pheanstalk_Response
+     * @param  object                               $command Pheanstalk_Command
+     * @return object                               Pheanstalk_Response
      * @throws Pheanstalk_Exception_ClientException
      */
     public function dispatchCommand($command)
@@ -176,6 +177,7 @@ class Pheanstalk_Connection
     {
         try {
             $this->_getSocket();
+
             return true;
         } catch (Pheanstalk_Exception_ConnectionException $e) {
             return false;

@@ -390,4 +390,3 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         return new Pheanstalk_Pheanstalk(self::SERVER_HOST);
     }
 }
-
