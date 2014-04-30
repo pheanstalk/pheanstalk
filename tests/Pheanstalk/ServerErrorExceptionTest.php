@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk;
+
 /**
  * Tests exceptions thrown to represent non-command-specific error responses.
  *
@@ -7,22 +9,22 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
+class ServerErrorExceptionTest extends \PHPUnit_Framework_TestCase
 {
     private $_command;
 
     public function setUp()
     {
-        $this->_command = new Pheanstalk_Command_UseCommand('tube5');
+        $this->_command = new Command\UseCommand('tube5');
     }
 
     /**
      * A connection with a mock socket, configured to return the given line.
-     * @return Pheanstalk_Connection
+     * @return Connection
      */
     private function _connection($line)
     {
-        $socket = $this->getMockBuilder('Pheanstalk_Socket')
+        $socket = $this->getMockBuilder('\Pheanstalk\Socket')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -30,14 +32,14 @@ class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
             ->method('getLine')
             ->will($this->returnValue($line));
 
-        $connection = new Pheanstalk_Connection(null, null);
+        $connection = new Connection(null, null);
         $connection->setSocket($socket);
 
         return $connection;
     }
 
     /**
-     * @expectedException Pheanstalk_Exception_ServerOutOfMemoryException
+     * @expectedException \Pheanstalk\Exception\ServerOutOfMemoryException
      */
     public function testCommandsHandleOutOfMemory()
     {
@@ -45,7 +47,7 @@ class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Pheanstalk_Exception_ServerInternalErrorException
+     * @expectedException \Pheanstalk\Exception\ServerInternalErrorException
      */
     public function testCommandsHandleInternalError()
     {
@@ -53,7 +55,7 @@ class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Pheanstalk_Exception_ServerDrainingException
+     * @expectedException \Pheanstalk\Exception\ServerDrainingException
      */
     public function testCommandsHandleDraining()
     {
@@ -61,7 +63,7 @@ class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Pheanstalk_Exception_ServerBadFormatException
+     * @expectedException \Pheanstalk\Exception\ServerBadFormatException
      */
     public function testCommandsHandleBadFormat()
     {
@@ -69,7 +71,7 @@ class Pheanstalk_ServerErrorExceptionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Pheanstalk_Exception_ServerUnknownCommandException
+     * @expectedException \Pheanstalk\Exception\ServerUnknownCommandException
      */
     public function testCommandsHandleUnknownCommand()
     {

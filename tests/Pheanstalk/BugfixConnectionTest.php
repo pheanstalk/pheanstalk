@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk;
+
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
  * an existing category of tests.
@@ -10,7 +12,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_BugfixConnectionTest extends PHPUnit_Framework_TestCase
+class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
 {
     const SERVER_HOST = 'localhost';
 
@@ -57,7 +59,7 @@ class Pheanstalk_BugfixConnectionTest extends PHPUnit_Framework_TestCase
 
     private function _createPheanstalk()
     {
-        $pheanstalk = new Pheanstalk_Pheanstalk(self::SERVER_HOST);
+        $pheanstalk = new Pheanstalk(self::SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));
 
         $pheanstalk
@@ -68,13 +70,13 @@ class Pheanstalk_BugfixConnectionTest extends PHPUnit_Framework_TestCase
         try {
             while ($pheanstalk->delete($pheanstalk->peekDelayed())) {
             }
-        } catch (Pheanstalk_Exception_ServerException $e) {
+        } catch (Exception\ServerException $e) {
         }
 
         try {
             while ($pheanstalk->delete($pheanstalk->peekReady())) {
             }
-        } catch (Pheanstalk_Exception_ServerException $e) {
+        } catch (Exception\ServerException $e) {
         }
 
         return $pheanstalk;

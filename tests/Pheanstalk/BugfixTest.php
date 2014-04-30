@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk;
+
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
  * an existing category of tests.
@@ -10,7 +12,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_BugfixTest extends PHPUnit_Framework_TestCase
+class BugfixTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Issue: Stats() Command fails if Version isn't set
@@ -21,11 +23,11 @@ class Pheanstalk_BugfixTest extends PHPUnit_Framework_TestCase
         // missing version number
         $data = "---\r\npid: 123\r\nversion: \r\nkey: value\r\n";
 
-        $command = new Pheanstalk_Command_StatsCommand();
+        $command = new Command\StatsCommand();
 
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
-            Pheanstalk_Response::RESPONSE_OK,
+            Response::RESPONSE_OK,
             array('pid' => '123', 'version' => '', 'key' => 'value')
         );
     }
@@ -34,8 +36,8 @@ class Pheanstalk_BugfixTest extends PHPUnit_Framework_TestCase
     // private
 
     /**
-     * @param Pheanstalk_Response $response
-     * @param string              $expectName
+     * @param Response $response
+     * @param string   $expectName
      */
     private function _assertResponse($response, $expectName, $data = array())
     {
