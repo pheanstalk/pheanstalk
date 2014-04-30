@@ -1,3 +1,8 @@
 pheanstalk.phar
 
+# Composer lock file; do not commit, this is a library not an app.
+# See: http://yehudakatz.com/2010/12/16/clarifying-the-roles-of-the-gemspec-and-gemfile/
+/composer.lock
+
+# Composer installs dependencies here.
 vendor/
