@@ -83,28 +83,24 @@ Since porting to PHPUnit, all tests are run at once. Feel free to submit
 a pull request to rectify this.
 
 ```
-# ensure you have PHPUnit
-$ sudo pear channel-discover pear.phpunit.de
-$ sudo pear channel-discover components.ez.no
-$ sudo pear channel-discover pear.symfony.com
-$ sudo pear install phpunit/PHPUnit
-$ hash -r
-
 # ensure you have Composer set up
 $ wget http://getcomposer.org/composer.phar
 $ php composer.phar install
 
-$ phpunit
-PHPUnit 3.7.10 by Sebastian Bergmann.
+# ensure you have PHPUnit
+$ composer install --dev
+
+$ ./vendor/bin/phpunit
+PHPUnit 4.0.19 by Sebastian Bergmann.
 
 Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist
 
-................................................................. 65 / 79 ( 82%)
-..............
+................................................................. 65 / 83 ( 78%)
+..................
 
-Time: 0 seconds, Memory: 8.75Mb
+Time: 239 ms, Memory: 6.00Mb
 
-OK (79 tests, 387 assertions)
+OK (83 tests, 378 assertions)
 ```
 
 
