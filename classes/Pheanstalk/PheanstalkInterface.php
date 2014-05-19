@@ -24,6 +24,16 @@ interface Pheanstalk_PheanstalkInterface
     // ----------------------------------------
 
     /**
+     * Transformer to use when data is stored and retrieved
+     *
+     * @param Pheanstalk_TransformerInterface $transformer
+     * @chainable
+     */
+    public function setTransformer(Pheanstalk_TransformerInterface $transformer);
+
+    // ----------------------------------------
+
+    /**
      * Puts a job into a 'buried' state, revived only by 'kick' command.
      *
      * @param  Pheanstalk_Job $job
