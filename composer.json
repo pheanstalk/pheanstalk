@@ -20,13 +20,13 @@
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
-        "psr-0": {
-            "Pheanstalk": "classes/"
+        "psr-4": {
+            "Pheanstalk\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "3.x-dev"
         }
     }
 }

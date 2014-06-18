@@ -1,5 +1,7 @@
 <?php
 
+namespace Pheanstalk;
+
 /**
  * Tests the Pheanstalk facade (the base class).
  * Relies on a running beanstalkd server.
@@ -8,7 +10,7 @@
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
+class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 {
     const SERVER_HOST = 'localhost';
 
@@ -17,7 +19,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         // Examples: 1.0.0, 2.0.0, 2.0.0-rc1
         $this->assertRegExp(
             '/\d+\.\d+\.\d+(?:-\w+)?/',
-            Pheanstalk_Pheanstalk::VERSION
+            Pheanstalk::VERSION
         );
     }
 
@@ -54,7 +56,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Pheanstalk_Exception
+     * @expectedException \Pheanstalk\Exception
      */
     public function testIgnoreLastTube()
     {
@@ -74,7 +76,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
 
-        $this->assertInstanceOf('Pheanstalk_Job', $job);
+        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // delete the reserved job
         $pheanstalk->delete($job);
@@ -87,7 +89,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         // reserve a job from an unwatched tube - can't assume it is the one just added
         $job = $pheanstalk->reserveFromTube('test');
 
-        $this->assertInstanceOf('Pheanstalk_Job', $job);
+        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // delete the reserved job
         $pheanstalk->delete($job);
@@ -113,7 +115,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
 
-        $this->assertInstanceOf('Pheanstalk_Job', $job);
+        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // bury the reserved job
         $pheanstalk->bury($job);
@@ -127,7 +129,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Pheanstalk_Exception
+     * @expectedException \Pheanstalk\Exception
      */
     public function testPutJobTooBig()
     {
@@ -278,9 +280,9 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($stats->id, $id);
         $this->assertEquals($stats->tube, 'teststatsjob');
         $this->assertEquals($stats->state, 'ready');
-        $this->assertEquals($stats->pri, Pheanstalk_Pheanstalk::DEFAULT_PRIORITY);
-        $this->assertEquals($stats->delay, Pheanstalk_Pheanstalk::DEFAULT_DELAY);
-        $this->assertEquals($stats->ttr, Pheanstalk_Pheanstalk::DEFAULT_TTR);
+        $this->assertEquals($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
+        $this->assertEquals($stats->delay, Pheanstalk::DEFAULT_DELAY);
+        $this->assertEquals($stats->ttr, Pheanstalk::DEFAULT_TTR);
         $this->assertEquals($stats->timeouts, 0);
         $this->assertEquals($stats->releases, 0);
         $this->assertEquals($stats->buries, 0);
@@ -305,9 +307,9 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($stats->id, $job->getId());
         $this->assertEquals($stats->tube, 'teststatsjobwithjobobject');
         $this->assertEquals($stats->state, 'reserved');
-        $this->assertEquals($stats->pri, Pheanstalk_Pheanstalk::DEFAULT_PRIORITY);
-        $this->assertEquals($stats->delay, Pheanstalk_Pheanstalk::DEFAULT_DELAY);
-        $this->assertEquals($stats->ttr, Pheanstalk_Pheanstalk::DEFAULT_TTR);
+        $this->assertEquals($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
+        $this->assertEquals($stats->delay, Pheanstalk::DEFAULT_DELAY);
+        $this->assertEquals($stats->ttr, Pheanstalk::DEFAULT_TTR);
         $this->assertEquals($stats->timeouts, 0);
         $this->assertEquals($stats->releases, 0);
         $this->assertEquals($stats->buries, 0);
@@ -367,7 +369,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
     {
         $facade = $this->_getFacade();
 
-        $connection = $this->getMockBuilder('Pheanstalk_Connection')
+        $connection = $this->getMockBuilder('\Pheanstalk\Connection')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -379,7 +381,7 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
     {
         $facade = $this->_getFacade();
 
-        $this->assertInstanceOf('Pheanstalk_PheanstalkInterface', $facade);
+        $this->assertInstanceOf('\Pheanstalk\PheanstalkInterface', $facade);
     }
 
     // ----------------------------------------
@@ -387,6 +389,6 @@ class Pheanstalk_FacadeConnectionTest extends PHPUnit_Framework_TestCase
 
     private function _getFacade()
     {
-        return new Pheanstalk_Pheanstalk(self::SERVER_HOST);
+        return new Pheanstalk(self::SERVER_HOST);
     }
 }

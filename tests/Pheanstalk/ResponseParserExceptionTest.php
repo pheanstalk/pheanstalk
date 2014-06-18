@@ -1,18 +1,20 @@
 <?php
 
+namespace Pheanstalk;
+
 /**
- * Tests exceptions thrown by Pheanstalk_ResponseParser implementations.
+ * Tests exceptions thrown by ResponseParser implementations.
  *
  * @author Paul Annesley
  * @package Pheanstalk
  * @licence http://www.opensource.org/licenses/mit-license.php
  */
-class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
+class ResponseParserExceptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testDeleteNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_DeleteCommand($this->_mockJob(5)),
+            new Command\DeleteCommand($this->_mockJob(5)),
             'NOT_FOUND'
         );
     }
@@ -20,7 +22,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testReleaseBuried()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_ReleaseCommand($this->_mockJob(5), 1, 0),
+            new Command\ReleaseCommand($this->_mockJob(5), 1, 0),
             'BURIED'
         );
     }
@@ -28,7 +30,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testReleaseNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_ReleaseCommand($this->_mockJob(5), 1, 0),
+            new Command\ReleaseCommand($this->_mockJob(5), 1, 0),
             'NOT_FOUND'
         );
     }
@@ -36,7 +38,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testBuryNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_BuryCommand($this->_mockJob(5), 1),
+            new Command\BuryCommand($this->_mockJob(5), 1),
             'NOT_FOUND'
         );
     }
@@ -44,7 +46,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testIgnoreNotIgnored()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_IgnoreCommand('test'),
+            new Command\IgnoreCommand('test'),
             'NOT_IGNORED'
         );
     }
@@ -52,7 +54,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testTouchNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_TouchCommand($this->_mockJob(5)),
+            new Command\TouchCommand($this->_mockJob(5)),
             'NOT_FOUND'
         );
     }
@@ -60,23 +62,23 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testPeekNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_PeekCommand(5),
+            new Command\PeekCommand(5),
             'NOT_FOUND'
         );
     }
 
     /**
-     * @expectedException Pheanstalk_Exception_CommandException
+     * @expectedException \Pheanstalk\Exception\CommandException
      */
     public function testPeekInvalidSubject()
     {
-        new Pheanstalk_Command_PeekCommand('invalid');
+        new Command\PeekCommand('invalid');
     }
 
     public function testYamlResponseParserNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_YamlResponseParser(Pheanstalk_YamlResponseParser::MODE_DICT),
+            new YamlResponseParser(YamlResponseParser::MODE_DICT),
             'NOT_FOUND'
         );
     }
@@ -84,7 +86,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testPauseTubeNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Pheanstalk_Command_PauseTubeCommand('not-a-tube', 1),
+            new Command\PauseTubeCommand('not-a-tube', 1),
             'NOT_FOUND'
         );
     }
@@ -92,7 +94,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     public function testPutUnhandledResponse()
     {
         $this->_expectExceptionForResponse(
-            new Pheanstalk_Command_PutCommand('data', 0, 0, 0),
+            new Command\PutCommand('data', 0, 0, 0),
             'unhandled response'
         );
     }
@@ -104,7 +106,7 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
      */
     private function _mockJob($id)
     {
-        $job = $this->getMockBuilder('Pheanstalk_Job')
+        $job = $this->getMockBuilder('\Pheanstalk\Job')
             ->disableOriginalConstructor()
             ->getMock();
         $job->expects($this->any())
@@ -115,23 +117,23 @@ class Pheanstalk_ResponseParserExceptionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param Pheanstalk_Command
+     * @param Command
      * @param string the response line to parse.
      * @param string the type of exception to expect.
      */
-    private function _expectExceptionForResponse($command, $response, $type = 'Pheanstalk_Exception')
+    private function _expectExceptionForResponse($command, $response, $type = '\Pheanstalk\Exception')
     {
         $this->setExpectedException($type);
         $command->parseResponse($response, null);
     }
 
     /**
-     * @param Pheanstalk_Command
+     * @param Command
      * @param string the response line to parse.
      */
     private function _expectServerExceptionForResponse($command, $response)
     {
         $this->_expectExceptionForResponse($command, $response,
-            'Pheanstalk_Exception_ServerException');
+            '\Pheanstalk\Exception\ServerException');
     }
 }
