@@ -13,13 +13,8 @@ before_install:
   - sudo beanstalkd -d -l 127.0.0.1 -p 11300
 
 before_script:
-  - composer self-update
-  - composer install --no-interaction --prefer-source --dev
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
   - phpunit --configuration phpunit.xml.dist
-
-matrix:
-  allow_failures:
-    - php: hhvm
-  fast_finish: true
