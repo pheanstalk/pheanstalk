@@ -26,9 +26,9 @@ class Pheanstalk implements PheanstalkInterface
      * @param int    $port
      * @param int    $connectTimeout
      */
-    public function __construct($host, $port = PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null)
+    public function __construct($host, $port = PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null, $connectPersistent = false)
     {
-        $this->setConnection(new Connection($host, $port, $connectTimeout));
+        $this->setConnection(new Connection($host, $port, $connectTimeout, $connectPersistent));
     }
 
     /**

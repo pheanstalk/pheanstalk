@@ -31,10 +31,10 @@ class NativeSocket implements Socket
      * @param int    $port
      * @param int    $connectTimeout
      */
-    public function __construct($host, $port, $connectTimeout)
+    public function __construct($host, $port, $connectTimeout, $connectPersistent)
     {
         $this->_socket = $this->_wrapper()
-            ->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
+            ->fsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
 
         if (!$this->_socket) {
             throw new Exception\ConnectionException($errno, $errstr . " (connecting to $host:$port)");

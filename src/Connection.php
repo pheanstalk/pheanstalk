@@ -37,13 +37,14 @@ class Connection
     private $_hostname;
     private $_port;
     private $_connectTimeout;
+    private $_connectPersistent;
 
     /**
      * @param string $hostname
      * @param int    $port
      * @param float  $connectTimeout
      */
-    public function __construct($hostname, $port, $connectTimeout = null)
+    public function __construct($hostname, $port, $connectTimeout = null, $connectPersistent = false)
     {
         if (is_null($connectTimeout) || !is_numeric($connectTimeout)) {
             $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
@@ -52,6 +53,7 @@ class Connection
         $this->_hostname = $hostname;
         $this->_port = $port;
         $this->_connectTimeout = $connectTimeout;
+        $this->_connectPersistent = $connectPersistent;
     }
 
     /**
@@ -165,7 +167,8 @@ class Connection
             $this->_socket = new NativeSocket(
                 $this->_hostname,
                 $this->_port,
-                $this->_connectTimeout
+                $this->_connectTimeout,
+                $this->_connectPersistent
             );
         }
 

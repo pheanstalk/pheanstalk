@@ -17,6 +17,7 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
     const DEFAULT_HOST = 'localhost';
     const DEFAULT_PORT = 11300;
     const DEFAULT_CONNECTION_TIMEOUT = 0;
+    const DEFAULT_PERSISTENT_CONNECTION = false;
 
     private $_streamFunctions;
 
@@ -55,7 +56,8 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
         $socket = new NativeSocket(
             self::DEFAULT_HOST,
             self::DEFAULT_HOST,
-            self::DEFAULT_CONNECTION_TIMEOUT
+            self::DEFAULT_CONNECTION_TIMEOUT,
+            self::DEFAULT_PERSISTENT_CONNECTION
         );
         $socket->write('data');
     }
@@ -70,7 +72,7 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
              ->method('fread')
              ->will($this->returnValue(false));
 
-        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT);
+        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
         $socket->read(1);
     }
 }

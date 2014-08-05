@@ -68,11 +68,13 @@ class StreamFunctions
         return fread($handle, $length);
     }
 
-    public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null)
+    public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null, $persistent = false)
     {
-        // Warnings (e.g. connection refused) suppressed;
-        // return value, $errno and $errstr should be checked instead.
-        return @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+        if ($persistent) {
+            return @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
+        } else {
+            return @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+        }
     }
 
     public function fwrite($handle, $string, $length = null)
