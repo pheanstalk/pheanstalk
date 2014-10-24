@@ -72,7 +72,7 @@ class NativeSocket implements Socket
     public function read($length)
     {
         $read = 0;
-        $parts = array();
+        $complete = "";
 
         while ($read < $length && !$this->_wrapper()->feof($this->_socket)) {
             $data = $this->_wrapper()
@@ -83,10 +83,10 @@ class NativeSocket implements Socket
             }
 
             $read += strlen($data);
-            $parts []= $data;
+			$complete .= $data;
         }
 
-        return implode($parts);
+        return $complete;
     }
 
     /* (non-phpdoc)
