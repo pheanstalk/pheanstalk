@@ -25,19 +25,12 @@ implemented.
 Installation with Composer
 -------------
 
-Declare pheanstalk as a dependency in your projects `composer.json` file:
+Install pheanstalk as a dependency with composer:
 
-``` json
-{
-  "require": {
-    "pda/pheanstalk": "$VERSION"
-  }
-}
+```bash
+composer require pda/pheanstalk
 ```
 
-Replace `$VERSION` with one of the stable versions available on
-[Packagist](https://packagist.org/packages/pda/pheanstalk) or `2.*@dev` to get
-the current development version for the 2.x Pheanstalk API.
 
 Usage Example
 -------------
