@@ -155,6 +155,17 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritDoc}
      */
+    public function resumeTube($tube)
+    {
+        // Pause a tube with zero delay will resume the tube
+        $this->pauseTube($tube, 0);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function peek($jobId)
     {
         $response = $this->_dispatch(
