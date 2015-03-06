@@ -112,6 +112,14 @@ interface PheanstalkInterface
     public function pauseTube($tube, $delay);
 
     /**
+     * Resume jobs for a given paused tube.
+     *
+     * @param string $tube The tube to resume
+     * @chainable
+     */
+    public function resumeTube($tube);
+
+    /**
      * Inspect a job in the system, regardless of what tube it is in.
      *
      * @param  int    $jobId
