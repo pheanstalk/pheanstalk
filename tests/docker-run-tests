@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eou pipefail
+
+beanstalkd &
+sleep 0.1
+
+/pheanstalk/vendor/bin/phpunit

@@ -1,0 +1,21 @@
+# Builds a Docker image for running pheanstalk tests.
+# Build should be initiated from main pheanstalk directory:
+#     docker build --file=tests/Dockerfile.test --tag=pheanstalk-test .
+# Run the tests against the build-in codebase:
+#     docker run pheanstalk-test
+# Run the tests against a mounted codebase:
+#     docker run --volume=/your/pheanstalk:/pheanstalk pheanstalk-test
+
+FROM php:5.6-cli
+
+# Build image; optimize for Docker build cache
+ADD tests/docker-builder /docker-builder
+RUN /docker-builder
+
+# Initialize app; little chance of Docker build cache.
+ADD . /pheanstalk
+RUN composer --working-dir=/pheanstalk install
+
+# Image configuration
+WORKDIR /pheanstalk
+CMD ["/pheanstalk/tests/docker-run-tests"]

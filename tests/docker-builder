@@ -1,0 +1,36 @@
+#!/bin/bash
+set -eou pipefail
+
+main() {
+  apt-setup
+  install-beanstalkd
+  install-php-zipfile-support
+  install-composer
+  apt-teardown
+}
+
+apt-setup() {
+  apt-get update
+}
+
+apt-teardown() {
+  # don't commit apt index to Docker layer
+  rm -r /var/lib/apt/lists/*
+}
+
+install-beanstalkd() {
+  apt-get -y install beanstalkd
+}
+
+install-php-zipfile-support() {
+  # PHP zip file support
+  apt-get -y install zlib1g-dev
+  docker-php-ext-install zip
+}
+
+install-composer() {
+  curl --silent --show-error https://getcomposer.org/installer |
+    php -- --install-dir=/usr/local/bin --filename=composer
+}
+
+main
