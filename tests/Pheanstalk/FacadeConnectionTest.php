@@ -358,11 +358,19 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
             ->ignore('default')
             ->put(__METHOD__);
 
+        // pause, expect no job from that queue
         $response = $pheanstalk
-            ->pauseTube($tube, 1)
+            ->pauseTube($tube, 60)
             ->reserve(0);
 
         $this->assertSame($response, false);
+
+        // resume, expect job
+        $response = $pheanstalk
+            ->resumeTube($tube)
+            ->reserve(0);
+
+        $this->assertSame($response->getData(), __METHOD__);
     }
 
     public function testGetConnection()
