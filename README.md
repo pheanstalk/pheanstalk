@@ -121,6 +121,9 @@ Contributors
   * [Thomas Tourlourat](https://github.com/armetiz)
   * [Matthieu Napoli](https://github.com/mnapoli)
   * [Christoph](https://github.com/xrstf)
+  * [James Hamilton](https://github.com/mrjameshamilton)
+  * [Hannes Van De Vreken](https://github.com/hannesvdvreken)
+  * [Yaniv Davidovitch](https://github.com/YanivD)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
