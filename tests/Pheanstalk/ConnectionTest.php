@@ -77,6 +77,23 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(__METHOD__, $job->getData());
     }
 
+    public function testDisconnect()
+    {
+        $connection = $this->_getConnection();
+
+        // initial connection
+        $connection->dispatchCommand(new Command\StatsCommand());
+        $this->assertTrue($connection->hasSocket());
+
+        // disconnect
+        $connection->disconnect();
+        $this->assertFalse($connection->hasSocket());
+
+        // auto-reconnect
+        $connection->dispatchCommand(new Command\StatsCommand());
+        $this->assertTrue($connection->hasSocket());
+    }
+
     // ----------------------------------------
     // private
 

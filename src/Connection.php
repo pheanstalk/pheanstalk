@@ -67,6 +67,21 @@ class Connection
         return $this;
     }
 
+    public function hasSocket()
+    {
+        return isset($this->_socket);
+    }
+
+    /**
+     * Disconnect the socket.
+     * Subsequent socket operations will create a new connection.
+     */
+    public function disconnect()
+    {
+        $this->_getSocket()->disconnect();
+        $this->_socket = null;
+    }
+
     /**
      * @param  object                    $command Command
      * @return object                    Response

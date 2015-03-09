@@ -84,6 +84,11 @@ class StreamFunctions
         }
     }
 
+    public function fclose($handle)
+    {
+        fclose($handle);
+    }
+
     public function stream_set_timeout($stream, $seconds, $microseconds = 0)
     {
         return stream_set_timeout($stream, $seconds, $microseconds);
