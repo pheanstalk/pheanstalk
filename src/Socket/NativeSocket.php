@@ -31,7 +31,7 @@ class NativeSocket implements Socket
      * @param int    $port
      * @param int    $connectTimeout
      */
-    public function __construct($host, $port, $connectTimeout)
+    public function __construct($host, $port, $connectTimeout, $socketTimeout)
     {
         $this->_socket = $this->_wrapper()
             ->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
@@ -40,8 +40,12 @@ class NativeSocket implements Socket
             throw new Exception\ConnectionException($errno, $errstr . " (connecting to $host:$port)");
         }
 
+        if (null === $socketTimeout) {
+            $socketTimeout = self::SOCKET_TIMEOUT;
+        }
+
         $this->_wrapper()
-            ->stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
+            ->stream_set_timeout($this->_socket, $socketTimeout);
     }
 
     /* (non-phpdoc)
@@ -94,15 +98,17 @@ class NativeSocket implements Socket
      */
     public function getLine($length = null)
     {
-        do {
-            $data = isset($length) ?
-                $this->_wrapper()->fgets($this->_socket, $length) :
-                $this->_wrapper()->fgets($this->_socket);
+        $data = isset($length) ?
+            $this->_wrapper()->fgets($this->_socket, $length) :
+            $this->_wrapper()->fgets($this->_socket);
 
-            if ($this->_wrapper()->feof($this->_socket)) {
-                throw new Exception\SocketException("Socket closed by server!");
-            }
-        } while ($data === false);
+        if ($this->_wrapper()->feof($this->_socket)) {
+            throw new Exception\SocketException("Socket closed by server!");
+        }
+
+        if ($data === false) {
+            throw new Exception\SocketException('fgets() returned false');
+        }
 
         return rtrim($data);
     }

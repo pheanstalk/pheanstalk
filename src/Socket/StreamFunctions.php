@@ -63,6 +63,11 @@ class StreamFunctions
         return fopen($filename, $mode);
     }
 
+    public function fclose($handle)
+    {
+        return fclose($handle);
+    }
+
     public function fread($handle, $length)
     {
         return fread($handle, $length);
