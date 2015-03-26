@@ -33,8 +33,13 @@ class NativeSocket implements Socket
      */
     public function __construct($host, $port, $connectTimeout, $connectPersistent)
     {
-        $this->_socket = $this->_wrapper()
-            ->fsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+        if ($connectPersistent) {
+            $this->_socket = $this->_wrapper()
+                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+        } else {
+            $this->_socket = $this->_wrapper()
+                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+        }
 
         if (!$this->_socket) {
             throw new Exception\ConnectionException($errno, $errstr . " (connecting to $host:$port)");

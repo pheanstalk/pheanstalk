@@ -68,13 +68,14 @@ class StreamFunctions
         return fread($handle, $length);
     }
 
-    public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null, $persistent = false)
+    public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null)
     {
-        if ($persistent) {
-            return @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
-        } else {
-            return @fsockopen($hostname, $port, $errno, $errstr, $timeout);
-        }
+        return @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+    }
+
+    public function pfsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null)
+    {
+        return @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
     }
 
     public function fwrite($handle, $string, $length = null)
