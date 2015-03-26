@@ -112,6 +112,11 @@ class NativeSocket implements Socket
         return rtrim($data);
     }
 
+    public function disconnect()
+    {
+        $this->_wrapper()->fclose($this->_socket);
+    }
+
     // ----------------------------------------
 
     /**
