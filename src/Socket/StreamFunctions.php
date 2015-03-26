@@ -70,9 +70,12 @@ class StreamFunctions
 
     public function fsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null)
     {
-        // Warnings (e.g. connection refused) suppressed;
-        // return value, $errno and $errstr should be checked instead.
         return @fsockopen($hostname, $port, $errno, $errstr, $timeout);
+    }
+
+    public function pfsockopen($hostname, $port = -1, &$errno = null, &$errstr = null, $timeout = null)
+    {
+        return @pfsockopen($hostname, $port, $errno, $errstr, $timeout);
     }
 
     public function fwrite($handle, $string, $length = null)

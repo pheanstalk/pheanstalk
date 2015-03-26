@@ -43,6 +43,24 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Pheanstalk\Response', $response);
     }
 
+    public function testPersistentConnection()
+    {
+        $timeout = null;
+        $persistent = true;
+
+        $connection = new Connection(
+            self::SERVER_HOST,
+            self::SERVER_PORT,
+            $timeout,
+            $persistent
+        );
+
+        $command = new Command\UseCommand('test');
+        $response = $connection->dispatchCommand($command);
+
+        $this->assertInstanceOf('\Pheanstalk\Response', $response);
+    }
+
     public function testConnectionResetIfSocketExceptionIsThrown()
     {
         $pheanstalk = new Pheanstalk(
