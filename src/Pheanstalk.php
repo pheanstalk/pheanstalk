@@ -17,9 +17,9 @@ class Pheanstalk implements PheanstalkInterface
 {
     const VERSION = '3.0.2';
 
-    private $_connection;
-    private $_using = PheanstalkInterface::DEFAULT_TUBE;
-    private $_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
+    protected $_connection;
+    protected $_using = PheanstalkInterface::DEFAULT_TUBE;
+    protected $_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
 
     /**
      * @param string $host
@@ -389,7 +389,7 @@ class Pheanstalk implements PheanstalkInterface
      * @param  Command  $command
      * @return Response
      */
-    private function _dispatch($command)
+    protected function _dispatch($command)
     {
         try {
             $response = $this->_connection->dispatchCommand($command);
@@ -405,7 +405,7 @@ class Pheanstalk implements PheanstalkInterface
      * Creates a new connection object, based on the existing connection object,
      * and re-establishes the used tube and watchlist.
      */
-    private function _reconnect()
+    protected function _reconnect()
     {
         $new_connection = new Connection(
             $this->_connection->getHost(),
@@ -414,7 +414,11 @@ class Pheanstalk implements PheanstalkInterface
         );
 
         $this->setConnection($new_connection);
+        $this->_restoreWachedTubes();
+    }
 
+    protected function _restoreWachedTubes()
+    {
         if ($this->_using != PheanstalkInterface::DEFAULT_TUBE) {
             $tube = $this->_using;
             $this->_using = null;
