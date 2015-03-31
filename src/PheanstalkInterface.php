@@ -11,21 +11,6 @@ interface PheanstalkInterface
     const DEFAULT_TUBE = 'default';
 
     /**
-     * @param Connection
-     * @chainable
-     */
-    public function setConnection(Connection $connection);
-
-    /**
-     * The internal connection object.
-     * Not required for general usage.
-     * @return Connection
-     */
-    public function getConnection();
-
-    // ----------------------------------------
-
-    /**
      * Puts a job into a 'buried' state, revived only by 'kick' command.
      *
      * @param  Job  $job
