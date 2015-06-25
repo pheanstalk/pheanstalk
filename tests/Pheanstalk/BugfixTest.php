@@ -10,7 +10,7 @@ namespace Pheanstalk;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class BugfixTest extends \PHPUnit_Framework_TestCase
 {
@@ -37,7 +37,8 @@ class BugfixTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param Response $response
-     * @param string   $expectName
+     * @param string $expectName
+     * @param array $data
      */
     private function _assertResponse($response, $expectName, $data = array())
     {

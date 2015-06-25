@@ -13,12 +13,15 @@ use Pheanstalk\ResponseParser;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class UseCommand
     extends AbstractCommand
     implements \Pheanstalk\ResponseParser
 {
+    /**
+     * @var string
+     */
     private $_tube;
 
     /**
@@ -38,7 +41,7 @@ class UseCommand
     }
 
     /* (non-phpdoc)
-     * @see ResponseParser::parseRespose()
+     * @see ResponseParser::parseResponse()
      */
     public function parseResponse($responseLine, $responseData)
     {

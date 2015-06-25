@@ -15,7 +15,7 @@ use Pheanstalk\Response;
  *
  * @author Matthieu Napoli
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class KickJobCommand
     extends AbstractCommand
@@ -40,7 +40,7 @@ class KickJobCommand
     }
 
     /* (non-phpdoc)
-     * @see ResponseParser::parseRespose()
+     * @see ResponseParser::parseResponse()
      */
     public function parseResponse($responseLine, $responseData)
     {

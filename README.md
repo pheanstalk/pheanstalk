@@ -127,7 +127,7 @@ Contributors
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 
-Licence
+License
 -------
 
 © Paul Annesley
