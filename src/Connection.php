@@ -61,9 +61,7 @@ class Connection
      * Sets a manually created socket, used for unit testing.
      *
      * @param Socket $socket
-     *
      * @return $this
-     * @chainable
      */
     public function setSocket(Socket $socket)
     {
