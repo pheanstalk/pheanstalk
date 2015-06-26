@@ -10,7 +10,7 @@ use Pheanstalk\YamlResponseParser;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class StatsJobCommand
     extends AbstractCommand
@@ -18,7 +18,7 @@ class StatsJobCommand
     private $_jobId;
 
     /**
-     * @param Job or int $job
+     * @param Job|int $job
      */
     public function __construct($job)
     {

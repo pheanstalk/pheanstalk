@@ -12,13 +12,14 @@ interface PheanstalkInterface
 
     /**
      * @param Connection
-     * @chainable
+     * @return $this
      */
     public function setConnection(Connection $connection);
 
     /**
      * The internal connection object.
      * Not required for general usage.
+     *
      * @return Connection
      */
     public function getConnection();
@@ -28,8 +29,8 @@ interface PheanstalkInterface
     /**
      * Puts a job into a 'buried' state, revived only by 'kick' command.
      *
-     * @param  Job  $job
-     * @return void
+     * @param  Job $job
+     * @param int $priority
      */
     public function bury($job, $priority = self::DEFAULT_PRIORITY);
 
@@ -37,7 +38,7 @@ interface PheanstalkInterface
      * Permanently deletes a job.
      *
      * @param object $job Job
-     * @chainable
+     * @return $this
      */
     public function delete($job);
 
@@ -48,7 +49,7 @@ interface PheanstalkInterface
      * cached watchlist.
      *
      * @param string $tube
-     * @chainable
+     * @return $this
      */
     public function ignore($tube);
 
@@ -68,7 +69,7 @@ interface PheanstalkInterface
      * ready queue of the the same tube where it currently belongs.
      *
      * @param Job $job Job
-     * @chainable
+     * @return $this
      */
     public function kickJob($job);
 
@@ -107,7 +108,7 @@ interface PheanstalkInterface
      *
      * @param string $tube  The tube to pause
      * @param int    $delay Seconds before jobs may be reserved from this queue.
-     * @chainable
+     * @return $this
      */
     public function pauseTube($tube, $delay);
 
@@ -115,7 +116,7 @@ interface PheanstalkInterface
      * Resume jobs for a given paused tube.
      *
      * @param string $tube The tube to resume
-     * @chainable
+     * @return $this
      */
     public function resumeTube($tube);
 
@@ -190,7 +191,7 @@ interface PheanstalkInterface
      * @param object $job      Job
      * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      * @param int    $delay    Seconds to wait before job becomes ready
-     * @chainable
+     * @return $this
      */
     public function release($job, $priority = self::DEFAULT_PRIORITY, $delay = self::DEFAULT_DELAY);
 
@@ -233,7 +234,7 @@ interface PheanstalkInterface
     /**
      * Gives statistical information about the specified job if it exists.
      *
-     * @param  Job or int $job
+     * @param  Job|int $job
      * @return object
      */
     public function statsJob($job);
@@ -262,7 +263,7 @@ interface PheanstalkInterface
      * (e.g. it may do this on DEADLINE_SOON).
      *
      * @param Job $job
-     * @chainable
+     * @return $this
      */
     public function touch($job);
 
@@ -274,7 +275,7 @@ interface PheanstalkInterface
      * specified tube.
      *
      * @param string $tube
-     * @chainable
+     * @return $this
      */
     public function useTube($tube);
 
@@ -285,7 +286,7 @@ interface PheanstalkInterface
      * specified tube.
      *
      * @param string $tube
-     * @chainable
+     * @return $this
      */
     public function watch($tube);
 
@@ -294,7 +295,7 @@ interface PheanstalkInterface
      * ignores any other tubes remaining on the watchlist.
      *
      * @param string $tube
-     * @chainable
+     * @return $this
      */
     public function watchOnly($tube);
 }

@@ -7,7 +7,7 @@ namespace Pheanstalk;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class CommandTest extends \PHPUnit_Framework_TestCase
 {
@@ -272,8 +272,9 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     // ----------------------------------------
 
     /**
-     * @param Command
+     * @param $command
      * @param string $expected
+     * @param bool $expectData
      */
     private function _assertCommandLine($command, $expected, $expectData = false)
     {
@@ -288,7 +289,8 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param Response $response
-     * @param string   $expectName
+     * @param string $expectName
+     * @param array $data
      */
     private function _assertResponse($response, $expectName, $data = array())
     {

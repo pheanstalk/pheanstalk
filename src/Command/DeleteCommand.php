@@ -11,7 +11,7 @@ use Pheanstalk\Response;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class DeleteCommand
     extends AbstractCommand
@@ -36,7 +36,7 @@ class DeleteCommand
     }
 
     /* (non-phpdoc)
-     * @see ResponseParser::parseRespose()
+     * @see ResponseParser::parseResponse()
      */
     public function parseResponse($responseLine, $responseData)
     {
