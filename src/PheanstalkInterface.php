@@ -28,8 +28,8 @@ interface PheanstalkInterface
     /**
      * Puts a job into a 'buried' state, revived only by 'kick' command.
      *
-     * @param  Job  $job
-     * @return void
+     * @param  Job $job
+     * @param int $priority
      */
     public function bury($job, $priority = self::DEFAULT_PRIORITY);
 
@@ -233,7 +233,7 @@ interface PheanstalkInterface
     /**
      * Gives statistical information about the specified job if it exists.
      *
-     * @param  Job or int $job
+     * @param  Job|int $job
      * @return object
      */
     public function statsJob($job);

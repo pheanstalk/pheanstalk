@@ -7,11 +7,11 @@ namespace Pheanstalk;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 interface Response
 {
-    // global error reponses
+    // global error responses
     const RESPONSE_OUT_OF_MEMORY = 'OUT_OF_MEMORY';
     const RESPONSE_INTERNAL_ERROR = 'INTERNAL_ERROR';
     const RESPONSE_DRAINING = 'DRAINING';

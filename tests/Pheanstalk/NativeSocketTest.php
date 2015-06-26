@@ -10,7 +10,7 @@ use Pheanstalk\Socket\StreamFunctions;
  *
  * @author SlNpacifist
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class NativeSocketTest extends \PHPUnit_Framework_TestCase
 {

@@ -9,7 +9,7 @@ use Pheanstalk\Response;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ArrayResponse
     extends \ArrayObject

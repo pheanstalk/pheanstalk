@@ -10,7 +10,7 @@ use Pheanstalk\YamlResponseParser;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class StatsCommand
     extends AbstractCommand

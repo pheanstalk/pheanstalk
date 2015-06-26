@@ -8,7 +8,7 @@ namespace Pheanstalk\Command;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class WatchCommand
     extends AbstractCommand
@@ -33,7 +33,7 @@ class WatchCommand
     }
 
     /* (non-phpdoc)
-     * @see ResponseParser::parseRespose()
+     * @see ResponseParser::parseResponse()
      */
     public function parseResponse($responseLine, $responseData)
     {

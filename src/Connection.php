@@ -9,7 +9,7 @@ use Pheanstalk\Socket\NativeSocket;
  *
  * @author Paul Annesley
  * @package Pheanstalk
- * @licence http://www.opensource.org/licenses/mit-license.php
+ * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Connection
 {
@@ -41,8 +41,9 @@ class Connection
 
     /**
      * @param string $hostname
-     * @param int    $port
-     * @param float  $connectTimeout
+     * @param int $port
+     * @param float $connectTimeout
+     * @param bool $connectPersistent
      */
     public function __construct($hostname, $port, $connectTimeout = null, $connectPersistent = false)
     {
@@ -60,6 +61,8 @@ class Connection
      * Sets a manually created socket, used for unit testing.
      *
      * @param Socket $socket
+     *
+     * @return $this
      * @chainable
      */
     public function setSocket(Socket $socket)
@@ -69,6 +72,9 @@ class Connection
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function hasSocket()
     {
         return isset($this->_socket);
