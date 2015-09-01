@@ -47,7 +47,7 @@ class ReserveCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if (in_array($responseLine, array(Response::RESPONSE_DEADLINE_SOON, Response::RESPONSE_TIMED_OUT), true) {
+        if (in_array($responseLine, array(Response::RESPONSE_DEADLINE_SOON, Response::RESPONSE_TIMED_OUT), true)) {
             return $this->_createResponse($responseLine);
         }
 
