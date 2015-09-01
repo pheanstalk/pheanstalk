@@ -6,9 +6,10 @@ use Pheanstalk\YamlResponseParser;
 
 /**
  * The 'list-tubes' command.
+ *
  * List all existing tubes.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

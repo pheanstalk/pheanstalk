@@ -7,9 +7,10 @@ use Pheanstalk\Response;
 
 /**
  * The 'pause-tube' command.
+ *
  * Temporarily prevent jobs being reserved from the given tube.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

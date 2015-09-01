@@ -6,9 +6,10 @@ namespace Pheanstalk;
  * Tests for reported/discovered issues & bugs which don't fall into
  * an existing category of tests.
  * Relies on a running beanstalkd server.
+ *
  * @see http://github.com/pda/pheanstalk/issues
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -17,9 +18,10 @@ class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
     const SERVER_HOST = 'localhost';
 
     /**
-     * Issue: NativeSocket's read() doesn't work with jobs larger than 8192 bytes
+     * Issue: NativeSocket's read() doesn't work with jobs larger than 8192 bytes.
+     *
      * @see http://github.com/pda/pheanstalk/issues/4
-       *
+     *
      * PHP 5.2.10-2ubuntu6.4 reads nearly double that on the first fread().
      * This is probably due to a prior call to fgets() pre-filling the read buffer.
      */
@@ -34,8 +36,10 @@ class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Issue: NativeSocket's read() cannot read all the bytes we want at once
+     * Issue: NativeSocket's read() cannot read all the bytes we want at once.
+     *
      * @see http://github.com/pda/pheanstalk/issues/issue/16
+     *
      * @author SlNPacifist
      */
     public function testIssue4ReadingDifferentNumberOfBytes()

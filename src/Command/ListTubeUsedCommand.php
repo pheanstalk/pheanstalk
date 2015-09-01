@@ -4,9 +4,10 @@ namespace Pheanstalk\Command;
 
 /**
  * The 'list-tube-used' command.
+ *
  * Returns the tube currently being used by the client.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -28,7 +29,7 @@ class ListTubeUsedCommand
     public function parseResponse($responseLine, $responseData)
     {
         return $this->_createResponse('USING', array(
-            'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine)
+            'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
         ));
     }
 }

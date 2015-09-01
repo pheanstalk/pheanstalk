@@ -3,9 +3,9 @@
 namespace Pheanstalk\Exception;
 
 /**
- * An exception relating to a Command
+ * An exception relating to a Command.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

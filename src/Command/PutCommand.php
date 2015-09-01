@@ -6,10 +6,12 @@ use Pheanstalk\Exception;
 
 /**
  * The 'put' command.
+ *
  * Inserts a job into the client's currently used tube.
+ *
  * @see UseCommand
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -23,7 +25,8 @@ class PutCommand
     private $_ttr;
 
     /**
-     * Puts a job on the queue
+     * Puts a job on the queue.
+     *
      * @param string $data     The job data
      * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      * @param int    $delay    Seconds to wait before job becomes ready
@@ -73,7 +76,7 @@ class PutCommand
     public function getDataLength()
     {
         if (function_exists('mb_strlen')) {
-            return mb_strlen($this->_data, "latin1");
+            return mb_strlen($this->_data, 'latin1');
         } else {
             return strlen($this->_data);
         }
@@ -86,7 +89,7 @@ class PutCommand
     {
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
             return $this->_createResponse('INSERTED', array(
-                'id' => (int) $matches[1]
+                'id' => (int) $matches[1],
             ));
         } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
             throw new Exception(sprintf(

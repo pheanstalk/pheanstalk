@@ -6,9 +6,10 @@ use Pheanstalk\YamlResponseParser;
 
 /**
  * The 'stats-tube' command.
+ *
  * Gives statistical information about the specified tube if it exists.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

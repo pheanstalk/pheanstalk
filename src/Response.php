@@ -3,9 +3,9 @@
 namespace Pheanstalk;
 
 /**
- * A response from the beanstalkd server
+ * A response from the beanstalkd server.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -39,7 +39,8 @@ interface Response
     const RESPONSE_PAUSED = 'PAUSED';
 
     /**
-     * The name of the response
+     * The name of the response.
+     *
      * @return string
      */
     public function getResponseName();

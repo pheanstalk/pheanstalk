@@ -7,13 +7,14 @@ use Pheanstalk\Response;
 
 /**
  * The 'kick-job' command.
+ *
  * Kicks a specific buried or delayed job into a 'ready' state.
  *
  * A variant of kick that operates with a single job. If the given job
  * exists and is in a buried or delayed state, it will be moved to the
  * ready queue of the the same tube where it currently belongs.
  *
- * @author Matthieu Napoli
+ * @author  Matthieu Napoli
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

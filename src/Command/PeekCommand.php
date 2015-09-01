@@ -11,7 +11,7 @@ use Pheanstalk\Response;
  * The peek commands let the client inspect a job in the system. There are four
  * variations. All but the first (peek) operate only on the currently used tube.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -84,7 +84,7 @@ class PeekCommand
             return $this->_createResponse(
                 Response::RESPONSE_FOUND,
                 array(
-                    'id' => (int) $matches[1],
+                    'id'      => (int) $matches[1],
                     'jobdata' => $responseData,
                 )
             );

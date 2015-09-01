@@ -5,7 +5,7 @@ namespace Pheanstalk;
 /**
  * Tests for Command implementations.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -123,7 +123,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertCommandLine($command, 'reserve');
 
         $this->_assertResponse(
-            $command->getResponseParser()->parseResponse('RESERVED 5 9', "test data"),
+            $command->getResponseParser()->parseResponse('RESERVED 5 9', 'test data'),
             Response::RESPONSE_RESERVED,
             array('id' => 5, 'jobdata' => 'test data')
         );
@@ -193,7 +193,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertCommandLine($command, 'peek 5');
 
         $this->_assertResponse(
-            $command->getResponseParser()->parseResponse('FOUND 5 9', "test data"),
+            $command->getResponseParser()->parseResponse('FOUND 5 9', 'test data'),
             Response::RESPONSE_FOUND,
             array('id' => 5, 'jobdata' => 'test data')
         );
@@ -274,7 +274,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $command
      * @param string $expected
-     * @param bool $expectData
+     * @param bool   $expectData
      */
     private function _assertCommandLine($command, $expected, $expectData = false)
     {
@@ -289,8 +289,8 @@ class CommandTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param Response $response
-     * @param string $expectName
-     * @param array $data
+     * @param string   $expectName
+     * @param array    $data
      */
     private function _assertResponse($response, $expectName, $data = array())
     {

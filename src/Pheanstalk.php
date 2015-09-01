@@ -4,12 +4,13 @@ namespace Pheanstalk;
 
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
+ *
  * The Pheanstalk class is a simple facade for the various underlying components.
  *
  * @see http://github.com/kr/beanstalkd
  * @see http://xph.us/software/beanstalkd/
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -23,9 +24,9 @@ class Pheanstalk implements PheanstalkInterface
 
     /**
      * @param string $host
-     * @param int $port
-     * @param int $connectTimeout
-     * @param bool $connectPersistent
+     * @param int    $port
+     * @param int    $connectTimeout
+     * @param bool   $connectPersistent
      */
     public function __construct($host, $port = PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null, $connectPersistent = false)
     {
@@ -232,8 +233,7 @@ class Pheanstalk implements PheanstalkInterface
         $priority = PheanstalkInterface::DEFAULT_PRIORITY,
         $delay = PheanstalkInterface::DEFAULT_DELAY,
         $ttr = PheanstalkInterface::DEFAULT_TTR
-    )
-    {
+    ) {
         $response = $this->_dispatch(
             new Command\PutCommand($data, $priority, $delay, $ttr)
         );
@@ -250,8 +250,7 @@ class Pheanstalk implements PheanstalkInterface
         $priority = PheanstalkInterface::DEFAULT_PRIORITY,
         $delay = PheanstalkInterface::DEFAULT_DELAY,
         $ttr = PheanstalkInterface::DEFAULT_TTR
-    )
-    {
+    ) {
         $this->useTube($tube);
 
         return $this->put($data, $priority, $delay, $ttr);
@@ -264,8 +263,7 @@ class Pheanstalk implements PheanstalkInterface
         $job,
         $priority = PheanstalkInterface::DEFAULT_PRIORITY,
         $delay = PheanstalkInterface::DEFAULT_DELAY
-    )
-    {
+    ) {
         $this->_dispatch(
             new Command\ReleaseCommand($job, $priority, $delay)
         );
@@ -387,7 +385,8 @@ class Pheanstalk implements PheanstalkInterface
      * If a SocketException occurs, the connection is reset, and the command is
      * re-attempted once.
      *
-     * @param  Command  $command
+     * @param Command $command
+     *
      * @return Response
      */
     private function _dispatch($command)

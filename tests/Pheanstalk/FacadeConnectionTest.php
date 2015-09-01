@@ -6,7 +6,7 @@ namespace Pheanstalk;
  * Tests the Pheanstalk facade (the base class).
  * Relies on a running beanstalkd server.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -134,7 +134,6 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
     public function testPutJobTooBig()
     {
         $pheanstalk = $this->_getFacade();
-
 
         $pheanstalk->put(str_repeat('0', 0x10000));
     }

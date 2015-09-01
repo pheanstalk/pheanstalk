@@ -4,9 +4,10 @@ namespace Pheanstalk\Command;
 
 /**
  * The 'watch' command.
+ *
  * Adds a tube to the watchlist to reserve jobs from.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -38,7 +39,7 @@ class WatchCommand
     public function parseResponse($responseLine, $responseData)
     {
         return $this->_createResponse('WATCHING', array(
-            'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine)
+            'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine),
         ));
     }
 }

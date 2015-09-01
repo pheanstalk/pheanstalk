@@ -11,7 +11,7 @@ use Pheanstalk\ResponseParser;
  * the tube specified by this command. If no use command has been issued, jobs
  * will be put into the tube named "default".
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -46,7 +46,7 @@ class UseCommand
     public function parseResponse($responseLine, $responseData)
     {
         return $this->_createResponse('USING', array(
-            'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine)
+            'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
         ));
     }
 }

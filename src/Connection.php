@@ -5,9 +5,9 @@ namespace Pheanstalk;
 use Pheanstalk\Socket\NativeSocket;
 
 /**
- * A connection to a beanstalkd server
+ * A connection to a beanstalkd server.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -19,10 +19,10 @@ class Connection
 
     // responses which are global errors, mapped to their exception short-names
     private static $_errorResponses = array(
-        Response::RESPONSE_OUT_OF_MEMORY => 'OutOfMemory',
-        Response::RESPONSE_INTERNAL_ERROR => 'InternalError',
-        Response::RESPONSE_DRAINING => 'Draining',
-        Response::RESPONSE_BAD_FORMAT => 'BadFormat',
+        Response::RESPONSE_OUT_OF_MEMORY   => 'OutOfMemory',
+        Response::RESPONSE_INTERNAL_ERROR  => 'InternalError',
+        Response::RESPONSE_DRAINING        => 'Draining',
+        Response::RESPONSE_BAD_FORMAT      => 'BadFormat',
         Response::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
     );
 
@@ -41,9 +41,9 @@ class Connection
 
     /**
      * @param string $hostname
-     * @param int $port
-     * @param float $connectTimeout
-     * @param bool $connectPersistent
+     * @param int    $port
+     * @param float  $connectTimeout
+     * @param bool   $connectPersistent
      */
     public function __construct($hostname, $port, $connectTimeout = null, $connectPersistent = false)
     {
@@ -61,6 +61,7 @@ class Connection
      * Sets a manually created socket, used for unit testing.
      *
      * @param Socket $socket
+     *
      * @return $this
      */
     public function setSocket(Socket $socket)
@@ -89,9 +90,11 @@ class Connection
     }
 
     /**
-     * @param  object                    $command Command
-     * @return object                    Response
+     * @param object $command Command
+     *
      * @throws Exception\ClientException
+     *
+     * @return object Response
      */
     public function dispatchCommand($command)
     {
@@ -175,10 +178,11 @@ class Connection
     // ----------------------------------------
 
     /**
-     * Socket handle for the connection to beanstalkd
+     * Socket handle for the connection to beanstalkd.
+     *
+     * @throws Exception\ConnectionException
      *
      * @return Socket
-     * @throws Exception\ConnectionException
      */
     private function _getSocket()
     {
@@ -195,7 +199,7 @@ class Connection
     }
 
     /**
-     * Checks connection to the beanstalkd socket
+     * Checks connection to the beanstalkd socket.
      *
      * @return true|false
      */

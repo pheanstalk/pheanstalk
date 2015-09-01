@@ -12,6 +12,7 @@ interface PheanstalkInterface
 
     /**
      * @param Connection
+     *
      * @return $this
      */
     public function setConnection(Connection $connection);
@@ -29,7 +30,7 @@ interface PheanstalkInterface
     /**
      * Puts a job into a 'buried' state, revived only by 'kick' command.
      *
-     * @param  Job $job
+     * @param Job $job
      * @param int $priority
      */
     public function bury($job, $priority = self::DEFAULT_PRIORITY);
@@ -38,6 +39,7 @@ interface PheanstalkInterface
      * Permanently deletes a job.
      *
      * @param object $job Job
+     *
      * @return $this
      */
     public function delete($job);
@@ -49,6 +51,7 @@ interface PheanstalkInterface
      * cached watchlist.
      *
      * @param string $tube
+     *
      * @return $this
      */
     public function ignore($tube);
@@ -58,7 +61,8 @@ interface PheanstalkInterface
      * If there are buried jobs, it will kick up to $max of them.
      * Otherwise, it will kick up to $max delayed jobs.
      *
-     * @param  int $max The maximum jobs to kick
+     * @param int $max The maximum jobs to kick
+     *
      * @return int Number of jobs kicked
      */
     public function kick($max);
@@ -69,6 +73,7 @@ interface PheanstalkInterface
      * ready queue of the the same tube where it currently belongs.
      *
      * @param Job $job Job
+     *
      * @return $this
      */
     public function kickJob($job);
@@ -86,7 +91,8 @@ interface PheanstalkInterface
      * Returns the cached watchlist if $askServer is false (the default),
      * or queries the server for the watchlist if $askServer is true.
      *
-     * @param  bool  $askServer
+     * @param bool $askServer
+     *
      * @return array
      */
     public function listTubesWatched($askServer = false);
@@ -98,7 +104,8 @@ interface PheanstalkInterface
      * or queries the server for the currently used tube if $askServer
      * is true.
      *
-     * @param  bool   $askServer
+     * @param bool $askServer
+     *
      * @return string
      */
     public function listTubeUsed($askServer = false);
@@ -108,6 +115,7 @@ interface PheanstalkInterface
      *
      * @param string $tube  The tube to pause
      * @param int    $delay Seconds before jobs may be reserved from this queue.
+     *
      * @return $this
      */
     public function pauseTube($tube, $delay);
@@ -116,6 +124,7 @@ interface PheanstalkInterface
      * Resume jobs for a given paused tube.
      *
      * @param string $tube The tube to resume
+     *
      * @return $this
      */
     public function resumeTube($tube);
@@ -123,7 +132,8 @@ interface PheanstalkInterface
     /**
      * Inspect a job in the system, regardless of what tube it is in.
      *
-     * @param  int    $jobId
+     * @param int $jobId
+     *
      * @return object Job
      */
     public function peek($jobId);
@@ -132,7 +142,8 @@ interface PheanstalkInterface
      * Inspect the next ready job in the specified tube. If no tube is
      * specified, the currently used tube in used.
      *
-     * @param  string $tube
+     * @param string $tube
+     *
      * @return object Job
      */
     public function peekReady($tube = null);
@@ -141,7 +152,8 @@ interface PheanstalkInterface
      * Inspect the shortest-remaining-delayed job in the specified tube. If no
      * tube is specified, the currently used tube in used.
      *
-     * @param  string $tube
+     * @param string $tube
+     *
      * @return object Job
      */
     public function peekDelayed($tube = null);
@@ -150,7 +162,8 @@ interface PheanstalkInterface
      * Inspect the next job in the list of buried jobs of the specified tube.
      * If no tube is specified, the currently used tube in used.
      *
-     * @param  string $tube
+     * @param string $tube
+     *
      * @return object Job
      */
     public function peekBuried($tube = null);
@@ -158,11 +171,12 @@ interface PheanstalkInterface
     /**
      * Puts a job on the queue.
      *
-     * @param  string $data     The job data
-     * @param  int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
-     * @param  int    $delay    Seconds to wait before job becomes ready
-     * @param  int    $ttr      Time To Run: seconds a job can be reserved for
-     * @return int    The new job ID
+     * @param string $data     The job data
+     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
+     * @param int    $delay    Seconds to wait before job becomes ready
+     * @param int    $ttr      Time To Run: seconds a job can be reserved for
+     *
+     * @return int The new job ID
      */
     public function put($data, $priority = self::DEFAULT_PRIORITY, $delay = self::DEFAULT_DELAY, $ttr = self::DEFAULT_TTR);
 
@@ -173,12 +187,13 @@ interface PheanstalkInterface
      * the added benefit that it will not execute the USE command if the client
      * is already using the specified tube.
      *
-     * @param  string $tube     The tube to use
-     * @param  string $data     The job data
-     * @param  int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
-     * @param  int    $delay    Seconds to wait before job becomes ready
-     * @param  int    $ttr      Time To Run: seconds a job can be reserved for
-     * @return int    The new job ID
+     * @param string $tube     The tube to use
+     * @param string $data     The job data
+     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
+     * @param int    $delay    Seconds to wait before job becomes ready
+     * @param int    $ttr      Time To Run: seconds a job can be reserved for
+     *
+     * @return int The new job ID
      */
     public function putInTube($tube, $data, $priority = self::DEFAULT_PRIORITY, $delay = self::DEFAULT_DELAY, $ttr = self::DEFAULT_TTR);
 
@@ -191,6 +206,7 @@ interface PheanstalkInterface
      * @param object $job      Job
      * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      * @param int    $delay    Seconds to wait before job becomes ready
+     *
      * @return $this
      */
     public function release($job, $priority = self::DEFAULT_PRIORITY, $delay = self::DEFAULT_DELAY);
@@ -205,7 +221,8 @@ interface PheanstalkInterface
      * time the client will block on the reserve request until a job becomes
      * available.
      *
-     * @param  int    $timeout
+     * @param int $timeout
+     *
      * @return object Job
      */
     public function reserve($timeout = null);
@@ -225,8 +242,9 @@ interface PheanstalkInterface
      * WATCH or IGNORE commands if the client is already watching the
      * specified tube.
      *
-     * @param  string $tube
-     * @param  int    $timeout
+     * @param string $tube
+     * @param int    $timeout
+     *
      * @return object Job
      */
     public function reserveFromTube($tube, $timeout = null);
@@ -234,7 +252,8 @@ interface PheanstalkInterface
     /**
      * Gives statistical information about the specified job if it exists.
      *
-     * @param  Job|int $job
+     * @param Job|int $job
+     *
      * @return object
      */
     public function statsJob($job);
@@ -242,7 +261,8 @@ interface PheanstalkInterface
     /**
      * Gives statistical information about the specified tube if it exists.
      *
-     * @param  string $tube
+     * @param string $tube
+     *
      * @return object
      */
     public function statsTube($tube);
@@ -263,6 +283,7 @@ interface PheanstalkInterface
      * (e.g. it may do this on DEADLINE_SOON).
      *
      * @param Job $job
+     *
      * @return $this
      */
     public function touch($job);
@@ -275,6 +296,7 @@ interface PheanstalkInterface
      * specified tube.
      *
      * @param string $tube
+     *
      * @return $this
      */
     public function useTube($tube);
@@ -286,6 +308,7 @@ interface PheanstalkInterface
      * specified tube.
      *
      * @param string $tube
+     *
      * @return $this
      */
     public function watch($tube);
@@ -295,6 +318,7 @@ interface PheanstalkInterface
      * ignores any other tubes remaining on the watchlist.
      *
      * @param string $tube
+     *
      * @return $this
      */
     public function watchOnly($tube);
