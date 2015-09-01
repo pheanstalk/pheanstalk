@@ -5,7 +5,7 @@ namespace Pheanstalk;
 use Pheanstalk\Socket\WriteHistory;
 
 /**
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -76,12 +76,12 @@ class SocketWriteHistoryTest extends \PHPUnit_Framework_TestCase
     {
         $history = new WriteHistory(1);
 
-        foreach (array(null, false, 0, "", "0") as $input) {
+        foreach (array(null, false, 0, '', '0') as $input) {
             $this->assertEquals($history->log($input), $input);
             $this->assertTrue($history->isFullWithNoWrites());
         }
 
-        foreach (array(true, 1, 2, "1", "2") as $input) {
+        foreach (array(true, 1, 2, '1', '2') as $input) {
             $this->assertEquals($history->log($input), $input);
             $this->assertFalse($history->isFullWithNoWrites());
         }

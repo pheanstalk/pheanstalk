@@ -7,9 +7,10 @@ use Pheanstalk\Response;
 
 /**
  * The 'bury' command.
+ *
  * Puts a job into a 'buried' state, revived only by 'kick' command.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

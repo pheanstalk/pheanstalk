@@ -4,9 +4,10 @@ namespace Pheanstalk;
 
 /**
  * A mockable wrapper around PHP "socket" or "file pointer" access.
+ *
  * Only the subset of socket actions required by Pheanstalk are provided.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -14,7 +15,9 @@ interface Socket
 {
     /**
      * Writes data to the socket.
-     * @param  string $data
+     *
+     * @param string $data
+     *
      * @return void
      */
     public function write($data);

@@ -4,11 +4,12 @@ namespace Pheanstalk\Command;
 
 /**
  * The 'kick' command.
+ *
  * Kicks buried or delayed jobs into a 'ready' state.
  * If there are buried jobs, it will kick up to $max of them.
  * Otherwise, it will kick up to $max delayed jobs.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

@@ -6,9 +6,10 @@ use Pheanstalk\Response;
 
 /**
  * The 'reserve' command.
+ *
  * Reserves/locks a ready job in a watched tube.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -46,16 +47,14 @@ class ReserveCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine === Response::RESPONSE_DEADLINE_SOON ||
-            $responseLine === Response::RESPONSE_TIMED_OUT)
-        {
+        if (in_array($responseLine, array(Response::RESPONSE_DEADLINE_SOON, Response::RESPONSE_TIMED_OUT), true)) {
             return $this->_createResponse($responseLine);
         }
 
         list($code, $id) = explode(' ', $responseLine);
 
         return $this->_createResponse($code, array(
-            'id' => (int) $id,
+            'id'      => (int) $id,
             'jobdata' => $responseData,
         ));
     }

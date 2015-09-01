@@ -3,9 +3,9 @@
 namespace Pheanstalk;
 
 /**
- * A job in a beanstalkd server
+ * A job in a beanstalkd server.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -31,6 +31,7 @@ class Job
 
     /**
      * The job ID, unique on the beanstalkd server.
+     *
      * @return int
      */
     public function getId()
@@ -40,6 +41,7 @@ class Job
 
     /**
      * The job data.
+     *
      * @return string
      */
     public function getData()

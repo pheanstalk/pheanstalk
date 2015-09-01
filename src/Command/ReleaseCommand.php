@@ -7,9 +7,10 @@ use Pheanstalk\Response;
 
 /**
  * The 'release' command.
+ *
  * Releases a reserved job back onto the ready queue.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

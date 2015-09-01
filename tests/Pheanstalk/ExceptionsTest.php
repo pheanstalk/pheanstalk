@@ -5,7 +5,7 @@ namespace Pheanstalk;
 /**
  * Tests the Pheanstalk exceptions, mainly for parse errors etc.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

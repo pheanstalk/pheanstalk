@@ -6,9 +6,10 @@ use Pheanstalk\YamlResponseParser;
 
 /**
  * The 'stats' command.
+ *
  * Statistical information about the system as a whole.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

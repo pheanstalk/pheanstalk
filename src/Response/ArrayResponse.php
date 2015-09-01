@@ -5,9 +5,9 @@ namespace Pheanstalk\Response;
 use Pheanstalk\Response;
 
 /**
- * A response with an ArrayObject interface to key=>value data
+ * A response with an ArrayObject interface to key => value data.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -59,7 +59,9 @@ class ArrayResponse
 
     /**
      * Tranform underscored property name to hyphenated array key.
+     *
      * @param string
+     *
      * @return string
      */
     private function _transformPropertyName($propertyName)

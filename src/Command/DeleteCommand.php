@@ -7,9 +7,10 @@ use Pheanstalk\Response;
 
 /**
  * The 'delete' command.
+ *
  * Permanently deletes an already-reserved job.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

@@ -6,9 +6,9 @@ use Pheanstalk\Socket\NativeSocket;
 use Pheanstalk\Socket\StreamFunctions;
 
 /**
- * Tests the Pheanstalk NativeSocket class
+ * Tests the Pheanstalk NativeSocket class.
  *
- * @author SlNpacifist
+ * @author  SlNpacifist
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

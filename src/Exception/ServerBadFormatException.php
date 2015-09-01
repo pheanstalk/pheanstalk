@@ -3,9 +3,9 @@
 namespace Pheanstalk\Exception;
 
 /**
- * An exception originating as a beanstalkd server error
+ * An exception originating as a beanstalkd server error.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

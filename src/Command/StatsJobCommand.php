@@ -6,9 +6,10 @@ use Pheanstalk\YamlResponseParser;
 
 /**
  * The 'stats-job' command.
+ *
  * Gives statistical information about the specified job if it exists.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

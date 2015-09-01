@@ -8,7 +8,7 @@ use Pheanstalk\Response;
 /**
  * Common functionality for Command implementations.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -52,6 +52,7 @@ abstract class AbstractCommand
 
     /**
      * The string representation of the object.
+     *
      * @return string
      */
     public function __toString()
@@ -63,8 +64,10 @@ abstract class AbstractCommand
     // protected
 
     /**
-     * Creates a Response for the given data
+     * Creates a Response for the given data.
+     *
      * @param array
+     *
      * @return object Response
      */
     protected function _createResponse($name, $data = array())

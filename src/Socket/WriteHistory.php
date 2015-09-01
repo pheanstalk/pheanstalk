@@ -4,6 +4,7 @@ namespace Pheanstalk\Socket;
 
 /**
  * A limited history of recent socket write length/success.
+ *
  * Facilitates retrying zero-length writes a limited number of times,
  * avoiding infinite loops.
  *
@@ -12,7 +13,7 @@ namespace Pheanstalk\Socket;
  *
  * A bitfield could be used instead of an array for efficiency.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */

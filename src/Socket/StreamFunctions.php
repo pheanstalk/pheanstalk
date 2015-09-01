@@ -4,9 +4,10 @@ namespace Pheanstalk\Socket;
 
 /**
  * Wrapper around PHP stream functions.
+ *
  * Facilitates mocking/stubbing stream operations in unit tests.
  *
- * @author Paul Annesley
+ * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
@@ -20,7 +21,7 @@ class StreamFunctions
     public static function instance()
     {
         if (empty(self::$_instance)) {
-            self::$_instance = new self;
+            self::$_instance = new self();
         }
 
         return self::$_instance;
