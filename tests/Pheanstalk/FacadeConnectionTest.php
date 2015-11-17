@@ -39,20 +39,32 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('default'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('default'));
 
         $pheanstalk->watch('test');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default', 'test'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default', 'test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('default', 'test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('default', 'test'));
 
         $pheanstalk->ignore('default');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('test'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('test'));
 
         $pheanstalk->watchOnly('default');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('default'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('default'));
+
+        $pheanstalk->watch(array('test', 'another-test', 'yet-another-test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('default', 'test', 'another-test', 'yet-another-test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('default', 'test', 'another-test', 'yet-another-test'));
+
+        $pheanstalk->ignore(array('another-test', 'yet-another-test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('default', 'test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('default', 'test'));
+
+        $pheanstalk->watchOnly(array('another-test', 'yet-another-test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(), array('another-test', 'yet-another-test'));
+        $this->_assertTubes($pheanstalk->listTubesWatched(true), array('another-test', 'yet-another-test'));
     }
 
     /**
@@ -63,6 +75,16 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
         $pheanstalk = $this->_getFacade();
 
         $pheanstalk->ignore('default');
+    }
+
+    /**
+     * @expectedException \Pheanstalk\Exception
+     */
+    public function testWatchEmptyTubeList()
+    {
+        $pheanstalk = $this->_getFacade();
+
+        $pheanstalk->watchOnly(array());
     }
 
     public function testPutReserveAndDeleteData()
@@ -393,6 +415,15 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
     // ----------------------------------------
     // private
+
+    /**
+     * @param string[] $tubes
+     * @param string[] $expected
+     */
+    private function _assertTubes($tubes, $expected)
+    {
+        $this->assertEquals(sort($tubes), sort($expected));
+    }
 
     private function _getFacade()
     {

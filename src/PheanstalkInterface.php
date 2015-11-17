@@ -45,16 +45,16 @@ interface PheanstalkInterface
     public function delete($job);
 
     /**
-     * Remove the specified tube from the watchlist.
+     * Remove the specified tubes from the watchlist.
      *
      * Does not execute an IGNORE command if the specified tube is not in the
      * cached watchlist.
      *
-     * @param string $tube
+     * @param string|string[] $tubes
      *
      * @return $this
      */
-    public function ignore($tube);
+    public function ignore($tubes);
 
     /**
      * Kicks buried or delayed jobs into a 'ready' state.
@@ -302,24 +302,24 @@ interface PheanstalkInterface
     public function useTube($tube);
 
     /**
-     * Add the specified tube to the watchlist, to reserve jobs from.
+     * Add the specified tubes to the watchlist, to reserve jobs from.
      *
      * Does not execute a WATCH command if the client is already watching the
      * specified tube.
      *
-     * @param string $tube
+     * @param string|string[] $tubes
      *
      * @return $this
      */
-    public function watch($tube);
+    public function watch($tubes);
 
     /**
-     * Adds the specified tube to the watchlist, to reserve jobs from, and
+     * Adds the specified tubes to the watchlist, to reserve jobs from, and
      * ignores any other tubes remaining on the watchlist.
      *
-     * @param string $tube
+     * @param string|string[] $tubes
      *
      * @return $this
      */
-    public function watchOnly($tube);
+    public function watchOnly($tubes);
 }
