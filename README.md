@@ -84,9 +84,6 @@ a pull request to rectify this.
 $ wget http://getcomposer.org/composer.phar
 $ php composer.phar install
 
-# ensure you have PHPUnit
-$ composer install --dev
-
 $ ./vendor/bin/phpunit
 PHPUnit 4.0.19 by Sebastian Bergmann.
 
