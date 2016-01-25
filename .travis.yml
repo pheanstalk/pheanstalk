@@ -19,3 +19,4 @@ before_script:
 
 script:
   - phpunit --configuration phpunit.xml.dist
+
