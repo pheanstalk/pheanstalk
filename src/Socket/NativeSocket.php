@@ -103,6 +103,18 @@ class NativeSocket implements Socket
             $data = isset($length) ?
                 $this->_wrapper()->fgets($this->_socket, $length) :
                 $this->_wrapper()->fgets($this->_socket);
+                
+               if($data === false) {
+				$info = $this->_wrapper()->stream_get_meta_data( $this->_socket );
+
+				//if time out occured and there are no unread bytes
+				//we might have socket connection to server lost
+				//a particualr case when remove host is no longer rechable
+				if ($info ['timed_out'] && $info['unread_bytes']==0) {
+					throw new Exception\SocketException ( "Socket connection lost" );
+				}
+			}
+ 
 
             if ($this->_wrapper()->feof($this->_socket)) {
                 throw new Exception\SocketException('Socket closed by server!');
