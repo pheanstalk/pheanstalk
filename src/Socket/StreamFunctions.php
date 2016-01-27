@@ -97,4 +97,9 @@ class StreamFunctions
     {
         return stream_set_timeout($stream, $seconds, $microseconds);
     }
+    
+    public function stream_get_meta_data($stream)
+    {
+    	return stream_get_meta_data($stream);
+    }
 }
