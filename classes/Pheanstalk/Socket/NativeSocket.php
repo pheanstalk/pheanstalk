@@ -101,7 +101,7 @@ class Pheanstalk_Socket_NativeSocket implements Pheanstalk_Socket
 				//we might have socket connection to server lost
 				//a particualr case when remove host is no longer rechable
 				if ($info ['timed_out'] && $info['unread_bytes']==0) {
-					throw new Exception\SocketException ( "Socket connection lost" );
+					throw new Pheanstalk_Exception_SocketException('Socket connection lost');
 				}
 			}
  
