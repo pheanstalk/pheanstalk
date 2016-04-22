@@ -38,15 +38,22 @@ class Connection
     private $_port;
     private $_connectTimeout;
     private $_connectPersistent;
+    private $_socketTimeout;
 
     /**
      * @param string $hostname
      * @param int    $port
      * @param float  $connectTimeout
      * @param bool   $connectPersistent
+     * @param float  $socketTimeout
      */
-    public function __construct($hostname, $port, $connectTimeout = null, $connectPersistent = false)
-    {
+    public function __construct(
+        $hostname,
+        $port,
+        $connectTimeout = null,
+        $connectPersistent = false,
+        $socketTimeout = null
+    ) {
         if (is_null($connectTimeout) || !is_numeric($connectTimeout)) {
             $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
         }
@@ -55,6 +62,7 @@ class Connection
         $this->_port = $port;
         $this->_connectTimeout = $connectTimeout;
         $this->_connectPersistent = $connectPersistent;
+        $this->_socketTimeout = $socketTimeout;
     }
 
     /**
@@ -191,7 +199,8 @@ class Connection
                 $this->_hostname,
                 $this->_port,
                 $this->_connectTimeout,
-                $this->_connectPersistent
+                $this->_connectPersistent,
+                $this->_socketTimeout
             );
         }
 
