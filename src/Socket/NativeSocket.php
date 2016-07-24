@@ -30,15 +30,16 @@ class NativeSocket implements Socket
      * @param string $host
      * @param int    $port
      * @param int    $connectTimeout
+     * @param bool   $connectPersistent
      */
     public function __construct($host, $port, $connectTimeout, $connectPersistent)
     {
         if ($connectPersistent) {
             $this->_socket = $this->_wrapper()
-                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout);
         } else {
             $this->_socket = $this->_wrapper()
-                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout, $connectPersistent);
+                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
         }
 
         if (!$this->_socket) {
