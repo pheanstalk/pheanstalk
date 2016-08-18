@@ -108,7 +108,7 @@ class Connection
 
         $socket->write($to_send);
 
-        $responseLine = $socket->getLine();
+        $responseLine = $socket->getLine(null, $command->getTimeout());
         $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
         if (isset(self::$_errorResponses[$responseName])) {

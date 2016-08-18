@@ -16,7 +16,7 @@ namespace Pheanstalk;
  */
 class Pheanstalk implements PheanstalkInterface
 {
-    const VERSION = '3.1.1';
+    const VERSION = '3.1.2';
 
     private $_connection;
     private $_using = PheanstalkInterface::DEFAULT_TUBE;
