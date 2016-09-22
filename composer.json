@@ -1,20 +1,15 @@
 {
-    "name": "gabfl/pheanstalk",
+    "name": "pda/pheanstalk",
     "type": "library",
-    "description": "PHP client for beanstalkd queue, forked from pda/pheanstalk",
+    "description": "PHP client for beanstalkd queue",
     "keywords": ["beanstalkd"],
-    "homepage": "https://github.com/gabfl/pheanstalk",
+    "homepage": "https://github.com/pda/pheanstalk",
     "license": "MIT",
     "authors": [
         {
             "name": "Paul Annesley",
             "email": "paul@annesley.cc",
             "homepage": "http://paul.annesley.cc/",
-            "role": "Developer"
-        },
-        {
-            "name": "Gabriel Bordeaux",
-            "homepage": "http://gab.lc/",
             "role": "Developer"
         }
     ],
