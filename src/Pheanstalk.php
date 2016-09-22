@@ -60,7 +60,7 @@ class Pheanstalk implements PheanstalkInterface
     public function setWatching()
     {
         // If we have a persistent connection, retrieve list of tubes currently watched for this connection
-        if($this->_connection->getConnectPersist())
+        if($this->_connection->getConnectPersistent())
         {
             $this->listTubesWatched(true);
         }

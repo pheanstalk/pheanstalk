@@ -180,7 +180,7 @@ class Connection
      *
      * @return bool
      */
-    public function getConnectPersist()
+    public function getConnectPersistent()
     {
         return $this->_connectPersistent;
     }
