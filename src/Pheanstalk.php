@@ -63,7 +63,7 @@ class Pheanstalk implements PheanstalkInterface
         if ($this->_connection->getConnectPersistent()) {
             $this->listTubesWatched(true);
         }
-        
+
         // Default
         if (!$this->_watching) {
             $this->_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
