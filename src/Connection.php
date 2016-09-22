@@ -175,6 +175,16 @@ class Connection
         return $this->_port;
     }
 
+    /**
+     * Returns persistent connection state for this connection.
+     *
+     * @return bool
+     */
+    public function getConnectPersist()
+    {
+        return $this->_connectPersistent;
+    }
+
     // ----------------------------------------
 
     /**
