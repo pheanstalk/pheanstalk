@@ -6,3 +6,8 @@ pheanstalk.phar
 
 # Composer installs dependencies here.
 vendor/
+
+# IDE
+/.settings/
+/.buildpath
+/.project
