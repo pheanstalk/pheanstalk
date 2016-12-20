@@ -62,7 +62,7 @@ class YamlResponseParser
                     throw new Exception("YAML parse error for line: $line");
                 }
 
-                list(, $key, $value) = $matches;
+                list($unused, $key, $value) = $matches;
 
                 $array[$key] = $value;
             }
