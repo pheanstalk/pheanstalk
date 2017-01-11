@@ -70,6 +70,55 @@ $pheanstalk->getConnection()->isServiceListening(); // true or false
 
 ```
 
+Creating a worker
+-----------------
+
+A worker is a process which when runs takes the next job off a set of queues which are being watched and then executes
+the job with the defined tasks.
+
+The worker process runs the following steps:
+
+1. Watch all registered tubes
+2. Reserve the next job
+3. Once job is reserved, invoke the registered handler based on the tube name
+4. If no exceptions occur, delete the job (success)
+5. If 'retry_on' exceptions occur, call 'release' (retry)
+6. If other exception occurs, call 'bury' (error)
+7. Repeat steps 2-6
+
+To create a worker use the following example.
+
+```
+<?php
+
+// Again hopefully you are using Composers autoloading
+
+use Pheanstalk\Worker;
+
+$worker = new Worker('127.0.0.1');
+
+// ----------------------------------------
+// register functions to be called for each queue
+
+$worker->register('testtube', function ($job) {
+    echo $job->getData();
+});
+
+// You can register multiple tubes to be watched by a single worker
+$worker->register('testtube2', function ($job) {
+    echo $job->getData();
+});
+
+// If you Exception class is specified the job will be released instead of buried.
+$worker->register('testtube3', function ($job) {
+    echo $job->getData();
+}, 'SomeException');
+
+// -----------------------------------------
+// Start the worker.
+
+$worker->process();
+```
 
 Running the tests
 -----------------
