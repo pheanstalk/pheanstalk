@@ -68,8 +68,25 @@ $pheanstalk->delete($job);
 
 $pheanstalk->getConnection()->isServiceListening(); // true or false
 
-```
+// ----------------------------------------
+// when you have to explicitly delete a queued job
 
+try {
+
+ // first do a peek at the job 
+ $job = $pheanstalk->peek($jobId);
+
+ // then delete the job
+ $pheanstalk->delete($job);
+ 
+} catch (\Exception $e) {
+
+ // handle missing Beanstalkd job from the tube
+ // a NOT_FOUND exception is invoked if given job is not present in the queue
+ 
+}
+
+```
 
 Running the tests
 -----------------
