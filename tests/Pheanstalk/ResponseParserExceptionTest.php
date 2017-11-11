@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests exceptions thrown by ResponseParser implementations.
  *
@@ -9,7 +11,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ResponseParserExceptionTest extends \PHPUnit_Framework_TestCase
+class ResponseParserExceptionTest extends TestCase
 {
     public function testDeleteNotFound()
     {

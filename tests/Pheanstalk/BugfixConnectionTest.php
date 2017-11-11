@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
  * an existing category of tests.
@@ -13,7 +15,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
+class BugfixConnectionTest extends TestCase
 {
     const SERVER_HOST = 'localhost';
 
