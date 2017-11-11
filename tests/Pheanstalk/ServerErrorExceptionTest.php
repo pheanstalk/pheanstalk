@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests exceptions thrown to represent non-command-specific error responses.
  *
@@ -9,7 +11,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ServerErrorExceptionTest extends \PHPUnit_Framework_TestCase
+class ServerErrorExceptionTest extends TestCase
 {
     private $_command;
 

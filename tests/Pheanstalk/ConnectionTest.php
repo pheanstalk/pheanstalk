@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests for the Connection.
  * Relies on a running beanstalkd server.
@@ -10,7 +12,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ConnectionTest extends \PHPUnit_Framework_TestCase
+class ConnectionTest extends TestCase
 {
     const SERVER_HOST = 'localhost';
     const SERVER_PORT = '11300';
