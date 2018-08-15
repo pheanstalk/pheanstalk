@@ -14,13 +14,12 @@ namespace Pheanstalk\Socket;
  * A bitfield could be used instead of an array for efficiency.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class WriteHistory
 {
     private $_limit;
-    private $_data = array();
+    private $_data = [];
 
     /**
      * @param int $limit

@@ -8,12 +8,9 @@ namespace Pheanstalk\Command;
  * Returns the tube currently being used by the client.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ListTubeUsedCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class ListTubeUsedCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     /* (non-phpdoc)
      * @see Command::getCommandLine()
@@ -28,8 +25,8 @@ class ListTubeUsedCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        return $this->_createResponse('USING', array(
+        return $this->_createResponse('USING', [
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
-        ));
+        ]);
     }
 }

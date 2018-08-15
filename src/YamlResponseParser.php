@@ -9,11 +9,9 @@ namespace Pheanstalk;
  * Parser expects either a YAML list or dictionary, depending on mode.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class YamlResponseParser
-    implements \Pheanstalk\ResponseParser
+class YamlResponseParser implements \Pheanstalk\ResponseParser
 {
     const MODE_LIST = 'list';
     const MODE_DICT = 'dict';
@@ -52,11 +50,11 @@ class YamlResponseParser
             array_shift($dataLines); // discard header line
         }
 
-        $data = array_map(array($this, '_mapYamlList'), $dataLines);
+        $data = array_map([$this, '_mapYamlList'], $dataLines);
 
         if ($this->_mode == self::MODE_DICT) {
             // TODO: do this better.
-            $array = array();
+            $array = [];
             foreach ($data as $line) {
                 if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
                     throw new Exception("YAML parse error for line: $line");

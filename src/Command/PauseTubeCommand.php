@@ -11,12 +11,9 @@ use Pheanstalk\Response;
  * Temporarily prevent jobs being reserved from the given tube.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class PauseTubeCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class PauseTubeCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_tube;
     private $_delay;

@@ -7,7 +7,6 @@ namespace Pheanstalk;
  * Relies on a running beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
@@ -39,20 +38,20 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['default']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['default']);
 
         $pheanstalk->watch('test');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default', 'test'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default', 'test'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['default', 'test']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['default', 'test']);
 
         $pheanstalk->ignore('default');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('test'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('test'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['test']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['test']);
 
         $pheanstalk->watchOnly('default');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['default']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['default']);
     }
 
     /**
@@ -334,7 +333,7 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
         $stats = $pheanstalk->useTube('test-stats')->stats();
 
-        $properties = array('pid', 'cmd_put', 'cmd_stats_job');
+        $properties = ['pid', 'cmd_put', 'cmd_stats_job'];
         foreach ($properties as $property) {
             $this->assertTrue(
                 isset($stats->$property),

@@ -6,7 +6,6 @@ namespace Pheanstalk;
  * Tests for Command implementations.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class CommandTest extends \PHPUnit_Framework_TestCase
@@ -41,7 +40,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('WATCHING 2', null),
             Response::RESPONSE_WATCHING,
-            array('count' => 2)
+            ['count' => 2]
         );
     }
 
@@ -53,7 +52,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('KICKED 2', null),
             Response::RESPONSE_KICKED,
-            array('kicked' => 2)
+            ['kicked' => 2]
         );
     }
 
@@ -76,7 +75,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK 16', "---\n- one\n- two\n"),
             Response::RESPONSE_OK,
-            array('one', 'two')
+            ['one', 'two']
         );
     }
 
@@ -88,7 +87,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('USING default', null),
             Response::RESPONSE_USING,
-            array('tube' => 'default')
+            ['tube' => 'default']
         );
     }
 
@@ -101,7 +100,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('INSERTED 4', null),
             Response::RESPONSE_INSERTED,
-            array('id' => '4')
+            ['id' => '4']
         );
     }
 
@@ -125,7 +124,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('RESERVED 5 9', 'test data'),
             Response::RESPONSE_RESERVED,
-            array('id' => 5, 'jobdata' => 'test data')
+            ['id' => 5, 'jobdata' => 'test data']
         );
     }
 
@@ -137,7 +136,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('USING tube5', null),
             Response::RESPONSE_USING,
-            array('tube' => 'tube5')
+            ['tube' => 'tube5']
         );
     }
 
@@ -149,7 +148,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('WATCHING 3', null),
             Response::RESPONSE_WATCHING,
-            array('count' => '3')
+            ['count' => '3']
         );
     }
 
@@ -183,7 +182,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK 16', "---\n- one\n- two\n"),
             Response::RESPONSE_OK,
-            array('one', 'two')
+            ['one', 'two']
         );
     }
 
@@ -195,7 +194,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('FOUND 5 9', 'test data'),
             Response::RESPONSE_FOUND,
-            array('id' => 5, 'jobdata' => 'test data')
+            ['id' => 5, 'jobdata' => 'test data']
         );
     }
 
@@ -227,7 +226,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
             Response::RESPONSE_OK,
-            array('id' => '8', 'tube' => 'test', 'state' => 'delayed')
+            ['id' => '8', 'tube' => 'test', 'state' => 'delayed']
         );
     }
 
@@ -241,7 +240,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
             Response::RESPONSE_OK,
-            array('name' => 'test', 'current-jobs-ready' => '5')
+            ['name' => 'test', 'current-jobs-ready' => '5']
         );
     }
 
@@ -255,7 +254,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
             Response::RESPONSE_OK,
-            array('pid' => '123', 'version' => '1.3')
+            ['pid' => '123', 'version' => '1.3']
         );
     }
 
@@ -292,7 +291,7 @@ class CommandTest extends \PHPUnit_Framework_TestCase
      * @param string   $expectName
      * @param array    $data
      */
-    private function _assertResponse($response, $expectName, $data = array())
+    private function _assertResponse($response, $expectName, $data = [])
     {
         $this->assertEquals($response->getResponseName(), $expectName);
         $this->assertEquals($response->getArrayCopy(), $data);

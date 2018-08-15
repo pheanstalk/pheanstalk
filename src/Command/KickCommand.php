@@ -10,12 +10,9 @@ namespace Pheanstalk\Command;
  * Otherwise, it will kick up to $max delayed jobs.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class KickCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class KickCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_max;
 
@@ -42,8 +39,8 @@ class KickCommand
     {
         list($code, $count) = explode(' ', $responseLine);
 
-        return $this->_createResponse($code, array(
+        return $this->_createResponse($code, [
             'kicked' => (int) $count,
-        ));
+        ]);
     }
 }

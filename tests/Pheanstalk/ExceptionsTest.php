@@ -6,7 +6,6 @@ namespace Pheanstalk;
  * Tests the Pheanstalk exceptions, mainly for parse errors etc.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ExceptionsTest extends \PHPUnit_Framework_TestCase

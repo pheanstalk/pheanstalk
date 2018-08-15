@@ -6,7 +6,6 @@ namespace Pheanstalk;
  * Tests exceptions thrown by ResponseParser implementations.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ResponseParserExceptionTest extends \PHPUnit_Framework_TestCase

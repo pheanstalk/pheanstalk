@@ -10,11 +10,9 @@ use Pheanstalk\YamlResponseParser;
  * Gives statistical information about the specified job if it exists.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class StatsJobCommand
-    extends AbstractCommand
+class StatsJobCommand extends AbstractCommand
 {
     private $_jobId;
 

@@ -6,7 +6,6 @@ namespace Pheanstalk;
  * A parser for response data sent from the beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 interface ResponseParser

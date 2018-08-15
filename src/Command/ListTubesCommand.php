@@ -10,11 +10,9 @@ use Pheanstalk\YamlResponseParser;
  * List all existing tubes.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ListTubesCommand
-    extends AbstractCommand
+class ListTubesCommand extends AbstractCommand
 {
     /* (non-phpdoc)
      * @see Command::getCommandLine()
