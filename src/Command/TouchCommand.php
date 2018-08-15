@@ -15,12 +15,9 @@ use Pheanstalk\Response;
  * (e.g. it may do this on DEADLINE_SOON).
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class TouchCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class TouchCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_job;
 

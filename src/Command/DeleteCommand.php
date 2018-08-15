@@ -11,12 +11,9 @@ use Pheanstalk\Response;
  * Permanently deletes an already-reserved job.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class DeleteCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class DeleteCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_job;
 

@@ -10,11 +10,9 @@ use Pheanstalk\YamlResponseParser;
  * Gives statistical information about the specified tube if it exists.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class StatsTubeCommand
-    extends AbstractCommand
+class StatsTubeCommand extends AbstractCommand
 {
     private $_tube;
 

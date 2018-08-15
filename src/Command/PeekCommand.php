@@ -12,23 +12,20 @@ use Pheanstalk\Response;
  * variations. All but the first (peek) operate only on the currently used tube.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class PeekCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class PeekCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     const TYPE_ID = 'id';
     const TYPE_READY = 'ready';
     const TYPE_DELAYED = 'delayed';
     const TYPE_BURIED = 'buried';
 
-    private $_subcommands = array(
+    private $_subcommands = [
         self::TYPE_READY,
         self::TYPE_DELAYED,
         self::TYPE_BURIED,
-    );
+    ];
 
     private $_subcommand;
     private $_jobId;
@@ -83,10 +80,10 @@ class PeekCommand
         } elseif (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
             return $this->_createResponse(
                 Response::RESPONSE_FOUND,
-                array(
+                [
                     'id'      => (int) $matches[1],
                     'jobdata' => $responseData,
-                )
+                ]
             );
         }
     }

@@ -7,7 +7,6 @@ namespace Pheanstalk;
  * Relies on a running beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ConnectionTest extends \PHPUnit_Framework_TestCase

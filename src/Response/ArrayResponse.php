@@ -8,12 +8,9 @@ use Pheanstalk\Response;
  * A response with an ArrayObject interface to key => value data.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ArrayResponse
-    extends \ArrayObject
-    implements Response
+class ArrayResponse extends \ArrayObject implements Response
 {
     private $_name;
 

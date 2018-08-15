@@ -15,12 +15,9 @@ use Pheanstalk\Response;
  * ready queue of the the same tube where it currently belongs.
  *
  * @author  Matthieu Napoli
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class KickJobCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class KickJobCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_job;
 

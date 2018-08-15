@@ -8,7 +8,6 @@ namespace Pheanstalk\Socket;
  * Facilitates mocking/stubbing stream operations in unit tests.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class StreamFunctions
@@ -97,9 +96,9 @@ class StreamFunctions
     {
         return stream_set_timeout($stream, $seconds, $microseconds);
     }
-    
+
     public function stream_get_meta_data($stream)
     {
-    	return stream_get_meta_data($stream);
+        return stream_get_meta_data($stream);
     }
 }

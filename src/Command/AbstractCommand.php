@@ -9,11 +9,9 @@ use Pheanstalk\Response;
  * Common functionality for Command implementations.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-abstract class AbstractCommand
-    implements Command
+abstract class AbstractCommand implements Command
 {
     /* (non-phpdoc)
      * @see Command::hasData()
@@ -70,7 +68,7 @@ abstract class AbstractCommand
      *
      * @return object Response
      */
-    protected function _createResponse($name, $data = array())
+    protected function _createResponse($name, $data = [])
     {
         return new Response\ArrayResponse($name, $data);
     }

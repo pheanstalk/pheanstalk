@@ -6,7 +6,6 @@ namespace Pheanstalk;
  * A job in a beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Job

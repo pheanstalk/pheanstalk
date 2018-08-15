@@ -6,7 +6,6 @@ namespace Pheanstalk;
  * Tests exceptions thrown to represent non-command-specific error responses.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ServerErrorExceptionTest extends \PHPUnit_Framework_TestCase

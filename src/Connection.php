@@ -8,7 +8,6 @@ use Pheanstalk\Socket\NativeSocket;
  * A connection to a beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Connection
@@ -18,20 +17,20 @@ class Connection
     const DEFAULT_CONNECT_TIMEOUT = 2;
 
     // responses which are global errors, mapped to their exception short-names
-    private static $_errorResponses = array(
+    private static $_errorResponses = [
         Response::RESPONSE_OUT_OF_MEMORY   => 'OutOfMemory',
         Response::RESPONSE_INTERNAL_ERROR  => 'InternalError',
         Response::RESPONSE_DRAINING        => 'Draining',
         Response::RESPONSE_BAD_FORMAT      => 'BadFormat',
         Response::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
-    );
+    ];
 
     // responses which are followed by data
-    private static $_dataResponses = array(
+    private static $_dataResponses = [
         Response::RESPONSE_RESERVED,
         Response::RESPONSE_FOUND,
         Response::RESPONSE_OK,
-    );
+    ];
 
     private $_socket;
     private $_hostname;
