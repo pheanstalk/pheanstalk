@@ -109,11 +109,10 @@ class NativeSocket implements Socket
                 //if time out occured and there are no unread bytes
                 //we might have socket connection to server lost
                 //a particualr case when remove host is no longer rechable
-                if ($info ['timed_out'] && $info['unread_bytes'] == 0) {
+                if ($info['timed_out'] && $info['unread_bytes'] == 0) {
                     throw new Exception\SocketException('Socket connection lost');
                 }
             }
-
 
             if ($this->_wrapper()->feof($this->_socket)) {
                 throw new Exception\SocketException('Socket closed by server!');
