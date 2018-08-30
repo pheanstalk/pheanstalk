@@ -65,4 +65,11 @@ interface Command
      * @return ResponseParser
      */
     public function getResponseParser();
+
+    /**
+     * The timeout for the command.
+     *
+     * @return int
+     */
+    public function getTimeout();
 }

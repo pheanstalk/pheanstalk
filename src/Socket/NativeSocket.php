@@ -98,8 +98,11 @@ class NativeSocket implements Socket
     /* (non-phpdoc)
      * @see Socket::write()
      */
-    public function getLine($length = null)
+    public function getLine($length = null, $timeout = null)
     {
+        $timeout = $timeout ?: self::SOCKET_TIMEOUT;
+        $timer = microtime(true);
+
         do {
             $data = isset($length) ?
                 $this->_wrapper()->fgets($this->_socket, $length) :
@@ -107,6 +110,10 @@ class NativeSocket implements Socket
 
             if ($this->_wrapper()->feof($this->_socket)) {
                 throw new Exception\SocketException('Socket closed by server!');
+            }
+
+            if (microtime(true) - $timer > $timeout + self::SOCKET_TIMEOUT) {
+                throw new Exception\SocketException('Socket timed out!');
             }
         } while ($data === false);
 

@@ -50,6 +50,14 @@ abstract class AbstractCommand
         return $this;
     }
 
+    /* (non-phpdoc)
+     * @see Command::getTimeout()
+     */
+    public function getTimeout()
+    {
+        return null;
+    }
+
     /**
      * The string representation of the object.
      *

@@ -42,6 +42,11 @@ class ReserveCommand
             'reserve';
     }
 
+    public function getTimeout()
+    {
+        return $this->_timeout;
+    }
+
     /* (non-phpdoc)
      * @see ResponseParser::parseResponse()
      */

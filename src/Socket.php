@@ -34,8 +34,9 @@ interface Socket
      * Trailing whitespace is trimmed.
      *
      * @param int
+     * @param int
      */
-    public function getLine($length = null);
+    public function getLine($length = null, $timeout = null);
 
     /**
      * Disconnect the socket; subsequent usage of the socket will fail.
