@@ -111,7 +111,7 @@ class NativeSocket implements Socket
                 throw new Exception\SocketException('Socket closed by server!');
             }
             if (microtime(true) - $timer > $timeout) {
-                fclose($this->_socket);
+                $this->disconnect();
                 throw new Exception\SocketException('Socket timed out!');
             }
         } while ($data === false);

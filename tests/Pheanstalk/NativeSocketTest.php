@@ -98,11 +98,35 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
         $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
 
         $start = microtime(true);
-        $socket->getLine();
+        try {
+            $socket->getLine();
+        } catch (\Exception $e) {
+
+        }
+
         // Check that get line takes no more than timeout + 1 seconds;
         // this is reasonable based on the fact that we only sleep for 1/20 of a second on each iteration.
         $this->assertLessThan(5 + 1, microtime(true) - $start, 'getLine did not respect the configured timeout');
     }
 
+    /**
+     * @throws Exception\ConnectionException
+     * @expectedException \Pheanstalk\Exception\SocketException
+     */
+    public function testGetLineException()
+    {
+        // Set the timeout.
+        ini_set('default_socket_timeout', $timeout = 5);
+        $this->_streamFunctions->expects($this->atMost(1000))
+            ->method('fgets')
+            ->will($this->returnCallback(function() {
+                usleep(5000);
+                return false;
+            }));
+
+        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
+
+        $socket->getLine();
+    }
 
 }
