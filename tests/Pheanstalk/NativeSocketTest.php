@@ -18,6 +18,7 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
     const DEFAULT_PORT = 11300;
     const DEFAULT_CONNECTION_TIMEOUT = 0;
     const DEFAULT_PERSISTENT_CONNECTION = false;
+    const DEFAULT_SOCKET_TIMEOUT = 0;
 
     private $_streamFunctions;
 
@@ -53,12 +54,7 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
             ->method('fwrite')
             ->will($this->returnValue(false));
 
-        $socket = new NativeSocket(
-            self::DEFAULT_HOST,
-            self::DEFAULT_HOST,
-            self::DEFAULT_CONNECTION_TIMEOUT,
-            self::DEFAULT_PERSISTENT_CONNECTION
-        );
+        $socket = $this->createNativeSocket();
         $socket->write('data');
     }
 
@@ -72,7 +68,35 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
              ->method('fread')
              ->will($this->returnValue(false));
 
-        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
+        $socket = $this->createNativeSocket();
         $socket->read(1);
+    }
+
+    /**
+     * @expectedException \Pheanstalk\Exception\SocketException
+     * @expectedExceptionMessage fgets() returned false
+     */
+    public function testGetLine()
+    {
+        $this->_streamFunctions->expects($this->any())
+             ->method('fgets')
+             ->will($this->returnValue(false));
+
+        $socket = $this->createNativeSocket();
+        $socket->getLine();
+    }
+
+    /**
+     * @return NativeSocket
+     */
+    private function createNativeSocket()
+    {
+        return new NativeSocket(
+            self::DEFAULT_HOST,
+            self::DEFAULT_HOST,
+            self::DEFAULT_CONNECTION_TIMEOUT,
+            self::DEFAULT_PERSISTENT_CONNECTION,
+            self::DEFAULT_SOCKET_TIMEOUT
+        );
     }
 }

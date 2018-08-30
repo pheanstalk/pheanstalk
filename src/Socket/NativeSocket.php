@@ -15,7 +15,7 @@ use Pheanstalk\Socket;
 class NativeSocket implements Socket
 {
     /**
-     * The default timeout for a blocking read on the socket.
+     * The default timeout in seconds for a blocking read on the socket.
      */
     const SOCKET_TIMEOUT = 1;
 
@@ -29,10 +29,12 @@ class NativeSocket implements Socket
     /**
      * @param string $host
      * @param int    $port
-     * @param int    $connectTimeout
+     * @param float  $connectTimeout
      * @param bool   $connectPersistent
+     * @param float  $socketTimeout
+     * @throws Exception\ConnectionException
      */
-    public function __construct($host, $port, $connectTimeout, $connectPersistent)
+    public function __construct($host, $port, $connectTimeout, $connectPersistent, $socketTimeout)
     {
         if ($connectPersistent) {
             $this->_socket = $this->_wrapper()
@@ -46,8 +48,12 @@ class NativeSocket implements Socket
             throw new Exception\ConnectionException($errno, $errstr." (connecting to $host:$port)");
         }
 
+        if (null === $socketTimeout) {
+            $socketTimeout = self::SOCKET_TIMEOUT;
+        }
+
         $this->_wrapper()
-            ->stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
+            ->stream_set_timeout($this->_socket, $socketTimeout);
     }
 
     /* (non-phpdoc)
@@ -100,15 +106,17 @@ class NativeSocket implements Socket
      */
     public function getLine($length = null)
     {
-        do {
-            $data = isset($length) ?
-                $this->_wrapper()->fgets($this->_socket, $length) :
-                $this->_wrapper()->fgets($this->_socket);
+        $data = isset($length) ?
+            $this->_wrapper()->fgets($this->_socket, $length) :
+            $this->_wrapper()->fgets($this->_socket);
 
-            if ($this->_wrapper()->feof($this->_socket)) {
-                throw new Exception\SocketException('Socket closed by server!');
-            }
-        } while ($data === false);
+        if ($this->_wrapper()->feof($this->_socket)) {
+            throw new Exception\SocketException('Socket closed by server!');
+        }
+
+        if ($data === false) {
+            throw new Exception\SocketException('fgets() returned false');
+        }
 
         return rtrim($data);
     }
