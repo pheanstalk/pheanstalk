@@ -100,7 +100,7 @@ class NativeSocket implements Socket
      */
     public function getLine($length = null)
     {
-        $timeout = ini_get('default-socket-timeout');
+        $timeout = ini_get('default_socket_timeout');
         $timer   = microtime(true);
         do {
             $data = isset($length) ?
