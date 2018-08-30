@@ -1,14 +1,17 @@
 language: php
-dist: precise
+dist: trusty
+matrix:
+  include:
+    - php: 5.3
+      dist: precise
 php:
-  - 5.3
   - 5.4
   - 5.5
   - 5.6
   - 7.0
   - 7.1
+  - 7.2
   - hhvm
-
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq beanstalkd
@@ -19,4 +22,4 @@ before_script:
   - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
-  - phpunit --configuration phpunit.xml.dist
+  - vendor/bin/phpunit --configuration phpunit.xml.dist
