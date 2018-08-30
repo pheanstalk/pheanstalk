@@ -75,4 +75,24 @@ class NativeSocketTest extends \PHPUnit_Framework_TestCase
         $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
         $socket->read(1);
     }
+
+    public function testGetLine()
+    {
+        // Set the timeout.
+        ini_set('default_socket_timeout', 10);
+        /**
+         * We're trying to test for an infinite loop, instead we limit it to 10.000
+         */
+        $this->_streamFunctions->expects($this->atMost(15))
+            ->method('fread')
+            ->will($this->returnCallback(function() {
+                sleep(1);
+                return false;
+            }));
+
+        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
+        $socket->getLine();
+    }
+
+
 }
