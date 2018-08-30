@@ -74,11 +74,13 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function ignore($tube)
+    public function ignore($tubes)
     {
-        if (isset($this->_watching[$tube])) {
-            $this->_dispatch(new Command\IgnoreCommand($tube));
-            unset($this->_watching[$tube]);
+        foreach ((array) $tubes as $tube) {
+            if (isset($this->_watching[$tube])) {
+                $this->_dispatch(new Command\IgnoreCommand($tube));
+                unset($this->_watching[$tube]);
+            }
         }
 
         return $this;
@@ -352,11 +354,13 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function watch($tube)
+    public function watch($tubes)
     {
-        if (!isset($this->_watching[$tube])) {
-            $this->_dispatch(new Command\WatchCommand($tube));
-            $this->_watching[$tube] = true;
+        foreach ((array) $tubes as $tube) {
+            if (!isset($this->_watching[$tube])) {
+                $this->_dispatch(new Command\WatchCommand($tube));
+                $this->_watching[$tube] = true;
+            }
         }
 
         return $this;
@@ -365,14 +369,12 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function watchOnly($tube)
+    public function watchOnly($tubes)
     {
-        $this->watch($tube);
+        $this->watch($tubes);
 
-        $ignoreTubes = array_diff_key($this->_watching, array($tube => true));
-        foreach ($ignoreTubes as $ignoreTube => $true) {
-            $this->ignore($ignoreTube);
-        }
+        $ignoreTubes = array_diff_key($this->_watching, array_fill_keys((array) $tubes, true));
+        $this->ignore(array_keys($ignoreTubes));
 
         return $this;
     }
