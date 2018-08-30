@@ -12,12 +12,9 @@ use Pheanstalk\Exception;
  * @see UseCommand
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class PutCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class PutCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_data;
     private $_priority;
@@ -88,9 +85,9 @@ class PutCommand
     public function parseResponse($responseLine, $responseData)
     {
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
-            return $this->_createResponse('INSERTED', array(
+            return $this->_createResponse('INSERTED', [
                 'id' => (int) $matches[1],
-            ));
+            ]);
         } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
             throw new Exception(sprintf(
                 '%s: server ran out of memory trying to grow the priority queue data structure.',

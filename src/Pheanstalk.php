@@ -11,7 +11,6 @@ namespace Pheanstalk;
  * @see http://xph.us/software/beanstalkd/
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk implements PheanstalkInterface
@@ -20,7 +19,7 @@ class Pheanstalk implements PheanstalkInterface
 
     private $_connection;
     private $_using = PheanstalkInterface::DEFAULT_TUBE;
-    private $_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
+    private $_watching = [PheanstalkInterface::DEFAULT_TUBE => true];
 
     /**
      * @param string $host
@@ -280,10 +279,10 @@ class Pheanstalk implements PheanstalkInterface
             new Command\ReserveCommand($timeout)
         );
 
-        $falseResponses = array(
+        $falseResponses = [
             Response::RESPONSE_DEADLINE_SOON,
             Response::RESPONSE_TIMED_OUT,
-        );
+        ];
 
         if (in_array($response->getResponseName(), $falseResponses)) {
             return false;
@@ -369,7 +368,7 @@ class Pheanstalk implements PheanstalkInterface
     {
         $this->watch($tube);
 
-        $ignoreTubes = array_diff_key($this->_watching, array($tube => true));
+        $ignoreTubes = array_diff_key($this->_watching, [$tube => true]);
         foreach ($ignoreTubes as $ignoreTube => $true) {
             $this->ignore($ignoreTube);
         }

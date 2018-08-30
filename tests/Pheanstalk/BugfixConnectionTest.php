@@ -10,7 +10,6 @@ namespace Pheanstalk;
  * @see http://github.com/pda/pheanstalk/issues
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class BugfixConnectionTest extends \PHPUnit_Framework_TestCase

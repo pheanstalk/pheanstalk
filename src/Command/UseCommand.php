@@ -12,12 +12,9 @@ use Pheanstalk\ResponseParser;
  * will be put into the tube named "default".
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class UseCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class UseCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     /**
      * @var string
@@ -45,8 +42,8 @@ class UseCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        return $this->_createResponse('USING', array(
+        return $this->_createResponse('USING', [
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
-        ));
+        ]);
     }
 }

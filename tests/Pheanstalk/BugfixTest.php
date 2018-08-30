@@ -10,7 +10,6 @@ namespace Pheanstalk;
  * @see http://github.com/pda/pheanstalk/issues
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class BugfixTest extends \PHPUnit_Framework_TestCase
@@ -30,7 +29,7 @@ class BugfixTest extends \PHPUnit_Framework_TestCase
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
             Response::RESPONSE_OK,
-            array('pid' => '123', 'version' => '', 'key' => 'value')
+            ['pid' => '123', 'version' => '', 'key' => 'value']
         );
     }
 
@@ -42,7 +41,7 @@ class BugfixTest extends \PHPUnit_Framework_TestCase
      * @param string   $expectName
      * @param array    $data
      */
-    private function _assertResponse($response, $expectName, $data = array())
+    private function _assertResponse($response, $expectName, $data = [])
     {
         $this->assertEquals($response->getResponseName(), $expectName);
         $this->assertEquals($response->getArrayCopy(), $data);

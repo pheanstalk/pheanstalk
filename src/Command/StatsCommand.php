@@ -10,11 +10,9 @@ use Pheanstalk\YamlResponseParser;
  * Statistical information about the system as a whole.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class StatsCommand
-    extends AbstractCommand
+class StatsCommand extends AbstractCommand
 {
     /* (non-phpdoc)
      * @see Command::getCommandLine()

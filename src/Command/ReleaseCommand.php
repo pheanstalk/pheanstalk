@@ -11,12 +11,9 @@ use Pheanstalk\Response;
  * Releases a reserved job back onto the ready queue.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ReleaseCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class ReleaseCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_job;
     private $_priority;

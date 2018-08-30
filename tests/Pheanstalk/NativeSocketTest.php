@@ -9,7 +9,6 @@ use Pheanstalk\Socket\StreamFunctions;
  * Tests the Pheanstalk NativeSocket class.
  *
  * @author  SlNpacifist
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class NativeSocketTest extends \PHPUnit_Framework_TestCase

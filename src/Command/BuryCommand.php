@@ -11,12 +11,9 @@ use Pheanstalk\Response;
  * Puts a job into a 'buried' state, revived only by 'kick' command.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class BuryCommand
-    extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+class BuryCommand extends AbstractCommand implements \Pheanstalk\ResponseParser
 {
     private $_job;
     private $_priority;
