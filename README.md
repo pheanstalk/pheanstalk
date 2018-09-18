@@ -3,7 +3,7 @@ Pheanstalk
 
 [![Build Status](https://travis-ci.org/pda/pheanstalk.png?branch=master)](https://travis-ci.org/pda/pheanstalk)
 
-Pheanstalk is a pure PHP 5.3+ client for the [beanstalkd workqueue][1].  It has
+Pheanstalk is a pure PHP 7.2+ client for the [beanstalkd workqueue][1].  It has
 been actively developed, and used in production by many, since late 2008.
 
 Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written
@@ -74,28 +74,15 @@ $pheanstalk->getConnection()->isServiceListening(); // true or false
 Running the tests
 -----------------
 
-There is a section of the test suite which depends on a running beanstalkd
-at 127.0.0.1:11300, which was previously opt-in via `--with-server`.
-Since porting to PHPUnit, all tests are run at once. Feel free to submit
-a pull request to rectify this.
-
+If you have docker-compose installed running tests is as simple as:
+```sh
+> composer test
 ```
-# ensure you have Composer set up
-$ wget http://getcomposer.org/composer.phar
-$ php composer.phar install
 
-$ ./vendor/bin/phpunit
-PHPUnit 4.0.19 by Sebastian Bergmann.
-
-Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist
-
-................................................................. 65 / 83 ( 78%)
-..................
-
-Time: 239 ms, Memory: 6.00Mb
-
-OK (83 tests, 378 assertions)
-```
+If you don't then you manually need to set up a beanstalk server and run:
+```sh
+> vendor/bin/phpunit
+```composer
 
 
 Contributors
@@ -121,6 +108,7 @@ Contributors
   * [James Hamilton](https://github.com/mrjameshamilton)
   * [Hannes Van De Vreken](https://github.com/hannesvdvreken)
   * [Yaniv Davidovitch](https://github.com/YanivD)
+  * [Sam Mousa](https://github.com/sammousa)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 

@@ -4,6 +4,7 @@ namespace Pheanstalk;
 
 use Pheanstalk\Socket\NativeSocket;
 use Pheanstalk\Socket\StreamFunctions;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests the Pheanstalk NativeSocket class.
@@ -12,7 +13,7 @@ use Pheanstalk\Socket\StreamFunctions;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class NativeSocketTest extends \PHPUnit_Framework_TestCase
+class NativeSocketTest extends TestCase
 {
     const DEFAULT_HOST = 'localhost';
     const DEFAULT_PORT = 11300;

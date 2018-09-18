@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the Pheanstalk facade (the base class).
  * Relies on a running beanstalkd server.
@@ -10,18 +12,9 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
+class FacadeConnectionTest extends TestCase
 {
-    const SERVER_HOST = 'localhost';
 
-    public function testVersion()
-    {
-        // Examples: 1.0.0, 2.0.0, 2.0.0-rc1
-        $this->assertRegExp(
-            '/\d+\.\d+\.\d+(?:-\w+)?/',
-            Pheanstalk::VERSION
-        );
-    }
 
     public function testUseTube()
     {
@@ -396,6 +389,6 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
     private function _getFacade()
     {
-        return new Pheanstalk(self::SERVER_HOST);
+        return new Pheanstalk(SERVER_HOST);
     }
 }
