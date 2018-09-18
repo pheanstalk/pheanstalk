@@ -1,16 +1,16 @@
 language: php
 dist: trusty
+sudo: false
 php:
   - 7.1
   - 7.2
-  - 7.3
+  - nightly
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq beanstalkd
   - sudo beanstalkd -l 127.0.0.1 -p 11300 &
 
 before_script:
-  - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
