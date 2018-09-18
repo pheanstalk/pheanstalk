@@ -1,17 +1,9 @@
 language: php
 dist: trusty
-matrix:
-  include:
-    - php: 5.3
-      dist: precise
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
   - 7.1
   - 7.2
-  - hhvm
+  - 7.3
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq beanstalkd
