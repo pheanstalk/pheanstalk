@@ -25,7 +25,11 @@
         }
     },
     "scripts": {
-        "tests": "docker-compose run --rm phpunit"
+        "phpunit": "docker-compose run --rm phpunit",
+        "test": [
+            "@composer install",
+            "@phpunit"
+        ]
     },
     "extra": {
         "branch-alias": {
