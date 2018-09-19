@@ -48,12 +48,12 @@ class ReserveCommand
     public function parseResponse($responseLine, $responseData)
     {
         if (in_array($responseLine, array(ResponseInterface::RESPONSE_DEADLINE_SOON, ResponseInterface::RESPONSE_TIMED_OUT), true)) {
-            return $this->_createResponse($responseLine);
+            return $this->createResponse($responseLine);
         }
 
         list($code, $id) = explode(' ', $responseLine);
 
-        return $this->_createResponse($code, array(
+        return $this->createResponse($code, array(
             'id'      => (int) $id,
             'jobdata' => $responseData,
         ));

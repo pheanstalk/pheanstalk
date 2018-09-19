@@ -2,7 +2,7 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Contract\YamlResponseParserInterface;
+use Pheanstalk\YamlResponseParser;
 
 /**
  * The 'stats-job' command.
@@ -39,8 +39,8 @@ class StatsJobCommand
      */
     public function getResponseParser()
     {
-        return new YamlResponseParserInterface(
-            YamlResponseParserInterface::MODE_DICT
+        return new YamlResponseParser(
+            YamlResponseParser::MODE_DICT
         );
     }
 }

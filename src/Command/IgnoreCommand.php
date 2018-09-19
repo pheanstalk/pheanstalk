@@ -42,7 +42,7 @@ class IgnoreCommand
     public function parseResponse($responseLine, $responseData)
     {
         if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches)) {
-            return $this->_createResponse('WATCHING', array(
+            return $this->createResponse('WATCHING', array(
                 'count' => (int) $matches[1],
             ));
         } elseif ($responseLine == ResponseInterface::RESPONSE_NOT_IGNORED) {

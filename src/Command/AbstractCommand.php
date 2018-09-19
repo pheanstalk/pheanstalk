@@ -3,6 +3,7 @@
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception\CommandException;
 use Pheanstalk\Response\ArrayResponse;
 
@@ -69,9 +70,8 @@ abstract class AbstractCommand
      *
      * @param array
      *
-     * @return object Response
      */
-    protected function _createResponse($name, $data = array())
+    protected function createResponse(string $name, array $data = []): ArrayResponse
     {
         return new ArrayResponse($name, $data);
     }

@@ -55,7 +55,7 @@ class PauseTubeCommand
                 $this->_tube
             ));
         } elseif ($responseLine == ResponseInterface::RESPONSE_PAUSED) {
-            return $this->_createResponse(ResponseInterface::RESPONSE_PAUSED);
+            return $this->createResponse(ResponseInterface::RESPONSE_PAUSED);
         } else {
             throw new Exception('Unhandled response: '.$responseLine);
         }

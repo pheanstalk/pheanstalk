@@ -192,7 +192,7 @@ class CommandTest extends TestCase
 
     public function testPeek()
     {
-        $command = new Command\PeekCommand(5);
+        $command = new Command\PeekJobCommand(new JobId(5));
         $this->_assertCommandLine($command, 'peek 5');
 
         $this->_assertResponse(

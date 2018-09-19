@@ -3,7 +3,6 @@
 namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\YamlResponseParserInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -66,7 +65,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testPeekNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Command\PeekCommand(5),
+            new Command\PeekJobCommand(new JobId(5)),
             'NOT_FOUND'
         );
     }
@@ -82,7 +81,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testYamlResponseParserNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new YamlResponseParserInterface(YamlResponseParserInterface::MODE_DICT),
+            new YamlResponseParser(YamlResponseParser::MODE_DICT),
             'NOT_FOUND'
         );
     }

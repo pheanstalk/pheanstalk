@@ -52,7 +52,7 @@ class KickJobCommand
                 $this->_job->getId()
             ));
         } elseif ($responseLine == ResponseInterface::RESPONSE_KICKED) {
-            return $this->_createResponse(ResponseInterface::RESPONSE_KICKED);
+            return $this->createResponse(ResponseInterface::RESPONSE_KICKED);
         } else {
             throw new Exception('Unhandled response: '.$responseLine);
         }

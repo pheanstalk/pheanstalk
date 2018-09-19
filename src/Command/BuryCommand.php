@@ -55,7 +55,7 @@ class BuryCommand
                 $this->_job->getId()
             ));
         } elseif ($responseLine == ResponseInterface::RESPONSE_BURIED) {
-            return $this->_createResponse(ResponseInterface::RESPONSE_BURIED);
+            return $this->createResponse(ResponseInterface::RESPONSE_BURIED);
         } else {
             throw new Exception('Unhandled response: '.$responseLine);
         }

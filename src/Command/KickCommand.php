@@ -42,7 +42,7 @@ class KickCommand
     {
         list($code, $count) = explode(' ', $responseLine);
 
-        return $this->_createResponse($code, array(
+        return $this->createResponse($code, array(
             'kicked' => (int) $count,
         ));
     }

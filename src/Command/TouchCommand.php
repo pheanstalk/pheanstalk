@@ -53,6 +53,6 @@ class TouchCommand
             ));
         }
 
-        return $this->_createResponse($responseLine);
+        return $this->createResponse($responseLine);
     }
 }

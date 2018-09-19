@@ -1,8 +1,9 @@
 <?php
 
-namespace Pheanstalk\Contract;
+namespace Pheanstalk;
 
-use Pheanstalk\Exception;
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Response;
 
 /**
@@ -15,7 +16,7 @@ use Pheanstalk\Response;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class YamlResponseParserInterface implements ResponseParserInterface
+class YamlResponseParser implements ResponseParserInterface
 {
     const MODE_LIST = 'list';
     const MODE_DICT = 'dict';

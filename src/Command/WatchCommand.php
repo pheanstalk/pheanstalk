@@ -38,7 +38,7 @@ class WatchCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        return $this->_createResponse('WATCHING', array(
+        return $this->createResponse('WATCHING', array(
             'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine),
         ));
     }

@@ -49,6 +49,6 @@ class DeleteCommand
             ));
         }
 
-        return $this->_createResponse($responseLine);
+        return $this->createResponse($responseLine);
     }
 }
