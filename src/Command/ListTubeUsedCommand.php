@@ -13,7 +13,7 @@ namespace Pheanstalk\Command;
  */
 class ListTubeUsedCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     /* (non-phpdoc)
      * @see Command::getCommandLine()

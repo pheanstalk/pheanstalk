@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Job;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -69,7 +71,7 @@ class FacadeConnectionTest extends TestCase
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
 
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
+        $this->assertInstanceOf(Job::class, $job);
 
         // delete the reserved job
         $pheanstalk->delete($job);
@@ -82,7 +84,7 @@ class FacadeConnectionTest extends TestCase
         // reserve a job from an unwatched tube - can't assume it is the one just added
         $job = $pheanstalk->reserveFromTube('test');
 
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
+        $this->assertInstanceOf(Job::class, $job);
 
         // delete the reserved job
         $pheanstalk->delete($job);
@@ -108,7 +110,7 @@ class FacadeConnectionTest extends TestCase
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
 
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
+        $this->assertInstanceOf(Job::class, $job);
 
         // bury the reserved job
         $pheanstalk->bury($job);
@@ -369,7 +371,7 @@ class FacadeConnectionTest extends TestCase
     {
         $facade = $this->_getFacade();
 
-        $connection = $this->getMockBuilder('\Pheanstalk\Connection')
+        $connection = $this->getMockBuilder(Connection::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -381,7 +383,7 @@ class FacadeConnectionTest extends TestCase
     {
         $facade = $this->_getFacade();
 
-        $this->assertInstanceOf('\Pheanstalk\PheanstalkInterface', $facade);
+        $this->assertInstanceOf(PheanstalkInterface::class, $facade);
     }
 
     // ----------------------------------------

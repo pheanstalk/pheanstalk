@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\JobIdInterface;
+
 /**
  * A job in a beanstalkd server.
  *
@@ -9,7 +11,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class Job
+class Job implements JobIdInterface
 {
     const STATUS_READY = 'ready';
     const STATUS_RESERVED = 'reserved';
@@ -17,16 +19,16 @@ class Job
     const STATUS_BURIED = 'buried';
 
     private $_id;
-    private $_data;
+    private $data;
 
     /**
      * @param int    $id   The job ID
      * @param string $data The job data
      */
-    public function __construct($id, $data)
+    public function __construct(int $id, string $data)
     {
-        $this->_id = (int) $id;
-        $this->_data = $data;
+        $this->_id = $id;
+        $this->data = $data;
     }
 
     /**
@@ -34,7 +36,7 @@ class Job
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->_id;
     }
@@ -44,8 +46,8 @@ class Job
      *
      * @return string
      */
-    public function getData()
+    public function getData(): string
     {
-        return $this->_data;
+        return $this->data;
     }
 }

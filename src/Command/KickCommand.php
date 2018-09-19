@@ -15,7 +15,7 @@ namespace Pheanstalk\Command;
  */
 class KickCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_max;
 

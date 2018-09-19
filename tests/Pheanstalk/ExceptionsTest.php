@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Exception\ClientException;
+use Pheanstalk\Exception\ServerException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -16,60 +18,60 @@ class ExceptionsTest extends TestCase
     public function testPheanstalkException()
     {
         $e = new Exception();
-        $this->assertInstanceOf('\Pheanstalk\Exception', $e);
+        $this->assertInstanceOf(Exception::class, $e);
     }
 
     public function testClientException()
     {
-        $e = new Exception\ClientException();
-        $this->assertInstanceOf('\Pheanstalk\Exception', $e);
+        $e = new ClientException();
+        $this->assertInstanceOf(Exception::class, $e);
     }
 
     public function testConnectionException()
     {
         $e = new Exception\ConnectionException(10, 'test');
-        $this->assertInstanceOf('\Pheanstalk\Exception\ClientException', $e);
+        $this->assertInstanceOf(ClientException::class, $e);
     }
 
     public function testCommandException()
     {
         $e = new Exception\CommandException('test');
-        $this->assertInstanceOf('\Pheanstalk\Exception\ClientException', $e);
+        $this->assertInstanceOf(ClientException::class, $e);
     }
 
     public function testServerException()
     {
         $e = new Exception\ServerException();
-        $this->assertInstanceOf('\Pheanstalk\Exception', $e);
+        $this->assertInstanceOf(Exception::class, $e);
     }
 
     public function testServerBadFormatException()
     {
         $e = new Exception\ServerBadFormatException();
-        $this->assertInstanceOf('\Pheanstalk\Exception\ServerException', $e);
+        $this->assertInstanceOf(ServerException::class, $e);
     }
 
     public function testServerDrainingException()
     {
         $e = new Exception\ServerDrainingException();
-        $this->assertInstanceOf('\Pheanstalk\Exception\ServerException', $e);
+        $this->assertInstanceOf(ServerException::class, $e);
     }
 
     public function testServerInternalErrorException()
     {
         $e = new Exception\ServerInternalErrorException();
-        $this->assertInstanceOf('\Pheanstalk\Exception\ServerException', $e);
+        $this->assertInstanceOf(ServerException::class, $e);
     }
 
     public function testServerOutOfMemoryException()
     {
         $e = new Exception\ServerOutOfMemoryException();
-        $this->assertInstanceOf('\Pheanstalk\Exception\ServerException', $e);
+        $this->assertInstanceOf(ServerException::class, $e);
     }
 
     public function testServerUnknownCommandException()
     {
         $e = new Exception\ServerUnknownCommandException();
-        $this->assertInstanceOf('\Pheanstalk\Exception\ServerException', $e);
+        $this->assertInstanceOf(ServerException::class, $e);
     }
 }

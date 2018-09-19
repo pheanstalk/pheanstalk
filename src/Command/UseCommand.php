@@ -2,8 +2,6 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\ResponseParser;
-
 /**
  * The 'use' command.
  *
@@ -17,7 +15,7 @@ use Pheanstalk\ResponseParser;
  */
 class UseCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     /**
      * @var string

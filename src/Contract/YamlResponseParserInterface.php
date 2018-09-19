@@ -1,6 +1,9 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Contract;
+
+use Pheanstalk\Exception;
+use Pheanstalk\Response;
 
 /**
  * A response parser for commands that return a subset of YAML.
@@ -12,8 +15,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class YamlResponseParser
-    implements \Pheanstalk\ResponseParser
+class YamlResponseParserInterface implements ResponseParserInterface
 {
     const MODE_LIST = 'list';
     const MODE_DICT = 'dict';
@@ -33,7 +35,7 @@ class YamlResponseParser
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 'Server reported %s',
                 $responseLine

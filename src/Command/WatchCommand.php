@@ -13,7 +13,7 @@ namespace Pheanstalk\Command;
  */
 class WatchCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_tube;
 

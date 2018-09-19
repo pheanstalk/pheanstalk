@@ -1,6 +1,9 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Contract;
+
+use Pheanstalk\Connection;
+use Pheanstalk\Job;
 
 interface PheanstalkInterface
 {

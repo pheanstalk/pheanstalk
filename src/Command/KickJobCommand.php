@@ -2,8 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
 
 /**
  * The 'kick-job' command.
@@ -20,7 +20,7 @@ use Pheanstalk\Response;
  */
 class KickJobCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_job;
 
@@ -45,14 +45,14 @@ class KickJobCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 '%s: Job %d does not exist or is not in a kickable state.',
                 $responseLine,
                 $this->_job->getId()
             ));
-        } elseif ($responseLine == Response::RESPONSE_KICKED) {
-            return $this->_createResponse(Response::RESPONSE_KICKED);
+        } elseif ($responseLine == ResponseInterface::RESPONSE_KICKED) {
+            return $this->_createResponse(ResponseInterface::RESPONSE_KICKED);
         } else {
             throw new Exception('Unhandled response: '.$responseLine);
         }

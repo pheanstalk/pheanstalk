@@ -2,7 +2,7 @@
 
 namespace Pheanstalk\Response;
 
-use Pheanstalk\Response;
+use Pheanstalk\Contract\ResponseInterface;
 
 /**
  * A response with an ArrayObject interface to key => value data.
@@ -13,7 +13,7 @@ use Pheanstalk\Response;
  */
 class ArrayResponse
     extends \ArrayObject
-    implements Response
+    implements ResponseInterface
 {
     private $_name;
 

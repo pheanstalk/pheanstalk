@@ -2,7 +2,7 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\YamlResponseParser;
+use Pheanstalk\Contract\YamlResponseParserInterface;
 
 /**
  * The 'list-tubes-watched' command.
@@ -29,8 +29,8 @@ class ListTubesWatchedCommand
      */
     public function getResponseParser()
     {
-        return new YamlResponseParser(
-            YamlResponseParser::MODE_LIST
+        return new YamlResponseParserInterface(
+            YamlResponseParserInterface::MODE_LIST
         );
     }
 }

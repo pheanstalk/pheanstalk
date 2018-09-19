@@ -2,7 +2,7 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Response;
+use Pheanstalk\Contract\ResponseInterface;
 
 /**
  * The 'reserve' command.
@@ -15,7 +15,7 @@ use Pheanstalk\Response;
  */
 class ReserveCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_timeout;
 
@@ -47,7 +47,7 @@ class ReserveCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if (in_array($responseLine, array(Response::RESPONSE_DEADLINE_SOON, Response::RESPONSE_TIMED_OUT), true)) {
+        if (in_array($responseLine, array(ResponseInterface::RESPONSE_DEADLINE_SOON, ResponseInterface::RESPONSE_TIMED_OUT), true)) {
             return $this->_createResponse($responseLine);
         }
 

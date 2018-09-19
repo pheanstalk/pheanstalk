@@ -17,7 +17,7 @@ use Pheanstalk\Exception;
  */
 class PutCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_data;
     private $_priority;

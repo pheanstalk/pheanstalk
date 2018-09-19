@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Contract;
 
 /**
  * A parser for response data sent from the beanstalkd server.
@@ -9,7 +9,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-interface ResponseParser
+interface ResponseParserInterface
 {
     /**
      * Parses raw response data into a Response object.

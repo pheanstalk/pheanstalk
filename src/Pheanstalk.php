@@ -2,6 +2,10 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Contract\ResponseInterface;
+
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
  *
@@ -279,8 +283,8 @@ class Pheanstalk implements PheanstalkInterface
         );
 
         $falseResponses = array(
-            Response::RESPONSE_DEADLINE_SOON,
-            Response::RESPONSE_TIMED_OUT,
+            ResponseInterface::RESPONSE_DEADLINE_SOON,
+            ResponseInterface::RESPONSE_TIMED_OUT,
         );
 
         if (in_array($response->getResponseName(), $falseResponses)) {
@@ -383,9 +387,9 @@ class Pheanstalk implements PheanstalkInterface
      * If a SocketException occurs, the connection is reset, and the command is
      * re-attempted once.
      *
-     * @param Command $command
+     * @param CommandInterface $command
      *
-     * @return Response
+     * @return ResponseInterface
      */
     private function _dispatch($command)
     {

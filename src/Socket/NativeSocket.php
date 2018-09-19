@@ -2,8 +2,8 @@
 
 namespace Pheanstalk\Socket;
 
+use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Socket;
 
 /**
  * A Socket implementation around a fsockopen() stream.
@@ -12,7 +12,7 @@ use Pheanstalk\Socket;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class NativeSocket implements Socket
+class NativeSocket implements SocketInterface
 {
     /**
      * The default timeout for a blocking read on the socket.

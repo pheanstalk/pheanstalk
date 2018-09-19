@@ -2,8 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
@@ -17,7 +17,7 @@ use Pheanstalk\Response;
  */
 class PeekCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     const TYPE_ID = 'id';
     const TYPE_READY = 'ready';
@@ -64,7 +64,7 @@ class PeekCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             if (isset($this->_jobId)) {
                 $message = sprintf(
                     '%s: Job %u does not exist.',
@@ -82,7 +82,7 @@ class PeekCommand
             throw new Exception\ServerException($message);
         } elseif (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
             return $this->_createResponse(
-                Response::RESPONSE_FOUND,
+                ResponseInterface::RESPONSE_FOUND,
                 array(
                     'id'      => (int) $matches[1],
                     'jobdata' => $responseData,

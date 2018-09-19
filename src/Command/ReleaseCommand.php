@@ -2,8 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
 
 /**
  * The 'release' command.
@@ -16,7 +16,7 @@ use Pheanstalk\Response;
  */
 class ReleaseCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_job;
     private $_priority;
@@ -52,7 +52,7 @@ class ReleaseCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Response::RESPONSE_BURIED) {
+        if ($responseLine == ResponseInterface::RESPONSE_BURIED) {
             throw new Exception\ServerException(sprintf(
                 'Job %u %s: out of memory trying to grow data structure',
                 $this->_job->getId(),
@@ -60,7 +60,7 @@ class ReleaseCommand
             ));
         }
 
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 'Job %u %s: does not exist or is not reserved by client',
                 $this->_job->getId(),

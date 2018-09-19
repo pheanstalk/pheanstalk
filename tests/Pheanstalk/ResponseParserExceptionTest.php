@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\YamlResponseParserInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -80,7 +82,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testYamlResponseParserNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new YamlResponseParser(YamlResponseParser::MODE_DICT),
+            new YamlResponseParserInterface(YamlResponseParserInterface::MODE_DICT),
             'NOT_FOUND'
         );
     }
@@ -119,7 +121,7 @@ class ResponseParserExceptionTest extends TestCase
     }
 
     /**
-     * @param Command
+     * @param CommandInterface
      * @param string the response line to parse.
      * @param string the type of exception to expect.
      */
@@ -130,7 +132,7 @@ class ResponseParserExceptionTest extends TestCase
     }
 
     /**
-     * @param Command
+     * @param CommandInterface
      * @param string the response line to parse.
      */
     private function _expectServerExceptionForResponse($command, $response)
