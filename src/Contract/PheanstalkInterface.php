@@ -128,26 +128,20 @@ interface PheanstalkInterface
     public function peek(JobIdInterface $job): Job;
 
     /**
-     * Inspect the next ready job in the specified tube. If no tube is
-     * specified, the currently used tube in used.
+     * Inspect the next ready job in the currently used tube.
      */
-    public function peekReady(?string $tube = null): Job;
+    public function peekReady(): ?Job;
 
     /**
-     * Inspect the shortest-remaining-delayed job in the specified tube. If no
-     * tube is specified, the currently used tube in used.
-     *
-     * @param string $tube
-     *
-     * @return object Job
+     * Inspect the shortest-remaining-delayed job in the currently used tube.
+     * @return ?Job
      */
-    public function peekDelayed(?string $tube = null): Job;
+    public function peekDelayed(): ?Job;
 
     /**
-     * Inspect the next job in the list of buried jobs of the specified tube.
-     * If no tube is specified, the currently used tube in used.
+     * Inspect the next job in the list of buried jobs in the currently used tube.
      */
-    public function peekBuried(?string $tube = null): Job;
+    public function peekBuried(): ?Job;
 
     /**
      * Puts a job on the queue.
@@ -156,33 +150,8 @@ interface PheanstalkInterface
      * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      * @param int    $delay    Seconds to wait before job becomes ready
      * @param int    $ttr      Time To Run: seconds a job can be reserved for
-     *
-     * @return int The new job ID
      */
     public function put(
-        string $data,
-        int $priority = self::DEFAULT_PRIORITY,
-        int $delay = self::DEFAULT_DELAY,
-        int $ttr = self::DEFAULT_TTR
-    ): Job;
-
-    /**
-     * Puts a job on the queue using specified tube.
-     *
-     * Using this method is equivalent to calling useTube() then put(), with
-     * the added benefit that it will not execute the USE command if the client
-     * is already using the specified tube.
-     *
-     * @param string $tube     The tube to use
-     * @param string $data     The job data
-     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
-     * @param int    $delay    Seconds to wait before job becomes ready
-     * @param int    $ttr      Time To Run: seconds a job can be reserved for
-     *
-     * @return int The new job ID
-     */
-    public function putInTube(
-        string $tube,
         string $data,
         int $priority = self::DEFAULT_PRIORITY,
         int $delay = self::DEFAULT_DELAY,
@@ -198,8 +167,6 @@ interface PheanstalkInterface
      * @param JobIdInterface $job
      * @param int $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      * @param int $delay Seconds to wait before job becomes ready
-     *
-     * @return $this
      */
     public function release(
         JobIdInterface $job,
@@ -209,57 +176,31 @@ interface PheanstalkInterface
 
     /**
      * Reserves/locks a ready job in a watched tube.
-     *
-     * A non-null timeout uses the 'reserve-with-timeout' instead of 'reserve'.
-     *
-     * A timeout value of 0 will cause the server to immediately return either a
-     * response or TIMED_OUT.  A positive value of timeout will limit the amount of
-     * time the client will block on the reserve request until a job becomes
-     * available.
      */
-    public function reserve(?int $timeout = null): ?Job;
+    public function reserve(): ?Job;
 
     /**
-     * Reserves/locks a ready job from the specified tube.
-     *
-     * A non-null timeout uses the 'reserve-with-timeout' instead of 'reserve'.
+     * Reserves/locks a ready job in a watched tube, uses the 'reserve-with-timeout' instead of 'reserve'.
      *
      * A timeout value of 0 will cause the server to immediately return either a
      * response or TIMED_OUT.  A positive value of timeout will limit the amount of
      * time the client will block on the reserve request until a job becomes
      * available.
-     *
-     * Using this method is equivalent to calling watch(), ignore() then
-     * reserve(), with the added benefit that it will not execute uneccessary
-     * WATCH or IGNORE commands if the client is already watching the
-     * specified tube.
-     *
-     * @return object Job
      */
-    public function reserveFromTube(string $tube, ?int $timeout = null): Job;
+    public function reserveWithTimeout(int $timeout): ?Job;
 
     /**
      * Gives statistical information about the specified job if it exists.
-     *
-     * @param Job|int $job
-     *
-     * @return object
      */
     public function statsJob(JobIdInterface $job): ArrayResponse;
 
     /**
      * Gives statistical information about the specified tube if it exists.
-     *
-     * @param string $tube
-     *
-     * @return object
      */
     public function statsTube(string $tube): ArrayResponse;
 
     /**
      * Gives statistical information about the beanstalkd system as a whole.
-     *
-     * @return object
      */
     public function stats(): ArrayResponse;
 

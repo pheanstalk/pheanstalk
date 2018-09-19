@@ -158,7 +158,7 @@ class CommandTest extends TestCase
 
     public function testReserveWithTimeout()
     {
-        $command = new Command\ReserveCommand(10);
+        $command = new Command\ReserveWithTimeoutCommand(10);
         $this->_assertCommandLine($command, 'reserve-with-timeout 10');
 
         $this->_assertResponse(
@@ -169,7 +169,7 @@ class CommandTest extends TestCase
 
     public function testTouch()
     {
-        $command = new Command\TouchCommand($this->_mockJob(5));
+        $command = new Command\TouchCommand(new JobId(5));
         $this->_assertCommandLine($command, 'touch 5');
 
         $this->_assertResponse(

@@ -76,7 +76,9 @@ class FacadeConnectionTest extends TestCase
         $putJob = $pheanstalk->putInTube('test', __METHOD__);
 
         // reserve a job from an unwatched tube - can't assume it is the one just added
-        $job = $pheanstalk->reserveFromTube('test');
+        $job = $pheanstalk->withWatchedTube('test', function(Pheanstalk $ph) {
+            return $ph->reserve();
+        });
 
         // delete the reserved job
         $pheanstalk->delete($job);
@@ -342,14 +344,14 @@ class FacadeConnectionTest extends TestCase
         // pause, expect no job from that queue
         $response = $pheanstalk
             ->pauseTube($tube, 60)
-            ->reserve(0);
+            ->reserveWithTimeout(0);
 
         $this->assertNull($response);
 
         // resume, expect job
         $response = $pheanstalk
             ->resumeTube($tube)
-            ->reserve(0);
+            ->reserveWithTimeout(0);
 
         $this->assertSame($response->getData(), __METHOD__);
     }

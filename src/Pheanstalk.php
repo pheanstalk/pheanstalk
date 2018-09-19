@@ -6,6 +6,7 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Exception\DeadlineSoonException;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
@@ -28,12 +29,16 @@ class Pheanstalk implements PheanstalkInterface
 
     /**
      * @param string $host
-     * @param int    $port
-     * @param int    $connectTimeout
-     * @param bool   $connectPersistent
+     * @param int $port
+     * @param int $connectTimeout
+     * @param bool $connectPersistent
      */
-    public function __construct($host, $port = PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null, $connectPersistent = false)
-    {
+    public function __construct(
+        $host,
+        $port = PheanstalkInterface::DEFAULT_PORT,
+        $connectTimeout = null,
+        $connectPersistent = false
+    ) {
         $this->setConnection(new Connection($host, $port, $connectTimeout, $connectPersistent));
     }
 
@@ -109,7 +114,7 @@ class Pheanstalk implements PheanstalkInterface
      */
     public function listTubes(): array
     {
-        return (array) $this->_dispatch(
+        return (array)$this->_dispatch(
             new Command\ListTubesCommand()
         );
     }
@@ -120,7 +125,7 @@ class Pheanstalk implements PheanstalkInterface
     public function listTubesWatched(bool $askServer = false): array
     {
         if ($askServer) {
-            $response = (array) $this->_dispatch(
+            $response = (array)$this->_dispatch(
                 new Command\ListTubesWatchedCommand()
             );
             $this->_watching = array_fill_keys($response, true);
@@ -272,32 +277,33 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function reserve(?int $timeout = null): ?Job
+    public function reserve(): Job
     {
         $response = $this->_dispatch(
-            new Command\ReserveCommand($timeout)
+            new Command\ReserveCommand()
         );
 
-        $falseResponses = array(
-            ResponseInterface::RESPONSE_DEADLINE_SOON,
-            ResponseInterface::RESPONSE_TIMED_OUT,
-        );
-
-        if (in_array($response->getResponseName(), $falseResponses)) {
-            return null;
-        } else {
-            return new Job($response['id'], $response['jobdata']);
-        }
+        return new Job($response['id'], $response['jobdata']);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function reserveFromTube(string $tube, ?int $timeout = null): Job
+    public function reserveWithTimeout(int $timeout): ?Job
     {
-        $this->watchOnly($tube);
+        $response = $this->_dispatch(
+            new Command\ReserveWithTimeoutCommand($timeout)
+        );
 
-        return $this->reserve($timeout);
+        if ($response->getResponseName() === ResponseInterface::RESPONSE_DEADLINE_SOON) {
+            throw new DeadlineSoonException();
+        }
+
+        if ($response->getResponseName() === ResponseInterface::RESPONSE_TIMED_OUT) {
+            return null;
+        }
+
+        return new Job($response['id'], $response['jobdata']);
     }
 
     /**
@@ -337,7 +343,7 @@ class Pheanstalk implements PheanstalkInterface
      */
     public function useTube(string $tube): PheanstalkInterface
     {
-        if ($this->_using != $tube) {
+        if ($this->_using !== $tube) {
             $this->_dispatch(new Command\UseCommand($tube));
             $this->_using = $tube;
         }
@@ -428,4 +434,35 @@ class Pheanstalk implements PheanstalkInterface
             $this->ignore(PheanstalkInterface::DEFAULT_TUBE);
         }
     }
+
+
+    public function withUsedTube(string $tube, \Closure $closure)
+    {
+        $used = $this->listTubeUsed();
+        try {
+            $this->useTube($tube);
+            return $closure($this);
+        } finally {
+            $this->useTube($used);
+        }
+    }
+
+    public function withWatchedTube(string $tube, \Closure $closure)
+    {
+        $watched = $this->listTubesWatched();
+        try {
+            $this->watchOnly($tube);
+            return $closure($this);
+        } finally {
+            foreach($watched as $tube) {
+                $this->watch($tube);
+            }
+            if (!in_array($tube, $watched)) {
+                $this->ignore($tube);
+            }
+
+        }
+
+    }
+
 }

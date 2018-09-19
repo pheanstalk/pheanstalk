@@ -3,7 +3,6 @@
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Exception\DeadlineSoonException;
 
 /**
  * The 'reserve' command.
@@ -14,24 +13,31 @@ use Pheanstalk\Exception\DeadlineSoonException;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ReserveCommand
+class ReserveWithTimeoutCommand
     extends AbstractCommand
     implements \Pheanstalk\Contract\ResponseParserInterface
 {
-    public function __construct()
-    {
-        if (!empty(func_get_args())) {
-            throw new \Exception('In version 4 calling reserve with a parameter is no longer supported.');
-        }
-    }
+    private $timeout;
 
+    /**
+     * A timeout value of 0 will cause the server to immediately return either a
+     * response or TIMED_OUT.  A positive value of timeout will limit the amount of
+     * time the client will block on the reserve request until a job becomes
+     * available.
+     *
+     * @param int $timeout
+     */
+    public function __construct(int $timeout)
+    {
+        $this->timeout = $timeout;
+    }
 
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
     public function getCommandLine()
     {
-        return 'reserve';
+        return sprintf('reserve-with-timeout %s', $this->timeout);
     }
 
     /* (non-phpdoc)
@@ -39,14 +45,15 @@ class ReserveCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON) {
-            throw new DeadlineSoonException();
+        if (in_array($responseLine, array(ResponseInterface::RESPONSE_DEADLINE_SOON, ResponseInterface::RESPONSE_TIMED_OUT), true)) {
+            return $this->createResponse($responseLine);
         }
 
         list($code, $id) = explode(' ', $responseLine);
-        return $this->createResponse($code, [
+
+        return $this->createResponse($code, array(
             'id'      => (int) $id,
             'jobdata' => $responseData,
-        ]);
+        ));
     }
 }
