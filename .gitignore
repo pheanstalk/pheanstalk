@@ -6,3 +6,5 @@ pheanstalk.phar
 
 # Composer installs dependencies here.
 vendor/
+# Test coverage is stored here
+tests/coverage

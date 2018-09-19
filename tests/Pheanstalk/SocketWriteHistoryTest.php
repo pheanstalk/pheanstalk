@@ -3,13 +3,14 @@
 namespace Pheanstalk;
 
 use Pheanstalk\Socket\WriteHistory;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author  Paul Annesley
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class SocketWriteHistoryTest extends \PHPUnit_Framework_TestCase
+class SocketWriteHistoryTest extends TestCase
 {
     public function testEmptyHistory()
     {

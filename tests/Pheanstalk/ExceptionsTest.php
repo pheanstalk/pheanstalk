@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the Pheanstalk exceptions, mainly for parse errors etc.
  *
@@ -9,7 +11,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ExceptionsTest extends \PHPUnit_Framework_TestCase
+class ExceptionsTest extends TestCase
 {
     public function testPheanstalkException()
     {
