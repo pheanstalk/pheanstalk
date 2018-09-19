@@ -110,7 +110,7 @@ class NativeSocket implements SocketInterface
             if ($this->_wrapper()->feof($this->_socket)) {
                 throw new Exception\SocketException('Socket closed by server!');
             }
-            if (microtime(true) - $timer > $timeout) {
+            if (($data === false) && microtime(true) - $timer > $timeout) {
                 $this->disconnect();
                 throw new Exception\SocketException('Socket timed out!');
             }
