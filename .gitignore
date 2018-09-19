@@ -6,3 +6,6 @@ pheanstalk.phar
 
 # Composer installs dependencies here.
 vendor/
+
+.idea
+tests/coverage
