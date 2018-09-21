@@ -20,7 +20,7 @@ class Pheanstalk implements PheanstalkInterface
 
     private $_connection;
     private $_using = PheanstalkInterface::DEFAULT_TUBE;
-    private $_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
+    private $_watching;
 
     /**
      * @param string $host
@@ -31,6 +31,9 @@ class Pheanstalk implements PheanstalkInterface
     public function __construct($host, $port = PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null, $connectPersistent = false)
     {
         $this->setConnection(new Connection($host, $port, $connectTimeout, $connectPersistent));
+
+        // Set watching
+        $this->setWatching();
     }
 
     /**
@@ -49,6 +52,22 @@ class Pheanstalk implements PheanstalkInterface
     public function getConnection()
     {
         return $this->_connection;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setWatching()
+    {
+        // If we have a persistent connection, retrieve list of tubes currently watched for this connection
+        if ($this->_connection->getConnectPersistent()) {
+            $this->listTubesWatched(true);
+        }
+
+        // Default
+        if (!$this->_watching) {
+            $this->_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
+        }
     }
 
     // ----------------------------------------
