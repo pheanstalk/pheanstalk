@@ -5,6 +5,7 @@ namespace Pheanstalk\Contract;
 use Pheanstalk\Connection;
 use Pheanstalk\Job;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseParserExceptionTest;
 
 interface PheanstalkInterface
 {
@@ -192,17 +193,17 @@ interface PheanstalkInterface
     /**
      * Gives statistical information about the specified job if it exists.
      */
-    public function statsJob(JobIdInterface $job): ArrayResponse;
+    public function statsJob(JobIdInterface $job): ResponseInterface;
 
     /**
      * Gives statistical information about the specified tube if it exists.
      */
-    public function statsTube(string $tube): ArrayResponse;
+    public function statsTube(string $tube): ResponseInterface;
 
     /**
      * Gives statistical information about the beanstalkd system as a whole.
      */
-    public function stats(): ArrayResponse;
+    public function stats(): ResponseInterface;
 
     /**
      * Allows a worker to request more time to work on a job.
