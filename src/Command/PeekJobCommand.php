@@ -21,9 +21,6 @@ class PeekJobCommand
 {
     private $jobId;
 
-    /**
-     * @param mixed $peekSubject Job ID or self::TYPE_*
-     */
     public function __construct(JobIdInterface $peekSubject)
     {
         $this->jobId = $peekSubject->getId();
