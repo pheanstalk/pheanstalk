@@ -57,7 +57,7 @@ class NativeSocket implements SocketInterface
     {
         $history = new WriteHistory(self::WRITE_RETRIES);
 
-        for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite) {
+        for ($written = 0; $written < strlen($data); $written += $fwrite) {
             $fwrite = $this->_wrapper()
                 ->fwrite($this->_socket, substr($data, $written));
 
