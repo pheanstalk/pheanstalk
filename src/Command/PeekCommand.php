@@ -32,7 +32,7 @@ class PeekCommand
     ];
 
     /**
-     * @var int
+     * @var string
      */
     private $subcommand;
 
