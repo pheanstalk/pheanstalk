@@ -39,14 +39,7 @@ class PeekJobCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            $message = sprintf(
-                '%s: Job %u does not exist.',
-                $responseLine,
-                $this->jobId
-            );
-            throw new Exception\ServerException($message);
-        } elseif (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
+        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
             return $this->createResponse(
                 ResponseInterface::RESPONSE_FOUND,
                 [
@@ -55,5 +48,15 @@ class PeekJobCommand
                 ]
             );
         }
+
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+            $message = sprintf(
+                '%s: Job %u does not exist.',
+                $responseLine,
+                $this->jobId
+            );
+            throw new Exception\ServerException($message);
+        }
+        throw new Exception\ServerException("Unexpected response: " . $responseLine);
     }
 }
