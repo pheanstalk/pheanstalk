@@ -2,6 +2,7 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Job;
 use Pheanstalk\YamlResponseParser;
 
 /**
