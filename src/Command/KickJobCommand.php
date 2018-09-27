@@ -2,6 +2,7 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Job;
@@ -26,9 +27,9 @@ class KickJobCommand
     private $_job;
 
     /**
-     * @param Job $job Pheanstalk job
+     * @param JobIdInterface $job Pheanstalk job
      */
-    public function __construct($job)
+    public function __construct(JobIdInterface $job)
     {
         $this->_job = $job;
     }
