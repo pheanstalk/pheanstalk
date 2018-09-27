@@ -81,5 +81,7 @@ class PeekCommand
                 )
             );
         }
+
+        throw new Exception\ServerException("Unexpected response");
     }
 }
