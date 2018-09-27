@@ -72,7 +72,7 @@ interface PheanstalkInterface
      *
      * @param Job $job Job
      *
-     * @return $this
+     * @return void
      */
     public function kickJob(JobIdInterface $job);
 
