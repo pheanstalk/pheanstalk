@@ -314,16 +314,14 @@ class FacadeConnectionTest extends TestCase
             ->put(__METHOD__);
 
         // pause, expect no job from that queue
-        $response = $pheanstalk
-            ->pauseTube($tube, 60)
-            ->reserveWithTimeout(0);
+        $pheanstalk->pauseTube($tube, 60);
+        $response = $pheanstalk->reserveWithTimeout(0);
 
         $this->assertNull($response);
 
         // resume, expect job
-        $response = $pheanstalk
-            ->resumeTube($tube)
-            ->reserveWithTimeout(0);
+        $pheanstalk->resumeTube($tube);
+        $response = $pheanstalk->reserveWithTimeout(0);
 
         $this->assertSame($response->getData(), __METHOD__);
     }

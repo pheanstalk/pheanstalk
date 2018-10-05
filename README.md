@@ -14,6 +14,13 @@ in 2013, and a 3.0 release in 2014.
 Pheanstalk 3.0 introduces PHP namespaces, PSR-1 and PSR-2 coding standards,
 and PSR-4 autoloader standard.
 
+Pheanstalk 4.0 drops support for older PHP versions. It contains the following changes (among other things):
+- Strict PHP type hinting
+- Value objects for Job IDs
+- Functions without side effects
+- Dropped support for persistent connections
+
+
 beanstalkd up to the latest version 1.10 is supported.  All commands and
 responses specified in the [protocol documentation][3] for beanstalkd 1.3 are
 implemented.

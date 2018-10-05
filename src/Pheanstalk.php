@@ -149,22 +149,18 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function pauseTube(string $tube, int $delay): PheanstalkInterface
+    public function pauseTube(string $tube, int $delay): void
     {
         $this->_dispatch(new Command\PauseTubeCommand($tube, $delay));
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function resumeTube(string $tube): PheanstalkInterface
+    public function resumeTube(string $tube): void
     {
         // Pause a tube with zero delay will resume the tube
         $this->pauseTube($tube, 0);
-
-        return $this;
     }
 
     /**

@@ -37,7 +37,7 @@ class ServerErrorExceptionTest extends TestCase
             ->method('getLine')
             ->will($this->returnValue($line));
 
-        $connection = new Connection(null, null);
+        $connection = new Connection('', 1);
         $connection->setSocket($socket);
 
         return $connection;

@@ -40,7 +40,7 @@ interface PheanstalkInterface
     /**
      * Permanently deletes a job.
      */
-    public function delete(JobIdInterface $job);
+    public function delete(JobIdInterface $job): void;
 
     /**
      * Remove the specified tube from the watchlist.
@@ -69,12 +69,8 @@ interface PheanstalkInterface
      * A variant of kick that operates with a single job. If the given job
      * exists and is in a buried or delayed state, it will be moved to the
      * ready queue of the the same tube where it currently belongs.
-     *
-     * @param Job $job Job
-     *
-     * @return void
      */
-    public function kickJob(JobIdInterface $job);
+    public function kickJob(JobIdInterface $job): void;
 
     /**
      * The names of all tubes on the server.
@@ -109,19 +105,14 @@ interface PheanstalkInterface
      *
      * @param string $tube  The tube to pause
      * @param int    $delay Seconds before jobs may be reserved from this queue.
-     *
-     * @return $this
      */
-    public function pauseTube(string $tube, int $delay): self;
+    public function pauseTube(string $tube, int $delay): void;
 
     /**
      * Resume jobs for a given paused tube.
-     *
      * @param string $tube The tube to resume
-     *
-     * @return $this
      */
-    public function resumeTube(string $tube): self;
+    public function resumeTube(string $tube): void;
 
     /**
      * Inspect a job in the system, regardless of what tube it is in.
