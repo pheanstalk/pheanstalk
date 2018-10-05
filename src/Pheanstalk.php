@@ -31,15 +31,13 @@ class Pheanstalk implements PheanstalkInterface
      * @param string $host
      * @param int $port
      * @param int $connectTimeout
-     * @param bool $connectPersistent
      */
     public function __construct(
         $host,
         $port = PheanstalkInterface::DEFAULT_PORT,
-        $connectTimeout = null,
-        $connectPersistent = false
+        $connectTimeout = null
     ) {
-        $this->setConnection(new Connection($host, $port, $connectTimeout, $connectPersistent));
+        $this->setConnection(new Connection($host, $port, $connectTimeout));
     }
 
     /**
@@ -48,7 +46,6 @@ class Pheanstalk implements PheanstalkInterface
     public function setConnection(Connection $connection)
     {
         $this->_connection = $connection;
-
         return $this;
     }
 
@@ -435,7 +432,11 @@ class Pheanstalk implements PheanstalkInterface
         }
     }
 
-
+    /**
+     * @param string $tube The tube to use during execution
+     * @param \Closure $closure Closure to execute while using the specified tube
+     * @return mixed the return value of the closure.
+     */
     public function withUsedTube(string $tube, \Closure $closure)
     {
         $used = $this->listTubeUsed();
@@ -447,6 +448,11 @@ class Pheanstalk implements PheanstalkInterface
         }
     }
 
+    /**
+     * @param string $tube The tube to watch during execution
+     * @param \Closure $closure Closure to execute while using the specified tube
+     * @return mixed the return value of the closure.
+     */
     public function withWatchedTube(string $tube, \Closure $closure)
     {
         $watched = $this->listTubesWatched();

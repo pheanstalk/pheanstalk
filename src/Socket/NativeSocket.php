@@ -30,24 +30,16 @@ class NativeSocket implements SocketInterface
      * @param string $host
      * @param int    $port
      * @param int    $connectTimeout
-     * @param bool   $connectPersistent
      */
-    public function __construct($host, $port, $connectTimeout, $connectPersistent)
+    public function __construct(string $host, int $port, int $connectTimeout)
     {
-        if ($connectPersistent) {
-            $this->_socket = $this->_wrapper()
-                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout);
-        } else {
-            $this->_socket = $this->_wrapper()
-                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
-        }
+        $this->_socket = $this->_wrapper()->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
 
         if (!$this->_socket) {
             throw new Exception\ConnectionException($errno, $errstr." (connecting to $host:$port)");
         }
 
-        $this->_wrapper()
-            ->stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
+        $this->_wrapper()->stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
     }
 
     /* (non-phpdoc)

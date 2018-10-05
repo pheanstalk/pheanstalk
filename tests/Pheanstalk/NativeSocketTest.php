@@ -18,7 +18,6 @@ class NativeSocketTest extends TestCase
     const DEFAULT_HOST = 'localhost';
     const DEFAULT_PORT = 11300;
     const DEFAULT_CONNECTION_TIMEOUT = 0;
-    const DEFAULT_PERSISTENT_CONNECTION = false;
 
     private $_streamFunctions;
 
@@ -26,7 +25,7 @@ class NativeSocketTest extends TestCase
 
     public function setUp()
     {
-        $instance = $this->getMockBuilder('\Pheanstalk\Socket\StreamFunctions')
+        $instance = $this->getMockBuilder(\Pheanstalk\Socket\StreamFunctions::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -56,9 +55,8 @@ class NativeSocketTest extends TestCase
 
         $socket = new NativeSocket(
             self::DEFAULT_HOST,
-            self::DEFAULT_HOST,
-            self::DEFAULT_CONNECTION_TIMEOUT,
-            self::DEFAULT_PERSISTENT_CONNECTION
+            self::DEFAULT_PORT,
+            self::DEFAULT_CONNECTION_TIMEOUT
         );
         $socket->write('data');
     }
@@ -73,7 +71,7 @@ class NativeSocketTest extends TestCase
              ->method('fread')
              ->will($this->returnValue(false));
 
-        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
+        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_PORT, self::DEFAULT_CONNECTION_TIMEOUT);
         $socket->read(1);
     }
 
@@ -96,7 +94,7 @@ class NativeSocketTest extends TestCase
                 return false;
             }));
 
-        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
+        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_PORT, self::DEFAULT_CONNECTION_TIMEOUT);
 
         $start = microtime(true);
         try {
@@ -125,7 +123,7 @@ class NativeSocketTest extends TestCase
                 return false;
             }));
 
-        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_HOST, self::DEFAULT_CONNECTION_TIMEOUT, self::DEFAULT_PERSISTENT_CONNECTION);
+        $socket = new NativeSocket(self::DEFAULT_HOST, self::DEFAULT_PORT, self::DEFAULT_CONNECTION_TIMEOUT);
 
         $socket->getLine();
     }

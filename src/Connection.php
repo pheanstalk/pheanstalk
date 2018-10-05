@@ -35,11 +35,14 @@ class Connection
         ResponseInterface::RESPONSE_OK,
     );
 
-    private $_socket;
-    private $_hostname;
-    private $_port;
-    private $_connectTimeout;
-    private $_connectPersistent;
+    private $socket;
+    private $hostname;
+    private $port;
+
+    /**
+     * @var int
+     */
+    private $connectTimeout;
 
     /**
      * @param string $hostname
@@ -47,16 +50,11 @@ class Connection
      * @param float  $connectTimeout
      * @param bool   $connectPersistent
      */
-    public function __construct($hostname, $port, $connectTimeout = null, $connectPersistent = false)
+    public function __construct($hostname, $port, ?int $connectTimeout = null)
     {
-        if (is_null($connectTimeout) || !is_numeric($connectTimeout)) {
-            $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
-        }
-
-        $this->_hostname = $hostname;
-        $this->_port = $port;
-        $this->_connectTimeout = $connectTimeout;
-        $this->_connectPersistent = $connectPersistent;
+        $this->hostname = $hostname;
+        $this->port = $port;
+        $this->connectTimeout = $connectTimeout ?? self::DEFAULT_CONNECT_TIMEOUT;
     }
 
     /**
@@ -68,8 +66,7 @@ class Connection
      */
     public function setSocket(SocketInterface $socket)
     {
-        $this->_socket = $socket;
-
+        $this->socket = $socket;
         return $this;
     }
 
@@ -78,7 +75,7 @@ class Connection
      */
     public function hasSocket()
     {
-        return isset($this->_socket);
+        return isset($this->socket);
     }
 
     /**
@@ -87,8 +84,8 @@ class Connection
      */
     public function disconnect()
     {
-        $this->_getSocket()->disconnect();
-        $this->_socket = null;
+        $this->getSocket()->disconnect();
+        $this->socket = null;
     }
 
     /**
@@ -100,7 +97,7 @@ class Connection
      */
     public function dispatchCommand($command)
     {
-        $socket = $this->_getSocket();
+        $socket = $this->getSocket();
 
         $to_send = $command->getCommandLine().self::CRLF;
 
@@ -154,7 +151,7 @@ class Connection
      */
     public function getConnectTimeout()
     {
-        return $this->_connectTimeout;
+        return $this->connectTimeout;
     }
 
     /**
@@ -164,7 +161,7 @@ class Connection
      */
     public function getHost()
     {
-        return $this->_hostname;
+        return $this->hostname;
     }
 
     /**
@@ -172,9 +169,9 @@ class Connection
      *
      * @return int
      */
-    public function getPort()
+    public function getPort(): int
     {
-        return $this->_port;
+        return $this->port;
     }
 
     // ----------------------------------------
@@ -186,18 +183,17 @@ class Connection
      *
      * @return SocketInterface
      */
-    private function _getSocket()
+    private function getSocket()
     {
-        if (!isset($this->_socket)) {
-            $this->_socket = new NativeSocket(
-                $this->_hostname,
-                $this->_port,
-                $this->_connectTimeout,
-                $this->_connectPersistent
+        if (!isset($this->socket)) {
+            $this->socket = new NativeSocket(
+                $this->hostname,
+                $this->port,
+                $this->connectTimeout
             );
         }
 
-        return $this->_socket;
+        return $this->socket;
     }
 
     /**
@@ -208,8 +204,7 @@ class Connection
     public function isServiceListening()
     {
         try {
-            $this->_getSocket();
-
+            $this->getSocket();
             return true;
         } catch (Exception\ConnectionException $e) {
             return false;
