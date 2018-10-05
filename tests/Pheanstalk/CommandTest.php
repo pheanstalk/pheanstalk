@@ -222,7 +222,7 @@ class CommandTest extends TestCase
 
     public function testStatsJob()
     {
-        $command = new Command\StatsJobCommand(5);
+        $command = new Command\StatsJobCommand(new JobId(5));
         $this->_assertCommandLine($command, 'stats-job 5');
 
         $data = "---\r\nid: 8\r\ntube: test\r\nstate: delayed\r\n";
