@@ -27,6 +27,7 @@
     },
     "scripts": {
         "phpunit": "docker-compose run --rm phpunit",
+        "psalm": "@php vendor/bin/psalm --show-info=false src",
         "test": [
             "@composer install",
             "@phpunit"
