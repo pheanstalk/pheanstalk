@@ -2,6 +2,7 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\CommandInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -64,7 +65,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testPeekNotFound()
     {
         $this->_expectServerExceptionForResponse(
-            new Command\PeekCommand(5),
+            new Command\PeekJobCommand(new JobId(5)),
             'NOT_FOUND'
         );
     }
@@ -119,7 +120,7 @@ class ResponseParserExceptionTest extends TestCase
     }
 
     /**
-     * @param Command
+     * @param CommandInterface
      * @param string the response line to parse.
      * @param string the type of exception to expect.
      */
@@ -130,7 +131,7 @@ class ResponseParserExceptionTest extends TestCase
     }
 
     /**
-     * @param Command
+     * @param CommandInterface
      * @param string the response line to parse.
      */
     private function _expectServerExceptionForResponse($command, $response)

@@ -8,3 +8,4 @@ pheanstalk.phar
 vendor/
 # Test coverage is stored here
 tests/coverage
+.idea

@@ -29,7 +29,7 @@ class ServerErrorExceptionTest extends TestCase
      */
     private function _connection($line)
     {
-        $socket = $this->getMockBuilder('\Pheanstalk\Socket')
+        $socket = $this->getMockBuilder('\Pheanstalk\Contract\SocketInterface')
             ->disableOriginalConstructor()
             ->getMock();
 

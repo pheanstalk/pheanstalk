@@ -2,6 +2,13 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\JobIdInterface;
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Exception\DeadlineSoonException;
+use Pheanstalk\Response\ArrayResponse;
+
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
  *
@@ -22,12 +29,16 @@ class Pheanstalk implements PheanstalkInterface
 
     /**
      * @param string $host
-     * @param int    $port
-     * @param int    $connectTimeout
-     * @param bool   $connectPersistent
+     * @param int $port
+     * @param int $connectTimeout
+     * @param bool $connectPersistent
      */
-    public function __construct($host, $port = PheanstalkInterface::DEFAULT_PORT, $connectTimeout = null, $connectPersistent = false)
-    {
+    public function __construct(
+        $host,
+        $port = PheanstalkInterface::DEFAULT_PORT,
+        $connectTimeout = null,
+        $connectPersistent = false
+    ) {
         $this->setConnection(new Connection($host, $port, $connectTimeout, $connectPersistent));
     }
 
@@ -54,7 +65,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function bury($job, $priority = PheanstalkInterface::DEFAULT_PRIORITY)
+    public function bury(JobIdInterface $job, int $priority = PheanstalkInterface::DEFAULT_PRIORITY): void
     {
         $this->_dispatch(new Command\BuryCommand($job, $priority));
     }
@@ -62,17 +73,15 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function delete($job)
+    public function delete(JobIdInterface $job): void
     {
         $this->_dispatch(new Command\DeleteCommand($job));
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function ignore($tube)
+    public function ignore(string $tube): PheanstalkInterface
     {
         if (isset($this->_watching[$tube])) {
             $this->_dispatch(new Command\IgnoreCommand($tube));
@@ -85,7 +94,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function kick($max)
+    public function kick(int $max): int
     {
         $response = $this->_dispatch(new Command\KickCommand($max));
 
@@ -95,19 +104,17 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function kickJob($job)
+    public function kickJob(JobIdInterface $job): void
     {
         $this->_dispatch(new Command\KickJobCommand($job));
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function listTubes()
+    public function listTubes(): array
     {
-        return (array) $this->_dispatch(
+        return (array)$this->_dispatch(
             new Command\ListTubesCommand()
         );
     }
@@ -115,10 +122,10 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function listTubesWatched($askServer = false)
+    public function listTubesWatched(bool $askServer = false): array
     {
         if ($askServer) {
-            $response = (array) $this->_dispatch(
+            $response = (array)$this->_dispatch(
                 new Command\ListTubesWatchedCommand()
             );
             $this->_watching = array_fill_keys($response, true);
@@ -130,7 +137,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function listTubeUsed($askServer = false)
+    public function listTubeUsed(bool $askServer = false): string
     {
         if ($askServer) {
             $response = $this->_dispatch(
@@ -145,7 +152,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function pauseTube($tube, $delay)
+    public function pauseTube(string $tube, int $delay): PheanstalkInterface
     {
         $this->_dispatch(new Command\PauseTubeCommand($tube, $delay));
 
@@ -155,7 +162,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function resumeTube($tube)
+    public function resumeTube(string $tube): PheanstalkInterface
     {
         // Pause a tube with zero delay will resume the tube
         $this->pauseTube($tube, 0);
@@ -166,10 +173,10 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peek($jobId)
+    public function peek(JobIdInterface $job): Job
     {
         $response = $this->_dispatch(
-            new Command\PeekCommand($jobId)
+            new Command\PeekJobCommand($job)
         );
 
         return new Job($response['id'], $response['jobdata']);
@@ -178,7 +185,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peekReady($tube = null)
+    public function peekReady(?string $tube = null): Job
     {
         if ($tube !== null) {
             $this->useTube($tube);
@@ -194,7 +201,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peekDelayed($tube = null)
+    public function peekDelayed(?string $tube = null): Job
     {
         if ($tube !== null) {
             $this->useTube($tube);
@@ -210,7 +217,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peekBuried($tube = null)
+    public function peekBuried(?string $tube = null): Job
     {
         if ($tube !== null) {
             $this->useTube($tube);
@@ -227,28 +234,28 @@ class Pheanstalk implements PheanstalkInterface
      * {@inheritdoc}
      */
     public function put(
-        $data,
-        $priority = PheanstalkInterface::DEFAULT_PRIORITY,
-        $delay = PheanstalkInterface::DEFAULT_DELAY,
-        $ttr = PheanstalkInterface::DEFAULT_TTR
-    ) {
+        string $data,
+        int $priority = PheanstalkInterface::DEFAULT_PRIORITY,
+        int $delay = PheanstalkInterface::DEFAULT_DELAY,
+        int $ttr = PheanstalkInterface::DEFAULT_TTR
+    ): Job {
         $response = $this->_dispatch(
             new Command\PutCommand($data, $priority, $delay, $ttr)
         );
 
-        return $response['id'];
+        return new Job($response['id'], $data);
     }
 
     /**
      * {@inheritdoc}
      */
     public function putInTube(
-        $tube,
-        $data,
-        $priority = PheanstalkInterface::DEFAULT_PRIORITY,
-        $delay = PheanstalkInterface::DEFAULT_DELAY,
-        $ttr = PheanstalkInterface::DEFAULT_TTR
-    ) {
+        string $tube,
+        string $data,
+        int $priority = PheanstalkInterface::DEFAULT_PRIORITY,
+        int $delay = PheanstalkInterface::DEFAULT_DELAY,
+        int $ttr = PheanstalkInterface::DEFAULT_TTR
+    ): Job {
         $this->useTube($tube);
 
         return $this->put($data, $priority, $delay, $ttr);
@@ -258,52 +265,51 @@ class Pheanstalk implements PheanstalkInterface
      * {@inheritdoc}
      */
     public function release(
-        $job,
-        $priority = PheanstalkInterface::DEFAULT_PRIORITY,
-        $delay = PheanstalkInterface::DEFAULT_DELAY
-    ) {
+        JobIdInterface $job,
+        int $priority = PheanstalkInterface::DEFAULT_PRIORITY,
+        int $delay = PheanstalkInterface::DEFAULT_DELAY
+    ): void {
         $this->_dispatch(
             new Command\ReleaseCommand($job, $priority, $delay)
         );
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function reserve($timeout = null)
+    public function reserve(): Job
     {
         $response = $this->_dispatch(
-            new Command\ReserveCommand($timeout)
+            new Command\ReserveCommand()
         );
 
-        $falseResponses = array(
-            Response::RESPONSE_DEADLINE_SOON,
-            Response::RESPONSE_TIMED_OUT,
-        );
-
-        if (in_array($response->getResponseName(), $falseResponses)) {
-            return false;
-        } else {
-            return new Job($response['id'], $response['jobdata']);
-        }
+        return new Job($response['id'], $response['jobdata']);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function reserveFromTube($tube, $timeout = null)
+    public function reserveWithTimeout(int $timeout): ?Job
     {
-        $this->watchOnly($tube);
+        $response = $this->_dispatch(
+            new Command\ReserveWithTimeoutCommand($timeout)
+        );
 
-        return $this->reserve($timeout);
+        if ($response->getResponseName() === ResponseInterface::RESPONSE_DEADLINE_SOON) {
+            throw new DeadlineSoonException();
+        }
+
+        if ($response->getResponseName() === ResponseInterface::RESPONSE_TIMED_OUT) {
+            return null;
+        }
+
+        return new Job($response['id'], $response['jobdata']);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function statsJob($job)
+    public function statsJob(JobIdInterface $job): ResponseInterface
     {
         return $this->_dispatch(new Command\StatsJobCommand($job));
     }
@@ -311,7 +317,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function statsTube($tube)
+    public function statsTube(string $tube): ResponseInterface
     {
         return $this->_dispatch(new Command\StatsTubeCommand($tube));
     }
@@ -319,7 +325,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function stats()
+    public function stats(): ResponseInterface
     {
         return $this->_dispatch(new Command\StatsCommand());
     }
@@ -327,19 +333,17 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function touch($job)
+    public function touch(JobIdInterface $job): void
     {
         $this->_dispatch(new Command\TouchCommand($job));
-
-        return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function useTube($tube)
+    public function useTube(string $tube): PheanstalkInterface
     {
-        if ($this->_using != $tube) {
+        if ($this->_using !== $tube) {
             $this->_dispatch(new Command\UseCommand($tube));
             $this->_using = $tube;
         }
@@ -350,7 +354,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function watch($tube)
+    public function watch(string $tube): PheanstalkInterface
     {
         if (!isset($this->_watching[$tube])) {
             $this->_dispatch(new Command\WatchCommand($tube));
@@ -363,7 +367,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function watchOnly($tube)
+    public function watchOnly(string $tube): PheanstalkInterface
     {
         $this->watch($tube);
 
@@ -383,9 +387,9 @@ class Pheanstalk implements PheanstalkInterface
      * If a SocketException occurs, the connection is reset, and the command is
      * re-attempted once.
      *
-     * @param Command $command
+     * @param CommandInterface $command
      *
-     * @return Response
+     * @return ResponseInterface
      */
     private function _dispatch($command)
     {
@@ -430,4 +434,35 @@ class Pheanstalk implements PheanstalkInterface
             $this->ignore(PheanstalkInterface::DEFAULT_TUBE);
         }
     }
+
+
+    public function withUsedTube(string $tube, \Closure $closure)
+    {
+        $used = $this->listTubeUsed();
+        try {
+            $this->useTube($tube);
+            return $closure($this);
+        } finally {
+            $this->useTube($used);
+        }
+    }
+
+    public function withWatchedTube(string $tube, \Closure $closure)
+    {
+        $watched = $this->listTubesWatched();
+        try {
+            $this->watchOnly($tube);
+            return $closure($this);
+        } finally {
+            foreach($watched as $tube) {
+                $this->watch($tube);
+            }
+            if (!in_array($tube, $watched)) {
+                $this->ignore($tube);
+            }
+
+        }
+
+    }
+
 }

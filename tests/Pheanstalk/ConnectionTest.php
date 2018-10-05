@@ -40,7 +40,7 @@ class ConnectionTest extends TestCase
         $command = new Command\UseCommand('test');
         $response = $connection->dispatchCommand($command);
 
-        $this->assertInstanceOf('\Pheanstalk\Response', $response);
+        $this->assertInstanceOf(Contract\ResponseInterface::class, $response);
     }
 
     public function testPersistentConnection()
@@ -58,7 +58,7 @@ class ConnectionTest extends TestCase
         $command = new Command\UseCommand('test');
         $response = $connection->dispatchCommand($command);
 
-        $this->assertInstanceOf('\Pheanstalk\Response', $response);
+        $this->assertInstanceOf(Contract\ResponseInterface::class, $response);
     }
 
     public function testConnectionResetIfSocketExceptionIsThrown()

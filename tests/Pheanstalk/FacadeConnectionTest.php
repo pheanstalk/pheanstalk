@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Job;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -62,27 +64,21 @@ class FacadeConnectionTest extends TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $id = $pheanstalk->put(__METHOD__);
-
-        $this->assertInternalType('int', $id);
+        $putJob = $pheanstalk->put(__METHOD__);
 
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
-
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // delete the reserved job
         $pheanstalk->delete($job);
 
         // put a job into an unused tube
-        $id = $pheanstalk->putInTube('test', __METHOD__);
-
-        $this->assertInternalType('int', $id);
+        $putJob = $pheanstalk->putInTube('test', __METHOD__);
 
         // reserve a job from an unwatched tube - can't assume it is the one just added
-        $job = $pheanstalk->reserveFromTube('test');
-
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
+        $job = $pheanstalk->withWatchedTube('test', function(Pheanstalk $ph) {
+            return $ph->reserve();
+        });
 
         // delete the reserved job
         $pheanstalk->delete($job);
@@ -101,14 +97,10 @@ class FacadeConnectionTest extends TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $id = $pheanstalk->put(__METHOD__);
-
-        $this->assertInternalType('int', $id);
+        $putJob = $pheanstalk->put(__METHOD__);
 
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
-
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // bury the reserved job
         $pheanstalk->bury($job);
@@ -116,7 +108,6 @@ class FacadeConnectionTest extends TestCase
         // kick up to one job
         $kickedCount = $pheanstalk->kick(1);
 
-        $this->assertInternalType('int', $kickedCount);
         $this->assertEquals($kickedCount, 1,
             'there should be at least one buried (or delayed) job: %s');
     }
@@ -232,13 +223,13 @@ class FacadeConnectionTest extends TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $id = $pheanstalk
+        $putJob = $pheanstalk
             ->useTube('testpeekburied')
             ->watch('testpeekburied')
             ->ignore('default')
             ->put('test');
 
-        $job = $pheanstalk->reserve($id);
+        $job = $pheanstalk->reserve();
         $pheanstalk->bury($job);
 
         $job = $pheanstalk->peekBuried();
@@ -261,15 +252,15 @@ class FacadeConnectionTest extends TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $id = $pheanstalk
+        $putJob = $pheanstalk
             ->useTube('teststatsjob')
             ->watch('teststatsjob')
             ->ignore('default')
             ->put('test');
 
-        $stats = $pheanstalk->statsJob($id);
+        $stats = $pheanstalk->statsJob($putJob);
 
-        $this->assertEquals($stats->id, $id);
+        $this->assertEquals($stats->id, $putJob->getId());
         $this->assertEquals($stats->tube, 'teststatsjob');
         $this->assertEquals($stats->state, 'ready');
         $this->assertEquals($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
@@ -353,14 +344,14 @@ class FacadeConnectionTest extends TestCase
         // pause, expect no job from that queue
         $response = $pheanstalk
             ->pauseTube($tube, 60)
-            ->reserve(0);
+            ->reserveWithTimeout(0);
 
-        $this->assertSame($response, false);
+        $this->assertNull($response);
 
         // resume, expect job
         $response = $pheanstalk
             ->resumeTube($tube)
-            ->reserve(0);
+            ->reserveWithTimeout(0);
 
         $this->assertSame($response->getData(), __METHOD__);
     }
@@ -369,7 +360,7 @@ class FacadeConnectionTest extends TestCase
     {
         $facade = $this->_getFacade();
 
-        $connection = $this->getMockBuilder('\Pheanstalk\Connection')
+        $connection = $this->getMockBuilder(Connection::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -381,7 +372,7 @@ class FacadeConnectionTest extends TestCase
     {
         $facade = $this->_getFacade();
 
-        $this->assertInstanceOf('\Pheanstalk\PheanstalkInterface', $facade);
+        $this->assertInstanceOf(PheanstalkInterface::class, $facade);
     }
 
     // ----------------------------------------

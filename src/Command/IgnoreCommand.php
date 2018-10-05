@@ -2,8 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
 
 /**
  * The 'ignore' command.
@@ -16,7 +16,7 @@ use Pheanstalk\Response;
  */
 class IgnoreCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_tube;
 
@@ -42,10 +42,10 @@ class IgnoreCommand
     public function parseResponse($responseLine, $responseData)
     {
         if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches)) {
-            return $this->_createResponse('WATCHING', array(
+            return $this->createResponse('WATCHING', array(
                 'count' => (int) $matches[1],
             ));
-        } elseif ($responseLine == Response::RESPONSE_NOT_IGNORED) {
+        } elseif ($responseLine == ResponseInterface::RESPONSE_NOT_IGNORED) {
             throw new Exception\ServerException(
                 $responseLine.': cannot ignore last tube in watchlist'
             );

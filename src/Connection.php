@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Socket\NativeSocket;
 
 /**
@@ -19,18 +21,18 @@ class Connection
 
     // responses which are global errors, mapped to their exception short-names
     private static $_errorResponses = array(
-        Response::RESPONSE_OUT_OF_MEMORY   => 'OutOfMemory',
-        Response::RESPONSE_INTERNAL_ERROR  => 'InternalError',
-        Response::RESPONSE_DRAINING        => 'Draining',
-        Response::RESPONSE_BAD_FORMAT      => 'BadFormat',
-        Response::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
+        ResponseInterface::RESPONSE_OUT_OF_MEMORY   => 'OutOfMemory',
+        ResponseInterface::RESPONSE_INTERNAL_ERROR  => 'InternalError',
+        ResponseInterface::RESPONSE_DRAINING        => 'Draining',
+        ResponseInterface::RESPONSE_BAD_FORMAT      => 'BadFormat',
+        ResponseInterface::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
     );
 
     // responses which are followed by data
     private static $_dataResponses = array(
-        Response::RESPONSE_RESERVED,
-        Response::RESPONSE_FOUND,
-        Response::RESPONSE_OK,
+        ResponseInterface::RESPONSE_RESERVED,
+        ResponseInterface::RESPONSE_FOUND,
+        ResponseInterface::RESPONSE_OK,
     );
 
     private $_socket;
@@ -60,11 +62,11 @@ class Connection
     /**
      * Sets a manually created socket, used for unit testing.
      *
-     * @param Socket $socket
+     * @param SocketInterface $socket
      *
      * @return $this
      */
-    public function setSocket(Socket $socket)
+    public function setSocket(SocketInterface $socket)
     {
         $this->_socket = $socket;
 
@@ -182,7 +184,7 @@ class Connection
      *
      * @throws Exception\ConnectionException
      *
-     * @return Socket
+     * @return SocketInterface
      */
     private function _getSocket()
     {

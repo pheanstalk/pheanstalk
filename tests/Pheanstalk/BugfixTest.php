@@ -2,6 +2,7 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\ResponseInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +32,7 @@ class BugfixTest extends TestCase
 
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
-            Response::RESPONSE_OK,
+            ResponseInterface::RESPONSE_OK,
             array('pid' => '123', 'version' => '', 'key' => 'value')
         );
     }
@@ -40,7 +41,7 @@ class BugfixTest extends TestCase
     // private
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @param string   $expectName
      * @param array    $data
      */

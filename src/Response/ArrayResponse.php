@@ -2,7 +2,7 @@
 
 namespace Pheanstalk\Response;
 
-use Pheanstalk\Response;
+use Pheanstalk\Contract\ResponseInterface;
 
 /**
  * A response with an ArrayObject interface to key => value data.
@@ -13,7 +13,7 @@ use Pheanstalk\Response;
  */
 class ArrayResponse
     extends \ArrayObject
-    implements Response
+    implements ResponseInterface
 {
     private $_name;
 
@@ -21,7 +21,7 @@ class ArrayResponse
      * @param string $name
      * @param array  $data
      */
-    public function __construct($name, $data)
+    public function __construct(string $name, array $data)
     {
         $this->_name = $name;
         parent::__construct($data);

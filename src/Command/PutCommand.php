@@ -17,7 +17,7 @@ use Pheanstalk\Exception;
  */
 class PutCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_data;
     private $_priority;
@@ -88,7 +88,7 @@ class PutCommand
     public function parseResponse($responseLine, $responseData)
     {
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
-            return $this->_createResponse('INSERTED', array(
+            return $this->createResponse('INSERTED', array(
                 'id' => (int) $matches[1],
             ));
         } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {

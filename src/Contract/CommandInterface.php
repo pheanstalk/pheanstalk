@@ -1,6 +1,8 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Contract;
+
+use Pheanstalk\Exception;
 
 /**
  * A command to be sent to the beanstalkd server, and response processing logic.
@@ -9,7 +11,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-interface Command
+interface CommandInterface
 {
     const COMMAND_PUT = 'put';
     const COMMAND_USE = 'use';
@@ -62,7 +64,7 @@ interface Command
     /**
      * The response parser for the command.
      *
-     * @return ResponseParser
+     * @return ResponseParserInterface
      */
     public function getResponseParser();
 }

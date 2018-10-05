@@ -15,7 +15,7 @@ namespace Pheanstalk\Command;
  */
 class KickCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_max;
 
@@ -42,7 +42,7 @@ class KickCommand
     {
         list($code, $count) = explode(' ', $responseLine);
 
-        return $this->_createResponse($code, array(
+        return $this->createResponse($code, array(
             'kicked' => (int) $count,
         ));
     }

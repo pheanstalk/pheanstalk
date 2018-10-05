@@ -13,7 +13,7 @@ namespace Pheanstalk\Command;
  */
 class WatchCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_tube;
 
@@ -38,7 +38,7 @@ class WatchCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        return $this->_createResponse('WATCHING', array(
+        return $this->createResponse('WATCHING', array(
             'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine),
         ));
     }

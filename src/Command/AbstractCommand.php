@@ -2,8 +2,10 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Command;
-use Pheanstalk\Response;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Exception\CommandException;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * Common functionality for Command implementations.
@@ -13,7 +15,7 @@ use Pheanstalk\Response;
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 abstract class AbstractCommand
-    implements Command
+    implements CommandInterface
 {
     /* (non-phpdoc)
      * @see Command::hasData()
@@ -28,7 +30,7 @@ abstract class AbstractCommand
      */
     public function getData()
     {
-        throw new Exception\CommandException('Command has no data');
+        throw new CommandException('Command has no data');
     }
 
     /* (non-phpdoc)
@@ -36,7 +38,7 @@ abstract class AbstractCommand
      */
     public function getDataLength()
     {
-        throw new Exception\CommandException('Command has no data');
+        throw new CommandException('Command has no data');
     }
 
     /* (non-phpdoc)
@@ -68,10 +70,9 @@ abstract class AbstractCommand
      *
      * @param array
      *
-     * @return object Response
      */
-    protected function _createResponse($name, $data = array())
+    protected function createResponse(string $name, array $data = []): ArrayResponse
     {
-        return new Response\ArrayResponse($name, $data);
+        return new ArrayResponse($name, $data);
     }
 }

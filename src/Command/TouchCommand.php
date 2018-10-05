@@ -2,8 +2,9 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
 
 /**
  * The 'touch' command.
@@ -20,16 +21,13 @@ use Pheanstalk\Response;
  */
 class TouchCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
-    private $_job;
+    private $jobId;
 
-    /**
-     * @param Job $job
-     */
-    public function __construct($job)
+    public function __construct(JobIdInterface $job)
     {
-        $this->_job = $job;
+        $this->jobId = $job->getId();
     }
 
     /* (non-phpdoc)
@@ -37,7 +35,7 @@ class TouchCommand
      */
     public function getCommandLine()
     {
-        return sprintf('touch %u', $this->_job->getId());
+        return sprintf('touch %u', $this->jobId);
     }
 
     /* (non-phpdoc)
@@ -45,14 +43,14 @@ class TouchCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 'Job %u %s: does not exist or is not reserved by client',
-                $this->_job->getId(),
+                $this->jobId,
                 $responseLine
             ));
         }
 
-        return $this->_createResponse($responseLine);
+        return $this->createResponse($responseLine);
     }
 }

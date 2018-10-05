@@ -13,7 +13,7 @@ namespace Pheanstalk\Command;
  */
 class ListTubeUsedCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     /* (non-phpdoc)
      * @see Command::getCommandLine()
@@ -28,7 +28,7 @@ class ListTubeUsedCommand
      */
     public function parseResponse($responseLine, $responseData)
     {
-        return $this->_createResponse('USING', array(
+        return $this->createResponse('USING', array(
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
         ));
     }
