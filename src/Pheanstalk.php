@@ -182,12 +182,8 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peekReady(?string $tube = null): Job
+    public function peekReady(): Job
     {
-        if ($tube !== null) {
-            $this->useTube($tube);
-        }
-
         $response = $this->_dispatch(
             new Command\PeekCommand(Command\PeekCommand::TYPE_READY)
         );
@@ -198,12 +194,8 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peekDelayed(?string $tube = null): Job
+    public function peekDelayed(): Job
     {
-        if ($tube !== null) {
-            $this->useTube($tube);
-        }
-
         $response = $this->_dispatch(
             new Command\PeekCommand(Command\PeekCommand::TYPE_DELAYED)
         );
@@ -214,12 +206,8 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function peekBuried(?string $tube = null): Job
+    public function peekBuried(): Job
     {
-        if ($tube !== null) {
-            $this->useTube($tube);
-        }
-
         $response = $this->_dispatch(
             new Command\PeekCommand(Command\PeekCommand::TYPE_BURIED)
         );
@@ -241,21 +229,6 @@ class Pheanstalk implements PheanstalkInterface
         );
 
         return new Job($response['id'], $data);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function putInTube(
-        string $tube,
-        string $data,
-        int $priority = PheanstalkInterface::DEFAULT_PRIORITY,
-        int $delay = PheanstalkInterface::DEFAULT_DELAY,
-        int $ttr = PheanstalkInterface::DEFAULT_TTR
-    ): Job {
-        $this->useTube($tube);
-
-        return $this->put($data, $priority, $delay, $ttr);
     }
 
     /**

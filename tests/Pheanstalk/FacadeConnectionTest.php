@@ -73,7 +73,10 @@ class FacadeConnectionTest extends TestCase
         $pheanstalk->delete($job);
 
         // put a job into an unused tube
-        $putJob = $pheanstalk->putInTube('test', __METHOD__);
+        $putJob = $pheanstalk->withUsedTube('test', function(Pheanstalk $pheanstalk) {
+            return $pheanstalk->put( __METHOD__);
+        });
+
 
         // reserve a job from an unwatched tube - can't assume it is the one just added
         $job = $pheanstalk->withWatchedTube('test', function(Pheanstalk $ph) {
@@ -149,20 +152,22 @@ class FacadeConnectionTest extends TestCase
     {
         $pheanstalk = $this->_getFacade();
 
-        $id = $pheanstalk
+        $putJob = $pheanstalk
             ->useTube('testpeek')
             ->watch('testpeek')
             ->ignore('default')
             ->put('test');
 
-        $job = $pheanstalk->peek($id);
+        $job = $pheanstalk->peek($putJob);
 
         $this->assertEquals($job->getData(), 'test');
 
         // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeek2', 'test2');
+        $putJob = $pheanstalk->withUsedTube('testpeek2', function($pheanstalk) {
+            return $pheanstalk->put('test2');
+        });
 
-        $job = $pheanstalk->peek($id);
+        $job = $pheanstalk->peek($putJob);
 
         $this->assertEquals($job->getData(), 'test2');
     }
@@ -180,17 +185,6 @@ class FacadeConnectionTest extends TestCase
         $job = $pheanstalk->peekReady();
 
         $this->assertEquals($job->getData(), 'test');
-
-        // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeekready2', 'test2');
-
-        // use default tube
-        $pheanstalk->useTube('default');
-
-        // peek the tube that has the job
-        $job = $pheanstalk->peekReady('testpeekready2');
-
-        $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testPeekDelayed()
@@ -206,17 +200,6 @@ class FacadeConnectionTest extends TestCase
         $job = $pheanstalk->peekDelayed();
 
         $this->assertEquals($job->getData(), 'test');
-
-        // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeekdelayed2', 'test2');
-
-        // use default tube
-        $pheanstalk->useTube('default');
-
-        // peek the tube that has the job
-        $job = $pheanstalk->peekReady('testpeekdelayed2');
-
-        $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testPeekBuried()
@@ -235,17 +218,6 @@ class FacadeConnectionTest extends TestCase
         $job = $pheanstalk->peekBuried();
 
         $this->assertEquals($job->getData(), 'test');
-
-        // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeekburied2', 'test2');
-
-        // use default tube
-        $pheanstalk->useTube('default');
-
-        // peek the tube that has the job
-        $job = $pheanstalk->peekReady('testpeekburied2');
-
-        $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testStatsJob()

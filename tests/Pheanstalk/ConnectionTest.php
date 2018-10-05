@@ -83,7 +83,8 @@ class ConnectionTest extends TestCase
              ->method('getConnectTimeout')
              ->will($this->returnValue(self::CONNECT_TIMEOUT));
 
-        $pheanstalk->putInTube('testconnectionreset', __METHOD__);
+        $pheanstalk->useTube('testconnectionreset');
+        $pheanstalk->put(__METHOD__);
         $pheanstalk->watchOnly('testconnectionreset');
 
         $pheanstalk->setConnection($connection);

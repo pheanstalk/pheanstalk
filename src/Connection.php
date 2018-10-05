@@ -44,13 +44,7 @@ class Connection
      */
     private $connectTimeout;
 
-    /**
-     * @param string $hostname
-     * @param int    $port
-     * @param float  $connectTimeout
-     * @param bool   $connectPersistent
-     */
-    public function __construct($hostname, $port, ?int $connectTimeout = null)
+    public function __construct(string $hostname, int $port, ?int $connectTimeout = null)
     {
         $this->hostname = $hostname;
         $this->port = $port;
