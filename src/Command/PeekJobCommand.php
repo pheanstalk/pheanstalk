@@ -21,9 +21,6 @@ class PeekJobCommand
 {
     private $jobId;
 
-    /**
-     * @param mixed $peekSubject Job ID or self::TYPE_*
-     */
     public function __construct(JobIdInterface $peekSubject)
     {
         $this->jobId = $peekSubject->getId();
@@ -49,7 +46,9 @@ class PeekJobCommand
                 $this->jobId
             );
             throw new Exception\ServerException($message);
-        } elseif (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
+        }
+
+        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
             return $this->createResponse(
                 ResponseInterface::RESPONSE_FOUND,
                 [
@@ -58,5 +57,7 @@ class PeekJobCommand
                 ]
             );
         }
+
+        throw new Exception\ServerException("Unexpected response: " . $responseLine);
     }
 }

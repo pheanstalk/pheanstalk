@@ -309,7 +309,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function statsJob(JobIdInterface $job): ArrayResponse
+    public function statsJob(JobIdInterface $job): ResponseInterface
     {
         return $this->_dispatch(new Command\StatsJobCommand($job));
     }
@@ -317,7 +317,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function statsTube(string $tube): ArrayResponse
+    public function statsTube(string $tube): ResponseInterface
     {
         return $this->_dispatch(new Command\StatsTubeCommand($tube));
     }
@@ -325,7 +325,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function stats(): ArrayResponse
+    public function stats(): ResponseInterface
     {
         return $this->_dispatch(new Command\StatsCommand());
     }

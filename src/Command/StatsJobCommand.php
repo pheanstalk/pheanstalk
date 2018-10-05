@@ -2,6 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
+use Pheanstalk\Job;
 use Pheanstalk\YamlResponseParser;
 
 /**
@@ -19,11 +21,11 @@ class StatsJobCommand
     private $_jobId;
 
     /**
-     * @param Job|int $job
+     * @param JobIdInterface $job
      */
-    public function __construct($job)
+    public function __construct(JobIdInterface $job)
     {
-        $this->_jobId = is_object($job) ? $job->getId() : $job;
+        $this->_jobId = $job->getId();
     }
 
     /* (non-phpdoc)

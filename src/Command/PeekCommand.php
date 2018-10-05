@@ -32,7 +32,7 @@ class PeekCommand
     ];
 
     /**
-     * @var int
+     * @var string
      */
     private $subcommand;
 
@@ -81,5 +81,7 @@ class PeekCommand
                 )
             );
         }
+
+        throw new Exception\ServerException("Unexpected response");
     }
 }
