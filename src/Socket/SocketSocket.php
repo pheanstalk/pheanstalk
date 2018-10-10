@@ -30,29 +30,25 @@ class SocketSocket implements SocketInterface
         }
 
         $timeout = [
-            'sec' => 0,
-            'usec' => 100
+            'sec' => $connectTimeout,
+            'usec' => 0
         ];
 
+        $sendTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_SNDTIMEO);
+        $receiveTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_RCVTIMEO);
         socket_set_option($this->socket, SOL_TCP, SO_KEEPALIVE, 1);
         socket_set_option($this->socket, SOL_SOCKET,SO_SNDTIMEO, $timeout);
         socket_set_option($this->socket, SOL_SOCKET,SO_RCVTIMEO, $timeout);
+        socket_set_block($this->socket);
 
-        $timeout = microtime(true) + $connectTimeout;
         $address = gethostbyname($host);
-
-        while (microtime(true) < $timeout) {
-            socket_clear_error($this->socket);
-            if (@socket_connect($this->socket, $address, $port)) {
-                return;
-            };
+        if (@socket_connect($this->socket, $address, $port) === false) {
             $error = socket_last_error($this->socket);
-            if (!($error === SOCKET_EALREADY || $error === SOCKET_EINPROGRESS)) {
-                break;
-            }
-        }
+            throw new ConnectionException($error, socket_strerror($error));
+        };
 
-        throw new ConnectionException($error, socket_strerror($error));
+        socket_set_option($this->socket, SOL_SOCKET,SO_SNDTIMEO, $sendTimeout);
+        socket_set_option($this->socket, SOL_SOCKET,SO_RCVTIMEO, $receiveTimeout);
     }
 
     /**
