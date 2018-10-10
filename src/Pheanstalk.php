@@ -11,15 +11,6 @@ use Pheanstalk\Exception\DeadlineSoonException;
 
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
- *
- * The Pheanstalk class is a simple facade for the various underlying components.
- *
- * @see http://github.com/kr/beanstalkd
- * @see http://xph.us/software/beanstalkd/
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Pheanstalk implements PheanstalkInterface
 {
@@ -407,6 +398,7 @@ class Pheanstalk implements PheanstalkInterface
      * @param string $tube The tube to use during execution
      * @param \Closure $closure Closure to execute while using the specified tube
      * @return mixed the return value of the closure.
+     * @internal This is marked as internal since it is not part of a stabilized interface.
      */
     public function withUsedTube(string $tube, \Closure $closure)
     {
@@ -423,6 +415,7 @@ class Pheanstalk implements PheanstalkInterface
      * @param string $tube The tube to watch during execution
      * @param \Closure $closure Closure to execute while using the specified tube
      * @return mixed the return value of the closure.
+     * @internal This is marked as internal since it is not part of a stabilized interface.
      */
     public function withWatchedTube(string $tube, \Closure $closure)
     {
