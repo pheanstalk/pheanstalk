@@ -18,6 +18,8 @@ in 2013, and a 3.0 release in 2014.
 Pheanstalk 3.0 introduces PHP namespaces, PSR-1 and PSR-2 coding standards,
 and PSR-4 autoloader standard.
 
+In 2018 [Sam Mousa][3] took on the responsibility of maintaining Pheanstalk.
+
 Pheanstalk 4.0 drops support for older PHP versions. It contains the following changes (among other things):
 - Strict PHP type hinting
 - Value objects for Job IDs
@@ -27,12 +29,14 @@ Pheanstalk 4.0 drops support for older PHP versions. It contains the following c
 
 
 beanstalkd up to the latest version 1.10 is supported.  All commands and
-responses specified in the [protocol documentation][3] for beanstalkd 1.3 are
+responses specified in the [protocol documentation][4] for beanstalkd 1.3 are
 implemented.
 
-  [1]: http://xph.us/software/beanstalkd/
-  [2]: http://paul.annesley.cc/
-  [3]: http://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true
+  [1]: https://beanstalkd.github.io/
+  [2]: https://paul.annesley.cc/
+  [3]: https://github.com/sammousa
+  [4]: https://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true
+
 
 Installation with Composer
 -------------
