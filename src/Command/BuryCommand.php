@@ -4,6 +4,7 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'bury' command.
@@ -34,7 +35,7 @@ class BuryCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return sprintf(
             'bury %u %u',
@@ -43,10 +44,7 @@ class BuryCommand
         );
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(

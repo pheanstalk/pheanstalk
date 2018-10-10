@@ -11,6 +11,11 @@
             "email": "paul@annesley.cc",
             "homepage": "http://paul.annesley.cc/",
             "role": "Developer"
+        },
+        {
+            "name": "Sam Mousa",
+            "email": "sam@mousa.nl",
+            "role": "Maintainer"
         }
     ],
     "require": {
@@ -18,7 +23,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
-        "vimeo/psalm": "^2.0"
+        "vimeo/psalm": "^2.0",
+        "phpdocumentor/phpdocumentor": "^2"
     },
     "autoload": {
         "psr-4": {

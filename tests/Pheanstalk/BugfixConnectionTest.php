@@ -63,7 +63,7 @@ class BugfixConnectionTest extends TestCase
 
     private function _createPheanstalk()
     {
-        $pheanstalk = new Pheanstalk(SERVER_HOST);
+        $pheanstalk = Pheanstalk::create(SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));
 
         $pheanstalk
@@ -71,18 +71,12 @@ class BugfixConnectionTest extends TestCase
             ->watch($tube)
             ->ignore('default');
 
-        try {
-            while ($pheanstalk->delete($pheanstalk->peekDelayed())) {
-            }
-        } catch (Exception\ServerException $e) {
+        while (null !== $job = $pheanstalk->peekDelayed()) {
+            $pheanstalk->delete($job);
         }
-
-        try {
-            while ($pheanstalk->delete($pheanstalk->peekReady())) {
-            }
-        } catch (Exception\ServerException $e) {
+        while (null !== $job = $pheanstalk->peekReady()) {
+            $pheanstalk->delete($job);
         }
-
         return $pheanstalk;
     }
 }

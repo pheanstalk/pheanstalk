@@ -5,6 +5,7 @@ namespace Pheanstalk;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Response;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * A response parser for commands that return a subset of YAML.
@@ -31,10 +32,7 @@ class YamlResponseParser implements ResponseParserInterface
         $this->_mode = $mode;
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
@@ -45,7 +43,7 @@ class YamlResponseParser implements ResponseParserInterface
 
         if (!preg_match('#^OK \d+$#', $responseLine)) {
             throw new Exception\ServerException(sprintf(
-                'Unhandled response: %s',
+                'Unhandled response: "%s"',
                 $responseLine
             ));
         }
@@ -72,7 +70,7 @@ class YamlResponseParser implements ResponseParserInterface
             $data = $array;
         }
 
-        return new Response\ArrayResponse('OK', $data);
+        return new ArrayResponse('OK', $data);
     }
 
     /**

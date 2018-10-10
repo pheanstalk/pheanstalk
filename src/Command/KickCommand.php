@@ -2,6 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Response\ArrayResponse;
+
 /**
  * The 'kick' command.
  *
@@ -30,7 +32,7 @@ class KickCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'kick '.$this->_max;
     }
@@ -38,7 +40,7 @@ class KickCommand
     /* (non-phpdoc)
      * @see ResponseParser::parseResponse()
      */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         list($code, $count) = explode(' ', $responseLine);
 

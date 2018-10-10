@@ -4,6 +4,7 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\CommandException;
 use Pheanstalk\Response\ArrayResponse;
 
@@ -20,7 +21,7 @@ abstract class AbstractCommand
     /* (non-phpdoc)
      * @see Command::hasData()
      */
-    public function hasData()
+    public function hasData(): bool
     {
         return false;
     }
@@ -28,7 +29,7 @@ abstract class AbstractCommand
     /* (non-phpdoc)
      * @see Command::getData()
      */
-    public function getData()
+    public function getData(): string
     {
         throw new CommandException('Command has no data');
     }
@@ -36,7 +37,7 @@ abstract class AbstractCommand
     /* (non-phpdoc)
      * @see Command::getDataLength()
      */
-    public function getDataLength()
+    public function getDataLength(): int
     {
         throw new CommandException('Command has no data');
     }
@@ -44,11 +45,11 @@ abstract class AbstractCommand
     /* (non-phpdoc)
      * @see Command::getResponseParser()
      */
-    public function getResponseParser()
+    public function getResponseParser(): ResponseParserInterface
     {
-        // concrete implementation must either:
-        // a) implement ResponseParser
-        // b) override this getResponseParser method
+        if (!$this instanceof ResponseParserInterface) {
+            throw new \RuntimeException('Concrete implementation must implement `ResponseParser` or override this method');
+        }
         return $this;
     }
 

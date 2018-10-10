@@ -3,6 +3,7 @@
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'put' command.
@@ -43,7 +44,7 @@ class PutCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return sprintf(
             'put %u %u %u %u',
@@ -57,7 +58,7 @@ class PutCommand
     /* (non-phpdoc)
      * @see Command::hasData()
      */
-    public function hasData()
+    public function hasData(): bool
     {
         return true;
     }
@@ -65,7 +66,7 @@ class PutCommand
     /* (non-phpdoc)
      * @see Command::getData()
      */
-    public function getData()
+    public function getData(): string
     {
         return $this->_data;
     }
@@ -73,7 +74,7 @@ class PutCommand
     /* (non-phpdoc)
      * @see Command::getDataLength()
      */
-    public function getDataLength()
+    public function getDataLength(): int
     {
         if (function_exists('mb_strlen')) {
             return mb_strlen($this->_data, 'latin1');
@@ -82,10 +83,7 @@ class PutCommand
         }
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
             return $this->createResponse('INSERTED', array(

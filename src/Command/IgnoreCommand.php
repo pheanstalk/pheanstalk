@@ -4,6 +4,7 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'ignore' command.
@@ -31,15 +32,12 @@ class IgnoreCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'ignore '.$this->_tube;
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches)) {
             return $this->createResponse('WATCHING', array(

@@ -2,6 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Response\ArrayResponse;
+
 /**
  * The 'use' command.
  *
@@ -33,15 +35,12 @@ class UseCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'use '.$this->_tube;
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         return $this->createResponse('USING', array(
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),

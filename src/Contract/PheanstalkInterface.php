@@ -15,21 +15,6 @@ interface PheanstalkInterface
     const DEFAULT_TTR = 60; // 1 minute
     const DEFAULT_TUBE = 'default';
 
-    /**
-     * @param Connection
-     *
-     * @return $this
-     */
-    public function setConnection(Connection $connection);
-
-    /**
-     * The internal connection object.
-     * Not required for general usage.
-     *
-     * @return Connection
-     */
-    public function getConnection();
-
     // ----------------------------------------
 
     /**

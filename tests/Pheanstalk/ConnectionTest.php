@@ -2,6 +2,11 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Command\StatsCommand;
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\SocketException;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,10 +26,10 @@ class ConnectionTest extends TestCase
      */
     public function testConnectionFailsToIncorrectPort()
     {
-        $connection = new Connection(
+        $connection = new Connection(new SocketFactory(
             SERVER_HOST,
-            SERVER_PORT + 1
-        );
+                SERVER_PORT + 1
+        ));
 
         $command = new Command\UseCommand('test');
         $connection->dispatchCommand($command);
@@ -32,85 +37,36 @@ class ConnectionTest extends TestCase
 
     public function testDispatchCommandSuccessful()
     {
-        $connection = new Connection(
+        $connection = new Connection(new SocketFactory(
             SERVER_HOST,
             SERVER_PORT
-        );
+        ));
 
         $command = new Command\UseCommand('test');
         $response = $connection->dispatchCommand($command);
 
         $this->assertInstanceOf(Contract\ResponseInterface::class, $response);
-    }
-
-    public function testPersistentConnection()
-    {
-        $timeout = null;
-        $persistent = true;
-
-        $connection = new Connection(
-            SERVER_HOST,
-            SERVER_PORT,
-            $timeout,
-            $persistent
-        );
-
-        $command = new Command\UseCommand('test');
-        $response = $connection->dispatchCommand($command);
-
-        $this->assertInstanceOf(Contract\ResponseInterface::class, $response);
-    }
-
-    public function testConnectionResetIfSocketExceptionIsThrown()
-    {
-        $pheanstalk = new Pheanstalk(
-            SERVER_HOST,
-            SERVER_PORT,
-            self::CONNECT_TIMEOUT
-        );
-
-        $connection = $this->getMockBuilder('\Pheanstalk\Connection')
-                     ->disableOriginalConstructor()
-                     ->getMock();
-
-        $connection->expects($this->any())
-             ->method('getHost')
-             ->will($this->returnValue(SERVER_HOST));
-        $connection->expects($this->any())
-             ->method('getPort')
-             ->will($this->returnValue(SERVER_PORT));
-        $connection->expects($this->any())
-             ->method('getConnectTimeout')
-             ->will($this->returnValue(self::CONNECT_TIMEOUT));
-
-        $pheanstalk->useTube('testconnectionreset');
-        $pheanstalk->put(__METHOD__);
-        $pheanstalk->watchOnly('testconnectionreset');
-
-        $pheanstalk->setConnection($connection);
-        $connection->expects($this->once())
-             ->method('dispatchCommand')
-             ->will($this->throwException(new Exception\SocketException('socket error simulated')));
-        $job = $pheanstalk->reserve();
-
-        $this->assertEquals(__METHOD__, $job->getData());
     }
 
     public function testDisconnect()
     {
+        $pheanstalk = new Pheanstalk($this->_getConnection());
+        $this->assertEquals(1, $pheanstalk->stats()['current-connections']);
+
         $connection = $this->_getConnection();
+        $this->assertEquals(1, $pheanstalk->stats()['current-connections']);
 
         // initial connection
         $connection->dispatchCommand(new Command\StatsCommand());
-        $this->assertTrue($connection->hasSocket());
+        $this->assertEquals(2, $pheanstalk->stats()['current-connections']);
 
         // disconnect
         $connection->disconnect();
-        $this->assertFalse($connection->hasSocket());
+        $this->assertEquals(1, $pheanstalk->stats()['current-connections']);
 
         // auto-reconnect
         $connection->dispatchCommand(new Command\StatsCommand());
-        $this->assertTrue($connection->hasSocket());
+        $this->assertEquals(2, $pheanstalk->stats()['current-connections']);
     }
 
     // ----------------------------------------
@@ -118,6 +74,6 @@ class ConnectionTest extends TestCase
 
     private function _getConnection()
     {
-        return new Connection(SERVER_HOST, SERVER_PORT);
+        return new Connection(new SocketFactory(SERVER_HOST, SERVER_PORT));
     }
 }

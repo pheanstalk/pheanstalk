@@ -2,6 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Response\ArrayResponse;
+
 /**
  * The 'list-tube-used' command.
  *
@@ -18,15 +20,12 @@ class ListTubeUsedCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'list-tube-used';
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         return $this->createResponse('USING', array(
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),

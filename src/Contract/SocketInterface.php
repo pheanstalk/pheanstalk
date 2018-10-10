@@ -20,25 +20,25 @@ interface SocketInterface
      *
      * @return void
      */
-    public function write($data);
+    public function write(string $data): void;
 
     /**
      * Reads up to $length bytes from the socket.
      *
      * @return string
      */
-    public function read($length);
+    public function read(int $length): string;
 
     /**
-     * Reads up to the next new-line, or $length - 1 bytes.
+     * Reads up to the next new-line.
      * Trailing whitespace is trimmed.
      *
      * @param int
      */
-    public function getLine($length = null);
+    public function getLine(): string;
 
     /**
      * Disconnect the socket; subsequent usage of the socket will fail.
      */
-    public function disconnect();
+    public function disconnect(): void;
 }

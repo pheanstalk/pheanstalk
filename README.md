@@ -19,6 +19,7 @@ Pheanstalk 4.0 drops support for older PHP versions. It contains the following c
 - Value objects for Job IDs
 - Functions without side effects
 - Dropped support for persistent connections
+- Add support for multiple socket implementations (streams extension, socket extension, fsockopen)
 
 
 beanstalkd up to the latest version 1.10 is supported.  All commands and
@@ -48,8 +49,8 @@ Usage Example
 // Hopefully you're using Composer autoloading.
 
 use Pheanstalk\Pheanstalk;
-
-$pheanstalk = new Pheanstalk('127.0.0.1');
+// Create using autodetection of socket implementation
+$pheanstalk = new Pheanstalk::create('127.0.0.1');
 
 // ----------------------------------------
 // producer (queues jobs)
@@ -69,11 +70,6 @@ $job = $pheanstalk
 echo $job->getData();
 
 $pheanstalk->delete($job);
-
-// ----------------------------------------
-// check server availability
-
-$pheanstalk->getConnection()->isServiceListening(); // true or false
 
 ```
 

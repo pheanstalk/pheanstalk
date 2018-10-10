@@ -2,6 +2,8 @@
 
 namespace Pheanstalk\Contract;
 
+use Pheanstalk\Response\ArrayResponse;
+
 /**
  * A parser for response data sent from the beanstalkd server.
  *
@@ -16,8 +18,7 @@ interface ResponseParserInterface
      *
      * @param string $responseLine Without trailing CRLF
      * @param string $responseData (null if no data)
-     *
-     * @return object Response
+     * @return ArrayResponse
      */
-    public function parseResponse($responseLine, $responseData);
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse;
 }

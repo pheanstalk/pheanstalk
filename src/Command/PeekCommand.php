@@ -5,6 +5,7 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
@@ -53,23 +54,15 @@ class PeekCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return sprintf('peek-%s', $this->subcommand);
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            $message = sprintf(
-                "%s: There are no jobs in the '%s' status",
-                $responseLine,
-                $this->subcommand
-            );
-            throw new Exception\ServerException($message);
+            return $this->createResponse(ResponseInterface::RESPONSE_NOT_FOUND);
         }
 
         if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {

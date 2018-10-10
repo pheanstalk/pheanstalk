@@ -4,6 +4,7 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'reserve' command.
@@ -29,15 +30,12 @@ class ReserveCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'reserve';
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON) {
             throw new DeadlineSoonException();

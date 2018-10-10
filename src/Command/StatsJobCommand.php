@@ -31,7 +31,7 @@ class StatsJobCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return sprintf('stats-job %u', $this->_jobId);
     }
@@ -39,7 +39,7 @@ class StatsJobCommand
     /* (non-phpdoc)
      * @see Command::getResponseParser()
      */
-    public function getResponseParser()
+    public function getResponseParser(): \Pheanstalk\Contract\ResponseParserInterface
     {
         return new YamlResponseParser(
             YamlResponseParser::MODE_DICT

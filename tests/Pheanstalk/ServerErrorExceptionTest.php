@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -37,9 +39,17 @@ class ServerErrorExceptionTest extends TestCase
             ->method('getLine')
             ->will($this->returnValue($line));
 
-        $connection = new Connection('', 1);
-        $connection->setSocket($socket);
+        $connection = new Connection(new class($socket) implements SocketFactoryInterface {
+            public function __construct($socket)
+            {
+                $this->socket = $socket;
+            }
 
+            public function create(): SocketInterface
+            {
+                return $this->socket;
+            }
+        });
         return $connection;
     }
 
