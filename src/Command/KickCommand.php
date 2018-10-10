@@ -2,6 +2,7 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
@@ -10,31 +11,22 @@ use Pheanstalk\Response\ArrayResponse;
  * Kicks buried or delayed jobs into a 'ready' state.
  * If there are buried jobs, it will kick up to $max of them.
  * Otherwise, it will kick up to $max delayed jobs.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class KickCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class KickCommand extends AbstractCommand implements ResponseParserInterface
 {
-    private $_max;
+    private $max;
 
     /**
      * @param int $max The maximum number of jobs to kick
      */
-    public function __construct($max)
+    public function __construct(int $max)
     {
-        $this->_max = (int) $max;
+        $this->max = $max;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
-        return 'kick '.$this->_max;
+        return 'kick ' . $this->max;
     }
 
     /* (non-phpdoc)
@@ -44,8 +36,8 @@ class KickCommand
     {
         list($code, $count) = explode(' ', $responseLine);
 
-        return $this->createResponse($code, array(
+        return $this->createResponse($code, [
             'kicked' => (int) $count,
-        ));
+        ]);
     }
 }

@@ -2,39 +2,21 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'delete' command.
- *
  * Permanently deletes an already-reserved job.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class DeleteCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class DeleteCommand extends JobCommand implements ResponseParserInterface
 {
-    private $_job;
-
-    /**
-     * @param object $job Job
-     */
-    public function __construct($job)
-    {
-        $this->_job = $job;
-    }
-
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
-        return 'delete '.$this->_job->getId();
+        return 'delete ' . $this->jobId;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
@@ -42,7 +24,7 @@ class DeleteCommand
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 'Cannot delete job %u: %s',
-                $this->_job->getId(),
+                $this->jobId,
                 $responseLine
             ));
         }

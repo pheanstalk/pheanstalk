@@ -2,45 +2,32 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'bury' command.
- *
  * Puts a job into a 'buried' state, revived only by 'kick' command.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class BuryCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class BuryCommand extends JobCommand implements ResponseParserInterface
 {
-    private $_job;
-    private $_priority;
+    private $priority;
 
-    /**
-     * @param object $job      Job
-     * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
-     */
-    public function __construct($job, $priority)
+    public function __construct(JobIdInterface $job, int $priority)
     {
-        $this->_job = $job;
-        $this->_priority = $priority;
+        parent::__construct($job);
+        $this->priority = $priority;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
         return sprintf(
             'bury %u %u',
-            $this->_job->getId(),
-            $this->_priority
+            $this->jobId,
+            $this->priority
         );
     }
 
@@ -50,7 +37,7 @@ class BuryCommand
             throw new Exception\ServerException(sprintf(
                 '%s: Job %u is not reserved or does not exist.',
                 $responseLine,
-                $this->_job->getId()
+                $this->jobId
             ));
         } elseif ($responseLine == ResponseInterface::RESPONSE_BURIED) {
             return $this->createResponse(ResponseInterface::RESPONSE_BURIED);

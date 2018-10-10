@@ -3,6 +3,7 @@
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\JobIdInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Job;
 use Pheanstalk\YamlResponseParser;
 
@@ -10,36 +11,15 @@ use Pheanstalk\YamlResponseParser;
  * The 'stats-job' command.
  *
  * Gives statistical information about the specified job if it exists.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class StatsJobCommand
-    extends AbstractCommand
+class StatsJobCommand extends JobCommand
 {
-    private $_jobId;
-
-    /**
-     * @param JobIdInterface $job
-     */
-    public function __construct(JobIdInterface $job)
-    {
-        $this->_jobId = $job->getId();
-    }
-
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
-        return sprintf('stats-job %u', $this->_jobId);
+        return sprintf('stats-job %u', $this->jobId);
     }
 
-    /* (non-phpdoc)
-     * @see Command::getResponseParser()
-     */
-    public function getResponseParser(): \Pheanstalk\Contract\ResponseParserInterface
+    public function getResponseParser(): ResponseParserInterface
     {
         return new YamlResponseParser(
             YamlResponseParser::MODE_DICT

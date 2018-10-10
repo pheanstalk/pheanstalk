@@ -15,8 +15,7 @@ use Pheanstalk\Response\ArrayResponse;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-abstract class AbstractCommand
-    implements CommandInterface
+abstract class AbstractCommand implements CommandInterface
 {
     /* (non-phpdoc)
      * @see Command::hasData()

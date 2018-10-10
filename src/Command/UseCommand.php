@@ -2,6 +2,7 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
@@ -10,40 +11,18 @@ use Pheanstalk\Response\ArrayResponse;
  * The "use" command is for producers. Subsequent put commands will put jobs into
  * the tube specified by this command. If no use command has been issued, jobs
  * will be put into the tube named "default".
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class UseCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class UseCommand extends TubeCommand implements ResponseParserInterface
 {
-    /**
-     * @var string
-     */
-    private $_tube;
-
-    /**
-     * @param string $tube The name of the tube to use
-     */
-    public function __construct($tube)
-    {
-        $this->_tube = $tube;
-    }
-
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
-        return 'use '.$this->_tube;
+        return 'use '.$this->tube;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        return $this->createResponse('USING', array(
+        return $this->createResponse('USING', [
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
-        ));
+        ]);
     }
 }

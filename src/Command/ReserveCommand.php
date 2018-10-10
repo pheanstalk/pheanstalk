@@ -3,6 +3,7 @@
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
 use Pheanstalk\Response\ArrayResponse;
 
@@ -10,14 +11,8 @@ use Pheanstalk\Response\ArrayResponse;
  * The 'reserve' command.
  *
  * Reserves/locks a ready job in a watched tube.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ReserveCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class ReserveCommand extends AbstractCommand implements ResponseParserInterface
 {
     public function __construct()
     {
@@ -27,9 +22,6 @@ class ReserveCommand
     }
 
 
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
         return 'reserve';

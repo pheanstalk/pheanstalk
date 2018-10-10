@@ -4,6 +4,7 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
 
@@ -11,25 +12,9 @@ use Pheanstalk\Response\ArrayResponse;
  * The 'peek' command.
  *
  * The peek command let the client inspect a specific job in the system.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class PeekJobCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class PeekJobCommand extends JobCommand implements ResponseParserInterface
 {
-    private $jobId;
-
-    public function __construct(JobIdInterface $peekSubject)
-    {
-        $this->jobId = $peekSubject->getId();
-    }
-
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
         return sprintf('peek %u', $this->jobId);

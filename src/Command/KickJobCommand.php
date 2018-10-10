@@ -4,6 +4,7 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Job;
 use Pheanstalk\Response\ArrayResponse;
@@ -17,30 +18,12 @@ use Pheanstalk\Response\ArrayResponse;
  * exists and is in a buried or delayed state, it will be moved to the
  * ready queue of the the same tube where it currently belongs.
  *
- * @author  Matthieu Napoli
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class KickJobCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class KickJobCommand extends JobCommand implements ResponseParserInterface
 {
-    private $_job;
-
-    /**
-     * @param JobIdInterface $job Pheanstalk job
-     */
-    public function __construct(JobIdInterface $job)
-    {
-        $this->_job = $job;
-    }
-
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
-        return 'kick-job '.$this->_job->getId();
+        return 'kick-job ' . $this->jobId;
     }
 
     /* (non-phpdoc)
@@ -52,12 +35,12 @@ class KickJobCommand
             throw new Exception\ServerException(sprintf(
                 '%s: Job %d does not exist or is not in a kickable state.',
                 $responseLine,
-                $this->_job->getId()
+                $this->jobId
             ));
         } elseif ($responseLine == ResponseInterface::RESPONSE_KICKED) {
             return $this->createResponse(ResponseInterface::RESPONSE_KICKED);
         } else {
-            throw new Exception('Unhandled response: '.$responseLine);
+            throw new Exception('Unhandled response: ' . $responseLine);
         }
     }
 }

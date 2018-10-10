@@ -2,6 +2,7 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
 
@@ -11,19 +12,13 @@ use Pheanstalk\Response\ArrayResponse;
  * Inserts a job into the client's currently used tube.
  *
  * @see UseCommand
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class PutCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class PutCommand extends AbstractCommand implements ResponseParserInterface
 {
-    private $_data;
-    private $_priority;
-    private $_delay;
-    private $_ttr;
+    private $data;
+    private $priority;
+    private $delay;
+    private $ttr;
 
     /**
      * Puts a job on the queue.
@@ -33,62 +28,46 @@ class PutCommand
      * @param int    $delay    Seconds to wait before job becomes ready
      * @param int    $ttr      Time To Run: seconds a job can be reserved for
      */
-    public function __construct($data, $priority, $delay, $ttr)
+    public function __construct(string $data, int $priority, int $delay, int $ttr)
     {
-        $this->_data = $data;
-        $this->_priority = $priority;
-        $this->_delay = $delay;
-        $this->_ttr = $ttr;
+        $this->data = $data;
+        $this->priority = $priority;
+        $this->delay = $delay;
+        $this->ttr = $ttr;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
         return sprintf(
             'put %u %u %u %u',
-            $this->_priority,
-            $this->_delay,
-            $this->_ttr,
+            $this->priority,
+            $this->delay,
+            $this->ttr,
             $this->getDataLength()
         );
     }
 
-    /* (non-phpdoc)
-     * @see Command::hasData()
-     */
     public function hasData(): bool
     {
         return true;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getData()
-     */
     public function getData(): string
     {
-        return $this->_data;
+        return $this->data;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getDataLength()
-     */
     public function getDataLength(): int
     {
-        if (function_exists('mb_strlen')) {
-            return mb_strlen($this->_data, 'latin1');
-        } else {
-            return strlen($this->_data);
-        }
+        return mb_strlen($this->data, '8bit');
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
-            return $this->createResponse('INSERTED', array(
+            return $this->createResponse('INSERTED', [
                 'id' => (int) $matches[1],
-            ));
+            ]);
         } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
             throw new Exception(sprintf(
                 '%s: server ran out of memory trying to grow the priority queue data structure.',

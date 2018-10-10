@@ -3,20 +3,14 @@
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'reserve' command.
- *
  * Reserves/locks a ready job in a watched tube.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ReserveWithTimeoutCommand
-    extends AbstractCommand
-    implements \Pheanstalk\Contract\ResponseParserInterface
+class ReserveWithTimeoutCommand extends AbstractCommand implements ResponseParserInterface
 {
     private $timeout;
 
@@ -43,15 +37,15 @@ class ReserveWithTimeoutCommand
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if (in_array($responseLine, array(ResponseInterface::RESPONSE_DEADLINE_SOON, ResponseInterface::RESPONSE_TIMED_OUT), true)) {
+        if (in_array($responseLine, [ResponseInterface::RESPONSE_DEADLINE_SOON, ResponseInterface::RESPONSE_TIMED_OUT], true)) {
             return $this->createResponse($responseLine);
         }
 
         list($code, $id) = explode(' ', $responseLine);
 
-        return $this->createResponse($code, array(
+        return $this->createResponse($code, [
             'id'      => (int) $id,
             'jobdata' => $responseData,
-        ));
+        ]);
     }
 }
