@@ -16,7 +16,7 @@ class DeleteCommand extends JobCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'delete ' . $this->jobId;
+        return 'delete '.$this->jobId;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse

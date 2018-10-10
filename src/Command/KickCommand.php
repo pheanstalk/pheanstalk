@@ -26,7 +26,7 @@ class KickCommand extends AbstractCommand implements ResponseParserInterface
 
     public function getCommandLine(): string
     {
-        return 'kick ' . $this->max;
+        return 'kick '.$this->max;
     }
 
     /* (non-phpdoc)

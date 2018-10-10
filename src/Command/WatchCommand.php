@@ -13,7 +13,7 @@ class WatchCommand extends TubeCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'watch ' . $this->tube;
+        return 'watch '.$this->tube;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse

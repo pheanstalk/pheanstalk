@@ -15,7 +15,7 @@ class IgnoreCommand extends TubeCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'ignore ' . $this->tube;
+        return 'ignore '.$this->tube;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
