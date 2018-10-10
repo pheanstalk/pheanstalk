@@ -2,6 +2,14 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\SocketException;
+use Pheanstalk\Job;
+use Pheanstalk\Socket\FsockopenSocket;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests the Pheanstalk facade (the base class).
  * Relies on a running beanstalkd server.
@@ -10,34 +18,44 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
+class PheanstalkTest extends TestCase
 {
-    const SERVER_HOST = 'localhost';
-
-    public function testVersion()
+    protected function setUp()
     {
-        // Examples: 1.0.0, 2.0.0, 2.0.0-rc1
-        $this->assertRegExp(
-            '/\d+\.\d+\.\d+(?:-\w+)?/',
-            Pheanstalk::VERSION
-        );
+        parent::setUp();
+
+        // Drain
+        $pheanstalk = $this->getPheanstalk();
+        foreach($pheanstalk->listTubes() as $tube) {
+            $pheanstalk->useTube($tube);
+            while (null !== $job = $pheanstalk->peekReady()) {
+                $pheanstalk->delete($job);
+            }
+            while (null !== $job = $pheanstalk->peekBuried()) {
+                $pheanstalk->delete($job);
+            }
+            while (null !== $job = $pheanstalk->peekDelayed()) {
+                $pheanstalk->delete($job);
+            }
+        }
     }
+
 
     public function testUseTube()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
-        $this->assertEquals($pheanstalk->listTubeUsed(), 'default');
-        $this->assertEquals($pheanstalk->listTubeUsed(true), 'default');
+        $this->assertEquals('default', $pheanstalk->listTubeUsed());
+        $this->assertEquals('default', $pheanstalk->listTubeUsed(true));
 
         $pheanstalk->useTube('test');
-        $this->assertEquals($pheanstalk->listTubeUsed(), 'test');
-        $this->assertEquals($pheanstalk->listTubeUsed(true), 'test');
+        $this->assertEquals('test', $pheanstalk->listTubeUsed());
+        $this->assertEquals('test', $pheanstalk->listTubeUsed(true));
     }
 
     public function testWatchlist()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
         $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
@@ -60,62 +78,80 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIgnoreLastTube()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $pheanstalk->ignore('default');
     }
 
     public function testPutReserveAndDeleteData()
     {
-        $pheanstalk = $this->_getFacade();
+        /** @var Pheanstalk $pheanstalk */
+        $pheanstalk = $this->getPheanstalk();
 
-        $id = $pheanstalk->put(__METHOD__);
-
-        $this->assertInternalType('int', $id);
+        $putJob = $pheanstalk->put(__METHOD__);
 
         // reserve a job - can't assume it is the one just added
-        $job = $pheanstalk->reserve();
+        $job = $pheanstalk->reserveWithTimeout(0);
+        $this->assertNotNull($job);
+        $this->assertEquals($putJob->getId(), $job->getId());
 
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // delete the reserved job
         $pheanstalk->delete($job);
 
         // put a job into an unused tube
-        $id = $pheanstalk->putInTube('test', __METHOD__);
+        $putJob = $pheanstalk->withUsedTube('test', function(Pheanstalk $pheanstalk) {
+            return $pheanstalk->put( __METHOD__);
+        });
 
-        $this->assertInternalType('int', $id);
 
         // reserve a job from an unwatched tube - can't assume it is the one just added
-        $job = $pheanstalk->reserveFromTube('test');
-
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
-
+        $job = $pheanstalk->withWatchedTube('test', function(Pheanstalk $ph) {
+            return $ph->reserveWithTimeout(0);
+        });
+        $this->assertNotNull($job);
+        $this->assertEquals($putJob->getId(), $job->getId());
         // delete the reserved job
         $pheanstalk->delete($job);
     }
 
     public function testRelease()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk1 = $this->getPheanstalk();
+        $pheanstalk2 = $this->getPheanstalk();
 
-        $pheanstalk->put(__METHOD__);
-        $job = $pheanstalk->reserve();
-        $pheanstalk->release($job);
+        $pheanstalk1->put(__METHOD__);
+        $job = $pheanstalk1->reserve();
+
+        $this->assertNull($pheanstalk2->reserveWithTimeout(0));
+        $pheanstalk1->release($job);
+        $this->assertNotNull($pheanstalk2->reserveWithTimeout(0));
     }
+
+    public function testReleaseWithDelay()
+    {
+        $pheanstalk1 = $this->getPheanstalk();
+        $pheanstalk2 = $this->getPheanstalk();
+
+        $pheanstalk1->put(__METHOD__);
+        $job = $pheanstalk1->reserve();
+
+        $this->assertNull($pheanstalk2->reserveWithTimeout(0));
+        $pheanstalk1->release($job, 1, 1);
+        $this->assertNull($pheanstalk2->reserveWithTimeout(0));
+        sleep(2);
+        $this->assertNotNull($pheanstalk2->reserveWithTimeout(0));
+    }
+
 
     public function testPutBuryAndKick()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
-        $id = $pheanstalk->put(__METHOD__);
-
-        $this->assertInternalType('int', $id);
+        $putJob = $pheanstalk->put(__METHOD__);
 
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserve();
-
-        $this->assertInstanceOf('\Pheanstalk\Job', $job);
 
         // bury the reserved job
         $pheanstalk->bury($job);
@@ -123,7 +159,6 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
         // kick up to one job
         $kickedCount = $pheanstalk->kick(1);
 
-        $this->assertInternalType('int', $kickedCount);
         $this->assertEquals($kickedCount, 1,
             'there should be at least one buried (or delayed) job: %s');
     }
@@ -133,23 +168,29 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testPutJobTooBig()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $pheanstalk->put(str_repeat('0', 0x10000));
     }
 
     public function testTouch()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
-        $pheanstalk->put(__METHOD__);
+        $pheanstalk->put(__METHOD__, 1, 0, 10);
         $job = $pheanstalk->reserve();
+        $this->assertEquals(9, $pheanstalk->statsJob($job)['time-left']);
+        sleep(1);
+        $this->assertEquals(8, $pheanstalk->statsJob($job)['time-left']);
         $pheanstalk->touch($job);
+        $this->assertEquals(9, $pheanstalk->statsJob($job)['time-left']);
+
+
     }
 
     public function testListTubes()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $this->assertInternalType('array', $pheanstalk->listTubes());
         $this->assertTrue(in_array('default', $pheanstalk->listTubes()));
@@ -163,29 +204,31 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
     public function testPeek()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
-        $id = $pheanstalk
+        $putJob = $pheanstalk
             ->useTube('testpeek')
             ->watch('testpeek')
             ->ignore('default')
             ->put('test');
 
-        $job = $pheanstalk->peek($id);
+        $job = $pheanstalk->peek($putJob);
 
         $this->assertEquals($job->getData(), 'test');
 
         // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeek2', 'test2');
+        $putJob = $pheanstalk->withUsedTube('testpeek2', function($pheanstalk) {
+            return $pheanstalk->put('test2');
+        });
 
-        $job = $pheanstalk->peek($id);
+        $job = $pheanstalk->peek($putJob);
 
         $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testPeekReady()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $id = $pheanstalk
             ->useTube('testpeekready')
@@ -196,22 +239,11 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
         $job = $pheanstalk->peekReady();
 
         $this->assertEquals($job->getData(), 'test');
-
-        // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeekready2', 'test2');
-
-        // use default tube
-        $pheanstalk->useTube('default');
-
-        // peek the tube that has the job
-        $job = $pheanstalk->peekReady('testpeekready2');
-
-        $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testPeekDelayed()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $id = $pheanstalk
             ->useTube('testpeekdelayed')
@@ -222,61 +254,39 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
         $job = $pheanstalk->peekDelayed();
 
         $this->assertEquals($job->getData(), 'test');
-
-        // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeekdelayed2', 'test2');
-
-        // use default tube
-        $pheanstalk->useTube('default');
-
-        // peek the tube that has the job
-        $job = $pheanstalk->peekReady('testpeekdelayed2');
-
-        $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testPeekBuried()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
-        $id = $pheanstalk
+        $putJob = $pheanstalk
             ->useTube('testpeekburied')
             ->watch('testpeekburied')
             ->ignore('default')
             ->put('test');
 
-        $job = $pheanstalk->reserve($id);
+        $job = $pheanstalk->reserve();
         $pheanstalk->bury($job);
 
         $job = $pheanstalk->peekBuried();
 
         $this->assertEquals($job->getData(), 'test');
-
-        // put job in an unused tube
-        $id = $pheanstalk->putInTube('testpeekburied2', 'test2');
-
-        // use default tube
-        $pheanstalk->useTube('default');
-
-        // peek the tube that has the job
-        $job = $pheanstalk->peekReady('testpeekburied2');
-
-        $this->assertEquals($job->getData(), 'test2');
     }
 
     public function testStatsJob()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
-        $id = $pheanstalk
+        $putJob = $pheanstalk
             ->useTube('teststatsjob')
             ->watch('teststatsjob')
             ->ignore('default')
             ->put('test');
 
-        $stats = $pheanstalk->statsJob($id);
+        $stats = $pheanstalk->statsJob($putJob);
 
-        $this->assertEquals($stats->id, $id);
+        $this->assertEquals($stats->id, $putJob->getId());
         $this->assertEquals($stats->tube, 'teststatsjob');
         $this->assertEquals($stats->state, 'ready');
         $this->assertEquals($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
@@ -290,7 +300,7 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
     public function testStatsJobWithJobObject()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $pheanstalk
             ->useTube('teststatsjobwithjobobject')
@@ -317,7 +327,7 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
     public function testStatsTube()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $tube = 'test-stats-tube';
         $pheanstalk->useTube($tube);
@@ -330,7 +340,7 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
 
     public function testStats()
     {
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $stats = $pheanstalk->useTube('test-stats')->stats();
 
@@ -349,7 +359,7 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
     public function testPauseTube()
     {
         $tube = 'test-pause-tube';
-        $pheanstalk = $this->_getFacade();
+        $pheanstalk = $this->getPheanstalk();
 
         $pheanstalk
             ->useTube($tube)
@@ -358,44 +368,59 @@ class FacadeConnectionTest extends \PHPUnit_Framework_TestCase
             ->put(__METHOD__);
 
         // pause, expect no job from that queue
-        $response = $pheanstalk
-            ->pauseTube($tube, 60)
-            ->reserve(0);
+        $pheanstalk->pauseTube($tube, 60);
+        $response = $pheanstalk->reserveWithTimeout(0);
 
-        $this->assertSame($response, false);
+        $this->assertNull($response);
 
         // resume, expect job
-        $response = $pheanstalk
-            ->resumeTube($tube)
-            ->reserve(0);
+        $pheanstalk->resumeTube($tube);
+        $response = $pheanstalk->reserveWithTimeout(0);
 
         $this->assertSame($response->getData(), __METHOD__);
     }
 
-    public function testGetConnection()
-    {
-        $facade = $this->_getFacade();
-
-        $connection = $this->getMockBuilder('\Pheanstalk\Connection')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $facade->setConnection($connection);
-        $this->assertSame($facade->getConnection(), $connection);
-    }
-
     public function testInterface()
     {
-        $facade = $this->_getFacade();
+        $facade = $this->getPheanstalk();
 
-        $this->assertInstanceOf('\Pheanstalk\PheanstalkInterface', $facade);
+        $this->assertInstanceOf(PheanstalkInterface::class, $facade);
+    }
+
+
+    public function testConnectionResetIfSocketExceptionIsThrown()
+    {
+        $sockets = [];
+
+        $sockets[0] = $this->getMockBuilder(SocketInterface::class)
+            ->getMock();
+
+        $sockets[1] = new FsockopenSocket(SERVER_HOST, 11300, 10);
+
+        $sockets[0]->expects($this->once())->method('write')->willThrowException(new SocketException('test'));
+
+        $socketFactory = new class($sockets) implements SocketFactoryInterface {
+            private $sockets;
+            public function __construct(array $sockets)
+            {
+                $this->sockets = $sockets;
+            }
+
+            public function create(): SocketInterface
+            {
+                return array_shift($this->sockets);
+            }
+        };
+
+        $pheanstalk = Pheanstalk::createWithFactory($socketFactory);
+        $this->assertNotEmpty($pheanstalk->stats());
     }
 
     // ----------------------------------------
     // private
 
-    private function _getFacade()
+    private function getPheanstalk(): PheanstalkInterface
     {
-        return new Pheanstalk(self::SERVER_HOST);
+        return Pheanstalk::create(SERVER_HOST);
     }
 }

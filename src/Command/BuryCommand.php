@@ -2,8 +2,9 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'bury' command.
@@ -16,7 +17,7 @@ use Pheanstalk\Response;
  */
 class BuryCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_job;
     private $_priority;
@@ -34,7 +35,7 @@ class BuryCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return sprintf(
             'bury %u %u',
@@ -43,19 +44,16 @@ class BuryCommand
         );
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 '%s: Job %u is not reserved or does not exist.',
                 $responseLine,
                 $this->_job->getId()
             ));
-        } elseif ($responseLine == Response::RESPONSE_BURIED) {
-            return $this->_createResponse(Response::RESPONSE_BURIED);
+        } elseif ($responseLine == ResponseInterface::RESPONSE_BURIED) {
+            return $this->createResponse(ResponseInterface::RESPONSE_BURIED);
         } else {
             throw new Exception('Unhandled response: '.$responseLine);
         }

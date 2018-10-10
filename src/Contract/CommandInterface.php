@@ -1,6 +1,9 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Contract;
+
+use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Exception;
 
 /**
  * A command to be sent to the beanstalkd server, and response processing logic.
@@ -9,7 +12,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-interface Command
+interface CommandInterface
 {
     const COMMAND_PUT = 'put';
     const COMMAND_USE = 'use';
@@ -29,40 +32,26 @@ interface Command
 
     /**
      * The command line, without trailing CRLF.
-     *
-     * @return string
      */
-    public function getCommandLine();
+    public function getCommandLine(): string;
 
     /**
      * Whether the command is followed by data.
-     *
-     * @return bool
      */
-    public function hasData();
+    public function hasData(): bool;
 
     /**
      * The binary data to follow the command.
-     *
-     * @throws Exception\CommandException If command has no data
-     *
-     * @return string
      */
-    public function getData();
+    public function getData(): string;
 
     /**
      * The length of the binary data in bytes.
-     *
-     * @throws Exception\CommandException If command has no data
-     *
-     * @return int
      */
-    public function getDataLength();
+    public function getDataLength(): int;
 
     /**
      * The response parser for the command.
-     *
-     * @return ResponseParser
      */
-    public function getResponseParser();
+    public function getResponseParser(): ResponseParserInterface;
 }

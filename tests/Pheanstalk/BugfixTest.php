@@ -2,6 +2,9 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\ResponseInterface;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
  * an existing category of tests.
@@ -13,7 +16,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class BugfixTest extends \PHPUnit_Framework_TestCase
+class BugfixTest extends TestCase
 {
     /**
      * Issue: Stats() Command fails if Version isn't set.
@@ -29,7 +32,7 @@ class BugfixTest extends \PHPUnit_Framework_TestCase
 
         $this->_assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
-            Response::RESPONSE_OK,
+            ResponseInterface::RESPONSE_OK,
             array('pid' => '123', 'version' => '', 'key' => 'value')
         );
     }
@@ -38,7 +41,7 @@ class BugfixTest extends \PHPUnit_Framework_TestCase
     // private
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @param string   $expectName
      * @param array    $data
      */

@@ -2,8 +2,10 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
@@ -17,31 +19,31 @@ use Pheanstalk\Response;
  */
 class PeekCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     const TYPE_ID = 'id';
     const TYPE_READY = 'ready';
     const TYPE_DELAYED = 'delayed';
     const TYPE_BURIED = 'buried';
 
-    private $_subcommands = array(
+    private const SUBCOMMANDS = [
         self::TYPE_READY,
         self::TYPE_DELAYED,
         self::TYPE_BURIED,
-    );
-
-    private $_subcommand;
-    private $_jobId;
+    ];
 
     /**
-     * @param mixed $peekSubject Job ID or self::TYPE_*
+     * @var string
      */
-    public function __construct($peekSubject)
+    private $subcommand;
+
+    /**
+     * @param string $peekSubject self::TYPE_*
+     */
+    public function __construct(string $peekSubject)
     {
-        if (is_int($peekSubject) || ctype_digit($peekSubject)) {
-            $this->_jobId = $peekSubject;
-        } elseif (in_array($peekSubject, $this->_subcommands)) {
-            $this->_subcommand = $peekSubject;
+        if (in_array($peekSubject, self::SUBCOMMANDS)) {
+            $this->subcommand = $peekSubject;
         } else {
             throw new Exception\CommandException(sprintf(
                 'Invalid peek subject: %s', $peekSubject
@@ -52,42 +54,27 @@ class PeekCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
-        return isset($this->_jobId) ?
-            sprintf('peek %u', $this->_jobId) :
-            sprintf('peek-%s', $this->_subcommand);
+        return sprintf('peek-%s', $this->subcommand);
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
-            if (isset($this->_jobId)) {
-                $message = sprintf(
-                    '%s: Job %u does not exist.',
-                    $responseLine,
-                    $this->_jobId
-                );
-            } else {
-                $message = sprintf(
-                    "%s: There are no jobs in the '%s' status",
-                    $responseLine,
-                    $this->_subcommand
-                );
-            }
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+            return $this->createResponse(ResponseInterface::RESPONSE_NOT_FOUND);
+        }
 
-            throw new Exception\ServerException($message);
-        } elseif (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
-            return $this->_createResponse(
-                Response::RESPONSE_FOUND,
+        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
+            return $this->createResponse(
+                ResponseInterface::RESPONSE_FOUND,
                 array(
                     'id'      => (int) $matches[1],
                     'jobdata' => $responseData,
                 )
             );
         }
+
+        throw new Exception\ServerException("Unexpected response");
     }
 }

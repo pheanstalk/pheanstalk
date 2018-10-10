@@ -2,8 +2,9 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'delete' command.
@@ -16,7 +17,7 @@ use Pheanstalk\Response;
  */
 class DeleteCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_job;
 
@@ -31,17 +32,14 @@ class DeleteCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'delete '.$this->_job->getId();
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 'Cannot delete job %u: %s',
                 $this->_job->getId(),
@@ -49,6 +47,6 @@ class DeleteCommand
             ));
         }
 
-        return $this->_createResponse($responseLine);
+        return $this->createResponse($responseLine);
     }
 }

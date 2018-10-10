@@ -1,9 +1,13 @@
 Pheanstalk
 ==========
 
-[![Build Status](https://travis-ci.org/pda/pheanstalk.png?branch=master)](https://travis-ci.org/pda/pheanstalk)
+[![Latest Stable Version](https://img.shields.io/packagist/v/pda/pheanstalk.svg)](https://packagist.org/packages/pda/pheanstalk)
+[![Total Downloads](https://img.shields.io/packagist/dt/pda/pheanstalk.svg)](https://packagist.org/pda/pheanstalk)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/?branch=master)
+[![Build Status](https://travis-ci.org/pheanstalk/pheanstalk.svg?branch=master)](https://travis-ci.org/pheanstalk/pheanstalk)
 
-Pheanstalk is a pure PHP 5.3+ client for the [beanstalkd workqueue][1].  It has
+Pheanstalk is a pure PHP 7.2+ client for the [beanstalkd workqueue][1].  It has
 been actively developed, and used in production by many, since late 2008.
 
 Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written
@@ -13,6 +17,14 @@ in 2013, and a 3.0 release in 2014.
 
 Pheanstalk 3.0 introduces PHP namespaces, PSR-1 and PSR-2 coding standards,
 and PSR-4 autoloader standard.
+
+Pheanstalk 4.0 drops support for older PHP versions. It contains the following changes (among other things):
+- Strict PHP type hinting
+- Value objects for Job IDs
+- Functions without side effects
+- Dropped support for persistent connections
+- Add support for multiple socket implementations (streams extension, socket extension, fsockopen)
+
 
 beanstalkd up to the latest version 1.10 is supported.  All commands and
 responses specified in the [protocol documentation][3] for beanstalkd 1.3 are
@@ -41,8 +53,8 @@ Usage Example
 // Hopefully you're using Composer autoloading.
 
 use Pheanstalk\Pheanstalk;
-
-$pheanstalk = new Pheanstalk('127.0.0.1');
+// Create using autodetection of socket implementation
+$pheanstalk = new Pheanstalk::create('127.0.0.1');
 
 // ----------------------------------------
 // producer (queues jobs)
@@ -63,39 +75,21 @@ echo $job->getData();
 
 $pheanstalk->delete($job);
 
-// ----------------------------------------
-// check server availability
-
-$pheanstalk->getConnection()->isServiceListening(); // true or false
-
 ```
 
 
 Running the tests
 -----------------
 
-There is a section of the test suite which depends on a running beanstalkd
-at 127.0.0.1:11300, which was previously opt-in via `--with-server`.
-Since porting to PHPUnit, all tests are run at once. Feel free to submit
-a pull request to rectify this.
-
+If you have docker-compose installed running tests is as simple as:
+```sh
+> composer test
 ```
-# ensure you have Composer set up
-$ wget http://getcomposer.org/composer.phar
-$ php composer.phar install
 
-$ ./vendor/bin/phpunit
-PHPUnit 4.0.19 by Sebastian Bergmann.
-
-Configuration read from /Users/pda/code/pheanstalk/phpunit.xml.dist
-
-................................................................. 65 / 83 ( 78%)
-..................
-
-Time: 239 ms, Memory: 6.00Mb
-
-OK (83 tests, 378 assertions)
-```
+If you don't then you manually need to set up a beanstalk server and run:
+```sh
+> vendor/bin/phpunit
+```composer
 
 
 Contributors
@@ -121,6 +115,7 @@ Contributors
   * [James Hamilton](https://github.com/mrjameshamilton)
   * [Hannes Van De Vreken](https://github.com/hannesvdvreken)
   * [Yaniv Davidovitch](https://github.com/YanivD)
+  * [Sam Mousa](https://github.com/sammousa)
   * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
 
 

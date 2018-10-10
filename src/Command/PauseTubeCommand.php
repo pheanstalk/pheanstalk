@@ -2,8 +2,9 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'pause-tube' command.
@@ -16,7 +17,7 @@ use Pheanstalk\Response;
  */
 class PauseTubeCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_tube;
     private $_delay;
@@ -34,7 +35,7 @@ class PauseTubeCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return sprintf(
             'pause-tube %s %u',
@@ -46,18 +47,18 @@ class PauseTubeCommand
     /* (non-phpdoc)
      * @see ResponseParser::parseResponse()
      */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == Response::RESPONSE_NOT_FOUND) {
+        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 '%s: tube %s does not exist.',
                 $responseLine,
                 $this->_tube
             ));
-        } elseif ($responseLine == Response::RESPONSE_PAUSED) {
-            return $this->_createResponse(Response::RESPONSE_PAUSED);
+        } elseif ($responseLine == ResponseInterface::RESPONSE_PAUSED) {
+            return $this->createResponse(ResponseInterface::RESPONSE_PAUSED);
         } else {
-            throw new Exception('Unhandled response: '.$responseLine);
+            throw new Exception('Unhandled response: "'. $responseLine . '"');
         }
     }
 }

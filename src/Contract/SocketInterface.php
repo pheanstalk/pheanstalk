@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Contract;
 
 /**
  * A mockable wrapper around PHP "socket" or "file pointer" access.
@@ -11,7 +11,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-interface Socket
+interface SocketInterface
 {
     /**
      * Writes data to the socket.
@@ -20,25 +20,25 @@ interface Socket
      *
      * @return void
      */
-    public function write($data);
+    public function write(string $data): void;
 
     /**
      * Reads up to $length bytes from the socket.
      *
      * @return string
      */
-    public function read($length);
+    public function read(int $length): string;
 
     /**
-     * Reads up to the next new-line, or $length - 1 bytes.
+     * Reads up to the next new-line.
      * Trailing whitespace is trimmed.
      *
      * @param int
      */
-    public function getLine($length = null);
+    public function getLine(): string;
 
     /**
      * Disconnect the socket; subsequent usage of the socket will fail.
      */
-    public function disconnect();
+    public function disconnect(): void;
 }

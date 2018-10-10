@@ -2,6 +2,8 @@
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
  * an existing category of tests.
@@ -13,10 +15,8 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
+class BugfixConnectionTest extends TestCase
 {
-    const SERVER_HOST = 'localhost';
-
     /**
      * Issue: NativeSocket's read() doesn't work with jobs larger than 8192 bytes.
      *
@@ -63,7 +63,7 @@ class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
 
     private function _createPheanstalk()
     {
-        $pheanstalk = new Pheanstalk(self::SERVER_HOST);
+        $pheanstalk = Pheanstalk::create(SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));
 
         $pheanstalk
@@ -71,18 +71,12 @@ class BugfixConnectionTest extends \PHPUnit_Framework_TestCase
             ->watch($tube)
             ->ignore('default');
 
-        try {
-            while ($pheanstalk->delete($pheanstalk->peekDelayed())) {
-            }
-        } catch (Exception\ServerException $e) {
+        while (null !== $job = $pheanstalk->peekDelayed()) {
+            $pheanstalk->delete($job);
         }
-
-        try {
-            while ($pheanstalk->delete($pheanstalk->peekReady())) {
-            }
-        } catch (Exception\ServerException $e) {
+        while (null !== $job = $pheanstalk->peekReady()) {
+            $pheanstalk->delete($job);
         }
-
         return $pheanstalk;
     }
 }

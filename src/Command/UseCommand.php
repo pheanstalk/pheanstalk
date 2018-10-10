@@ -2,7 +2,7 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\ResponseParser;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * The 'use' command.
@@ -17,7 +17,7 @@ use Pheanstalk\ResponseParser;
  */
 class UseCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     /**
      * @var string
@@ -35,17 +35,14 @@ class UseCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'use '.$this->_tube;
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        return $this->_createResponse('USING', array(
+        return $this->createResponse('USING', array(
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),
         ));
     }

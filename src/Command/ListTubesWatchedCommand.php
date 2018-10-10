@@ -19,7 +19,7 @@ class ListTubesWatchedCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'list-tubes-watched';
     }
@@ -27,7 +27,7 @@ class ListTubesWatchedCommand
     /* (non-phpdoc)
      * @see Command::getResponseParser()
      */
-    public function getResponseParser()
+    public function getResponseParser(): \Pheanstalk\Contract\ResponseParserInterface
     {
         return new YamlResponseParser(
             YamlResponseParser::MODE_LIST

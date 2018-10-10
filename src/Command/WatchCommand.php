@@ -2,6 +2,8 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Response\ArrayResponse;
+
 /**
  * The 'watch' command.
  *
@@ -13,7 +15,7 @@ namespace Pheanstalk\Command;
  */
 class WatchCommand
     extends AbstractCommand
-    implements \Pheanstalk\ResponseParser
+    implements \Pheanstalk\Contract\ResponseParserInterface
 {
     private $_tube;
 
@@ -28,17 +30,14 @@ class WatchCommand
     /* (non-phpdoc)
      * @see Command::getCommandLine()
      */
-    public function getCommandLine()
+    public function getCommandLine(): string
     {
         return 'watch '.$this->_tube;
     }
 
-    /* (non-phpdoc)
-     * @see ResponseParser::parseResponse()
-     */
-    public function parseResponse($responseLine, $responseData)
+    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        return $this->_createResponse('WATCHING', array(
+        return $this->createResponse('WATCHING', array(
             'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine),
         ));
     }

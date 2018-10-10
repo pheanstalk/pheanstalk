@@ -2,6 +2,10 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Tests exceptions thrown to represent non-command-specific error responses.
  *
@@ -9,7 +13,7 @@ namespace Pheanstalk;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ServerErrorExceptionTest extends \PHPUnit_Framework_TestCase
+class ServerErrorExceptionTest extends TestCase
 {
     private $_command;
 
@@ -27,7 +31,7 @@ class ServerErrorExceptionTest extends \PHPUnit_Framework_TestCase
      */
     private function _connection($line)
     {
-        $socket = $this->getMockBuilder('\Pheanstalk\Socket')
+        $socket = $this->getMockBuilder('\Pheanstalk\Contract\SocketInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -35,9 +39,17 @@ class ServerErrorExceptionTest extends \PHPUnit_Framework_TestCase
             ->method('getLine')
             ->will($this->returnValue($line));
 
-        $connection = new Connection(null, null);
-        $connection->setSocket($socket);
+        $connection = new Connection(new class($socket) implements SocketFactoryInterface {
+            public function __construct($socket)
+            {
+                $this->socket = $socket;
+            }
 
+            public function create(): SocketInterface
+            {
+                return $this->socket;
+            }
+        });
         return $connection;
     }
 

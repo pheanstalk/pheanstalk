@@ -2,8 +2,11 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Command;
-use Pheanstalk\Response;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Exception\CommandException;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
  * Common functionality for Command implementations.
@@ -13,12 +16,12 @@ use Pheanstalk\Response;
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 abstract class AbstractCommand
-    implements Command
+    implements CommandInterface
 {
     /* (non-phpdoc)
      * @see Command::hasData()
      */
-    public function hasData()
+    public function hasData(): bool
     {
         return false;
     }
@@ -26,27 +29,27 @@ abstract class AbstractCommand
     /* (non-phpdoc)
      * @see Command::getData()
      */
-    public function getData()
+    public function getData(): string
     {
-        throw new Exception\CommandException('Command has no data');
+        throw new CommandException('Command has no data');
     }
 
     /* (non-phpdoc)
      * @see Command::getDataLength()
      */
-    public function getDataLength()
+    public function getDataLength(): int
     {
-        throw new Exception\CommandException('Command has no data');
+        throw new CommandException('Command has no data');
     }
 
     /* (non-phpdoc)
      * @see Command::getResponseParser()
      */
-    public function getResponseParser()
+    public function getResponseParser(): ResponseParserInterface
     {
-        // concrete implementation must either:
-        // a) implement ResponseParser
-        // b) override this getResponseParser method
+        if (!$this instanceof ResponseParserInterface) {
+            throw new \RuntimeException('Concrete implementation must implement `ResponseParser` or override this method');
+        }
         return $this;
     }
 
@@ -68,10 +71,9 @@ abstract class AbstractCommand
      *
      * @param array
      *
-     * @return object Response
      */
-    protected function _createResponse($name, $data = array())
+    protected function createResponse(string $name, array $data = []): ArrayResponse
     {
-        return new Response\ArrayResponse($name, $data);
+        return new ArrayResponse($name, $data);
     }
 }

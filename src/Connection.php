@@ -2,14 +2,20 @@
 
 namespace Pheanstalk;
 
-use Pheanstalk\Socket\NativeSocket;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ServerBadFormatException;
+use Pheanstalk\Exception\ServerDrainingException;
+use Pheanstalk\Exception\ServerInternalErrorException;
+use Pheanstalk\Exception\ServerOutOfMemoryException;
+use Pheanstalk\Exception\ServerUnknownCommandException;
+use Pheanstalk\Response\ArrayResponse;
 
 /**
- * A connection to a beanstalkd server.
+ * A connection to a beanstalkd server, backed by any type of socket.
  *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Connection
 {
@@ -17,66 +23,35 @@ class Connection
     const CRLF_LENGTH = 2;
     const DEFAULT_CONNECT_TIMEOUT = 2;
 
-    // responses which are global errors, mapped to their exception short-names
-    private static $_errorResponses = array(
-        Response::RESPONSE_OUT_OF_MEMORY   => 'OutOfMemory',
-        Response::RESPONSE_INTERNAL_ERROR  => 'InternalError',
-        Response::RESPONSE_DRAINING        => 'Draining',
-        Response::RESPONSE_BAD_FORMAT      => 'BadFormat',
-        Response::RESPONSE_UNKNOWN_COMMAND => 'UnknownCommand',
-    );
+    // responses which are global errors, mapped to their exception classes
+    private static $_errorResponses = [
+        ResponseInterface::RESPONSE_OUT_OF_MEMORY   => ServerOutOfMemoryException::class,
+        ResponseInterface::RESPONSE_INTERNAL_ERROR  => ServerInternalErrorException::class,
+        ResponseInterface::RESPONSE_DRAINING        => ServerDrainingException::class,
+        ResponseInterface::RESPONSE_BAD_FORMAT      => ServerBadFormatException::class,
+        ResponseInterface::RESPONSE_UNKNOWN_COMMAND => ServerUnknownCommandException::class,
+    ];
 
     // responses which are followed by data
-    private static $_dataResponses = array(
-        Response::RESPONSE_RESERVED,
-        Response::RESPONSE_FOUND,
-        Response::RESPONSE_OK,
-    );
-
-    private $_socket;
-    private $_hostname;
-    private $_port;
-    private $_connectTimeout;
-    private $_connectPersistent;
+    private static $_dataResponses = [
+        ResponseInterface::RESPONSE_RESERVED,
+        ResponseInterface::RESPONSE_FOUND,
+        ResponseInterface::RESPONSE_OK,
+    ];
 
     /**
-     * @param string $hostname
-     * @param int    $port
-     * @param float  $connectTimeout
-     * @param bool   $connectPersistent
+     * @var SocketFactoryInterface
      */
-    public function __construct($hostname, $port, $connectTimeout = null, $connectPersistent = false)
-    {
-        if (is_null($connectTimeout) || !is_numeric($connectTimeout)) {
-            $connectTimeout = self::DEFAULT_CONNECT_TIMEOUT;
-        }
-
-        $this->_hostname = $hostname;
-        $this->_port = $port;
-        $this->_connectTimeout = $connectTimeout;
-        $this->_connectPersistent = $connectPersistent;
-    }
+    private $factory;
 
     /**
-     * Sets a manually created socket, used for unit testing.
-     *
-     * @param Socket $socket
-     *
-     * @return $this
+     * @var ?SocketInterface
      */
-    public function setSocket(Socket $socket)
-    {
-        $this->_socket = $socket;
+    private $socket;
 
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasSocket()
+    public function __construct(SocketFactoryInterface $factory)
     {
-        return isset($this->_socket);
+        $this->factory = $factory;
     }
 
     /**
@@ -85,20 +60,18 @@ class Connection
      */
     public function disconnect()
     {
-        $this->_getSocket()->disconnect();
-        $this->_socket = null;
+        if (isset($this->socket)) {
+            $this->socket->disconnect();
+            $this->socket = null;
+        }
     }
 
     /**
-     * @param object $command Command
-     *
      * @throws Exception\ClientException
-     *
-     * @return object Response
      */
-    public function dispatchCommand($command)
+    public function dispatchCommand(CommandInterface $command): ArrayResponse
     {
-        $socket = $this->_getSocket();
+        $socket = $this->getSocket();
 
         $to_send = $command->getCommandLine().self::CRLF;
 
@@ -112,12 +85,9 @@ class Connection
         $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
         if (isset(self::$_errorResponses[$responseName])) {
-            $exception = sprintf(
-                '\Pheanstalk\Exception\Server%sException',
-                self::$_errorResponses[$responseName]
-            );
+            $exceptionClass = self::$_errorResponses[$responseName];
 
-            throw new $exception(sprintf(
+            throw new $exceptionClass(sprintf(
                 "%s in response to '%s'",
                 $responseName,
                 $command
@@ -126,8 +96,7 @@ class Connection
 
         if (in_array($responseName, self::$_dataResponses)) {
             $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
-            $data = $socket->read($dataLength);
-
+            $data = $socket->read((int) $dataLength);
             $crlf = $socket->read(self::CRLF_LENGTH);
             if ($crlf !== self::CRLF) {
                 throw new Exception\ClientException(sprintf(
@@ -145,36 +114,6 @@ class Connection
             ->parseResponse($responseLine, $data);
     }
 
-    /**
-     * Returns the connect timeout for this connection.
-     *
-     * @return float
-     */
-    public function getConnectTimeout()
-    {
-        return $this->_connectTimeout;
-    }
-
-    /**
-     * Returns the host for this connection.
-     *
-     * @return string
-     */
-    public function getHost()
-    {
-        return $this->_hostname;
-    }
-
-    /**
-     * Returns the port for this connection.
-     *
-     * @return int
-     */
-    public function getPort()
-    {
-        return $this->_port;
-    }
-
     // ----------------------------------------
 
     /**
@@ -182,35 +121,15 @@ class Connection
      *
      * @throws Exception\ConnectionException
      *
-     * @return Socket
+     * @return SocketInterface
      */
-    private function _getSocket()
+    private function getSocket()
     {
-        if (!isset($this->_socket)) {
-            $this->_socket = new NativeSocket(
-                $this->_hostname,
-                $this->_port,
-                $this->_connectTimeout,
-                $this->_connectPersistent
-            );
+        if (!isset($this->socket)) {
+            $this->socket = $this->factory->create();
         }
 
-        return $this->_socket;
+        return $this->socket;
     }
 
-    /**
-     * Checks connection to the beanstalkd socket.
-     *
-     * @return true|false
-     */
-    public function isServiceListening()
-    {
-        try {
-            $this->_getSocket();
-
-            return true;
-        } catch (Exception\ConnectionException $e) {
-            return false;
-        }
-    }
 }
