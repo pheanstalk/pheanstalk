@@ -14,4 +14,7 @@ before_script:
   - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
-  - vendor/bin/phpunit --configuration phpunit.xml.dist
+  - phpdbg -qrr vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover clover.xml
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover clover.xml
