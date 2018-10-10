@@ -1,7 +1,11 @@
 Pheanstalk
 ==========
 
-[![Build Status](https://travis-ci.org/pda/pheanstalk.png?branch=master)](https://travis-ci.org/pda/pheanstalk)
+[![Latest Stable Version](https://img.shields.io/packagist/v/pda/pheanstalk.svg)](https://packagist.org/packages/pda/pheanstalk)
+[![Total Downloads](https://img.shields.io/packagist/dt/pda/pheanstalk.svg)](https://packagist.org/pda/pheanstalk)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/?branch=master)
+[![Build Status](https://travis-ci.org/pheanstalk/pheanstalk.svg?branch=master)](https://travis-ci.org/pheanstalk/pheanstalk)
 
 Pheanstalk is a pure PHP 7.2+ client for the [beanstalkd workqueue][1].  It has
 been actively developed, and used in production by many, since late 2008.

@@ -11,7 +11,7 @@ before_install:
   - sudo beanstalkd -l 127.0.0.1 -p 11300 &
 
 before_script:
-  - travis_retry composer install --no-interaction --prefer-source --dev
+  - travis_retry composer install --no-interaction --prefer-source
 
 script:
   - phpdbg -qrr vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover clover.xml
