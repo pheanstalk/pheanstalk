@@ -37,8 +37,8 @@ class SocketSocket implements SocketInterface
         $sendTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_SNDTIMEO);
         $receiveTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_RCVTIMEO);
         socket_set_option($this->socket, SOL_TCP, SO_KEEPALIVE, 1);
-        socket_set_option($this->socket, SOL_SOCKET,SO_SNDTIMEO, $timeout);
-        socket_set_option($this->socket, SOL_SOCKET,SO_RCVTIMEO, $timeout);
+        socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
+        socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
         socket_set_block($this->socket);
 
         $address = gethostbyname($host);
@@ -47,8 +47,8 @@ class SocketSocket implements SocketInterface
             throw new ConnectionException($error, socket_strerror($error));
         };
 
-        socket_set_option($this->socket, SOL_SOCKET,SO_SNDTIMEO, $sendTimeout);
-        socket_set_option($this->socket, SOL_SOCKET,SO_RCVTIMEO, $receiveTimeout);
+        socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout);
+        socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout);
     }
 
     /**
@@ -110,7 +110,7 @@ class SocketSocket implements SocketInterface
 
         $buffer = '';
         // Reading stops at \r or \n. In case it stopped at \r we must continue reading.
-        while(substr($buffer, -1, 1) !== "\n") {
+        while (substr($buffer, -1, 1) !== "\n") {
             $result = socket_read($this->socket, 1024, PHP_NORMAL_READ);
             if ($result === false) {
                 $this->throwException();

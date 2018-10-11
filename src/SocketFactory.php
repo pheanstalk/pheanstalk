@@ -3,7 +3,6 @@
 
 namespace Pheanstalk;
 
-
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Socket\FsockopenSocket;
@@ -58,7 +57,6 @@ class SocketFactory implements SocketFactoryInterface
         } else {
             $this->implementation = $implementation;
         }
-
     }
 
     private function createStreamSocket(): StreamSocket

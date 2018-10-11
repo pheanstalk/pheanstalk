@@ -38,7 +38,8 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
             $this->subcommand = $peekSubject;
         } else {
             throw new Exception\CommandException(sprintf(
-                'Invalid peek subject: %s', $peekSubject
+                'Invalid peek subject: %s',
+                $peekSubject
             ));
         }
     }

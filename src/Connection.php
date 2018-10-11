@@ -131,5 +131,4 @@ class Connection
 
         return $this->socket;
     }
-
 }

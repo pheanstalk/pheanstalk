@@ -11,7 +11,6 @@ use Pheanstalk\Exception;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ServerException
-    extends Exception
+class ServerException extends Exception
 {
 }

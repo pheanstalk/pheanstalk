@@ -3,7 +3,6 @@
 
 namespace Pheanstalk\Contract;
 
-
 interface SocketFactoryInterface
 {
     /**

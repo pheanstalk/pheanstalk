@@ -3,7 +3,6 @@
 
 namespace Pheanstalk;
 
-
 use Pheanstalk\Contract\JobIdInterface;
 
 class JobId implements JobIdInterface

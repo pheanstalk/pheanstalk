@@ -9,8 +9,7 @@ namespace Pheanstalk\Exception;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ConnectionException
-    extends ClientException
+class ConnectionException extends ClientException
 {
     /**
      * @param int    $errno  The connection error code

@@ -21,7 +21,8 @@ class Pheanstalk implements PheanstalkInterface
     private $_using = PheanstalkInterface::DEFAULT_TUBE;
     private $_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
 
-    public function __construct(Connection $connection) {
+    public function __construct(Connection $connection)
+    {
         $this->connection = $connection;
     }
 
@@ -424,15 +425,12 @@ class Pheanstalk implements PheanstalkInterface
             $this->watchOnly($tube);
             return $closure($this);
         } finally {
-            foreach($watched as $tube) {
+            foreach ($watched as $tube) {
                 $this->watch($tube);
             }
             if (!in_array($tube, $watched)) {
                 $this->ignore($tube);
             }
-
         }
-
     }
-
 }

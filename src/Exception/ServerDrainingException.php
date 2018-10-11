@@ -9,7 +9,6 @@ namespace Pheanstalk\Exception;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-class ServerDrainingException
-    extends ServerException
+class ServerDrainingException extends ServerException
 {
 }
