@@ -51,28 +51,34 @@ class YamlResponseParser implements ResponseParserInterface
             ));
         }
 
-        $dataLines = preg_split("#[\r\n]+#", rtrim($responseData));
-        if (isset($dataLines[0]) && $dataLines[0] == '---') {
-            array_shift($dataLines); // discard header line
-        }
+        $lines = array_filter(explode("\n", $responseData), function($line) {
+            return !empty($line) && $line !== '---';
+        });
 
-        $data = array_map([$this, 'mapYamlList'], $dataLines);
+        return $this->mode === self::MODE_LIST ? $this->parseList($lines) : $this->parseDictionary($lines);
+    }
 
-        if ($this->mode == self::MODE_DICT) {
-            // TODO: do this better.
-            $array = [];
-            foreach ($data as $line) {
-                if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
-                    throw new Exception("YAML parse error for line: $line");
-                }
-
-                list(, $key, $value) = $matches;
-
-                $array[$key] = $value;
+    private function parseList(array $lines): ArrayResponse
+    {
+        $data = [];
+        foreach($lines as $line) {
+            if (strncmp($line, '- ', 2) !== 0) {
+                throw new Exception("YAML parse error for line: $line" . print_r($lines, true));
             }
-            $data = $array;
+            $data[] = substr($line, 2);
         }
 
+        return new ArrayResponse('OK', $data);
+    }
+    private function parseDictionary(array $lines): ArrayResponse
+    {
+        $data = [];
+        foreach($lines as $line) {
+            if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
+                throw new Exception("YAML parse error for line: $line");
+            }
+            $data[$matches[1]] = $matches[2];
+        }
         return new ArrayResponse('OK', $data);
     }
 

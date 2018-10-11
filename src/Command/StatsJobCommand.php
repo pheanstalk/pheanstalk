@@ -21,8 +21,6 @@ class StatsJobCommand extends JobCommand
 
     public function getResponseParser(): ResponseParserInterface
     {
-        return new YamlResponseParser(
-            YamlResponseParser::MODE_DICT
-        );
+        return new YamlResponseParser(YamlResponseParser::MODE_DICT);
     }
 }

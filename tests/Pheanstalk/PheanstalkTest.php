@@ -193,7 +193,6 @@ class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
 
-        $this->assertInternalType('array', $pheanstalk->listTubes());
         $this->assertTrue(in_array('default', $pheanstalk->listTubes()));
 
         $pheanstalk->useTube('test1');

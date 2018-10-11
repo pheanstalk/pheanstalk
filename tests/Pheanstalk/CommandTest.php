@@ -227,7 +227,7 @@ class CommandTest extends TestCase
         $command = new Command\StatsJobCommand(new JobId(5));
         $this->assertCommandLine($command, 'stats-job 5');
 
-        $data = "---\r\nid: 8\r\ntube: test\r\nstate: delayed\r\n";
+        $data = "---\nid: 8\ntube: test\nstate: delayed\n";
 
         $this->assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
@@ -241,7 +241,7 @@ class CommandTest extends TestCase
         $command = new Command\StatsTubeCommand('test');
         $this->assertCommandLine($command, 'stats-tube test');
 
-        $data = "---\r\nname: test\r\ncurrent-jobs-ready: 5\r\n";
+        $data = "---\nname: test\ncurrent-jobs-ready: 5\n";
 
         $this->assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
@@ -255,7 +255,7 @@ class CommandTest extends TestCase
         $command = new Command\StatsCommand();
         $this->assertCommandLine($command, 'stats');
 
-        $data = "---\r\npid: 123\r\nversion: 1.3\r\n";
+        $data = "---\npid: 123\nversion: 1.3\n";
 
         $this->assertResponse(
             $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
@@ -277,7 +277,7 @@ class CommandTest extends TestCase
     public function testIssue12YamlParsingMissingValue()
     {
         // missing version number
-        $data = "---\r\npid: 123\r\nversion: \r\nkey: value\r\n";
+        $data = "---\npid: 123\nversion: \nkey: value\n";
 
         $command = new Command\StatsCommand();
 
