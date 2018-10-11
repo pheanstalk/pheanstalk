@@ -7,12 +7,10 @@ checks:
 tools:
   external_code_coverage:
     runs: 1
-  php_code_sniffer:
-    config:
-      standard: "PSR2"
 build:
   nodes:
     analysis:
       tests:
         override:
+          - phpcs-run --standard=PSR2
           - php-scrutinizer-run
