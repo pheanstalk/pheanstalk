@@ -51,7 +51,7 @@ class YamlResponseParser implements ResponseParserInterface
             ));
         }
 
-        $lines = array_filter(explode("\n", $responseData), function($line) {
+        $lines = array_filter(explode("\n", $responseData), function ($line) {
             return !empty($line) && $line !== '---';
         });
 
@@ -61,7 +61,7 @@ class YamlResponseParser implements ResponseParserInterface
     private function parseList(array $lines): ArrayResponse
     {
         $data = [];
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             if (strncmp($line, '- ', 2) !== 0) {
                 throw new Exception("YAML parse error for line: $line" . print_r($lines, true));
             }
@@ -73,7 +73,7 @@ class YamlResponseParser implements ResponseParserInterface
     private function parseDictionary(array $lines): ArrayResponse
     {
         $data = [];
-        foreach($lines as $line) {
+        foreach ($lines as $line) {
             if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
                 throw new Exception("YAML parse error for line: $line");
             }
