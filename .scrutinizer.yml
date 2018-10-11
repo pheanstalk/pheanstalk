@@ -12,5 +12,5 @@ build:
     analysis:
       tests:
         override:
-          - phpcs-run --standard=PSR2
+          - phpcs-run --standard=PSR2 src
           - php-scrutinizer-run
