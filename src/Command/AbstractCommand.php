@@ -35,11 +35,6 @@ abstract class AbstractCommand implements CommandInterface
         throw new \RuntimeException('Concrete implementation must implement `ResponseParser` or override this method');
     }
 
-    public function __toString()
-    {
-        return $this->getCommandLine();
-    }
-
     /**
      * Creates a Response for the given data.
      */

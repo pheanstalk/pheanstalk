@@ -90,7 +90,7 @@ class Connection
             throw new $exceptionClass(sprintf(
                 "%s in response to '%s'",
                 $responseName,
-                $command
+                $command->getCommandLine()
             ));
         }
 
