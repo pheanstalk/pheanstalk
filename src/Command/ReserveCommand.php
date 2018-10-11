@@ -14,14 +14,6 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class ReserveCommand extends AbstractCommand implements ResponseParserInterface
 {
-    public function __construct()
-    {
-        if (!empty(func_get_args())) {
-            throw new \Exception('In version 4 calling reserve with a parameter is no longer supported.');
-        }
-    }
-
-
     public function getCommandLine(): string
     {
         return 'reserve';

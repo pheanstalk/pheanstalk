@@ -2,9 +2,11 @@
 
 namespace Pheanstalk;
 
+use Pheanstalk\Command\PeekCommand;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Exception\DeadlineSoonException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -48,6 +50,55 @@ class CommandTest extends TestCase
             ResponseInterface::RESPONSE_WATCHING,
             ['count' => 2]
         );
+    }
+
+    public function testIgnoreBadResponse()
+    {
+        $command = new Command\IgnoreCommand('tube1');
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+    }
+
+    public function testPauseTubeBadResponse()
+    {
+        $command = new Command\PauseTubeCommand('tube1', 1);
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+    }
+
+    public function testBuryBadResponse()
+    {
+        $command = new Command\BuryCommand(new JobId(15), 1);
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+    }
+
+    public function testPeekBadResponse()
+    {
+        $command = new Command\PeekCommand(PeekCommand::TYPE_BURIED);
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+    }
+
+    public function testPeekJobBadResponse()
+    {
+        $command = new Command\PeekJobCommand(new JobId(15));
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+    }
+
+    public function testKickJobBadResponse()
+    {
+        $command = new Command\KickJobCommand(new JobId(15));
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+    }
+
+    public function testKickJobNotFound()
+    {
+        $command = new Command\KickJobCommand(new JobId(15));
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(ResponseInterface::RESPONSE_NOT_FOUND, null);
     }
 
     public function testKick()
@@ -110,6 +161,13 @@ class CommandTest extends TestCase
         );
     }
 
+    public function testPutBuried()
+    {
+        $command = new Command\PutCommand('data', 5, 6, 7);
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse('BURIED 4', null);
+    }
+
     public function testRelease()
     {
         $job = new JobId(3);
@@ -132,6 +190,14 @@ class CommandTest extends TestCase
             ResponseInterface::RESPONSE_RESERVED,
             ['id' => 5, 'jobdata' => 'test data']
         );
+    }
+
+    public function testReserveDeadline()
+    {
+        $this->expectException(DeadlineSoonException::class);
+        $command = new Command\ReserveCommand();
+
+        $command->getResponseParser()->parseResponse('DEADLINE_SOON', null);
     }
 
     public function testUse()

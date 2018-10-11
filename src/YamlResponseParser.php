@@ -4,7 +4,7 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Response;
+use Pheanstalk\Exception\ClientException;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
@@ -37,7 +37,7 @@ class YamlResponseParser implements ResponseParserInterface
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 'Server reported %s',
                 $responseLine
@@ -63,7 +63,7 @@ class YamlResponseParser implements ResponseParserInterface
         $data = [];
         foreach ($lines as $line) {
             if (strncmp($line, '- ', 2) !== 0) {
-                throw new Exception("YAML parse error for line: $line" . print_r($lines, true));
+                throw new ClientException("YAML parse error for line: $line" . print_r($lines, true));
             }
             $data[] = substr($line, 2);
         }
@@ -75,22 +75,10 @@ class YamlResponseParser implements ResponseParserInterface
         $data = [];
         foreach ($lines as $line) {
             if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
-                throw new Exception("YAML parse error for line: $line");
+                throw new ClientException("YAML parse error for line: $line");
             }
             $data[$matches[1]] = $matches[2];
         }
         return new ArrayResponse('OK', $data);
-    }
-
-    /**
-     * Callback for array_map to process YAML lines.
-     *
-     * @param string $line
-     *
-     * @return string
-     */
-    private function mapYamlList(string $line):string
-    {
-        return ltrim($line, '- ');
     }
 }

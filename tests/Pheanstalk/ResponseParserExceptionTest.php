@@ -4,6 +4,7 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -80,11 +81,26 @@ class ResponseParserExceptionTest extends TestCase
         new Command\PeekCommand('invalid');
     }
 
+    /** @expectedException \InvalidArgumentException */
+    public function testYamlResponseParseInvalidMode()
+    {
+        new YamlResponseParser('test');
+    }
+
     public function testYamlResponseParserNotFound()
     {
         $this->expectServerExceptionForResponse(
             new YamlResponseParser(YamlResponseParser::MODE_DICT),
-            'NOT_FOUND'
+            ResponseInterface::RESPONSE_NOT_FOUND
+        );
+    }
+
+
+    public function testYamlResponseParserUnhandledResponse()
+    {
+        $this->expectServerExceptionForResponse(
+            new YamlResponseParser(YamlResponseParser::MODE_DICT),
+            ResponseInterface::RESPONSE_OUT_OF_MEMORY
         );
     }
 
@@ -92,7 +108,7 @@ class ResponseParserExceptionTest extends TestCase
     {
         $this->expectServerExceptionForResponse(
             new Command\PauseTubeCommand('not-a-tube', 1),
-            'NOT_FOUND'
+            ResponseInterface::RESPONSE_NOT_FOUND
         );
     }
 
