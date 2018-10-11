@@ -6,10 +6,6 @@ use Pheanstalk\Contract\JobIdInterface;
 
 /**
  * A job in a beanstalkd server.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class Job implements JobIdInterface
 {
@@ -18,7 +14,13 @@ class Job implements JobIdInterface
     const STATUS_DELAYED = 'delayed';
     const STATUS_BURIED = 'buried';
 
-    private $_id;
+    /**
+     * @var int
+     */
+    private $id;
+    /**
+     * @var string
+     */
     private $data;
 
     /**
@@ -27,7 +29,7 @@ class Job implements JobIdInterface
      */
     public function __construct(int $id, string $data)
     {
-        $this->_id = $id;
+        $this->id = $id;
         $this->data = $data;
     }
 
@@ -38,7 +40,7 @@ class Job implements JobIdInterface
      */
     public function getId(): int
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**

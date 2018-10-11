@@ -7,6 +7,7 @@ use Pheanstalk\Socket\FsockopenSocket;
 use Pheanstalk\Socket\SocketSocket;
 use Pheanstalk\Socket\StreamSocket;
 use PHPUnit\Framework\TestCase;
+
 class SocketFactoryTest extends TestCase
 {
     public function testAutoDetect()

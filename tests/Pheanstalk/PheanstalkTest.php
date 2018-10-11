@@ -26,7 +26,7 @@ class PheanstalkTest extends TestCase
 
         // Drain
         $pheanstalk = $this->getPheanstalk();
-        foreach($pheanstalk->listTubes() as $tube) {
+        foreach ($pheanstalk->listTubes() as $tube) {
             $pheanstalk->useTube($tube);
             while (null !== $job = $pheanstalk->peekReady()) {
                 $pheanstalk->delete($job);
@@ -57,20 +57,20 @@ class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
 
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['default']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['default']);
 
         $pheanstalk->watch('test');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default', 'test'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default', 'test'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['default', 'test']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['default', 'test']);
 
         $pheanstalk->ignore('default');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('test'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('test'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['test']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['test']);
 
         $pheanstalk->watchOnly('default');
-        $this->assertEquals($pheanstalk->listTubesWatched(), array('default'));
-        $this->assertEquals($pheanstalk->listTubesWatched(true), array('default'));
+        $this->assertEquals($pheanstalk->listTubesWatched(), ['default']);
+        $this->assertEquals($pheanstalk->listTubesWatched(true), ['default']);
     }
 
     /**
@@ -100,13 +100,13 @@ class PheanstalkTest extends TestCase
         $pheanstalk->delete($job);
 
         // put a job into an unused tube
-        $putJob = $pheanstalk->withUsedTube('test', function(Pheanstalk $pheanstalk) {
-            return $pheanstalk->put( __METHOD__);
+        $putJob = $pheanstalk->withUsedTube('test', function (Pheanstalk $pheanstalk) {
+            return $pheanstalk->put(__METHOD__);
         });
 
 
         // reserve a job from an unwatched tube - can't assume it is the one just added
-        $job = $pheanstalk->withWatchedTube('test', function(Pheanstalk $ph) {
+        $job = $pheanstalk->withWatchedTube('test', function (Pheanstalk $ph) {
             return $ph->reserveWithTimeout(0);
         });
         $this->assertNotNull($job);
@@ -159,8 +159,11 @@ class PheanstalkTest extends TestCase
         // kick up to one job
         $kickedCount = $pheanstalk->kick(1);
 
-        $this->assertEquals($kickedCount, 1,
-            'there should be at least one buried (or delayed) job: %s');
+        $this->assertEquals(
+            $kickedCount,
+            1,
+            'there should be at least one buried (or delayed) job: %s'
+        );
     }
 
     /**
@@ -184,8 +187,6 @@ class PheanstalkTest extends TestCase
         $this->assertEquals(8, $pheanstalk->statsJob($job)['time-left']);
         $pheanstalk->touch($job);
         $this->assertEquals(9, $pheanstalk->statsJob($job)['time-left']);
-
-
     }
 
     public function testListTubes()
@@ -217,7 +218,7 @@ class PheanstalkTest extends TestCase
         $this->assertEquals($job->getData(), 'test');
 
         // put job in an unused tube
-        $putJob = $pheanstalk->withUsedTube('testpeek2', function($pheanstalk) {
+        $putJob = $pheanstalk->withUsedTube('testpeek2', function ($pheanstalk) {
             return $pheanstalk->put('test2');
         });
 
@@ -344,7 +345,7 @@ class PheanstalkTest extends TestCase
 
         $stats = $pheanstalk->useTube('test-stats')->stats();
 
-        $properties = array('pid', 'cmd_put', 'cmd_stats_job');
+        $properties = ['pid', 'cmd_put', 'cmd_stats_job'];
         foreach ($properties as $property) {
             $this->assertTrue(
                 isset($stats->$property),

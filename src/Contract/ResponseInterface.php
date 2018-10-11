@@ -9,7 +9,7 @@ namespace Pheanstalk\Contract;
  * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
-interface ResponseInterface extends \ArrayAccess
+interface ResponseInterface extends \ArrayAccess, \Traversable
 {
     // global error responses
     const RESPONSE_OUT_OF_MEMORY = 'OUT_OF_MEMORY';
@@ -40,8 +40,7 @@ interface ResponseInterface extends \ArrayAccess
 
     /**
      * The name of the response.
-     *
      * @return string
      */
-    public function getResponseName();
+    public function getResponseName(): string;
 }

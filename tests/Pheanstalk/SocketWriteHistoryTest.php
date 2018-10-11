@@ -77,13 +77,13 @@ class SocketWriteHistoryTest extends TestCase
     {
         $history = new WriteHistory(1);
 
-        foreach (array(null, false, 0, '', '0') as $input) {
-            $this->assertEquals($history->log($input), $input);
+        foreach ([null, false, 0, '', '0'] as $input) {
+            $history->log($input);
             $this->assertTrue($history->isFullWithNoWrites());
         }
 
-        foreach (array(true, 1, 2, '1', '2') as $input) {
-            $this->assertEquals($history->log($input), $input);
+        foreach ([true, 1, 2, '1', '2'] as $input) {
+            $history->log($input);
             $this->assertFalse($history->isFullWithNoWrites());
         }
     }

@@ -9,11 +9,6 @@ use PHPUnit\Framework\TestCase;
  * an existing category of tests.
  * Relies on a running beanstalkd server.
  *
- * @see http://github.com/pda/pheanstalk/issues
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class BugfixConnectionTest extends TestCase
 {
@@ -29,7 +24,7 @@ class BugfixConnectionTest extends TestCase
     {
         $length = 8192 * 3;
 
-        $pheanstalk = $this->_createPheanstalk();
+        $pheanstalk = $this->createPheanstalk();
         $pheanstalk->put(str_repeat('.', $length));
         $job = $pheanstalk->peekReady();
         $this->assertEquals(strlen($job->getData()), $length, 'data length: %s');
@@ -44,7 +39,7 @@ class BugfixConnectionTest extends TestCase
      */
     public function testIssue4ReadingDifferentNumberOfBytes()
     {
-        $pheanstalk = $this->_createPheanstalk();
+        $pheanstalk = $this->createPheanstalk();
         $maxLength = 10000;
         $delta = str_repeat('a', 1000);
         // Let's repeat 20 times to make problem more obvious on Linux OS (it happens randomly)
@@ -61,7 +56,7 @@ class BugfixConnectionTest extends TestCase
     // ----------------------------------------
     // private
 
-    private function _createPheanstalk()
+    private function createPheanstalk()
     {
         $pheanstalk = Pheanstalk::create(SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));

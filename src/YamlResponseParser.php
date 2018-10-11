@@ -22,14 +22,17 @@ class YamlResponseParser implements ResponseParserInterface
     const MODE_LIST = 'list';
     const MODE_DICT = 'dict';
 
-    private $_mode;
+    private $mode;
 
     /**
      * @param string $mode self::MODE_*
      */
-    public function __construct($mode)
+    public function __construct(string $mode)
     {
-        $this->_mode = $mode;
+        if (!in_array($mode, [self::MODE_DICT, self::MODE_LIST])) {
+            throw new \InvalidArgumentException('Invalid mode');
+        }
+        $this->mode = $mode;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
@@ -53,11 +56,11 @@ class YamlResponseParser implements ResponseParserInterface
             array_shift($dataLines); // discard header line
         }
 
-        $data = array_map(array($this, '_mapYamlList'), $dataLines);
+        $data = array_map([$this, 'mapYamlList'], $dataLines);
 
-        if ($this->_mode == self::MODE_DICT) {
+        if ($this->mode == self::MODE_DICT) {
             // TODO: do this better.
-            $array = array();
+            $array = [];
             foreach ($data as $line) {
                 if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
                     throw new Exception("YAML parse error for line: $line");
@@ -80,7 +83,7 @@ class YamlResponseParser implements ResponseParserInterface
      *
      * @return string
      */
-    private function _mapYamlList($line)
+    private function mapYamlList(string $line):string
     {
         return ltrim($line, '- ');
     }

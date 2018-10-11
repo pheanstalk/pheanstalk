@@ -8,31 +8,22 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Tests exceptions thrown to represent non-command-specific error responses.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ServerErrorExceptionTest extends TestCase
 {
-    private $_command;
+    private $command;
 
     public function setUp()
     {
-        $this->_command = new Command\UseCommand('tube5');
+        $this->command = new Command\UseCommand('tube5');
     }
 
     /**
      * A connection with a mock socket, configured to return the given line.
-     *
-     * @param $line
-     *
-     * @return Connection
      */
-    private function _connection($line)
+    private function connection(string $line): Connection
     {
-        $socket = $this->getMockBuilder('\Pheanstalk\Contract\SocketInterface')
-            ->disableOriginalConstructor()
+        $socket = $this->getMockBuilder(\Pheanstalk\Contract\SocketInterface::class)
             ->getMock();
 
         $socket->expects($this->any())
@@ -40,6 +31,7 @@ class ServerErrorExceptionTest extends TestCase
             ->will($this->returnValue($line));
 
         $connection = new Connection(new class($socket) implements SocketFactoryInterface {
+            private $socket;
             public function __construct($socket)
             {
                 $this->socket = $socket;
@@ -58,7 +50,7 @@ class ServerErrorExceptionTest extends TestCase
      */
     public function testCommandsHandleOutOfMemory()
     {
-        $this->_connection('OUT_OF_MEMORY')->dispatchCommand($this->_command);
+        $this->connection('OUT_OF_MEMORY')->dispatchCommand($this->command);
     }
 
     /**
@@ -66,7 +58,7 @@ class ServerErrorExceptionTest extends TestCase
      */
     public function testCommandsHandleInternalError()
     {
-        $this->_connection('INTERNAL_ERROR')->dispatchCommand($this->_command);
+        $this->connection('INTERNAL_ERROR')->dispatchCommand($this->command);
     }
 
     /**
@@ -74,7 +66,7 @@ class ServerErrorExceptionTest extends TestCase
      */
     public function testCommandsHandleDraining()
     {
-        $this->_connection('DRAINING')->dispatchCommand($this->_command);
+        $this->connection('DRAINING')->dispatchCommand($this->command);
     }
 
     /**
@@ -82,7 +74,7 @@ class ServerErrorExceptionTest extends TestCase
      */
     public function testCommandsHandleBadFormat()
     {
-        $this->_connection('BAD_FORMAT')->dispatchCommand($this->_command);
+        $this->connection('BAD_FORMAT')->dispatchCommand($this->command);
     }
 
     /**
@@ -90,6 +82,6 @@ class ServerErrorExceptionTest extends TestCase
      */
     public function testCommandsHandleUnknownCommand()
     {
-        $this->_connection('UNKNOWN_COMMAND')->dispatchCommand($this->_command);
+        $this->connection('UNKNOWN_COMMAND')->dispatchCommand($this->command);
     }
 }

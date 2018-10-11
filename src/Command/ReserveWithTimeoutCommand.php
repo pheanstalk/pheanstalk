@@ -19,17 +19,12 @@ class ReserveWithTimeoutCommand extends AbstractCommand implements ResponseParse
      * response or TIMED_OUT.  A positive value of timeout will limit the amount of
      * time the client will block on the reserve request until a job becomes
      * available.
-     *
-     * @param int $timeout
      */
     public function __construct(int $timeout)
     {
         $this->timeout = $timeout;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
         return sprintf('reserve-with-timeout %s', $this->timeout);
@@ -37,7 +32,9 @@ class ReserveWithTimeoutCommand extends AbstractCommand implements ResponseParse
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if (in_array($responseLine, [ResponseInterface::RESPONSE_DEADLINE_SOON, ResponseInterface::RESPONSE_TIMED_OUT], true)) {
+        if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON
+            || $responseLine === ResponseInterface::RESPONSE_TIMED_OUT
+        ) {
             return $this->createResponse($responseLine);
         }
 

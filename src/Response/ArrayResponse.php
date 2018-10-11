@@ -13,7 +13,7 @@ use Pheanstalk\Contract\ResponseInterface;
  */
 class ArrayResponse extends \ArrayObject implements ResponseInterface
 {
-    private $_name;
+    private $name;
 
     /**
      * @param string $name
@@ -21,16 +21,13 @@ class ArrayResponse extends \ArrayObject implements ResponseInterface
      */
     public function __construct(string $name, array $data)
     {
-        $this->_name = $name;
+        $this->name = $name;
         parent::__construct($data);
     }
 
-    /* (non-phpdoc)
-     * @see Response::getResponseName()
-     */
-    public function getResponseName()
+    public function getResponseName(): string
     {
-        return $this->_name;
+        return $this->name;
     }
 
     /**
@@ -38,9 +35,9 @@ class ArrayResponse extends \ArrayObject implements ResponseInterface
      */
     public function __get($property)
     {
-        $key = $this->_transformPropertyName($property);
+        $key = $this->transformPropertyName($property);
 
-        return isset($this[$key]) ? $this[$key] : null;
+        return $this[$key] ?? null;
     }
 
     /**
@@ -48,7 +45,7 @@ class ArrayResponse extends \ArrayObject implements ResponseInterface
      */
     public function __isset($property)
     {
-        $key = $this->_transformPropertyName($property);
+        $key = $this->transformPropertyName($property);
 
         return isset($this[$key]);
     }
@@ -57,12 +54,8 @@ class ArrayResponse extends \ArrayObject implements ResponseInterface
 
     /**
      * Tranform underscored property name to hyphenated array key.
-     *
-     * @param string
-     *
-     * @return string
      */
-    private function _transformPropertyName($propertyName)
+    private function transformPropertyName(string $propertyName): string
     {
         return str_replace('_', '-', $propertyName);
     }

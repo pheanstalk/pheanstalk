@@ -24,7 +24,7 @@ class Connection
     const DEFAULT_CONNECT_TIMEOUT = 2;
 
     // responses which are global errors, mapped to their exception classes
-    private static $_errorResponses = [
+    private static $errorResponses = [
         ResponseInterface::RESPONSE_OUT_OF_MEMORY   => ServerOutOfMemoryException::class,
         ResponseInterface::RESPONSE_INTERNAL_ERROR  => ServerInternalErrorException::class,
         ResponseInterface::RESPONSE_DRAINING        => ServerDrainingException::class,
@@ -33,7 +33,7 @@ class Connection
     ];
 
     // responses which are followed by data
-    private static $_dataResponses = [
+    private static $dataResponses = [
         ResponseInterface::RESPONSE_RESERVED,
         ResponseInterface::RESPONSE_FOUND,
         ResponseInterface::RESPONSE_OK,
@@ -84,8 +84,8 @@ class Connection
         $responseLine = $socket->getLine();
         $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
 
-        if (isset(self::$_errorResponses[$responseName])) {
-            $exceptionClass = self::$_errorResponses[$responseName];
+        if (isset(self::$errorResponses[$responseName])) {
+            $exceptionClass = self::$errorResponses[$responseName];
 
             throw new $exceptionClass(sprintf(
                 "%s in response to '%s'",
@@ -94,7 +94,7 @@ class Connection
             ));
         }
 
-        if (in_array($responseName, self::$_dataResponses)) {
+        if (in_array($responseName, self::$dataResponses)) {
             $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
             $data = $socket->read((int) $dataLength);
             $crlf = $socket->read(self::CRLF_LENGTH);

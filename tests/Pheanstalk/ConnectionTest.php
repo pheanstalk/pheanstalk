@@ -12,10 +12,6 @@ use PHPUnit\Framework\TestCase;
 /**
  * Tests for the Connection.
  * Relies on a running beanstalkd server.
- *
- * @author  Paul Annesley
- * @package Pheanstalk
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ConnectionTest extends TestCase
 {
@@ -28,7 +24,7 @@ class ConnectionTest extends TestCase
     {
         $connection = new Connection(new SocketFactory(
             SERVER_HOST,
-                SERVER_PORT + 1
+            SERVER_PORT + 1
         ));
 
         $command = new Command\UseCommand('test');
@@ -50,10 +46,10 @@ class ConnectionTest extends TestCase
 
     public function testDisconnect()
     {
-        $pheanstalk = new Pheanstalk($this->_getConnection());
+        $pheanstalk = new Pheanstalk($this->getConnection());
         $this->assertEquals(1, $pheanstalk->stats()['current-connections']);
 
-        $connection = $this->_getConnection();
+        $connection = $this->getConnection();
         $this->assertEquals(1, $pheanstalk->stats()['current-connections']);
 
         // initial connection
@@ -69,10 +65,7 @@ class ConnectionTest extends TestCase
         $this->assertEquals(2, $pheanstalk->stats()['current-connections']);
     }
 
-    // ----------------------------------------
-    // private
-
-    private function _getConnection()
+    private function getConnection(): Connection
     {
         return new Connection(new SocketFactory(SERVER_HOST, SERVER_PORT));
     }

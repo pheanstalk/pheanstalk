@@ -18,8 +18,14 @@ class Pheanstalk implements PheanstalkInterface
      * @var Connection
      */
     private $connection;
-    private $_using = PheanstalkInterface::DEFAULT_TUBE;
-    private $_watching = array(PheanstalkInterface::DEFAULT_TUBE => true);
+    /**
+     * @var string
+     */
+    private $using = PheanstalkInterface::DEFAULT_TUBE;
+    /**
+     * @var string[]
+     */
+    private $watching = [PheanstalkInterface::DEFAULT_TUBE => true];
 
     public function __construct(Connection $connection)
     {
@@ -71,9 +77,9 @@ class Pheanstalk implements PheanstalkInterface
      */
     public function ignore(string $tube): PheanstalkInterface
     {
-        if (isset($this->_watching[$tube])) {
+        if (isset($this->watching[$tube])) {
             $this->dispatch(new Command\IgnoreCommand($tube));
-            unset($this->_watching[$tube]);
+            unset($this->watching[$tube]);
         }
 
         return $this;
@@ -116,10 +122,10 @@ class Pheanstalk implements PheanstalkInterface
             $response = (array)$this->dispatch(
                 new Command\ListTubesWatchedCommand()
             );
-            $this->_watching = array_fill_keys($response, true);
+            $this->watching = array_fill_keys($response, true);
         }
 
-        return array_keys($this->_watching);
+        return array_keys($this->watching);
     }
 
     /**
@@ -131,10 +137,10 @@ class Pheanstalk implements PheanstalkInterface
             $response = $this->dispatch(
                 new Command\ListTubeUsedCommand()
             );
-            $this->_using = $response['tube'];
+            $this->using = $response['tube'];
         }
 
-        return $this->_using;
+        return $this->using;
     }
 
     /**
@@ -309,9 +315,9 @@ class Pheanstalk implements PheanstalkInterface
      */
     public function useTube(string $tube): PheanstalkInterface
     {
-        if ($this->_using !== $tube) {
+        if ($this->using !== $tube) {
             $this->dispatch(new Command\UseCommand($tube));
-            $this->_using = $tube;
+            $this->using = $tube;
         }
 
         return $this;
@@ -322,9 +328,9 @@ class Pheanstalk implements PheanstalkInterface
      */
     public function watch(string $tube): PheanstalkInterface
     {
-        if (!isset($this->_watching[$tube])) {
+        if (!isset($this->watching[$tube])) {
             $this->dispatch(new Command\WatchCommand($tube));
-            $this->_watching[$tube] = true;
+            $this->watching[$tube] = true;
         }
 
         return $this;
@@ -337,7 +343,7 @@ class Pheanstalk implements PheanstalkInterface
     {
         $this->watch($tube);
 
-        $ignoreTubes = array_diff_key($this->_watching, array($tube => true));
+        $ignoreTubes = array_diff_key($this->watching, [$tube => true]);
         foreach ($ignoreTubes as $ignoreTube => $true) {
             $this->ignore($ignoreTube);
         }
@@ -377,20 +383,20 @@ class Pheanstalk implements PheanstalkInterface
     {
         $this->connection->disconnect();
 
-        if ($this->_using != PheanstalkInterface::DEFAULT_TUBE) {
-            $tube = $this->_using;
-            $this->_using = null;
+        if ($this->using != PheanstalkInterface::DEFAULT_TUBE) {
+            $tube = $this->using;
+            $this->using = null;
             $this->useTube($tube);
         }
 
-        foreach ($this->_watching as $tube => $true) {
+        foreach ($this->watching as $tube => $true) {
             if ($tube != PheanstalkInterface::DEFAULT_TUBE) {
-                unset($this->_watching[$tube]);
+                unset($this->watching[$tube]);
                 $this->watch($tube);
             }
         }
 
-        if (!isset($this->_watching[PheanstalkInterface::DEFAULT_TUBE])) {
+        if (!isset($this->watching[PheanstalkInterface::DEFAULT_TUBE])) {
             $this->ignore(PheanstalkInterface::DEFAULT_TUBE);
         }
     }

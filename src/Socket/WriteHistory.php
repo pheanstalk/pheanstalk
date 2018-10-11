@@ -19,47 +19,41 @@ namespace Pheanstalk\Socket;
  */
 class WriteHistory
 {
-    private $_limit;
-    private $_data = array();
+    private $limit;
+    private $data = [];
 
-    /**
-     * @param int $limit
-     */
-    public function __construct($limit)
+    public function __construct(int $limit)
     {
-        $this->_limit = $limit;
+        $this->limit = $limit;
     }
 
     /**
      * Whether the history has reached its limit of entries.
      */
-    public function isFull()
+    public function isFull(): bool
     {
-        return count($this->_data) >= $this->_limit;
+        return count($this->data) >= $this->limit;
     }
 
-    public function hasWrites()
+    public function hasWrites(): bool
     {
-        return (bool) array_sum($this->_data);
+        return (bool) array_sum($this->data);
     }
 
-    public function isFullWithNoWrites()
+    public function isFullWithNoWrites(): bool
     {
         return $this->isFull() && !$this->hasWrites();
     }
 
     /**
      * Logs the return value from a write call.
-     * Returns the input value.
      */
-    public function log($write)
+    public function log($write): void
     {
         if ($this->isFull()) {
-            array_shift($this->_data);
+            array_shift($this->data);
         }
 
-        $this->_data[] = (int) $write;
-
-        return $write;
+        $this->data[] = (int) $write;
     }
 }
