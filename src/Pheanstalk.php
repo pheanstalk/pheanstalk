@@ -101,7 +101,7 @@ class Pheanstalk implements PheanstalkInterface
      */
     public function listTubes(): array
     {
-        return (array)$this->dispatch(
+        return (array) $this->dispatch(
             new Command\ListTubesCommand()
         );
     }
@@ -112,7 +112,7 @@ class Pheanstalk implements PheanstalkInterface
     public function listTubesWatched(bool $askServer = false): array
     {
         if ($askServer) {
-            $response = (array)$this->dispatch(
+            $response = (array) $this->dispatch(
                 new Command\ListTubesWatchedCommand()
             );
             $this->_watching = array_fill_keys($response, true);
@@ -424,7 +424,7 @@ class Pheanstalk implements PheanstalkInterface
             $this->watchOnly($tube);
             return $closure($this);
         } finally {
-            foreach($watched as $tube) {
+            foreach ($watched as $tube) {
                 $this->watch($tube);
             }
             if (!in_array($tube, $watched)) {

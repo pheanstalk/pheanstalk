@@ -41,6 +41,6 @@ class PeekJobCommand extends JobCommand implements ResponseParserInterface
             );
         }
 
-        throw new Exception\ServerException("Unexpected response: " . $responseLine);
+        throw new Exception\ServerException("Unexpected response: ".$responseLine);
     }
 }
