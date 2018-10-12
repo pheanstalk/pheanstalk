@@ -94,8 +94,5 @@ class ConnectionTest extends TestCase
         // auto-reconnect
         $connection->dispatchCommand(new Command\StatsCommand());
         $this->assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
-
-
     }
-
 }
