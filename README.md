@@ -93,8 +93,7 @@ If you have docker-compose installed running tests is as simple as:
 If you don't then you manually need to set up a beanstalk server and run:
 ```sh
 > vendor/bin/phpunit
-```composer
-
+```
 
 Contributors
 ------------
