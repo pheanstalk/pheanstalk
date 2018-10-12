@@ -24,16 +24,26 @@ abstract class FileSocket implements SocketInterface
     public function write(string $data): void
     {
         $this->checkClosed();
-        while (!empty($data)) {
-            error_clear_last();
-            $written = @fwrite($this->socket, $data);
+        $retries = 0;
+        error_clear_last();
+        while (!empty($data) && $retries < 10) {
+            $written = fwrite($this->socket, $data);
+
             if ($written === false
             || ($written === 0 && error_get_last() !== null)
             ) {
                 $this->throwException();
             }
 
+            if ($written === 0) {
+                $retries++;
+                continue;
+            }
             $data = substr($data, $written);
+        }
+
+        if (!empty($data)) {
+            throw new SocketException('Write failed');
         }
     }
 

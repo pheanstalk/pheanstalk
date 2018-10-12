@@ -4,6 +4,7 @@
 namespace Pheanstalk\Socket;
 
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\SocketException;
 
 /**
@@ -16,16 +17,16 @@ class StreamSocket extends FileSocket
         int $port,
         int $connectTimeout
     ) {
-
-        if (!function_exists('stream_socket_client')) {
-            throw new \Exception('Streams extension not found');
+        $addresses = gethostbynamel($host);
+        if ($addresses === false) {
+            throw new ConnectionException(0, "Could not resolve hostname $host");
         }
+        $target = "tcp://{$addresses[0]}:$port";
 
-        $target = "tcp://$host:$port";
         $context = stream_context_create();
-        $this->socket = stream_socket_client($target, $error, $errorMessage, $connectTimeout, null, $context);
+        $this->socket = @stream_socket_client($target, $error, $errorMessage, $connectTimeout, STREAM_CLIENT_CONNECT, $context);
         if ($this->socket === false) {
-            throw new SocketException($errorMessage, $error);
+            throw new ConnectionException($errorMessage, $error);
         }
     }
 }

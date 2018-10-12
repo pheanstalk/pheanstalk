@@ -41,8 +41,11 @@ class SocketSocket implements SocketInterface
         socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
         socket_set_block($this->socket);
 
-        $address = gethostbyname($host);
-        if (@socket_connect($this->socket, $address, $port) === false) {
+        $addresses = gethostbynamel($host);
+        if ($addresses === false) {
+            throw new ConnectionException(0, "Could not resolve hostname $host");
+        }
+        if (@socket_connect($this->socket, $addresses[0], $port) === false) {
             $error = socket_last_error($this->socket);
             throw new ConnectionException($error, socket_strerror($error));
         };
