@@ -29,13 +29,9 @@ abstract class FileSocket implements SocketInterface
         while (!empty($data) && $retries < 10) {
             $written = fwrite($this->socket, $data);
 
-            if ($written === false
-            || ($written === 0 && error_get_last() !== null)
-            ) {
+            if ($written === false) {
                 $this->throwException();
-            }
-
-            if ($written === 0) {
+            } elseif ($written === 0) {
                 $retries++;
                 continue;
             }
