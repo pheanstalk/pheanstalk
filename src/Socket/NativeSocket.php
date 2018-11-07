@@ -24,114 +24,142 @@ class NativeSocket implements Socket
      */
     const WRITE_RETRIES = 8;
 
-    private $_socket;
+	/** @var resource */
+    private $socket;
 
-    /**
-     * @param string $host
-     * @param int    $port
-     * @param int    $connectTimeout
-     * @param bool   $connectPersistent
-     */
-    public function __construct($host, $port, $connectTimeout, $connectPersistent)
+	/**
+	 * NativeSocket constructor.
+	 * @param $host
+	 * @param $port
+	 * @param $connectTimeout
+	 * @throws \Exception
+	 * @throws Exception\ConnectionException
+	 * @throws Exception\SocketException
+	 */
+    public function __construct($host, $port, $connectTimeout)
     {
-        if ($connectPersistent) {
-            $this->_socket = $this->_wrapper()
-                ->pfsockopen($host, $port, $errno, $errstr, $connectTimeout);
-        } else {
-            $this->_socket = $this->_wrapper()
-                ->fsockopen($host, $port, $errno, $errstr, $connectTimeout);
-        }
-
-        if (!$this->_socket) {
-            throw new Exception\ConnectionException($errno, $errstr." (connecting to $host:$port)");
-        }
-
-        $this->_wrapper()
-            ->stream_set_timeout($this->_socket, self::SOCKET_TIMEOUT);
+	    if (!\extension_loaded('sockets')) {
+		    throw new \Exception('Sockets extension not found');
+	    }
+	    $this->socket = \socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+	    if (false === $this->socket) {
+		    $this->throwException();
+	    }
+	    $timeout = [
+		    'sec' => $connectTimeout,
+		    'usec' => 0,
+	    ];
+	    $sendTimeout = \socket_get_option($this->socket, SOL_SOCKET, SO_SNDTIMEO);
+	    $receiveTimeout = \socket_get_option($this->socket, SOL_SOCKET, SO_RCVTIMEO);
+	    \socket_set_option($this->socket, SOL_TCP, SO_KEEPALIVE, 1);
+	    \socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
+	    \socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
+	    \socket_set_block($this->socket);
+	    $addresses = \gethostbynamel($host);
+	    if (false === $addresses) {
+		    throw new Exception\ConnectionException(0, "Could not resolve hostname $host");
+	    }
+	    if (!\socket_connect($this->socket, $addresses[0], $port)) {
+		    $error = \socket_last_error($this->socket);
+		    throw new Exception\ConnectionException($error, \socket_strerror($error));
+	    };
+	    \socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout);
+	    \socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout);
     }
 
-    /* (non-phpdoc)
-     * @see Socket::write()
-     */
-    public function write($data)
-    {
-        $history = new WriteHistory(self::WRITE_RETRIES);
+	/**
+	 * Writes data to the socket
+	 * @param string $data
+	 * @throws Exception\SocketException
+	 */
+	public function write($data)
+	{
+		$data = (string) $data;
+		$this->checkClosed();
+		while ('' !== $data) {
+			$written = \socket_write($this->socket, $data);
+			if (false === $written) {
+				$this->throwException();
+			}
+			$data = \substr($data, $written);
+		}
+	}
 
-        for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite) {
-            $fwrite = $this->_wrapper()
-                ->fwrite($this->_socket, substr($data, $written));
+	/**
+	 * Reads up to $length bytes from the socket
+	 * @param int $length
+	 * @return string
+	 * @throws Exception\SocketException
+	 */
+	public function read($length)
+	{
+		$this->checkClosed();
+		$buffer = '';
+		while (\mb_strlen($buffer, '8BIT') < $length) {
+			$result = \socket_read($this->socket, $length - mb_strlen($buffer, '8BIT'));
+			if (false === $result) {
+				$this->throwException();
+			}
+			$buffer .= $result;
+		}
+		return $buffer;
+	}
 
-            $history->log($fwrite);
+	/**
+	 * @param int|null $length
+	 * @return string
+	 * @throws Exception\SocketException
+	 */
+	public function getLine($length = null)
+	{
+		$this->checkClosed();
+		$buffer = '';
 
-            if ($history->isFullWithNoWrites()) {
-                throw new Exception\SocketException(sprintf(
-                    'fwrite() failed to write data after %u tries',
-                    self::WRITE_RETRIES
-                ));
-            }
-        }
-    }
+		// Reading stops at \r or \n. In case it stopped at \r we must continue reading.
+		do {
+			$line = \socket_read($this->socket, $length ?: 1024, PHP_NORMAL_READ);
+			if (false === $line) {
+				$this->throwException();
+			}
 
-    /* (non-phpdoc)
-     * @see Socket::write()
-     */
-    public function read($length)
-    {
-        $read = 0;
-        $parts = '';
+			if ('' === $line) {
+				break;
+			}
 
-        while ($read < $length && !$this->_wrapper()->feof($this->_socket)) {
-            $data = $this->_wrapper()
-                ->fread($this->_socket, $length - $read);
+			$buffer .= $line;
+		} while ('' !== $buffer && "\n" !== $buffer[\strlen($buffer) - 1]);
 
-            if ($data === false) {
-                throw new Exception\SocketException('fread() returned false');
-            }
+		return \rtrim($buffer);
+	}
 
-            $read += strlen($data);
-            $parts .= $data;
-        }
+	/**
+	 * @throws Exception\SocketException
+	 */
+	public function disconnect()
+	{
+		$this->checkClosed();
+		\socket_close($this->socket);
+		unset($this->socket);
+	}
 
-        return $parts;
-    }
+	/**
+	 * @throws Exception\SocketException
+	 */
+	private function throwException()
+	{
+		$error = \socket_last_error($this->socket);
+		throw new Exception\SocketException(\socket_strerror($error), $error);
+	}
 
-    /* (non-phpdoc)
-     * @see Socket::write()
-     */
-    public function getLine($length = null)
-    {
-        $timeout = ini_get('default_socket_timeout');
-        $timer   = microtime(true);
-        do {
-            $data = isset($length) ?
-                $this->_wrapper()->fgets($this->_socket, $length) :
-                $this->_wrapper()->fgets($this->_socket);
+	/**
+	 * @throws Exception\SocketException
+	 */
+	private function checkClosed()
+	{
+		if (null === $this->socket) {
+			throw new Exception\SocketException('The connection was closed');
+		}
+	}
 
-            if ($this->_wrapper()->feof($this->_socket)) {
-                throw new Exception\SocketException('Socket closed by server!');
-            }
-            if (($data === false) && microtime(true) - $timer > $timeout) {
-                $this->disconnect();
-                throw new Exception\SocketException('Socket timed out!');
-            }
-        } while ($data === false);
-
-        return rtrim($data);
-    }
-
-    public function disconnect()
-    {
-        $this->_wrapper()->fclose($this->_socket);
-    }
-
-    // ----------------------------------------
-
-    /**
-     * Wrapper class for all stream functions.
-     * Facilitates mocking/stubbing stream operations in unit tests.
-     */
-    private function _wrapper()
-    {
-        return StreamFunctions::instance();
-    }
+	//
 }
