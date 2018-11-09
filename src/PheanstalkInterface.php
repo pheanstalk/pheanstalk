@@ -134,7 +134,7 @@ interface PheanstalkInterface
      *
      * @param int $jobId
      *
-     * @return object Job
+     * @return Job
      */
     public function peek($jobId);
 
@@ -144,7 +144,7 @@ interface PheanstalkInterface
      *
      * @param string $tube
      *
-     * @return object Job
+     * @return Job
      */
     public function peekReady($tube = null);
 
@@ -154,7 +154,7 @@ interface PheanstalkInterface
      *
      * @param string $tube
      *
-     * @return object Job
+     * @return Job
      */
     public function peekDelayed($tube = null);
 
@@ -164,7 +164,7 @@ interface PheanstalkInterface
      *
      * @param string $tube
      *
-     * @return object Job
+     * @return Job
      */
     public function peekBuried($tube = null);
 
@@ -223,7 +223,7 @@ interface PheanstalkInterface
      *
      * @param int $timeout
      *
-     * @return object Job
+     * @return Job
      */
     public function reserve($timeout = null);
 
@@ -245,7 +245,7 @@ interface PheanstalkInterface
      * @param string $tube
      * @param int    $timeout
      *
-     * @return object Job
+     * @return Job
      */
     public function reserveFromTube($tube, $timeout = null);
 
