@@ -58,7 +58,7 @@ Usage Example
 
 use Pheanstalk\Pheanstalk;
 // Create using autodetection of socket implementation
-$pheanstalk = new Pheanstalk::create('127.0.0.1');
+$pheanstalk = Pheanstalk::create('127.0.0.1');
 
 // ----------------------------------------
 // producer (queues jobs)
