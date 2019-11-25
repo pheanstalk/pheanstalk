@@ -5,7 +5,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
-  - nightly
+  - 7.4snapshot
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq beanstalkd
