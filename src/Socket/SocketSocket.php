@@ -36,7 +36,7 @@ class SocketSocket implements SocketInterface
 
         $sendTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_SNDTIMEO);
         $receiveTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_RCVTIMEO);
-        socket_set_option($this->socket, SOL_TCP, SO_KEEPALIVE, 1);
+        socket_set_option($this->socket, SOL_SOCKET, SO_KEEPALIVE, 1);
         socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
         socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
         socket_set_block($this->socket);
