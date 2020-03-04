@@ -21,7 +21,7 @@ function reexecute_if_phar_readonly($argv)
     if (ini_get('phar.readonly') && !in_array('--ignore-readonly', $argv)) {
         $command = sprintf(
             'php -d phar.readonly=0 %s --ignore-readonly',
-            implode($argv, ' ')
+            implode(' ', $argv)
         );
 
         echo "Phar configured readonly in php.ini; attempting to re-execute:\n";
