@@ -10,6 +10,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v1
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
       - name: Install dependencies
         uses: php-actions/composer@v1
       - uses: actions/checkout@v2
@@ -19,5 +29,5 @@ jobs:
       - run: vendor/bin/phpdoc
       - name: Setup git
         run: git config --global user.email "pheanstalk@action.github.com" && git config --global user.name "Github Action"
-      - run: git add . && git commit -a -m "Automated build"
+      - run: git add . && git commit -a -m "Automated build" && git push
         working-directory: docs
