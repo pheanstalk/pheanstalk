@@ -5,6 +5,9 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\JobIdInterface;
 
+/**
+ * This class implements a value object for beanstalkd job IDs.
+ */
 class JobId implements JobIdInterface
 {
     private $id;
