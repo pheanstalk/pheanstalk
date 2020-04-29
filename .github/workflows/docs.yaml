@@ -4,7 +4,8 @@ on:
     branches:
       - master
 jobs:
-  build:
+  phpdocumentor:
+    name: Build phpdocumentor docs
     runs-on: ubuntu-latest
 
     steps:
@@ -16,5 +17,7 @@ jobs:
           path: docs
           ref: gh-pages
       - run: vendor/bin/phpdoc
+      - name: Setup git
+        run: git config --global user.email "pheanstalk@action.github.com" && git config --global user.name "Github Action"
       - run: git add . && git commit -a -m "Automated build"
         working-directory: docs
