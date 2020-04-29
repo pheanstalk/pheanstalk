@@ -26,7 +26,7 @@ jobs:
         with:
           path: docs
           ref: gh-pages
-      - uses: phpDocumentor/phpDocumentor@master
+      - uses: phpDocumentor/phpDocumentor@v3.0.0-rc
       - name: Setup git
         run: git config --global user.email "pheanstalk@action.github.com" && git config --global user.name "Github Action"
       - run: git add . && git commit -a -m "Automated build" && git push
