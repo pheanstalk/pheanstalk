@@ -1,27 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
-
-<phpdocumentor>
-    <title>Pheanstalk docs</title>
-    <parser>
-        <target>cache</target>
-        <encoding>utf8</encoding>
-        <markers>
-            <item>TODO</item>
-            <item>FIXME</item>
-        </markers>
-        <extensions>
-            <extension>php</extension>
-        </extensions>
-        <visibility></visibility>
-    </parser>
-    <files>
-        <directory>src</directory>
-    </files>
-    <transformer>
-        <target>docs</target>
-    </transformer>
-    <transformations>
-
-        <template name="responsive-twig"/>
-    </transformations>
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="vendor/phpdocumentor/phpdocumentor/data/xsd/phpdoc.xsd"
+>
+    <paths>
+        <output>docs</output>
+        <cache>cache</cache>
+    </paths>
+    <version number="3.0.0">
+        <api>
+            <source dsn=".">
+                <path>src</path>
+            </source>
+            <extensions>
+                <extension>php</extension>
+            </extensions>
+            <default-package-name>Pheanstalk</default-package-name>
+        </api>
+    </version>
+    <template name="default"/>
 </phpdocumentor>

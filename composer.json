@@ -3,7 +3,7 @@
     "type": "library",
     "description": "PHP client for beanstalkd queue",
     "keywords": ["beanstalkd"],
-    "homepage": "https://github.com/pda/pheanstalk",
+    "homepage": "https://github.com/pheanstalk/pheanstalk",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
