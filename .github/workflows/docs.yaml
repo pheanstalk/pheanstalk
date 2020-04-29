@@ -17,4 +17,4 @@ jobs:
           ref: gh-pages
       - run: vendor/bin/phpdoc
       - run: git add . && git commit -a -m "Automated build"
-        working_dir: docs
+        working-directory: docs
