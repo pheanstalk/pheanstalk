@@ -19,7 +19,7 @@ class Pheanstalk implements PheanstalkInterface
      */
     private $connection;
     /**
-     * @var string|null
+     * @var ?string
      */
     private $using = PheanstalkInterface::DEFAULT_TUBE;
     /**
