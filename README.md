@@ -123,34 +123,65 @@ composer require pda/pheanstalk
 Usage Example
 -------------
 
+#### Producer 
+
 ```php
 <?php
-
-// Hopefully you're using Composer autoloading.
+require __DIR__ . '/vendor/autoload.php';
 
 use Pheanstalk\Pheanstalk;
-// Create using autodetection of socket implementation
+
 $pheanstalk = Pheanstalk::create('127.0.0.1');
 
-// ----------------------------------------
-// producer (queues jobs)
-
+// Queue a Job
 $pheanstalk
   ->useTube('testtube')
   ->put("job payload goes here\n");
 
-// ----------------------------------------
-// worker (performs jobs)
+$pheanstalk
+    ->useTube('testtube')
+    ->put(
+        json_encode(['test' => 'data']),  // encode data in payload
+        Pheanstalk::DEFAULT_PRIORITY,     // default priority
+        30, // delay by 30s
+        60  // beanstalk will retry job after 60s
+     );
 
-$job = $pheanstalk
-  ->watch('testtube')
-  ->ignore('default')
-  ->reserve();
+```
 
-echo $job->getData();
 
-$pheanstalk->delete($job);
+#### Consumer / Worker
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+use Pheanstalk\Pheanstalk;
 
+$pheanstalk = Pheanstalk::create('127.0.0.1');
+
+// we want jobs from 'testtube' only.
+$pheanstalk->watch('testtube');
+
+// this hangs until a Job is produced.
+$job = $pheanstalk->reserve();
+
+try {
+    $jobPayload = $job->getData();
+    // do work.
+
+    sleep(2);
+    // If it's going to take a long time, periodically
+    // tell beanstalk we're alive to stop it rescheduling the job.
+    $pheanstalk->touch($job);
+    sleep(2);
+
+    // eventually we're done, delete job.
+    $pheanstalk->delete($job);
+}
+catch(\Exception $e) {
+    // handle exception.
+    // and let some other worker retry.
+    $pheanstalk->release($job); 
+}
 ```
 
 
