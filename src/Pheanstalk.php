@@ -19,11 +19,11 @@ class Pheanstalk implements PheanstalkInterface
      */
     private $connection;
     /**
-     * @var string
+     * @var ?string
      */
     private $using = PheanstalkInterface::DEFAULT_TUBE;
     /**
-     * @var string[]
+     * @var array<string:bool>
      */
     private $watching = [PheanstalkInterface::DEFAULT_TUBE => true];
 
