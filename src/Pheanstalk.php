@@ -384,9 +384,7 @@ class Pheanstalk implements PheanstalkInterface
         $this->connection->disconnect();
 
         if ($this->using !== null && $this->using != PheanstalkInterface::DEFAULT_TUBE) {
-            $tube = $this->using;
-            $this->using = null;
-            $this->useTube($tube);
+            $this->dispatch(new Command\UseCommand($this->using));
         }
 
         foreach ($this->watching as $tube => $true) {
