@@ -6,7 +6,6 @@ namespace Pheanstalk\Contract;
  * A command to be sent to the beanstalkd server, and response processing logic.
  *
  * @author  Paul Annesley
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 interface CommandInterface
 {

@@ -8,7 +8,6 @@ use Pheanstalk\Response\ArrayResponse;
  * A parser for response data sent from the beanstalkd server.
  *
  * @author  Paul Annesley
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 interface ResponseParserInterface
 {

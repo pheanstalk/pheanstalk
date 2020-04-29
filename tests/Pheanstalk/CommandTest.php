@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
  * Tests for Command implementations.
  *
  * @author  Paul Annesley
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class CommandTest extends TestCase
 {

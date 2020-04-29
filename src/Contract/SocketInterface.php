@@ -8,7 +8,6 @@ namespace Pheanstalk\Contract;
  * Only the subset of socket actions required by Pheanstalk are provided.
  *
  * @author  Paul Annesley
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 interface SocketInterface
 {

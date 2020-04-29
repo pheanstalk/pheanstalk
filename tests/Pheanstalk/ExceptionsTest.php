@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
  * Tests the Pheanstalk exceptions, mainly for parse errors etc.
  *
  * @author  Paul Annesley
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class ExceptionsTest extends TestCase
 {

@@ -14,7 +14,6 @@ use Pheanstalk\Response\ArrayResponse;
  * Parser expects either a YAML list or dictionary, depending on mode.
  *
  * @author  Paul Annesley
- * @license http://www.opensource.org/licenses/mit-license.php
  */
 class YamlResponseParser implements ResponseParserInterface
 {
