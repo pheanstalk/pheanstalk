@@ -2,11 +2,9 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Job;
 use Pheanstalk\Response\ArrayResponse;
 
 /**

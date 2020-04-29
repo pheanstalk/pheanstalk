@@ -3,9 +3,7 @@
 
 namespace Pheanstalk\Socket;
 
-use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
-use Pheanstalk\Exception\SocketException;
 
 /**
  * A Socket implementation using the Streams extension

@@ -2,9 +2,7 @@
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Job;
 use Pheanstalk\YamlResponseParser;
 
 /**

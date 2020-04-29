@@ -2,10 +2,7 @@
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\Connection;
 use Pheanstalk\Job;
-use Pheanstalk\Response\ArrayResponse;
-use Pheanstalk\ResponseParserExceptionTest;
 
 interface PheanstalkInterface
 {

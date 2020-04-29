@@ -2,9 +2,6 @@
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Exception;
-
 /**
  * A command to be sent to the beanstalkd server, and response processing logic.
  *
