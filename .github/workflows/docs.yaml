@@ -1,0 +1,20 @@
+name: Build docs
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        uses: php-actions/composer@v1
+      - uses: actions/checkout@v2
+        with:
+          path: docs
+          ref: gh-pages
+      - run: vendor/bin/phpdoc
+      - run: git add . && git commit -a -m "Automated build"
+        working_dir: docs

@@ -24,7 +24,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
-        "vimeo/psalm": "^2.0",
         "phpdocumentor/phpdocumentor": "^2"
     },
     "autoload": {

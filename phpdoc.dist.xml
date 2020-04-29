@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<phpdocumentor>
+    <title>Pheanstalk docs</title>
+    <parser>
+        <target>cache</target>
+        <encoding>utf8</encoding>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+        <extensions>
+            <extension>php</extension>
+        </extensions>
+        <visibility></visibility>
+    </parser>
+    <files>
+        <directory>src</directory>
+    </files>
+    <transformer>
+        <target>docs</target>
+    </transformer>
+    <transformations>
+
+        <template name="responsive-twig"/>
+    </transformations>
+</phpdocumentor>
