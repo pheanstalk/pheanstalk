@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
  * Relies on a running beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class PheanstalkTest extends TestCase

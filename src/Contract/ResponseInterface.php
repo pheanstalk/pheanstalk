@@ -6,7 +6,6 @@ namespace Pheanstalk\Contract;
  * A response from the beanstalkd server.
  *
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 interface ResponseInterface extends \ArrayAccess, \Traversable

@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @author  Paul Annesley
- * @package Pheanstalk
  * @license http://www.opensource.org/licenses/mit-license.php
  */
 class SocketWriteHistoryTest extends TestCase
