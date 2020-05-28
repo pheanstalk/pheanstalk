@@ -69,18 +69,23 @@ class PutCommand extends AbstractCommand implements ResponseParserInterface
                 'id' => (int) $matches[1],
             ]);
         } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
-            throw new Exception(sprintf(
+            throw new Exception\ServerOutOfMemoryException(sprintf(
                 '%s: server ran out of memory trying to grow the priority queue data structure.',
                 $responseLine
             ));
         } elseif (preg_match('#^JOB_TOO_BIG$#', $responseLine)) {
-            throw new Exception(sprintf(
+            throw new Exception\JobTooBigException(sprintf(
                 '%s: job data exceeds server-enforced limit',
                 $responseLine
             ));
         } elseif (preg_match('#^EXPECTED_CRLF#', $responseLine)) {
-            throw new Exception(sprintf(
+            throw new Exception\ClientBadFormatException(sprintf(
                 '%s: CRLF expected',
+                $responseLine
+            ));
+        } elseif (preg_match('#^DRAINING#', $responseLine)) {
+            throw new Exception\ServerDrainingException(sprintf(
+                '%s: server is in drain mode and no longer accepting new jobs',
                 $responseLine
             ));
         } else {

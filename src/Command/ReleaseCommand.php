@@ -41,7 +41,7 @@ class ReleaseCommand extends JobCommand implements ResponseParserInterface
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine == ResponseInterface::RESPONSE_BURIED) {
-            throw new Exception\ServerException(sprintf(
+            throw new Exception\ServerOutOfMemoryException(sprintf(
                 'Job %u %s: out of memory trying to grow data structure',
                 $this->jobId,
                 $responseLine
@@ -49,7 +49,7 @@ class ReleaseCommand extends JobCommand implements ResponseParserInterface
         }
 
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\ServerException(sprintf(
+            throw new Exception\JobNotFoundException(sprintf(
                 'Job %u %s: does not exist or is not reserved by client',
                 $this->jobId,
                 $responseLine
