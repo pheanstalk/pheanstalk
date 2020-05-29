@@ -21,7 +21,7 @@ class DeleteCommand extends JobCommand implements ResponseParserInterface
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\ServerException(sprintf(
+            throw new Exception\JobNotFoundException(sprintf(
                 'Cannot delete job %u: %s',
                 $this->jobId,
                 $responseLine

@@ -34,7 +34,7 @@ class BuryCommand extends JobCommand implements ResponseParserInterface
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\ServerException(sprintf(
+            throw new Exception\JobNotFoundException(sprintf(
                 '%s: Job %u is not reserved or does not exist.',
                 $responseLine,
                 $this->jobId
