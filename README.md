@@ -102,6 +102,7 @@ Migration to v4
 A migration should in most cases be relatively simple:
 - Change the constructor, either use the static constructor, use a DI container to construct the dependencies, or manually 
 instantiate them.
+- Change instances of `reserve()` with a timeout to `reserveWithTimeout(int $timeout)` since `reserve()` no longer accepts a `timeout` parameter.
 - Run your tests, or use a static analyzer to test for calls to functions that no longer exist.
 - Make sure that you handle connection exceptions (this is not new to V4, only in V4 you will get more of them due to the
 default usage of a socket implementation that has read / write timeouts).
