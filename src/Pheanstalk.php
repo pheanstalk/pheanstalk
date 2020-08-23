@@ -273,7 +273,7 @@ class Pheanstalk implements PheanstalkInterface
         }
 
         if ($response->getResponseName === ResponseInterface::RESPONSE_BAD_FORMAT) {
-            return null;
+            throw new Exception\ServerUnknownCommandException();
         }
 
         return new Job($response['id'], $response['jobdata']);
