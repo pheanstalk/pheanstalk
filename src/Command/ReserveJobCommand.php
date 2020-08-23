@@ -2,6 +2,7 @@
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Response\ArrayResponse;
@@ -14,10 +15,11 @@ use Pheanstalk\Response\ArrayResponse;
 class ReserveJobCommand extends AbstractCommand implements ResponseParserInterface
 {
     private int $job;
-    public function __construct(int $job)
+    public function __construct(JobIdInterface $job)
     {
-       $this->job = $job;
+       $this->job = $job->getId();
     }
+
     public function getCommandLine(): string
     {
         return sprintf('reserve-job %d', $this->job);

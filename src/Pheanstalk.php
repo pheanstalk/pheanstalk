@@ -261,7 +261,7 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
-    public function reserveJob(int $job): ?Job
+    public function reserveJob(JobIdInterface $job): ?Job
     {
         try {
             $response = $this->dispatch(

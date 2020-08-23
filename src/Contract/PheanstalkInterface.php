@@ -155,8 +155,10 @@ interface PheanstalkInterface
 
     /**
      * Reserves/locks a specific job, new in beanstalkd 1.12+
+     *
+     * @param JobIdInterface $job
      */
-    public function reserveJob(int $job): ?Job;
+    public function reserveJob(JobIdInterface $job): ?Job;
 
     /**
      * Reserves/locks a ready job in a watched tube, uses the 'reserve-with-timeout' instead of 'reserve'.
