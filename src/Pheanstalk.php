@@ -261,6 +261,26 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
+    public function reserveJob(int $job): ?Job
+    {
+        try {
+            $response = $this->dispatch(
+                new Command\ReserveJobCommand($job)
+            );
+        } catch (Exception\ServerBadFormatException $e) {
+            return null;
+        }
+
+        if ($response->getResponseName === ResponseInterface::RESPONSE_BAD_FORMAT) {
+            return null;
+        }
+
+        return new Job($response['id'], $response['jobdata']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function reserveWithTimeout(int $timeout): ?Job
     {
         $response = $this->dispatch(

@@ -154,6 +154,11 @@ interface PheanstalkInterface
     public function reserve(): ?Job;
 
     /**
+     * Reserves/locks a specific job, new in beanstalkd 1.12+
+     */
+    public function reserveJob(int $job): ?Job;
+
+    /**
      * Reserves/locks a ready job in a watched tube, uses the 'reserve-with-timeout' instead of 'reserve'.
      *
      * A timeout value of 0 will cause the server to immediately return either a
