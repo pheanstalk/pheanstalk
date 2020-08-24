@@ -15,7 +15,7 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class ReserveJobCommand extends AbstractCommand implements ResponseParserInterface
 {
-    private int $job;
+    private $job;
     public function __construct(JobIdInterface $job)
     {
        $this->job = $job->getId();
