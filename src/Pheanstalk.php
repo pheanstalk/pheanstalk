@@ -272,7 +272,7 @@ class Pheanstalk implements PheanstalkInterface
             throw new Exception\ServerUnknownCommandException();
         }
 
-        if ($response->getResponseName === ResponseInterface::RESPONSE_BAD_FORMAT) {
+        if ($response->getResponseName() === ResponseInterface::RESPONSE_BAD_FORMAT) {
             throw new Exception\ServerUnknownCommandException();
         }
 
