@@ -22,7 +22,7 @@ class SocketFactory implements SocketFactoryInterface
     /** @var int */
     private $implementation;
 
-    public function __construct(string $host, int $port, int $timeout = 10, $implementation = self::AUTODETECT)
+    public function __construct(string $host, int $port, float $timeout = 10, $implementation = self::AUTODETECT)
     {
         $this->host = $host;
         $this->port = $port;

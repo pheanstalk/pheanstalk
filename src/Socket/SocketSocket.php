@@ -18,7 +18,7 @@ class SocketSocket implements SocketInterface
     public function __construct(
         string $host,
         int $port,
-        int $connectTimeout
+        float $connectTimeout
     ) {
         if (!extension_loaded('sockets')) {
             throw new \Exception('Sockets extension not found');
@@ -30,8 +30,8 @@ class SocketSocket implements SocketInterface
         }
 
         $timeout = [
-            'sec' => $connectTimeout,
-            'usec' => 0
+            'sec' => intval($connectTimeout),
+            'usec' => ($connectTimeout - intval($connectTimeout)) * 1000000
         ];
 
         $sendTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_SNDTIMEO);
