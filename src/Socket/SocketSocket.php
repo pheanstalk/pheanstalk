@@ -39,7 +39,9 @@ class SocketSocket implements SocketInterface
         socket_set_option($this->socket, SOL_SOCKET, SO_KEEPALIVE, 1);
         socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
         socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
-        socket_set_block($this->socket);
+        if (socket_set_block($this->socket) === false) {
+            throw new ConnectionException(0, "Failed to set socket to blocking mode");
+        }
 
         $addresses = gethostbynamel($host);
         if ($addresses === false) {
