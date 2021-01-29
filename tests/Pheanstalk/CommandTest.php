@@ -7,7 +7,7 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Tests for Command implementations.
@@ -150,7 +150,7 @@ class CommandTest extends TestCase
     {
         $command = new Command\PutCommand('data', 5, 6, 7);
         $this->assertCommandLine($command, 'put 5 6 7 4', true);
-        $this->assertEquals($command->getData(), 'data');
+        self::assertEquals('data', $command->getData());
 
         $this->assertResponse(
             $command->getResponseParser()->parseResponse('INSERTED 4', null),
@@ -356,8 +356,8 @@ class CommandTest extends TestCase
 
     private function assertCommandLine(CommandInterface $command, string $expected, bool $expectData = false)
     {
-        $this->assertEquals($expected, $command->getCommandLine());
-        $this->assertEquals($expectData, $command->hasData());
+        self::assertEquals($expected, $command->getCommandLine());
+        self::assertEquals($expectData, $command->hasData());
     }
 
     /**
@@ -367,12 +367,7 @@ class CommandTest extends TestCase
      */
     private function assertResponse(ResponseInterface $response, string $expectName, array $data = [])
     {
-        $this->assertEquals($expectName, $response->getResponseName());
-        $this->assertEquals($data, iterator_to_array($response));
-    }
-
-    private function mockJob(int $id): JobIdInterface
-    {
-        return new JobId($id);
+        self::assertEquals($expectName, $response->getResponseName());
+        self::assertEquals($data, iterator_to_array($response));
     }
 }
