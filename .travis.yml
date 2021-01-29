@@ -10,7 +10,7 @@ php:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq beanstalkd
-#  - sudo beanstalkd -l 127.0.0.1 -p 11300 &
+  - sudo beanstalkd -l 127.0.0.1 -p 11300 &
 
 before_script:
   - travis_retry composer install --no-interaction --prefer-source
