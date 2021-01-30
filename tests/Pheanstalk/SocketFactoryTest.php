@@ -13,7 +13,7 @@ class SocketFactoryTest extends TestCase
     public function testAutoDetect()
     {
         $socketFactory = new SocketFactory(SERVER_HOST, 11300, 10);
-        self::assertEquals(SocketFactory::SOCKET, $socketFactory->getImplementation());
+        self::assertSame(SocketFactory::SOCKET, $socketFactory->getImplementation());
     }
 
     public function testImplementations()

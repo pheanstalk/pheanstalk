@@ -40,32 +40,32 @@ class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
 
-        self::assertEquals('default', $pheanstalk->listTubeUsed());
-        self::assertEquals('default', $pheanstalk->listTubeUsed(true));
+        self::assertSame('default', $pheanstalk->listTubeUsed());
+        self::assertSame('default', $pheanstalk->listTubeUsed(true));
 
         $pheanstalk->useTube('test');
-        self::assertEquals('test', $pheanstalk->listTubeUsed());
-        self::assertEquals('test', $pheanstalk->listTubeUsed(true));
+        self::assertSame('test', $pheanstalk->listTubeUsed());
+        self::assertSame('test', $pheanstalk->listTubeUsed(true));
     }
 
     public function testWatchlist()
     {
         $pheanstalk = $this->getPheanstalk();
 
-        self::assertEquals(['default'], $pheanstalk->listTubesWatched());
-        self::assertEquals(['default'], $pheanstalk->listTubesWatched(true));
+        self::assertSame(['default'], $pheanstalk->listTubesWatched());
+        self::assertSame(['default'], $pheanstalk->listTubesWatched(true));
 
         $pheanstalk->watch('test');
-        self::assertEquals(['default', 'test'], $pheanstalk->listTubesWatched());
-        self::assertEquals(['default', 'test'], $pheanstalk->listTubesWatched(true));
+        self::assertSame(['default', 'test'], $pheanstalk->listTubesWatched());
+        self::assertSame(['default', 'test'], $pheanstalk->listTubesWatched(true));
 
         $pheanstalk->ignore('default');
-        self::assertEquals(['test'], $pheanstalk->listTubesWatched());
-        self::assertEquals(['test'], $pheanstalk->listTubesWatched(true));
+        self::assertSame(['test'], $pheanstalk->listTubesWatched());
+        self::assertSame(['test'], $pheanstalk->listTubesWatched(true));
 
         $pheanstalk->watchOnly('default');
-        self::assertEquals(['default'], $pheanstalk->listTubesWatched());
-        self::assertEquals(['default'], $pheanstalk->listTubesWatched(true));
+        self::assertSame(['default'], $pheanstalk->listTubesWatched());
+        self::assertSame(['default'], $pheanstalk->listTubesWatched(true));
     }
 
     public function testIgnoreLastTube()
@@ -86,7 +86,7 @@ class PheanstalkTest extends TestCase
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserveWithTimeout(0);
         self::assertNotNull($job);
-        self::assertEquals($putJob->getId(), $job->getId());
+        self::assertSame($putJob->getId(), $job->getId());
 
 
         // delete the reserved job
@@ -103,7 +103,7 @@ class PheanstalkTest extends TestCase
             return $ph->reserveWithTimeout(0);
         });
         self::assertNotNull($job);
-        self::assertEquals($putJob->getId(), $job->getId());
+        self::assertSame($putJob->getId(), $job->getId());
         // delete the reserved job
         $pheanstalk->delete($job);
     }
@@ -152,7 +152,7 @@ class PheanstalkTest extends TestCase
         // kick up to one job
         $kickedCount = $pheanstalk->kick(1);
 
-        self::assertEquals(
+        self::assertSame(
             1,
             $kickedCount,
             'there should be at least one buried (or delayed) job: %s'
@@ -205,7 +205,7 @@ class PheanstalkTest extends TestCase
 
         $job = $pheanstalk->peek($putJob);
 
-        self::assertEquals('test', $job->getData());
+        self::assertSame('test', $job->getData());
 
         // put job in an unused tube
         $putJob = $pheanstalk->withUsedTube('testpeek2', function ($pheanstalk) {
@@ -214,7 +214,7 @@ class PheanstalkTest extends TestCase
 
         $job = $pheanstalk->peek($putJob);
 
-        self::assertEquals('test2', $job->getData());
+        self::assertSame('test2', $job->getData());
     }
 
     public function testPeekReady()
@@ -229,7 +229,7 @@ class PheanstalkTest extends TestCase
 
         $job = $pheanstalk->peekReady();
 
-        self::assertEquals('test', $job->getData());
+        self::assertSame('test', $job->getData());
     }
 
     public function testPeekDelayed()
@@ -244,7 +244,7 @@ class PheanstalkTest extends TestCase
 
         $job = $pheanstalk->peekDelayed();
 
-        self::assertEquals('test', $job->getData());
+        self::assertSame('test', $job->getData());
     }
 
     public function testPeekBuried()
@@ -262,7 +262,7 @@ class PheanstalkTest extends TestCase
 
         $job = $pheanstalk->peekBuried();
 
-        self::assertEquals('test', $job->getData());
+        self::assertSame('test', $job->getData());
     }
 
     public function testStatsJob()
@@ -278,8 +278,8 @@ class PheanstalkTest extends TestCase
         $stats = $pheanstalk->statsJob($putJob);
 
         self::assertEquals($stats->id, $putJob->getId());
-        self::assertEquals('teststatsjob', $stats->tube);
-        self::assertEquals('ready', $stats->state);
+        self::assertSame('teststatsjob', $stats->tube);
+        self::assertSame('ready', $stats->state);
         self::assertEquals(Pheanstalk::DEFAULT_PRIORITY, $stats->pri);
         self::assertEquals(Pheanstalk::DEFAULT_DELAY, $stats->delay);
         self::assertEquals(Pheanstalk::DEFAULT_TTR, $stats->ttr);
@@ -305,8 +305,8 @@ class PheanstalkTest extends TestCase
         $stats = $pheanstalk->statsJob($job);
 
         self::assertEquals($stats->id, $job->getId());
-        self::assertEquals('teststatsjobwithjobobject', $stats->tube);
-        self::assertEquals('reserved', $stats->state);
+        self::assertSame('teststatsjobwithjobobject', $stats->tube);
+        self::assertSame('reserved', $stats->state);
         self::assertEquals(Pheanstalk::DEFAULT_PRIORITY, $stats->pri);
         self::assertEquals(Pheanstalk::DEFAULT_DELAY, $stats->delay);
         self::assertEquals(Pheanstalk::DEFAULT_TTR, $stats->ttr);
@@ -325,8 +325,8 @@ class PheanstalkTest extends TestCase
 
         $stats = $pheanstalk->statsTube($tube);
 
-        self::assertEquals($stats->name, $tube);
-        self::assertEquals('0', $stats->current_jobs_reserved);
+        self::assertSame($stats->name, $tube);
+        self::assertSame('0', $stats->current_jobs_reserved);
     }
 
     public function testStats()

@@ -48,7 +48,6 @@ class ConnectionTest extends TestCase
         $connection->dispatchCommand($command);
     }
 
-
     /**
      * @dataProvider badHostConnectionProvider
      *
@@ -89,8 +88,7 @@ class ConnectionTest extends TestCase
         $pheanstalk = new Pheanstalk(new Connection(new SocketFactory(SERVER_HOST, SERVER_PORT)));
         $baseCount = $pheanstalk->stats()['current-connections'];
 
-
-        self::assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
+        self::assertSame($baseCount, $pheanstalk->stats()['current-connections']);
 
         // initial connection
         $connection->dispatchCommand(new Command\StatsCommand());
@@ -98,7 +96,7 @@ class ConnectionTest extends TestCase
 
         // disconnect
         $connection->disconnect();
-        self::assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
+        self::assertSame($baseCount, $pheanstalk->stats()['current-connections']);
 
         // auto-reconnect
         $connection->dispatchCommand(new Command\StatsCommand());

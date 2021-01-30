@@ -356,8 +356,8 @@ class CommandTest extends TestCase
 
     private function assertCommandLine(CommandInterface $command, string $expected, bool $expectData = false)
     {
-        self::assertEquals($expected, $command->getCommandLine());
-        self::assertEquals($expectData, $command->hasData());
+        self::assertSame($expected, $command->getCommandLine());
+        self::assertSame($expectData, $command->hasData());
     }
 
     /**
@@ -367,7 +367,7 @@ class CommandTest extends TestCase
      */
     private function assertResponse(ResponseInterface $response, string $expectName, array $data = [])
     {
-        self::assertEquals($expectName, $response->getResponseName());
+        self::assertSame($expectName, $response->getResponseName());
         self::assertEquals($data, iterator_to_array($response));
     }
 }

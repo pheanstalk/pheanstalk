@@ -27,7 +27,7 @@ class BugfixConnectionTest extends TestCase
         $pheanstalk = $this->createPheanstalk();
         $pheanstalk->put(str_repeat('.', $length));
         $job = $pheanstalk->peekReady();
-        self::assertEquals(strlen($job->getData()), $length, 'data length: %s');
+        self::assertSame(strlen($job->getData()), $length, 'data length: %s');
     }
 
     /**
@@ -48,7 +48,7 @@ class BugfixConnectionTest extends TestCase
                 $pheanstalk->put($message);
                 $job = $pheanstalk->peekReady();
                 $pheanstalk->delete($job);
-                self::assertEquals($job->getData(), $message);
+                self::assertSame($job->getData(), $message);
             }
         }
     }

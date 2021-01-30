@@ -13,7 +13,7 @@ class YamlResponseParserTest extends TestCase
     {
         $parser = new YamlResponseParser(YamlResponseParser::MODE_LIST);
         $response = $parser->parseResponse('OK 1', "---\n- a\n- b");
-        self::assertEquals(['a', 'b'], iterator_to_array($response));
+        self::assertSame(['a', 'b'], iterator_to_array($response));
     }
 
     public function testInvalidList()
