@@ -8,8 +8,7 @@ jobs:
     strategy:
       matrix:
         php: [ '7.1', '7.2', '7.3', '7.4', '8.0' ]
-        dependency-version: [ prefer-stable ]
-    name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
+    name: PHP ${{ matrix.php }}
 
     steps:
       - name: Checkout code
@@ -33,6 +32,4 @@ jobs:
 
       - name: Run tests
         run: |
-          ./vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover clover.xml
-          wget https://scrutinizer-ci.com/ocular.phar
-          php ocular.phar code-coverage:upload --format=php-clover clover.xml
+          ./vendor/bin/phpunit --configuration ./phpunit.xml.dist
