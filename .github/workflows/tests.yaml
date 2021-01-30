@@ -1,0 +1,38 @@
+name: "Tests"
+
+on: [ push ]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        php: [ '7.1', '7.2', '7.3', '7.4', '8.0' ]
+        dependency-version: [ prefer-stable ]
+    name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: xdebug
+
+      - name: Install PHP packages
+        run: composer install --no-interaction --prefer-source
+
+      - name: Install and run beanstalkd
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq beanstalkd
+          sudo systemctl stop beanstalkd || true
+          sudo beanstalkd -l 127.0.0.1 -p 11300 &
+
+      - name: Run tests
+        run: |
+          ./vendor/bin/phpunit --configuration ./phpunit.xml.dist --coverage-clover clover.xml
+          wget https://scrutinizer-ci.com/ocular.phar
+          php ocular.phar code-coverage:upload --format=php-clover clover.xml
