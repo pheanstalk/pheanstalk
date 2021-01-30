@@ -31,4 +31,4 @@ jobs:
 
       - name: Run tests
         run: |
-          ./vendor/bin/phpunit --configuration ./phpunit.xml.dist
+          ./vendor/bin/phpunit
