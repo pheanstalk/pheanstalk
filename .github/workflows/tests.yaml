@@ -18,7 +18,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: xdebug
 
       - name: Install PHP packages
         run: composer install --no-interaction --prefer-source
