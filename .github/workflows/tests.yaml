@@ -32,5 +32,5 @@ jobs:
       - name: Run tests
         run: |
           phpdbg -qrr vendor/bin/phpunit --coverage-clover clover.xml
-          wget https://scrutinizer-ci.com/ocular.phar
+          wget --quiet https://scrutinizer-ci.com/ocular.phar
           php ocular.phar code-coverage:upload --format=php-clover clover.xml
