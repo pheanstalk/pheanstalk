@@ -18,6 +18,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          coverage: pcov
 
       - name: Install PHP packages
         run: composer install --no-interaction --prefer-source
@@ -30,7 +31,4 @@ jobs:
           sudo beanstalkd -l 127.0.0.1 -p 11300 &
 
       - name: Run tests
-        run: |
-          phpdbg -qrr vendor/bin/phpunit --coverage-clover clover.xml
-          wget --quiet https://scrutinizer-ci.com/ocular.phar
-          php ocular.phar code-coverage:upload --format=php-clover clover.xml
+        run: .vendor/bin/phpunit
