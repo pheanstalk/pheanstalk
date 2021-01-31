@@ -21,7 +21,7 @@ jobs:
           coverage: pcov
 
       - name: Install PHP packages
-        run: composer install --no-interaction --prefer-source
+        run: composer install --no-interaction
 
       - name: Install and run beanstalkd
         run: |
