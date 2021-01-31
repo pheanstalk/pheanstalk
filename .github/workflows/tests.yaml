@@ -31,4 +31,4 @@ jobs:
           sudo beanstalkd -l 127.0.0.1 -p 11300 &
 
       - name: Run tests
-        run: .vendor/bin/phpunit
+        run: ./vendor/bin/phpunit
