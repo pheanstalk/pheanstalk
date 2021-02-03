@@ -24,7 +24,7 @@ class TouchCommand extends JobCommand implements ResponseParserInterface
         return sprintf('touch %u', $this->jobId);
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
         if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\JobNotFoundException(sprintf(

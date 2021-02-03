@@ -19,7 +19,7 @@ class ListTubeUsedCommand extends AbstractCommand implements ResponseParserInter
         return 'list-tube-used';
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
         return $this->createResponse('USING', [
             'tube' => preg_replace('#^USING (.+)$#', '$1', $responseLine),

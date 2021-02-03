@@ -8,6 +8,7 @@ use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseLine;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
@@ -28,10 +29,7 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
         self::TYPE_BURIED,
     ];
 
-    /**
-     * @var string
-     */
-    private $subcommand;
+    private string $subcommand;
 
     public function __construct(string $peekSubject)
     {
@@ -50,22 +48,12 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
         return sprintf('peek-%s', $this->subcommand);
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(ResponseLine $responseLine, ?string $responseData): ResponseInterface
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            return $this->createResponse(ResponseInterface::RESPONSE_NOT_FOUND);
-        }
-
-        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
-            return $this->createResponse(
-                ResponseInterface::RESPONSE_FOUND,
-                [
-                    'id'      => (int) $matches[1],
-                    'jobdata' => $responseData,
-                ]
-            );
-        }
-
-        throw new Exception\ServerException("Unexpected response");
+        return match($responseLine->getName()) {
+            ResponseInterface::RESPONSE_NOT_FOUND => $this->createResponse($responseLine->getName()),
+            ResponseInterface::RESPONSE_FOUND => $this->createResponse(
+                $responseLine->getName(), ['id' => (int) $responseLine->getArguments()[0], 'jobdata' => $responseData]),
+        };
     }
 }

@@ -13,10 +13,10 @@ interface ResponseParserInterface
 {
     /**
      * Parses raw response data into a Response object.
-     *
-     * @param string $responseLine Without trailing CRLF
-     * @param string $responseData (null if no data)
-     * @return ArrayResponse
+     * @param \Pheanstalk\ResponseLine $responseLine Without trailing CRLF
+     * @param string|null $responseData (null if no data)
+     * @return ResponseInterface
+     * @throws \Throwable in case the line could not be parsed
      */
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse;
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): ResponseInterface;
 }

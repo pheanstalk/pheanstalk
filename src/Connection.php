@@ -32,22 +32,9 @@ class Connection
         ResponseInterface::RESPONSE_UNKNOWN_COMMAND => ServerUnknownCommandException::class,
     ];
 
-    // responses which are followed by data
-    private static array $dataResponses = [
-        ResponseInterface::RESPONSE_RESERVED,
-        ResponseInterface::RESPONSE_FOUND,
-        ResponseInterface::RESPONSE_OK,
-    ];
+    private SocketFactoryInterface $factory;
 
-    /**
-     * @var SocketFactoryInterface
-     */
-    private $factory;
-
-    /**
-     * @var ?SocketInterface
-     */
-    private $socket;
+    private SocketInterface|null $socket;
 
     public function __construct(SocketFactoryInterface $factory)
     {
@@ -58,7 +45,7 @@ class Connection
      * Disconnect the socket.
      * Subsequent socket operations will create a new connection.
      */
-    public function disconnect()
+    public function disconnect(): void
     {
         if (isset($this->socket)) {
             $this->socket->disconnect();
@@ -69,7 +56,7 @@ class Connection
     /**
      * @throws Exception\ClientException
      */
-    public function dispatchCommand(CommandInterface $command): ArrayResponse
+    public function dispatchCommand(CommandInterface $command): ResponseInterface
     {
         $socket = $this->getSocket();
 
@@ -81,28 +68,16 @@ class Connection
 
         $socket->write($to_send);
 
-        $responseLine = $socket->getLine();
-        $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
+        $responseLine = ResponseLine::fromString($socket->getLine());
 
-        if (isset(self::$errorResponses[$responseName])) {
-            $exceptionClass = self::$errorResponses[$responseName];
-
-            throw new $exceptionClass(sprintf(
-                "%s in response to '%s'",
-                $responseName,
-                $command->getCommandLine()
-            ));
-        }
-
-        if (in_array($responseName, self::$dataResponses)) {
-            $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
-            $data = $socket->read((int) $dataLength);
+        if ($responseLine->hasData()) {
+            $data = $socket->read($responseLine->getDataLength());
             $crlf = $socket->read(strlen(self::CRLF));
             if ($crlf !== self::CRLF) {
                 throw new Exception\ClientException(sprintf(
                     'Expected %u bytes of CRLF after %u bytes of data',
-                    self::CRLF_LENGTH,
-                    $dataLength
+                    strlen(self::CRLF),
+                    $responseLine->getDataLength()
                 ));
             }
         } else {
@@ -121,9 +96,8 @@ class Connection
      *
      * @throws Exception\ConnectionException
      *
-     * @return SocketInterface
      */
-    private function getSocket()
+    private function getSocket(): SocketInterface
     {
         if (!isset($this->socket)) {
             $this->socket = $this->factory->create();

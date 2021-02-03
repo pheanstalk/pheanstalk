@@ -21,7 +21,7 @@ class ReserveCommand extends AbstractCommand implements ResponseParserInterface
         return 'reserve';
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
         if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON) {
             throw new DeadlineSoonException();

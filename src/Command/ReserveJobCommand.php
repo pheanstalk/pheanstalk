@@ -9,6 +9,7 @@ use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\JobNotFoundException;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseLine;
 
 /**
  * The 'reserve-job' command.
@@ -28,15 +29,14 @@ class ReserveJobCommand extends AbstractCommand implements ResponseParserInterfa
         return sprintf('reserve-job %d', $this->job);
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(ResponseLine $responseLine, ?string $responseData): ResponseInterface
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
+        if ($responseLine->getName() === ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new JobNotFoundException();
         }
 
-        list($code, $id) = explode(' ', $responseLine);
-        return $this->createResponse($code, [
-            'id'      => (int) $id,
+        return $this->createResponse($responseLine->getName(), [
+            'id'      => (int) $responseLine->getArguments()[0],
             'jobdata' => $responseData,
         ]);
     }

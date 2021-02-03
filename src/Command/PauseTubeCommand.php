@@ -8,6 +8,7 @@ use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseLine;
 
 /**
  * The 'pause-tube' command.
@@ -40,18 +41,15 @@ class PauseTubeCommand extends TubeCommand implements ResponseParserInterface
         );
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(ResponseLine $responseLine, ?string $responseData): ResponseInterface
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\ServerException(sprintf(
+        return match ($responseLine->getName()) {
+            ResponseInterface::RESPONSE_NOT_FOUND => throw new Exception\ServerException(sprintf(
                 '%s: tube %s does not exist.',
-                $responseLine,
+                $responseLine->getName(),
                 $this->tube
-            ));
-        } elseif ($responseLine == ResponseInterface::RESPONSE_PAUSED) {
-            return $this->createResponse(ResponseInterface::RESPONSE_PAUSED);
-        } else {
-            throw new Exception('Unhandled response: "' . $responseLine . '"');
-        }
+            )),
+            ResponseInterface::RESPONSE_PAUSED => $this->createResponse($responseLine->getName())
+        };
     }
 }

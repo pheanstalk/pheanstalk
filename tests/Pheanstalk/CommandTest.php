@@ -31,6 +31,7 @@ use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\DeadlineSoonException;
 use Pheanstalk\JobId;
+use Pheanstalk\ResponseLine;
 
 /**
  * Tests for Command implementations.
@@ -45,7 +46,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'bury 5 2');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('BURIED', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('BURIED'), null),
             ResponseInterface::RESPONSE_BURIED
         );
     }
@@ -56,7 +57,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'delete 5');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('DELETED', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('DELETED'), null),
             ResponseInterface::RESPONSE_DELETED
         );
     }
@@ -67,7 +68,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'ignore tube1');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('WATCHING 2', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('WATCHING 2'), null),
             ResponseInterface::RESPONSE_WATCHING,
             ['count' => 2]
         );
@@ -77,49 +78,49 @@ class CommandTest extends BaseTestCase
     {
         $command = new IgnoreCommand('tube1');
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(__FUNCTION__), null);
     }
 
     public function testPauseTubeBadResponse()
     {
         $command = new PauseTubeCommand('tube1', 1);
-        $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+        $this->expectError();
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(__FUNCTION__), null);
     }
 
     public function testBuryBadResponse()
     {
         $command = new BuryCommand(new JobId(15), 1);
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(__FUNCTION__), null);
     }
 
     public function testPeekBadResponse()
     {
         $command = new PeekCommand(PeekCommand::TYPE_BURIED);
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(__FUNCTION__), null);
     }
 
     public function testPeekJobBadResponse()
     {
         $command = new PeekJobCommand(new JobId(15));
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(__FUNCTION__), null);
     }
 
     public function testKickJobBadResponse()
     {
         $command = new KickJobCommand(new JobId(15));
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(__FUNCTION__, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(__FUNCTION__), null);
     }
 
     public function testKickJobNotFound()
     {
         $command = new KickJobCommand(new JobId(15));
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(ResponseInterface::RESPONSE_NOT_FOUND, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(ResponseInterface::RESPONSE_NOT_FOUND), null);
     }
 
     public function testKick()
@@ -128,7 +129,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'kick 5');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('KICKED 2', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('KICKED 2'), null),
             ResponseInterface::RESPONSE_KICKED,
             ['kicked' => 2]
         );
@@ -140,7 +141,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'kick-job 5');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('KICKED', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('KICKED'), null),
             ResponseInterface::RESPONSE_KICKED
         );
     }
@@ -151,7 +152,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'list-tubes-watched');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK 16', "---\n- one\n- two\n"),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('OK 16'), "---\n- one\n- two\n"),
             ResponseInterface::RESPONSE_OK,
             ['one', 'two']
         );
@@ -163,7 +164,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'list-tube-used');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('USING default', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('USING default'), null),
             ResponseInterface::RESPONSE_USING,
             ['tube' => 'default']
         );
@@ -176,7 +177,7 @@ class CommandTest extends BaseTestCase
         $this->assertEquals('data', $command->getData());
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('INSERTED 4', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('INSERTED 4'), null),
             ResponseInterface::RESPONSE_INSERTED,
             ['id' => '4']
         );
@@ -186,7 +187,7 @@ class CommandTest extends BaseTestCase
     {
         $command = new PutCommand('data', 5, 6, 7);
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse('BURIED 4', null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString('BURIED 4'), null);
     }
 
     public function testRelease()
@@ -196,7 +197,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'release 3 1 0');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('RELEASED', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('RELEASED'), null),
             ResponseInterface::RESPONSE_RELEASED
         );
     }
@@ -207,7 +208,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'reserve');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('RESERVED 5 9', 'test data'),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('RESERVED 5 9'), 'test data'),
             ResponseInterface::RESPONSE_RESERVED,
             ['id' => 5, 'jobdata' => 'test data']
         );
@@ -220,7 +221,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'reserve-job 4');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('RESERVED 5 9', 'test data'),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('RESERVED 5 9'), 'test data'),
             ResponseInterface::RESPONSE_RESERVED,
             ['id' => 5, 'jobdata' => 'test data']
         );
@@ -231,7 +232,7 @@ class CommandTest extends BaseTestCase
         $job = new JobId(5);
         $command = new ReserveJobCommand($job);
         $this->expectException(Exception::class);
-        $command->getResponseParser()->parseResponse(ResponseInterface::RESPONSE_NOT_FOUND, null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString(ResponseInterface::RESPONSE_NOT_FOUND), null);
     }
 
     public function testReserveDeadline()
@@ -239,7 +240,7 @@ class CommandTest extends BaseTestCase
         $this->expectException(DeadlineSoonException::class);
         $command = new ReserveCommand();
 
-        $command->getResponseParser()->parseResponse('DEADLINE_SOON', null);
+        $command->getResponseParser()->parseResponse(ResponseLine::fromString('DEADLINE_SOON'), null);
     }
 
     public function testUse()
@@ -248,7 +249,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'use tube5');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('USING tube5', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('USING tube5'), null),
             ResponseInterface::RESPONSE_USING,
             ['tube' => 'tube5']
         );
@@ -260,7 +261,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'watch tube6');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('WATCHING 3', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('WATCHING 3'), null),
             ResponseInterface::RESPONSE_WATCHING,
             ['count' => '3']
         );
@@ -272,7 +273,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'reserve-with-timeout 10');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('TIMED_OUT', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('TIMED_OUT'), null),
             ResponseInterface::RESPONSE_TIMED_OUT
         );
     }
@@ -283,7 +284,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'touch 5');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('TOUCHED', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('TOUCHED'), null),
             ResponseInterface::RESPONSE_TOUCHED
         );
     }
@@ -294,7 +295,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'list-tubes');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK 16', "---\n- one\n- two\n"),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('OK 16'), "---\n- one\n- two\n"),
             ResponseInterface::RESPONSE_OK,
             ['one', 'two']
         );
@@ -306,7 +307,7 @@ class CommandTest extends BaseTestCase
         $this->assertCommandLine($command, 'peek 5');
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('FOUND 5 9', 'test data'),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('FOUND 5 9'), 'test data'),
             ResponseInterface::RESPONSE_FOUND,
             ['id' => 5, 'jobdata' => 'test data']
         );
@@ -338,7 +339,7 @@ class CommandTest extends BaseTestCase
         $data = "---\nid: 8\ntube: test\nstate: delayed\n";
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('OK ' . strlen($data)), $data),
             ResponseInterface::RESPONSE_OK,
             ['id' => '8', 'tube' => 'test', 'state' => 'delayed']
         );
@@ -352,7 +353,7 @@ class CommandTest extends BaseTestCase
         $data = "---\nname: test\ncurrent-jobs-ready: 5\n";
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('OK ' . strlen($data)), $data),
             ResponseInterface::RESPONSE_OK,
             ['name' => 'test', 'current-jobs-ready' => '5']
         );
@@ -366,7 +367,7 @@ class CommandTest extends BaseTestCase
         $data = "---\npid: 123\nversion: 1.3\n";
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('OK ' . strlen($data)), $data),
             ResponseInterface::RESPONSE_OK,
             ['pid' => '123', 'version' => '1.3']
         );
@@ -377,7 +378,7 @@ class CommandTest extends BaseTestCase
         $command = new PauseTubeCommand('testtube7', 10);
         $this->assertCommandLine($command, 'pause-tube testtube7 10');
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('PAUSED', null),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('PAUSED'), null),
             ResponseInterface::RESPONSE_PAUSED
         );
     }
@@ -390,7 +391,7 @@ class CommandTest extends BaseTestCase
         $command = new StatsCommand();
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
+            $command->getResponseParser()->parseResponse(ResponseLine::fromString('OK ' . strlen($data)), $data),
             ResponseInterface::RESPONSE_OK,
             ['pid' => '123', 'version' => '', 'key' => 'value']
         );

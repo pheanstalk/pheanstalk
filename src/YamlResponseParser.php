@@ -33,19 +33,16 @@ class YamlResponseParser implements ResponseParserInterface
         $this->mode = $mode;
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(ResponseLine $responseLine, ?string $responseData): ResponseInterface
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\ServerException(sprintf(
-                'Server reported %s',
-                $responseLine
-            ));
+        if ($responseLine->getName() === ResponseInterface::RESPONSE_NOT_FOUND) {
+            throw new Exception\ServerException('Not found');
         }
 
-        if (!preg_match('#^OK \d+$#', $responseLine)) {
+        if ($responseLine->getName() !== ResponseInterface::RESPONSE_OK) {
             throw new Exception\ServerException(sprintf(
                 'Unhandled response: "%s"',
-                $responseLine
+                $responseLine->getName()
             ));
         }
 

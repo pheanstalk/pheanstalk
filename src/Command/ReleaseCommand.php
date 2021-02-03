@@ -9,6 +9,7 @@ use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseLine;
 
 /**
  * The 'release' command.
@@ -40,9 +41,9 @@ class ReleaseCommand extends JobCommand implements ResponseParserInterface
         );
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
-        if ($responseLine == ResponseInterface::RESPONSE_BURIED) {
+        if ($responseLine->getName() === ResponseInterface::RESPONSE_BURIED) {
             throw new Exception\ServerOutOfMemoryException(sprintf(
                 'Job %u %s: out of memory trying to grow data structure',
                 $this->jobId,
@@ -50,7 +51,7 @@ class ReleaseCommand extends JobCommand implements ResponseParserInterface
             ));
         }
 
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+        if ($responseLine->getName() === ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\JobNotFoundException(sprintf(
                 'Job %u %s: does not exist or is not reserved by client',
                 $this->jobId,
@@ -58,6 +59,6 @@ class ReleaseCommand extends JobCommand implements ResponseParserInterface
             ));
         }
 
-        return $this->createResponse($responseLine);
+        return $this->createResponse($responseLine->getName());
     }
 }

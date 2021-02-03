@@ -20,6 +20,7 @@ use Pheanstalk\Exception;
 use Pheanstalk\Exception\CommandException;
 use Pheanstalk\Exception\ServerException;
 use Pheanstalk\JobId;
+use Pheanstalk\ResponseLine;
 use Pheanstalk\YamlResponseParser;
 
 /**
@@ -134,7 +135,7 @@ class ResponseParserExceptionTest extends BaseTestCase
         string $type = Exception::class
     ) {
         $this->expectException($type);
-        $parser->parseResponse($response, null);
+        $parser->parseResponse(ResponseLine::fromString($response), null);
     }
 
     private function expectServerExceptionForResponse(ResponseParserInterface $parser, string $response)

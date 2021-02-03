@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\CommandException;
 use Pheanstalk\Response\ArrayResponse;
@@ -40,7 +41,7 @@ abstract class AbstractCommand implements CommandInterface
     /**
      * Creates a Response for the given data.
      */
-    protected function createResponse(string $name, array $data = []): ArrayResponse
+    protected function createResponse(string $name, array $data = []): ResponseInterface
     {
         return new ArrayResponse($name, $data);
     }

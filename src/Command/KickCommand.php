@@ -34,7 +34,7 @@ class KickCommand extends AbstractCommand implements ResponseParserInterface
     /* (non-phpdoc)
      * @see ResponseParser::parseResponse()
      */
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
         list($code, $count) = explode(' ', $responseLine);
 

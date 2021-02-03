@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseLine;
 
 /**
  * The 'put' command.
@@ -64,37 +67,23 @@ class PutCommand extends AbstractCommand implements ResponseParserInterface
         return mb_strlen($this->data, '8bit');
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
-        if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
-            return $this->createResponse('INSERTED', [
-                'id' => (int) $matches[1],
-            ]);
-        } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
-            throw new Exception\ServerOutOfMemoryException(sprintf(
-                '%s: server ran out of memory trying to grow the priority queue data structure.',
+        return match($responseLine->getName()) {
+            ResponseInterface::RESPONSE_INSERTED => $this->createResponse($responseLine->getName(), ['id' => (int) $responseLine->getArguments()]),
+            ResponseInterface::RESPONSE_BURIED => throw new ServerOutOfMemoryException(sprintf(
+        '%s: server ran out of memory trying to grow the priority queue data structure.',
                 $responseLine
-            ));
-        } elseif (preg_match('#^JOB_TOO_BIG$#', $responseLine)) {
-            throw new Exception\JobTooBigException(sprintf(
+            )),
+            ResponseInterface::RESPONSE_JOB_TOO_BIG => throw new Exception\JobTooBigException(sprintf(
                 '%s: job data exceeds server-enforced limit',
                 $responseLine
-            ));
-        } elseif (preg_match('#^EXPECTED_CRLF#', $responseLine)) {
-            throw new Exception\ClientBadFormatException(sprintf(
+            )),
+            ResponseInterface::RESPONSE_EXPECTED_CRLF => throw new Exception\ClientBadFormatException(sprintf(
                 '%s: CRLF expected',
                 $responseLine
-            ));
-        } elseif (preg_match('#^DRAINING#', $responseLine)) {
-            throw new Exception\ServerDrainingException(sprintf(
-                '%s: server is in drain mode and no longer accepting new jobs',
-                $responseLine
-            ));
-        } else {
-            throw new Exception(sprintf(
-                'Unhandled response: %s',
-                $responseLine
-            ));
-        }
+            )),
+
+        };
     }
 }

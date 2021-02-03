@@ -18,10 +18,10 @@ class WatchCommand extends TubeCommand implements ResponseParserInterface
         return 'watch ' . $this->tube;
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(\Pheanstalk\ResponseLine $responseLine, ?string $responseData): \Pheanstalk\Contract\ResponseInterface
     {
-        return $this->createResponse('WATCHING', [
-            'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine),
+        return $this->createResponse($responseLine->getName(), [
+            'count' => $responseLine->getArguments()[0],
         ]);
     }
 }

@@ -8,6 +8,7 @@ use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseLine;
 
 /**
  * The 'ignore' command.
@@ -20,18 +21,14 @@ class IgnoreCommand extends TubeCommand implements ResponseParserInterface
         return 'ignore ' . $this->tube;
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function parseResponse(ResponseLine $responseLine, ?string $responseData): ResponseInterface
     {
-        if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches)) {
-            return $this->createResponse('WATCHING', [
-                'count' => (int) $matches[1],
-            ]);
-        } elseif ($responseLine == ResponseInterface::RESPONSE_NOT_IGNORED) {
-            throw new Exception\ServerException(
-                $responseLine . ': cannot ignore last tube in watchlist'
-            );
+        if ($responseLine->getName() === ResponseInterface::RESPONSE_WATCHING) {
+            return $this->createResponse($responseLine->getName(), ['count' => (int)$responseLine->getArguments()[0]]);
+        } elseif ($responseLine->getName() === ResponseInterface::RESPONSE_NOT_IGNORED) {
+            throw new Exception\ServerException('Cannot ignore last tube in watchlist');
         } else {
-            throw new Exception('Unhandled response: ' . $responseLine);
+            throw new Exception("Unhandled response: {$responseLine->getName()}");
         }
     }
 }
