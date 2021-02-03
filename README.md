@@ -1,5 +1,13 @@
-Pheanstalk
-==========
+Pheanstalk Next (5)
+===================
+
+The master branch will be a WIP branch for v5 of this library until it is released. 
+If any patches are needed in v4 they should be directed to the v4 branch.
+
+Version 5 will support PHP 8+ only.
+
+Pheanstalk Stable
+=================
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/pda/pheanstalk.svg)](https://packagist.org/packages/pda/pheanstalk)
 [![Total Downloads](https://img.shields.io/packagist/dt/pda/pheanstalk.svg)](https://packagist.org/pda/pheanstalk)
