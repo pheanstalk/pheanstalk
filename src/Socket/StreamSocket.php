@@ -13,7 +13,7 @@ class StreamSocket extends FileSocket
     public function __construct(
         string $host,
         int $port,
-        int $connectTimeout
+        float $connectTimeout
     ) {
         $addresses = gethostbynamel($host);
         if ($addresses === false) {

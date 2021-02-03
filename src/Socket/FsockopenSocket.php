@@ -13,7 +13,7 @@ class FsockopenSocket extends FileSocket
     public function __construct(
         string $host,
         int $port,
-        int $connectTimeout
+        float $connectTimeout
     ) {
 
         if (!function_exists('fsockopen')) {
