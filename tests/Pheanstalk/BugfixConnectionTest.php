@@ -2,7 +2,7 @@
 
 namespace Pheanstalk;
 
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
@@ -27,7 +27,7 @@ class BugfixConnectionTest extends TestCase
         $pheanstalk = $this->createPheanstalk();
         $pheanstalk->put(str_repeat('.', $length));
         $job = $pheanstalk->peekReady();
-        $this->assertEquals(strlen($job->getData()), $length, 'data length: %s');
+        self::assertSame(strlen($job->getData()), $length, 'data length: %s');
     }
 
     /**
@@ -48,7 +48,7 @@ class BugfixConnectionTest extends TestCase
                 $pheanstalk->put($message);
                 $job = $pheanstalk->peekReady();
                 $pheanstalk->delete($job);
-                $this->assertEquals($job->getData(), $message);
+                self::assertSame($job->getData(), $message);
             }
         }
     }

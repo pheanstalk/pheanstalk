@@ -1,41 +1,43 @@
 {
-    "name": "pda/pheanstalk",
-    "type": "library",
-    "description": "PHP client for beanstalkd queue",
-    "keywords": ["beanstalkd"],
-    "homepage": "https://github.com/pheanstalk/pheanstalk",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Paul Annesley",
-            "email": "paul@annesley.cc",
-            "homepage": "http://paul.annesley.cc/",
-            "role": "Developer"
-        },
-        {
-            "name": "Sam Mousa",
-            "email": "sam@mousa.nl",
-            "role": "Maintainer"
-        }
-    ],
-    "require": {
-        "php": ">=7.1.0",
-        "ext-mbstring": "*"
+  "name": "pda/pheanstalk",
+  "type": "library",
+  "description": "PHP client for beanstalkd queue",
+  "keywords": [
+    "beanstalkd"
+  ],
+  "homepage": "https://github.com/pheanstalk/pheanstalk",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paul Annesley",
+      "email": "paul@annesley.cc",
+      "homepage": "http://paul.annesley.cc/",
+      "role": "Developer"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^7"
-    },
-    "autoload": {
-        "psr-4": {
-            "Pheanstalk\\": "src/"
-        }
-    },
-    "scripts": {
-        "phpunit": "docker-compose run --rm phpunit",
-        "psalm": "@php vendor/bin/psalm --show-info=false src",
-        "test": [
-            "@composer install",
-            "@phpunit"
-        ]
+    {
+      "name": "Sam Mousa",
+      "email": "sam@mousa.nl",
+      "role": "Maintainer"
     }
+  ],
+  "require": {
+    "php": "^7.0||^8.0",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "yoast/phpunit-polyfills": "^0.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pheanstalk\\": "src/"
+    }
+  },
+  "scripts": {
+    "phpunit": "docker-compose run --rm phpunit",
+    "psalm": "@php vendor/bin/psalm --show-info=false src",
+    "test": [
+      "@composer install",
+      "@phpunit"
+    ]
+  }
 }

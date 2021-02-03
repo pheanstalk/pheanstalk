@@ -1,0 +1,32 @@
+name: "Tests"
+
+on: [ push ]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        php: [ '7.1', '7.2', '7.3', '7.4', '8.0' ]
+    name: PHP ${{ matrix.php }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: pcov
+
+      - name: Install PHP packages
+        run: composer install --no-interaction
+
+      - name: Install and run beanstalkd
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq beanstalkd
+
+      - name: Run tests
+        run: ./vendor/bin/phpunit
