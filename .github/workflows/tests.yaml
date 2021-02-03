@@ -1,6 +1,6 @@
 name: "Tests"
 
-on: [ push ]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
       - run: docker-compose build
       - run: docker-compose run --rm composer
-      - run: docker-compose run --rm phpunit
+      - run: docker-compose run --rm phpunit-ci
       - uses: sudo-bot/action-scrutinizer@latest
         with:
           cli-args: "--format=php-clover tests/coverage/clover.xml"
