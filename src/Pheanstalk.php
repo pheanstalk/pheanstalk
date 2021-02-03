@@ -261,6 +261,27 @@ class Pheanstalk implements PheanstalkInterface
     /**
      * {@inheritdoc}
      */
+    public function reserveJob(JobIdInterface $job): Job
+    {
+        // New in 1.12, beanstalkd returns BadFormat instead of UnknownCommand
+        try {
+            $response = $this->dispatch(
+                new Command\ReserveJobCommand($job)
+            );
+        } catch (Exception\ServerBadFormatException $e) {
+            throw new Exception\ServerUnknownCommandException();
+        }
+
+        if ($response->getResponseName() === ResponseInterface::RESPONSE_BAD_FORMAT) {
+            throw new Exception\ServerUnknownCommandException();
+        }
+
+        return new Job($response['id'], $response['jobdata']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function reserveWithTimeout(int $timeout): ?Job
     {
         $response = $this->dispatch(

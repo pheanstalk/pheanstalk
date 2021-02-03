@@ -190,6 +190,27 @@ class CommandTest extends TestCase
         );
     }
 
+    public function testReserveJob()
+    {
+        $job = new JobId(4);
+        $command = new Command\ReserveJobCommand($job);
+        $this->assertCommandLine($command, 'reserve-job 4');
+
+        $this->assertResponse(
+            $command->getResponseParser()->parseResponse('RESERVED 5 9', 'test data'),
+            ResponseInterface::RESPONSE_RESERVED,
+            ['id' => 5, 'jobdata' => 'test data']
+        );
+    }
+
+    public function testReserveJobNotFound()
+    {
+        $job = new JobId(5);
+        $command = new Command\ReserveJobCommand($job);
+        $this->expectException(Exception::class);
+        $command->getResponseParser()->parseResponse(ResponseInterface::RESPONSE_NOT_FOUND, null);
+    }
+
     public function testReserveDeadline()
     {
         $this->expectException(DeadlineSoonException::class);
