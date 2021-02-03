@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
@@ -18,7 +19,7 @@ class ReserveJobCommand extends AbstractCommand implements ResponseParserInterfa
     private $job;
     public function __construct(JobIdInterface $job)
     {
-       $this->job = $job->getId();
+        $this->job = $job->getId();
     }
 
     public function getCommandLine(): string

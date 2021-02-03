@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 
 namespace Pheanstalk\Socket;
@@ -14,13 +15,6 @@ abstract class FileSocket implements SocketInterface
     /** @var ?resource */
     protected $socket;
 
-    /**
-     * Writes data to the socket.
-     *
-     * @param string $data
-     *
-     * @return void
-     */
     public function write(string $data): void
     {
         $this->checkClosed();
@@ -58,11 +52,6 @@ abstract class FileSocket implements SocketInterface
         }
     }
 
-    /**
-     * Reads up to $length bytes from the socket.
-     *
-     * @return string
-     */
     public function read(int $length): string
     {
         $this->checkClosed();
@@ -77,12 +66,6 @@ abstract class FileSocket implements SocketInterface
         return $buffer;
     }
 
-    /**
-     * Reads up to the next new-line.
-     * Trailing whitespace is trimmed.
-     *
-     * @param int
-     */
     public function getLine(): string
     {
         $this->checkClosed();
@@ -93,9 +76,6 @@ abstract class FileSocket implements SocketInterface
         return rtrim($result);
     }
 
-    /**
-     * Disconnect the socket; subsequent usage of the socket will fail.
-     */
     public function disconnect(): void
     {
         $this->checkClosed();

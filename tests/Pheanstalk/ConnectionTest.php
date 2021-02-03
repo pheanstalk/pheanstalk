@@ -47,7 +47,7 @@ class ConnectionTest extends BaseTestCase
      *
      * @param Connection $connection
      *
-     * @throws Exception\ClientException
+     * @throws ClientException
      */
     public function testConnectionFailsToIncorrectPort(Connection $connection)
     {
@@ -61,7 +61,7 @@ class ConnectionTest extends BaseTestCase
      *
      * @param Connection $connection
      *
-     * @throws Exception\ClientException
+     * @throws ClientException
      */
     public function testConnectionFailsToIncorrectHost(Connection $connection)
     {

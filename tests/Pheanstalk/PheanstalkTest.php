@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk\Tests;
 
@@ -412,7 +413,7 @@ class PheanstalkTest extends BaseTestCase
     // ----------------------------------------
     // private
 
-    private function getPheanstalk(): PheanstalkInterface
+    private function getPheanstalk(): Pheanstalk
     {
         return Pheanstalk::create(SERVER_HOST);
     }

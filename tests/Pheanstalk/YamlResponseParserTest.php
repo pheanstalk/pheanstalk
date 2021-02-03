@@ -6,7 +6,6 @@ namespace Pheanstalk\Tests;
 use Pheanstalk\Exception\ClientException;
 use Pheanstalk\YamlResponseParser;
 
-
 class YamlResponseParserTest extends BaseTestCase
 {
 

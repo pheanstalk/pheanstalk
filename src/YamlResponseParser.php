@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk;
 
@@ -12,8 +13,6 @@ use Pheanstalk\Response\ArrayResponse;
  *
  * Expected response is 'OK', 'NOT_FOUND' response is also handled.
  * Parser expects either a YAML list or dictionary, depending on mode.
- *
- * @author  Paul Annesley
  */
 class YamlResponseParser implements ResponseParserInterface
 {

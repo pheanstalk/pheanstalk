@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk\Socket;
 
@@ -12,8 +13,6 @@ namespace Pheanstalk\Socket;
  * https://github.com/pda/pheanstalk/pull/24
  *
  * A bitfield could be used instead of an array for efficiency.
- *
- * @author  Paul Annesley
  */
 class WriteHistory
 {

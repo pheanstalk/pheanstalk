@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk\Response;
 
@@ -6,8 +7,6 @@ use Pheanstalk\Contract\ResponseInterface;
 
 /**
  * A response with an ArrayObject interface to key => value data.
- *
- * @author  Paul Annesley
  */
 class ArrayResponse extends \ArrayObject implements ResponseInterface
 {

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 
 namespace Pheanstalk\Socket;
@@ -12,7 +13,7 @@ use Pheanstalk\Exception\SocketException;
  */
 class SocketSocket implements SocketInterface
 {
-    /** @var resource */
+    /** @var resource|false */
     private $socket;
 
     public function __construct(

@@ -1,11 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk\Exception;
 
 /**
  * An exception relating to the client connection to the beanstalkd server.
- *
- * @author  Paul Annesley
  */
 class ConnectionException extends ClientException
 {

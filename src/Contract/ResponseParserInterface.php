@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
@@ -6,8 +7,6 @@ use Pheanstalk\Response\ArrayResponse;
 
 /**
  * A parser for response data sent from the beanstalkd server.
- *
- * @author  Paul Annesley
  */
 interface ResponseParserInterface
 {
