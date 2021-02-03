@@ -11,8 +11,8 @@ jobs:
       - run: docker-compose build
       - run: docker-compose run --rm composer
       - run: docker-compose run --rm phpunit --do-not-cache-result --coverage-clover tests/coverage/clover.xml
-      - run: docker-compose run --rm composer-command phpstan
-      - run: docker-compose run --rm composer-command phpcs
+      - run: docker-compose run --rm phpstan
+      - run: docker-compose run --rm phpcs
       - uses: sudo-bot/action-scrutinizer@latest
         with:
           cli-args: "--format=php-clover tests/coverage/clover.xml"
