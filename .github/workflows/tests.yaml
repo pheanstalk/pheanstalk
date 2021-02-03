@@ -13,4 +13,4 @@ jobs:
       - run: docker-compose run --rm phpunit
       - uses: sudo-bot/action-scrutinizer@latest
         with:
-          cli-args: "--format=php-clover tests/coverage/clover.xml
+          cli-args: "--format=php-clover tests/coverage/clover.xml"
