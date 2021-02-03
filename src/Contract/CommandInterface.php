@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
@@ -8,21 +9,21 @@ namespace Pheanstalk\Contract;
  */
 interface CommandInterface
 {
-    const COMMAND_PUT = 'put';
-    const COMMAND_USE = 'use';
-    const COMMAND_RESERVE = 'reserve';
-    const COMMAND_DELETE = 'delete';
-    const COMMAND_RELEASE = 'release';
-    const COMMAND_BURY = 'bury';
-    const COMMAND_WATCH = 'watch';
-    const COMMAND_IGNORE = 'ignore';
-    const COMMAND_PEEK = 'peek';
-    const COMMAND_KICK = 'kick';
-    const COMMAND_STATS_JOB = 'stats-job';
-    const COMMAND_STATS = 'stats';
-    const COMMAND_LIST_TUBES = 'list-tubes';
-    const COMMAND_LIST_TUBE_USED = 'list-tube-used';
-    const COMMAND_LIST_TUBES_WATCHED = 'list-tubes-watched';
+    public const COMMAND_PUT = 'put';
+    public const COMMAND_USE = 'use';
+    public const COMMAND_RESERVE = 'reserve';
+    public const COMMAND_DELETE = 'delete';
+    public const COMMAND_RELEASE = 'release';
+    public const COMMAND_BURY = 'bury';
+    public const COMMAND_WATCH = 'watch';
+    public const COMMAND_IGNORE = 'ignore';
+    public const COMMAND_PEEK = 'peek';
+    public const COMMAND_KICK = 'kick';
+    public const COMMAND_STATS_JOB = 'stats-job';
+    public const COMMAND_STATS = 'stats';
+    public const COMMAND_LIST_TUBES = 'list-tubes';
+    public const COMMAND_LIST_TUBE_USED = 'list-tube-used';
+    public const COMMAND_LIST_TUBES_WATCHED = 'list-tubes-watched';
 
     /**
      * The command line, without trailing CRLF.

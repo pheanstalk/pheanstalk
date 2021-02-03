@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk;
@@ -20,12 +21,10 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class Connection
 {
-    const CRLF = "\r\n";
-    const CRLF_LENGTH = 2;
-    const DEFAULT_CONNECT_TIMEOUT = 2;
+    private const CRLF = "\r\n";
 
     // responses which are global errors, mapped to their exception classes
-    private static $errorResponses = [
+    private static array $errorResponses = [
         ResponseInterface::RESPONSE_OUT_OF_MEMORY   => ServerOutOfMemoryException::class,
         ResponseInterface::RESPONSE_INTERNAL_ERROR  => ServerInternalErrorException::class,
         ResponseInterface::RESPONSE_DRAINING        => ServerDrainingException::class,
@@ -34,7 +33,7 @@ class Connection
     ];
 
     // responses which are followed by data
-    private static $dataResponses = [
+    private static array $dataResponses = [
         ResponseInterface::RESPONSE_RESERVED,
         ResponseInterface::RESPONSE_FOUND,
         ResponseInterface::RESPONSE_OK,
@@ -74,10 +73,10 @@ class Connection
     {
         $socket = $this->getSocket();
 
-        $to_send = $command->getCommandLine().self::CRLF;
+        $to_send = $command->getCommandLine() . self::CRLF;
 
         if ($command->hasData()) {
-            $to_send .= $command->getData().self::CRLF;
+            $to_send .= $command->getData() . self::CRLF;
         }
 
         $socket->write($to_send);
@@ -98,7 +97,7 @@ class Connection
         if (in_array($responseName, self::$dataResponses)) {
             $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
             $data = $socket->read((int) $dataLength);
-            $crlf = $socket->read(self::CRLF_LENGTH);
+            $crlf = $socket->read(strlen(self::CRLF));
             if ($crlf !== self::CRLF) {
                 throw new Exception\ClientException(sprintf(
                     'Expected %u bytes of CRLF after %u bytes of data',

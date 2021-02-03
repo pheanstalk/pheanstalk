@@ -3,7 +3,5 @@
     <file>src</file>
     <file>tests/Pheanstalk</file>
     <exclude-pattern>tests/coverage/*</exclude-pattern>
-    <rule ref="PSR2" />
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found"/>
-
+    <rule ref="PSR12" />
 </ruleset>

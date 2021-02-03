@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Tests;
@@ -19,16 +20,13 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class ConnectionTest extends BaseTestCase
 {
-    const CONNECT_TIMEOUT = 2;
-
-
     public function connectionProvider($test, $host = SERVER_HOST, $port = SERVER_PORT)
     {
         return [
             'stream' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::STREAM))],
             'fsockopen' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::FSOCKOPEN))],
             'socket' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::SOCKET))],
-            'autodetect' =>[new Connection(new SocketFactory($host, $port, 1, SocketFactory::AUTODETECT))]
+            'autodetect' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::AUTODETECT))]
         ];
     }
 

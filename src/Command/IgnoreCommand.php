@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Command;
@@ -16,7 +17,7 @@ class IgnoreCommand extends TubeCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'ignore '.$this->tube;
+        return 'ignore ' . $this->tube;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
@@ -27,10 +28,10 @@ class IgnoreCommand extends TubeCommand implements ResponseParserInterface
             ]);
         } elseif ($responseLine == ResponseInterface::RESPONSE_NOT_IGNORED) {
             throw new Exception\ServerException(
-                $responseLine.': cannot ignore last tube in watchlist'
+                $responseLine . ': cannot ignore last tube in watchlist'
             );
         } else {
-            throw new Exception('Unhandled response: '.$responseLine);
+            throw new Exception('Unhandled response: ' . $responseLine);
         }
     }
 }

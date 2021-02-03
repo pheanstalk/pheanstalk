@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 
 namespace Pheanstalk\Socket;
 
@@ -13,8 +13,7 @@ use Pheanstalk\Exception\SocketException;
  */
 class SocketSocket implements SocketInterface
 {
-    /** @var resource|false */
-    private $socket;
+    private \Socket $socket;
 
     public function __construct(
         string $host,
@@ -25,10 +24,11 @@ class SocketSocket implements SocketInterface
             throw new \Exception('Sockets extension not found');
         }
 
-        $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if ($this->socket === false) {
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if ($socket === false) {
             $this->throwException();
         }
+        $this->socket = $socket;
 
         $timeout = [
             'sec' => intval($connectTimeout),

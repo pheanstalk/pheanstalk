@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Tests;
@@ -280,16 +281,16 @@ class PheanstalkTest extends BaseTestCase
 
         $stats = $pheanstalk->statsJob($putJob);
 
-        $this->assertEquals($stats->id, $putJob->getId());
-        $this->assertSame('teststatsjob', $stats->tube);
-        $this->assertSame('ready', $stats->state);
-        $this->assertEquals(Pheanstalk::DEFAULT_PRIORITY, $stats->pri);
-        $this->assertEquals(Pheanstalk::DEFAULT_DELAY, $stats->delay);
-        $this->assertEquals(Pheanstalk::DEFAULT_TTR, $stats->ttr);
-        $this->assertEquals(0, $stats->timeouts);
-        $this->assertEquals(0, $stats->releases);
-        $this->assertEquals(0, $stats->buries);
-        $this->assertEquals(0, $stats->kicks);
+        $this->assertEquals($stats['id'], $putJob->getId());
+        $this->assertSame('teststatsjob', $stats['tube']);
+        $this->assertSame('ready', $stats['state']);
+        $this->assertEquals(Pheanstalk::DEFAULT_PRIORITY, $stats['pri']);
+        $this->assertEquals(Pheanstalk::DEFAULT_DELAY, $stats['delay']);
+        $this->assertEquals(Pheanstalk::DEFAULT_TTR, $stats['ttr']);
+        $this->assertEquals(0, $stats['timeouts']);
+        $this->assertEquals(0, $stats['releases']);
+        $this->assertEquals(0, $stats['buries']);
+        $this->assertEquals(0, $stats['kicks']);
     }
 
     public function testStatsJobWithJobObject()
@@ -307,16 +308,16 @@ class PheanstalkTest extends BaseTestCase
 
         $stats = $pheanstalk->statsJob($job);
 
-        $this->assertEquals($stats->id, $job->getId());
-        $this->assertSame('teststatsjobwithjobobject', $stats->tube);
-        $this->assertSame('reserved', $stats->state);
-        $this->assertEquals(Pheanstalk::DEFAULT_PRIORITY, $stats->pri);
-        $this->assertEquals(Pheanstalk::DEFAULT_DELAY, $stats->delay);
-        $this->assertEquals(Pheanstalk::DEFAULT_TTR, $stats->ttr);
-        $this->assertEquals(0, $stats->timeouts);
-        $this->assertEquals(0, $stats->releases);
-        $this->assertEquals(0, $stats->buries);
-        $this->assertEquals(0, $stats->kicks);
+        $this->assertEquals($stats['id'], $job->getId());
+        $this->assertSame('teststatsjobwithjobobject', $stats['tube']);
+        $this->assertSame('reserved', $stats['state']);
+        $this->assertEquals(Pheanstalk::DEFAULT_PRIORITY, $stats['pri']);
+        $this->assertEquals(Pheanstalk::DEFAULT_DELAY, $stats['delay']);
+        $this->assertEquals(Pheanstalk::DEFAULT_TTR, $stats['ttr']);
+        $this->assertEquals(0, $stats['timeouts']);
+        $this->assertEquals(0, $stats['releases']);
+        $this->assertEquals(0, $stats['buries']);
+        $this->assertEquals(0, $stats['kicks']);
     }
 
     public function testStatsTube()
@@ -328,8 +329,8 @@ class PheanstalkTest extends BaseTestCase
 
         $stats = $pheanstalk->statsTube($tube);
 
-        $this->assertSame($stats->name, $tube);
-        $this->assertSame('0', $stats->current_jobs_reserved);
+        $this->assertSame($stats['name'], $tube);
+        $this->assertSame('0', $stats['current-jobs-reserved']);
     }
 
     public function testStats()
@@ -338,16 +339,14 @@ class PheanstalkTest extends BaseTestCase
 
         $stats = $pheanstalk->useTube('test-stats')->stats();
 
-        $properties = ['pid', 'cmd_put', 'cmd_stats_job'];
+        $properties = ['pid', 'cmd-put', 'cmd-stats-job'];
+
         foreach ($properties as $property) {
-            $this->assertTrue(
-                isset($stats->$property),
-                "property $property should exist"
-            );
+            $this->assertArrayHasKey($property, $stats);
         }
 
-        $this->assertTrue($stats->pid > 0, 'stats should have pid > 0');
-        $this->assertTrue($stats->cmd_use > 0, 'stats should have cmd_use > 0');
+        $this->assertTrue($stats['pid'] > 0, 'stats should have pid > 0');
+        $this->assertTrue($stats['cmd-use'] > 0, 'stats should have cmd_use > 0');
     }
 
     public function testPauseTube()
@@ -393,7 +392,7 @@ class PheanstalkTest extends BaseTestCase
 
         $sockets[0]->expects($this->once())->method('write')->willThrowException(new SocketException('test'));
 
-        $socketFactory = new class($sockets) implements SocketFactoryInterface {
+        $socketFactory = new class ($sockets) implements SocketFactoryInterface {
             private $sockets;
             public function __construct(array $sockets)
             {

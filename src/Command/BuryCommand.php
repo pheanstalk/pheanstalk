@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Command;
@@ -43,7 +44,7 @@ class BuryCommand extends JobCommand implements ResponseParserInterface
         } elseif ($responseLine == ResponseInterface::RESPONSE_BURIED) {
             return $this->createResponse(ResponseInterface::RESPONSE_BURIED);
         } else {
-            throw new Exception('Unhandled response: '.$responseLine);
+            throw new Exception('Unhandled response: ' . $responseLine);
         }
     }
 }

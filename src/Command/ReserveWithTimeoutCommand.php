@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Command;
@@ -33,7 +34,8 @@ class ReserveWithTimeoutCommand extends AbstractCommand implements ResponseParse
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON
+        if (
+            $responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON
             || $responseLine === ResponseInterface::RESPONSE_TIMED_OUT
         ) {
             return $this->createResponse($responseLine);

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Command;
@@ -17,7 +18,7 @@ class UseCommand extends TubeCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'use '.$this->tube;
+        return 'use ' . $this->tube;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse

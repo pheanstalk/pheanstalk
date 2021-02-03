@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 
 namespace Pheanstalk\Socket;
 
@@ -23,7 +23,14 @@ class StreamSocket extends FileSocket
         $target = "tcp://{$addresses[0]}:$port";
 
         $context = stream_context_create();
-        $this->socket = @stream_socket_client($target, $error, $errorMessage, $connectTimeout, STREAM_CLIENT_CONNECT, $context);
+        $this->socket = @stream_socket_client(
+            $target,
+            $error,
+            $errorMessage,
+            $connectTimeout,
+            STREAM_CLIENT_CONNECT,
+            $context
+        );
         if ($this->socket === false) {
             throw new ConnectionException($errorMessage, $error);
         }

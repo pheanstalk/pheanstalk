@@ -10,7 +10,9 @@ jobs:
         uses: actions/checkout@v2
       - run: docker-compose build
       - run: docker-compose run --rm composer
-      - run: docker-compose run --rm phpunit-ci
+      - run: docker-compose run --rm phpunit --do-not-cache-result --coverage-clover tests/coverage/clover.xml
+      - run: docker-compose run --rm composer-command phpstan
+      - run: docker-compose run --rm composer-command phpcs
       - uses: sudo-bot/action-scrutinizer@latest
         with:
           cli-args: "--format=php-clover tests/coverage/clover.xml"

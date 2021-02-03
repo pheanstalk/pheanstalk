@@ -1,0 +1,9 @@
+parameters:
+    level: 5
+    paths:
+        - src
+        - tests
+    dynamicConstantNames:
+        - SERVER_HOST
+    bootstrapFiles:
+      - tests/bootstrap.php

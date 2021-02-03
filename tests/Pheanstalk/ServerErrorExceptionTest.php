@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Tests;
@@ -31,7 +32,7 @@ class ServerErrorExceptionTest extends BaseTestCase
             ->method('getLine')
             ->willReturn($line);
 
-        $connection = new Connection(new class($socket) implements SocketFactoryInterface {
+        $connection = new Connection(new class ($socket) implements SocketFactoryInterface {
             private $socket;
             public function __construct($socket)
             {

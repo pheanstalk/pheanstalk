@@ -14,6 +14,7 @@ RUN apk add --update --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/tes
     php8-ctype \
     php8-sockets \
     php8-xml \
+    php8-simplexml \
     php8-xmlwriter \
     php8-tokenizer
 

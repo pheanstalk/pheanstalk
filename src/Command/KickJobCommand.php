@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Command;
@@ -22,7 +23,7 @@ class KickJobCommand extends JobCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'kick-job '.$this->jobId;
+        return 'kick-job ' . $this->jobId;
     }
 
     /* (non-phpdoc)
@@ -39,7 +40,7 @@ class KickJobCommand extends JobCommand implements ResponseParserInterface
         } elseif ($responseLine == ResponseInterface::RESPONSE_KICKED) {
             return $this->createResponse(ResponseInterface::RESPONSE_KICKED);
         } else {
-            throw new Exception('Unhandled response: '.$responseLine);
+            throw new Exception('Unhandled response: ' . $responseLine);
         }
     }
 }

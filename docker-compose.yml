@@ -10,29 +10,23 @@ services:
       - ./composer.json:/app/composer.json
       - ./vendor:/app/vendor
     command: install --ignore-platform-reqs
-  phpunit-ci:
+  composer-command: &cc
     init: true
     build:
       context: ./dockerfiles
-      dockerfile: Dockerfile-phpunit
-    environment:
-      SERVER_HOST: beanstalk
-    depends_on:
-      - beanstalk
+      dockerfile: Dockerfile-php
     volumes:
       - ./:/app:ro
-      - ./tests/coverage:/app/tests/coverage
-    entrypoint: [
-        "/app/vendor/bin/phpunit",
-        "--do-not-cache-result",
-        "--coverage-clover",
-        "/app/tests/coverage/clover.xml"
-    ]
+    working_dir: "/app"
+
+  phpstan:
+    <<: *cc
+    entrypoint: ["/app/vendor/bin/phpstan"]
+  phpcs:
+    <<: *cc
+    entrypoint: [ "/app/vendor/bin/phpcs" ]
   phpunit:
-    init: true
-    build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile-phpunit
+    <<: *cc
     environment:
       SERVER_HOST: beanstalk
     depends_on:
@@ -40,9 +34,9 @@ services:
     volumes:
       - ./:/app:ro
       - ./tests/coverage:/app/tests/coverage:rw
-    entrypoint: [
-      "/app/vendor/bin/phpunit",
-      "--do-not-cache-result",
-      "--coverage-html",
-      "/app/tests/coverage"
+    entrypoint: ["/app/vendor/bin/phpunit"]
+    command: [
+        "--do-not-cache-result",
+        "--coverage-html",
+        "/app/tests/coverage"
     ]

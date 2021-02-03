@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk;
@@ -16,8 +17,8 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class YamlResponseParser implements ResponseParserInterface
 {
-    const MODE_LIST = 'list';
-    const MODE_DICT = 'dict';
+    public const MODE_LIST = 'list';
+    public const MODE_DICT = 'dict';
 
     private $mode;
 

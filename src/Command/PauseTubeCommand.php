@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Command;
@@ -50,7 +51,7 @@ class PauseTubeCommand extends TubeCommand implements ResponseParserInterface
         } elseif ($responseLine == ResponseInterface::RESPONSE_PAUSED) {
             return $this->createResponse(ResponseInterface::RESPONSE_PAUSED);
         } else {
-            throw new Exception('Unhandled response: "'.$responseLine.'"');
+            throw new Exception('Unhandled response: "' . $responseLine . '"');
         }
     }
 }
