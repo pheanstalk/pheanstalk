@@ -1,19 +1,20 @@
 <?php
+declare(strict_types=1);
 
-
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
 use Pheanstalk\Exception\ClientException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Pheanstalk\YamlResponseParser;
 
-class YamlResponseParserTest extends TestCase
+
+class YamlResponseParserTest extends BaseTestCase
 {
 
     public function testList()
     {
         $parser = new YamlResponseParser(YamlResponseParser::MODE_LIST);
         $response = $parser->parseResponse('OK 1', "---\n- a\n- b");
-        self::assertSame(['a', 'b'], iterator_to_array($response));
+        $this->assertSame(['a', 'b'], iterator_to_array($response));
     }
 
     public function testInvalidList()

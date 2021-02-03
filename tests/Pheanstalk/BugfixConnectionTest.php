@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Pheanstalk\Contract\PheanstalkInterface;
+use Pheanstalk\Pheanstalk;
 
 /**
  * Tests for reported/discovered issues & bugs which don't fall into
@@ -10,7 +12,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  * Relies on a running beanstalkd server.
  *
  */
-class BugfixConnectionTest extends TestCase
+class BugfixConnectionTest extends BaseTestCase
 {
     /**
      * Issue: NativeSocket's read() doesn't work with jobs larger than 8192 bytes.
@@ -27,7 +29,7 @@ class BugfixConnectionTest extends TestCase
         $pheanstalk = $this->createPheanstalk();
         $pheanstalk->put(str_repeat('.', $length));
         $job = $pheanstalk->peekReady();
-        self::assertSame(strlen($job->getData()), $length, 'data length: %s');
+        $this->assertSame(strlen($job->getData()), $length, 'data length: %s');
     }
 
     /**
@@ -48,7 +50,7 @@ class BugfixConnectionTest extends TestCase
                 $pheanstalk->put($message);
                 $job = $pheanstalk->peekReady();
                 $pheanstalk->delete($job);
-                self::assertSame($job->getData(), $message);
+                $this->assertSame($job->getData(), $message);
             }
         }
     }
@@ -56,7 +58,7 @@ class BugfixConnectionTest extends TestCase
     // ----------------------------------------
     // private
 
-    private function createPheanstalk()
+    private function createPheanstalk(): PheanstalkInterface
     {
         $pheanstalk = Pheanstalk::create(SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));

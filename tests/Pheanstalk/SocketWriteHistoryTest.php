@@ -1,39 +1,36 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
 use Pheanstalk\Socket\WriteHistory;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
-/**
- * @author  Paul Annesley
- */
-class SocketWriteHistoryTest extends TestCase
+class SocketWriteHistoryTest extends BaseTestCase
 {
     public function testEmptyHistory()
     {
         $history = new WriteHistory(10);
-        self::assertFalse($history->isFull());
-        self::assertFalse($history->hasWrites());
-        self::assertFalse($history->isFullWithNoWrites());
+        $this->assertFalse($history->isFull());
+        $this->assertFalse($history->hasWrites());
+        $this->assertFalse($history->isFullWithNoWrites());
     }
 
     public function testFullHistoryWithWrites()
     {
         $history = new WriteHistory(1);
         $history->log(1024);
-        self::assertTrue($history->isFull());
-        self::assertTrue($history->hasWrites());
-        self::assertFalse($history->isFullWithNoWrites());
+        $this->assertTrue($history->isFull());
+        $this->assertTrue($history->hasWrites());
+        $this->assertFalse($history->isFullWithNoWrites());
     }
 
     public function testFullHistoryWithoutWrites()
     {
         $history = new WriteHistory(1);
         $history->log(0);
-        self::assertTrue($history->isFull());
-        self::assertFalse($history->hasWrites());
-        self::assertTrue($history->isFullWithNoWrites());
+        $this->assertTrue($history->isFull());
+        $this->assertFalse($history->hasWrites());
+        $this->assertTrue($history->isFullWithNoWrites());
     }
 
     public function testFillingHistory()
@@ -41,34 +38,34 @@ class SocketWriteHistoryTest extends TestCase
         $history = new WriteHistory(4);
 
         $history->log(0);
-        self::assertFalse($history->isFull());
-        self::assertFalse($history->hasWrites());
+        $this->assertFalse($history->isFull());
+        $this->assertFalse($history->hasWrites());
 
         $history->log(false);
-        self::assertFalse($history->isFull());
-        self::assertFalse($history->hasWrites());
+        $this->assertFalse($history->isFull());
+        $this->assertFalse($history->hasWrites());
 
         $history->log(1024);
-        self::assertFalse($history->isFull());
-        self::assertTrue($history->hasWrites());
+        $this->assertFalse($history->isFull());
+        $this->assertTrue($history->hasWrites());
 
         $history->log(0);
-        self::assertTrue($history->isFull());
-        self::assertTrue($history->hasWrites());
-        self::assertFalse($history->isFullWithNoWrites());
+        $this->assertTrue($history->isFull());
+        $this->assertTrue($history->hasWrites());
+        $this->assertFalse($history->isFullWithNoWrites());
 
         $history->log(0);
-        self::assertTrue($history->isFull());
-        self::assertTrue($history->hasWrites());
+        $this->assertTrue($history->isFull());
+        $this->assertTrue($history->hasWrites());
 
         $history->log(0);
-        self::assertTrue($history->isFull());
-        self::assertTrue($history->hasWrites());
+        $this->assertTrue($history->isFull());
+        $this->assertTrue($history->hasWrites());
 
         $history->log(0);
-        self::assertTrue($history->isFull());
-        self::assertFalse($history->hasWrites());
-        self::assertTrue($history->isFullWithNoWrites());
+        $this->assertTrue($history->isFull());
+        $this->assertFalse($history->hasWrites());
+        $this->assertTrue($history->isFullWithNoWrites());
     }
 
     public function testDifferentInputTypes()
@@ -77,12 +74,12 @@ class SocketWriteHistoryTest extends TestCase
 
         foreach ([null, false, 0, '', '0'] as $input) {
             $history->log($input);
-            self::assertTrue($history->isFullWithNoWrites());
+            $this->assertTrue($history->isFullWithNoWrites());
         }
 
         foreach ([true, 1, 2, '1', '2'] as $input) {
             $history->log($input);
-            self::assertFalse($history->isFullWithNoWrites());
+            $this->assertFalse($history->isFullWithNoWrites());
         }
     }
 }

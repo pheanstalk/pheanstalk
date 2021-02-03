@@ -1,29 +1,25 @@
 <?php
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
+use Pheanstalk\Command\UseCommand;
+use Pheanstalk\Connection;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Pheanstalk\Exception\ServerBadFormatException;
+use Pheanstalk\Exception\ServerDrainingException;
+use Pheanstalk\Exception\ServerInternalErrorException;
+use Pheanstalk\Exception\ServerOutOfMemoryException;
+use Pheanstalk\Exception\ServerUnknownCommandException;
 
 /**
  * Tests exceptions thrown to represent non-command-specific error responses.
  */
-class ServerErrorExceptionTest extends TestCase
+class ServerErrorExceptionTest extends BaseTestCase
 {
-    private $command;
-
-    public function set_up()
-    {
-        $this->command = new Command\UseCommand('tube5');
-    }
-
     /**
      * A connection with a mock socket, configured to return the given line.
-     *
-     * @param string $line
-     *
-     * @return Connection
      */
     private function connection(string $line): Connection
     {
@@ -51,31 +47,31 @@ class ServerErrorExceptionTest extends TestCase
 
     public function testCommandsHandleOutOfMemory()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerOutOfMemoryException::class);
-        $this->connection('OUT_OF_MEMORY')->dispatchCommand($this->command);
+        $this->expectException(ServerOutOfMemoryException::class);
+        $this->connection('OUT_OF_MEMORY')->dispatchCommand(new UseCommand('tube5'));
     }
 
     public function testCommandsHandleInternalError()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerInternalErrorException::class);
-        $this->connection('INTERNAL_ERROR')->dispatchCommand($this->command);
+        $this->expectException(ServerInternalErrorException::class);
+        $this->connection('INTERNAL_ERROR')->dispatchCommand(new UseCommand('tube5'));
     }
 
     public function testCommandsHandleDraining()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerDrainingException::class);
-        $this->connection('DRAINING')->dispatchCommand($this->command);
+        $this->expectException(ServerDrainingException::class);
+        $this->connection('DRAINING')->dispatchCommand(new UseCommand('tube5'));
     }
 
     public function testCommandsHandleBadFormat()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerBadFormatException::class);
-        $this->connection('BAD_FORMAT')->dispatchCommand($this->command);
+        $this->expectException(ServerBadFormatException::class);
+        $this->connection('BAD_FORMAT')->dispatchCommand(new UseCommand('tube5'));
     }
 
     public function testCommandsHandleUnknownCommand()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerUnknownCommandException::class);
-        $this->connection('UNKNOWN_COMMAND')->dispatchCommand($this->command);
+        $this->expectException(ServerUnknownCommandException::class);
+        $this->connection('UNKNOWN_COMMAND')->dispatchCommand(new UseCommand('tube5'));
     }
 }

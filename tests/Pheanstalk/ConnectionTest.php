@@ -1,15 +1,23 @@
 <?php
+declare(strict_types=1);
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
+use Pheanstalk\Command\StatsCommand;
+use Pheanstalk\Command\UseCommand;
+use Pheanstalk\Connection;
+use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Exception\ClientException;
 use Pheanstalk\Exception\ConnectionException;
+use Pheanstalk\Pheanstalk;
+use Pheanstalk\SocketFactory;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Tests for the Connection.
  * Relies on a running beanstalkd server.
  */
-class ConnectionTest extends TestCase
+class ConnectionTest extends BaseTestCase
 {
     const CONNECT_TIMEOUT = 2;
 
@@ -44,7 +52,7 @@ class ConnectionTest extends TestCase
     public function testConnectionFailsToIncorrectPort(Connection $connection)
     {
         $this->expectException(ConnectionException::class);
-        $command = new Command\UseCommand('test');
+        $command = new UseCommand('test');
         $connection->dispatchCommand($command);
     }
 
@@ -58,22 +66,22 @@ class ConnectionTest extends TestCase
     public function testConnectionFailsToIncorrectHost(Connection $connection)
     {
         $this->expectException(ConnectionException::class);
-        $command = new Command\UseCommand('test');
+        $command = new UseCommand('test');
         $connection->dispatchCommand($command);
     }
 
     /**
      * @param Connection $connection
      *
-     * @throws Exception\ClientException
+     * @throws ClientException
      * @dataProvider connectionProvider
      */
     public function testDispatchCommandSuccessful(Connection $connection)
     {
-        $command = new Command\UseCommand('test');
+        $command = new UseCommand('test');
         $response = $connection->dispatchCommand($command);
 
-        self::assertInstanceOf(Contract\ResponseInterface::class, $response);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
     }
 
     /**
@@ -81,25 +89,25 @@ class ConnectionTest extends TestCase
      *
      * @param Connection $connection
      *
-     * @throws Exception\ClientException
+     * @throws ClientException
      */
     public function testDisconnect(Connection $connection)
     {
         $pheanstalk = new Pheanstalk(new Connection(new SocketFactory(SERVER_HOST, SERVER_PORT)));
         $baseCount = $pheanstalk->stats()['current-connections'];
 
-        self::assertSame($baseCount, $pheanstalk->stats()['current-connections']);
+        $this->assertSame($baseCount, $pheanstalk->stats()['current-connections']);
 
         // initial connection
-        $connection->dispatchCommand(new Command\StatsCommand());
-        self::assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
+        $connection->dispatchCommand(new StatsCommand());
+        $this->assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
 
         // disconnect
         $connection->disconnect();
-        self::assertSame($baseCount, $pheanstalk->stats()['current-connections']);
+        $this->assertSame($baseCount, $pheanstalk->stats()['current-connections']);
 
         // auto-reconnect
-        $connection->dispatchCommand(new Command\StatsCommand());
-        self::assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
+        $connection->dispatchCommand(new StatsCommand());
+        $this->assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
     }
 }

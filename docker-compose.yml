@@ -1,10 +1,35 @@
-version: "3"
+version: "3.8"
 services:
   beanstalk:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-beanstalkd
+  composer:
+    image: composer:latest
+    volumes:
+      - ./composer.json:/app/composer.json
+      - ./vendor:/app/vendor
+    command: install --ignore-platform-reqs
+  phpunit-ci:
+    init: true
+    build:
+      context: ./dockerfiles
+      dockerfile: Dockerfile-phpunit
+    environment:
+      SERVER_HOST: beanstalk
+    depends_on:
+      - beanstalk
+    volumes:
+      - ./:/app:ro
+      - ./tests/coverage:/app/tests/coverage
+    entrypoint: [
+        "/app/vendor/bin/phpunit",
+        "--do-not-cache-result",
+        "--coverage-clover",
+        "/app/tests/coverage/clover.xml"
+    ]
   phpunit:
+    init: true
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-phpunit
@@ -16,11 +41,8 @@ services:
       - ./:/app:ro
       - ./tests/coverage:/app/tests/coverage:rw
     entrypoint: [
-      "/sbin/tini",
-      "/usr/bin/phpdbg",
-      "-qrr",
       "/app/vendor/bin/phpunit",
+      "--do-not-cache-result",
       "--coverage-html",
       "/app/tests/coverage"
     ]
-    #command: /app

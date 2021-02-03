@@ -1,23 +1,35 @@
 <?php
+declare(strict_types=1);
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
+use InvalidArgumentException;
+use Pheanstalk\Command\BuryCommand;
+use Pheanstalk\Command\DeleteCommand;
+use Pheanstalk\Command\IgnoreCommand;
+use Pheanstalk\Command\PauseTubeCommand;
+use Pheanstalk\Command\PeekCommand;
+use Pheanstalk\Command\PeekJobCommand;
+use Pheanstalk\Command\PutCommand;
+use Pheanstalk\Command\ReleaseCommand;
+use Pheanstalk\Command\TouchCommand;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Exception;
 use Pheanstalk\Exception\CommandException;
-use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Pheanstalk\Exception\ServerException;
+use Pheanstalk\JobId;
+use Pheanstalk\YamlResponseParser;
 
 /**
  * Tests exceptions thrown by ResponseParser implementations.
- *
- * @author  Paul Annesley
  */
-class ResponseParserExceptionTest extends TestCase
+class ResponseParserExceptionTest extends BaseTestCase
 {
     public function testDeleteNotFound()
     {
         $this->expectServerExceptionForResponse(
-            new Command\DeleteCommand(new JobId(5)),
+            new DeleteCommand(new JobId(5)),
             'NOT_FOUND'
         );
     }
@@ -25,7 +37,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testReleaseBuried()
     {
         $this->expectServerExceptionForResponse(
-            new Command\ReleaseCommand(new JobId(5), 1, 0),
+            new ReleaseCommand(new JobId(5), 1, 0),
             'BURIED'
         );
     }
@@ -33,7 +45,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testReleaseNotFound()
     {
         $this->expectServerExceptionForResponse(
-            new Command\ReleaseCommand(new JobId(5), 1, 0),
+            new ReleaseCommand(new JobId(5), 1, 0),
             'NOT_FOUND'
         );
     }
@@ -41,7 +53,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testBuryNotFound()
     {
         $this->expectServerExceptionForResponse(
-            new Command\BuryCommand(new JobId(5), 1),
+            new BuryCommand(new JobId(5), 1),
             'NOT_FOUND'
         );
     }
@@ -49,7 +61,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testIgnoreNotIgnored()
     {
         $this->expectServerExceptionForResponse(
-            new Command\IgnoreCommand('test'),
+            new IgnoreCommand('test'),
             'NOT_IGNORED'
         );
     }
@@ -57,7 +69,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testTouchNotFound()
     {
         $this->expectServerExceptionForResponse(
-            new Command\TouchCommand(new JobId(5)),
+            new TouchCommand(new JobId(5)),
             'NOT_FOUND'
         );
     }
@@ -65,7 +77,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testPeekNotFound()
     {
         $this->expectServerExceptionForResponse(
-            new Command\PeekJobCommand(new JobId(5)),
+            new PeekJobCommand(new JobId(5)),
             'NOT_FOUND'
         );
     }
@@ -73,12 +85,12 @@ class ResponseParserExceptionTest extends TestCase
     public function testPeekInvalidSubject()
     {
         $this->expectException(CommandException::class);
-        new Command\PeekCommand('invalid');
+        new PeekCommand('invalid');
     }
 
     public function testYamlResponseParseInvalidMode()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new YamlResponseParser('test');
     }
 
@@ -102,7 +114,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testPauseTubeNotFound()
     {
         $this->expectServerExceptionForResponse(
-            new Command\PauseTubeCommand('not-a-tube', 1),
+            new PauseTubeCommand('not-a-tube', 1),
             ResponseInterface::RESPONSE_NOT_FOUND
         );
     }
@@ -110,7 +122,7 @@ class ResponseParserExceptionTest extends TestCase
     public function testPutUnhandledResponse()
     {
         $this->expectExceptionForResponse(
-            new Command\PutCommand('data', 0, 0, 0),
+            new PutCommand('data', 0, 0, 0),
             'unhandled response'
         );
     }
@@ -129,7 +141,7 @@ class ResponseParserExceptionTest extends TestCase
         $this->expectExceptionForResponse(
             $parser,
             $response,
-            \Pheanstalk\Exception\ServerException::class
+            ServerException::class
         );
     }
 }

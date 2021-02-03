@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpdocumentor
-        configVersion="3"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.phpdoc.org"
         xsi:noNamespaceSchemaLocation="vendor/phpdocumentor/phpdocumentor/data/xsd/phpdoc.xsd"
+        configVersion="3"
 >
-    <paths>
-        <output>docs</output>
-        <cache>cache</cache>
-    </paths>
-    <version number="3.0.0">
+    <title>Pheanstalk docs</title>
+    <version number="4.0.0">
         <api>
+            <include-source>true</include-source>
             <source dsn=".">
                 <path>src</path>
             </source>
             <extensions>
                 <extension>php</extension>
             </extensions>
-            <default-package-name>Pheanstalk</default-package-name>
         </api>
     </version>
     <template name="default"/>
