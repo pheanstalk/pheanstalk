@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk;
 
+use Pheanstalk\Command\PeekCommand;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\PheanstalkInterface;
@@ -180,7 +181,7 @@ class Pheanstalk implements PheanstalkInterface
     public function peekReady(): ?Job
     {
         $response = $this->dispatch(
-            new Command\PeekCommand(Job::TYPE_READY)
+            new Command\PeekCommand(PeekCommand::TYPE_READY)
         );
         if ($response->getResponseName() === ResponseInterface::RESPONSE_NOT_FOUND) {
             return null;
