@@ -99,8 +99,8 @@ class SocketSocket implements SocketInterface
         $this->checkClosed();
 
         $buffer = '';
-        while (mb_strlen($buffer, '8BIT') < $length) {
-            $result = socket_read($this->socket, $length - mb_strlen($buffer, '8BIT'));
+        while (mb_strlen($buffer, '8bit') < $length) {
+            $result = socket_read($this->socket, $length - mb_strlen($buffer, '8bit'));
             if ($result === false) {
                 $this->throwException();
             }
