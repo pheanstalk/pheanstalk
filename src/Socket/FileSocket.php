@@ -67,8 +67,8 @@ abstract class FileSocket implements SocketInterface
     {
         $this->checkClosed();
         $buffer = '';
-        while (mb_strlen($buffer, '8BIT') < $length) {
-            $result = fread($this->socket, $length - mb_strlen($buffer, '8BIT'));
+        while (mb_strlen($buffer, '8bit') < $length) {
+            $result = fread($this->socket, $length - mb_strlen($buffer, '8bit'));
             if ($result === false) {
                 $this->throwException();
             }
