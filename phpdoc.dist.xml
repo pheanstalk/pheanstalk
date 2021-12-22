@@ -10,7 +10,7 @@
     </paths>
     <version number="3.0.0">
         <api>
-            <default-package-name>SurveyJS Parser</default-package-name>
+            <default-package-name>Pheanstalk</default-package-name>
             <source dsn=".">
                 <path>src</path>
             </source>
