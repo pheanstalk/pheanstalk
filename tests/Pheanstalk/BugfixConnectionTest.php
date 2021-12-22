@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk;
 
 use PHPUnit\Framework\TestCase;
@@ -20,7 +22,7 @@ class BugfixConnectionTest extends TestCase
      * PHP 5.2.10-2ubuntu6.4 reads nearly double that on the first fread().
      * This is probably due to a prior call to fgets() pre-filling the read buffer.
      */
-    public function testIssue4ReadingOver8192Bytes()
+    public function testIssue4ReadingOver8192Bytes(): void
     {
         $length = 8192 * 3;
 
@@ -37,7 +39,7 @@ class BugfixConnectionTest extends TestCase
      *
      * @author SlNPacifist
      */
-    public function testIssue4ReadingDifferentNumberOfBytes()
+    public function testIssue4ReadingDifferentNumberOfBytes(): void
     {
         $pheanstalk = $this->createPheanstalk();
         $maxLength = 10000;
@@ -56,7 +58,7 @@ class BugfixConnectionTest extends TestCase
     // ----------------------------------------
     // private
 
-    private function createPheanstalk()
+    private function createPheanstalk(): Pheanstalk
     {
         $pheanstalk = Pheanstalk::create(SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));

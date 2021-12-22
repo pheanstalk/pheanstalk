@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk;
 
 use Pheanstalk\Contract\PheanstalkInterface;
@@ -187,13 +189,13 @@ class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
 
-        $this->assertTrue(in_array('default', $pheanstalk->listTubes()));
+        $this->assertTrue(in_array('default', $pheanstalk->listTubes(), true));
 
         $pheanstalk->useTube('test1');
-        $this->assertTrue(in_array('test1', $pheanstalk->listTubes()));
+        $this->assertTrue(in_array('test1', $pheanstalk->listTubes(), true));
 
         $pheanstalk->watch('test2');
-        $this->assertTrue(in_array('test2', $pheanstalk->listTubes()));
+        $this->assertTrue(in_array('test2', $pheanstalk->listTubes(), true));
     }
 
     public function testPeek()
@@ -413,7 +415,7 @@ class PheanstalkTest extends TestCase
     // ----------------------------------------
     // private
 
-    private function getPheanstalk(): PheanstalkInterface
+    private function getPheanstalk(): Pheanstalk
     {
         return Pheanstalk::create(SERVER_HOST);
     }

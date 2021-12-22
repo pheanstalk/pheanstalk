@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
@@ -33,7 +35,7 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
 
     public function __construct(string $peekSubject)
     {
-        if (in_array($peekSubject, self::SUBCOMMANDS)) {
+        if (in_array($peekSubject, self::SUBCOMMANDS, true)) {
             $this->subcommand = $peekSubject;
         } else {
             throw new Exception\CommandException(sprintf(
@@ -50,7 +52,7 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
             return $this->createResponse(ResponseInterface::RESPONSE_NOT_FOUND);
         }
 

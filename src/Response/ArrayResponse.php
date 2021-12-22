@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk\Response;
 
 use Pheanstalk\Contract\ResponseInterface;

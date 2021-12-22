@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
@@ -94,7 +96,7 @@ class Connection
             ));
         }
 
-        if (in_array($responseName, self::$dataResponses)) {
+        if (in_array($responseName, self::$dataResponses, true)) {
             $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
             $data = $socket->read((int) $dataLength);
             $crlf = $socket->read(self::CRLF_LENGTH);

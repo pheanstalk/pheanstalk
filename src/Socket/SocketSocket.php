@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace Pheanstalk\Socket;
 
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\SocketException;
+use function PHPStan\dumpType;
 
 /**
  * A Socket implementation using the Sockets extension
  */
 class SocketSocket implements SocketInterface
 {
-    /** @var resource */
-    private $socket;
+    private \Socket $socket;
 
     public function __construct(
         string $host,
@@ -24,10 +26,11 @@ class SocketSocket implements SocketInterface
             throw new \Exception('Sockets extension not found');
         }
 
-        $this->socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if ($this->socket === false) {
+        $socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if ($socket === false) {
             $this->throwException();
         }
+        $this->socket = $socket;
 
         $timeout = [
             'sec' => $connectTimeout,
@@ -75,13 +78,13 @@ class SocketSocket implements SocketInterface
         }
     }
 
-    private function throwException()
+    private function throwException(): never
     {
         $error = socket_last_error($this->socket);
         throw new SocketException(socket_strerror($error), $error);
     }
 
-    private function checkClosed()
+    private function checkClosed(): void
     {
         if (!isset($this->socket)) {
             throw new SocketException('The connection was closed');
@@ -115,7 +118,7 @@ class SocketSocket implements SocketInterface
 
         $buffer = '';
         // Reading stops at \r or \n. In case it stopped at \r we must continue reading.
-        while (substr($buffer, -1, 1) !== "\n") {
+        while (!str_ends_with($buffer, "\n")) {
             $result = @socket_read($this->socket, 1024, PHP_NORMAL_READ);
             if ($result === false) {
                 $this->throwException();

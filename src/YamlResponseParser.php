@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk;
 
 use Pheanstalk\Contract\ResponseInterface;
@@ -27,7 +29,7 @@ class YamlResponseParser implements ResponseParserInterface
      */
     public function __construct(string $mode)
     {
-        if (!in_array($mode, [self::MODE_DICT, self::MODE_LIST])) {
+        if (!in_array($mode, [self::MODE_DICT, self::MODE_LIST], true)) {
             throw new \InvalidArgumentException('Invalid mode');
         }
         $this->mode = $mode;

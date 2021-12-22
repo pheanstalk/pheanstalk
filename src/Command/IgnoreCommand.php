@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
@@ -24,7 +26,7 @@ class IgnoreCommand extends TubeCommand implements ResponseParserInterface
             return $this->createResponse('WATCHING', [
                 'count' => (int) $matches[1],
             ]);
-        } elseif ($responseLine == ResponseInterface::RESPONSE_NOT_IGNORED) {
+        } elseif ($responseLine === ResponseInterface::RESPONSE_NOT_IGNORED) {
             throw new Exception\ServerException(
                 $responseLine . ': cannot ignore last tube in watchlist'
             );

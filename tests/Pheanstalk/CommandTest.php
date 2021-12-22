@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk;
 
 use Pheanstalk\Command\PeekCommand;
@@ -16,7 +18,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CommandTest extends TestCase
 {
-    public function testBury()
+    public function testBury(): void
     {
         $command = new Command\BuryCommand(new JobId(5), 2);
         $this->assertCommandLine($command, 'bury 5 2');
@@ -27,7 +29,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $command = new Command\DeleteCommand(new JobId(5));
         $this->assertCommandLine($command, 'delete 5');
@@ -38,7 +40,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testIgnore()
+    public function testIgnore(): void
     {
         $command = new Command\IgnoreCommand('tube1');
         $this->assertCommandLine($command, 'ignore tube1');
@@ -50,49 +52,49 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testIgnoreBadResponse()
+    public function testIgnoreBadResponse(): void
     {
         $command = new Command\IgnoreCommand('tube1');
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse(__FUNCTION__, null);
     }
 
-    public function testPauseTubeBadResponse()
+    public function testPauseTubeBadResponse(): void
     {
         $command = new Command\PauseTubeCommand('tube1', 1);
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse(__FUNCTION__, null);
     }
 
-    public function testBuryBadResponse()
+    public function testBuryBadResponse(): void
     {
         $command = new Command\BuryCommand(new JobId(15), 1);
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse(__FUNCTION__, null);
     }
 
-    public function testPeekBadResponse()
+    public function testPeekBadResponse(): void
     {
         $command = new Command\PeekCommand(PeekCommand::TYPE_BURIED);
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse(__FUNCTION__, null);
     }
 
-    public function testPeekJobBadResponse()
+    public function testPeekJobBadResponse(): void
     {
         $command = new Command\PeekJobCommand(new JobId(15));
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse(__FUNCTION__, null);
     }
 
-    public function testKickJobBadResponse()
+    public function testKickJobBadResponse(): void
     {
         $command = new Command\KickJobCommand(new JobId(15));
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse(__FUNCTION__, null);
     }
 
-    public function testKickJobNotFound()
+    public function testKickJobNotFound(): void
     {
         $command = new Command\KickJobCommand(new JobId(15));
         $this->expectException(Exception::class);
@@ -111,7 +113,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testKickJob()
+    public function testKickJob(): void
     {
         $command = new Command\KickJobCommand(new JobId(5));
         $this->assertCommandLine($command, 'kick-job 5');
@@ -122,7 +124,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testListTubesWatched()
+    public function testListTubesWatched(): void
     {
         $command = new Command\ListTubesWatchedCommand();
         $this->assertCommandLine($command, 'list-tubes-watched');
@@ -134,7 +136,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testListTubeUsed()
+    public function testListTubeUsed(): void
     {
         $command = new Command\ListTubeUsedCommand();
         $this->assertCommandLine($command, 'list-tube-used');
@@ -146,7 +148,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testPut()
+    public function testPut(): void
     {
         $command = new Command\PutCommand('data', 5, 6, 7);
         $this->assertCommandLine($command, 'put 5 6 7 4', true);
@@ -159,14 +161,14 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testPutBuried()
+    public function testPutBuried(): void
     {
         $command = new Command\PutCommand('data', 5, 6, 7);
         $this->expectException(Exception::class);
         $command->getResponseParser()->parseResponse('BURIED 4', null);
     }
 
-    public function testRelease()
+    public function testRelease(): void
     {
         $job = new JobId(3);
         $command = new Command\ReleaseCommand($job, 1, 0);
@@ -178,7 +180,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testReserve()
+    public function testReserve(): void
     {
         $command = new Command\ReserveCommand();
         $this->assertCommandLine($command, 'reserve');
@@ -190,7 +192,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testReserveDeadline()
+    public function testReserveDeadline(): void
     {
         $this->expectException(DeadlineSoonException::class);
         $command = new Command\ReserveCommand();
@@ -198,7 +200,7 @@ class CommandTest extends TestCase
         $command->getResponseParser()->parseResponse('DEADLINE_SOON', null);
     }
 
-    public function testUse()
+    public function testUse(): void
     {
         $command = new Command\UseCommand('tube5');
         $this->assertCommandLine($command, 'use tube5');
@@ -210,7 +212,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testWatch()
+    public function testWatch(): void
     {
         $command = new Command\WatchCommand('tube6');
         $this->assertCommandLine($command, 'watch tube6');
@@ -222,7 +224,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testReserveWithTimeout()
+    public function testReserveWithTimeout(): void
     {
         $command = new Command\ReserveWithTimeoutCommand(10);
         $this->assertCommandLine($command, 'reserve-with-timeout 10');
@@ -233,7 +235,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testTouch()
+    public function testTouch(): void
     {
         $command = new Command\TouchCommand(new JobId(5));
         $this->assertCommandLine($command, 'touch 5');
@@ -244,7 +246,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testListTubes()
+    public function testListTubes(): void
     {
         $command = new Command\ListTubesCommand();
         $this->assertCommandLine($command, 'list-tubes');
@@ -256,7 +258,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testPeek()
+    public function testPeek(): void
     {
         $command = new Command\PeekJobCommand(new JobId(5));
         $this->assertCommandLine($command, 'peek 5');
@@ -268,25 +270,25 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testPeekReady()
+    public function testPeekReady(): void
     {
         $command = new Command\PeekCommand('ready');
         $this->assertCommandLine($command, 'peek-ready');
     }
 
-    public function testPeekDelayed()
+    public function testPeekDelayed(): void
     {
         $command = new Command\PeekCommand('delayed');
         $this->assertCommandLine($command, 'peek-delayed');
     }
 
-    public function testPeekBuried()
+    public function testPeekBuried(): void
     {
         $command = new Command\PeekCommand('buried');
         $this->assertCommandLine($command, 'peek-buried');
     }
 
-    public function testStatsJob()
+    public function testStatsJob(): void
     {
         $command = new Command\StatsJobCommand(new JobId(5));
         $this->assertCommandLine($command, 'stats-job 5');
@@ -300,7 +302,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testStatsTube()
+    public function testStatsTube(): void
     {
         $command = new Command\StatsTubeCommand('test');
         $this->assertCommandLine($command, 'stats-tube test');
@@ -314,7 +316,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testStats()
+    public function testStats(): void
     {
         $command = new Command\StatsCommand();
         $this->assertCommandLine($command, 'stats');
@@ -328,7 +330,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testPauseTube()
+    public function testPauseTube(): void
     {
         $command = new Command\PauseTubeCommand('testtube7', 10);
         $this->assertCommandLine($command, 'pause-tube testtube7 10');
@@ -338,7 +340,7 @@ class CommandTest extends TestCase
         );
     }
 
-    public function testIssue12YamlParsingMissingValue()
+    public function testIssue12YamlParsingMissingValue(): void
     {
         // missing version number
         $data = "---\npid: 123\nversion: \nkey: value\n";
@@ -354,7 +356,7 @@ class CommandTest extends TestCase
 
     // ----------------------------------------
 
-    private function assertCommandLine(CommandInterface $command, string $expected, bool $expectData = false)
+    private function assertCommandLine(CommandInterface $command, string $expected, bool $expectData = false): void
     {
         $this->assertEquals($expected, $command->getCommandLine());
         $this->assertEquals($expectData, $command->hasData());
@@ -365,14 +367,9 @@ class CommandTest extends TestCase
      * @param string   $expectName
      * @param array    $data
      */
-    private function assertResponse(ResponseInterface $response, string $expectName, array $data = [])
+    private function assertResponse(ResponseInterface $response, string $expectName, array $data = []): void
     {
         $this->assertEquals($expectName, $response->getResponseName());
         $this->assertEquals($data, iterator_to_array($response));
-    }
-
-    private function mockJob(int $id): JobIdInterface
-    {
-        return new JobId($id);
     }
 }

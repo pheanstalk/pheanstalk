@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;

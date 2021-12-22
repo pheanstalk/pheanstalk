@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\ResponseInterface;
@@ -40,13 +42,13 @@ class PauseTubeCommand extends TubeCommand implements ResponseParserInterface
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\ServerException(sprintf(
                 '%s: tube %s does not exist.',
                 $responseLine,
                 $this->tube
             ));
-        } elseif ($responseLine == ResponseInterface::RESPONSE_PAUSED) {
+        } elseif ($responseLine === ResponseInterface::RESPONSE_PAUSED) {
             return $this->createResponse(ResponseInterface::RESPONSE_PAUSED);
         } else {
             throw new Exception('Unhandled response: "' . $responseLine . '"');

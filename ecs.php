@@ -22,7 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
     // A. full sets
     $containerConfigurator->import(SetList::PSR_12);
-
+    $containerConfigurator->import(SetList::STRICT);
 
     // B. standalone rule
     $services = $containerConfigurator->services();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
@@ -388,7 +390,7 @@ class Pheanstalk implements PheanstalkInterface
         }
 
         foreach ($this->watching as $tube => $true) {
-            if ($tube != PheanstalkInterface::DEFAULT_TUBE) {
+            if ($tube !== PheanstalkInterface::DEFAULT_TUBE) {
                 unset($this->watching[$tube]);
                 $this->watch($tube);
             }
@@ -432,7 +434,7 @@ class Pheanstalk implements PheanstalkInterface
             foreach ($watched as $tube) {
                 $this->watch($tube);
             }
-            if (!in_array($tube, $watched)) {
+            if (!in_array($tube, $watched, true)) {
                 $this->ignore($tube);
             }
         }

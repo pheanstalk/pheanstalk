@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Pheanstalk\Command;
 
 use Pheanstalk\Contract\JobIdInterface;
@@ -33,13 +35,13 @@ class BuryCommand extends JobCommand implements ResponseParserInterface
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if ($responseLine == ResponseInterface::RESPONSE_NOT_FOUND) {
+        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
             throw new Exception\JobNotFoundException(sprintf(
                 '%s: Job %u is not reserved or does not exist.',
                 $responseLine,
                 $this->jobId
             ));
-        } elseif ($responseLine == ResponseInterface::RESPONSE_BURIED) {
+        } elseif ($responseLine === ResponseInterface::RESPONSE_BURIED) {
             return $this->createResponse(ResponseInterface::RESPONSE_BURIED);
         } else {
             throw new Exception('Unhandled response: ' . $responseLine);

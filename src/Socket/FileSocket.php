@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace Pheanstalk\Socket;
 
@@ -16,10 +18,6 @@ abstract class FileSocket implements SocketInterface
 
     /**
      * Writes data to the socket.
-     *
-     * @param string $data
-     *
-     * @return void
      */
     public function write(string $data): void
     {
@@ -43,7 +41,7 @@ abstract class FileSocket implements SocketInterface
         }
     }
 
-    private function throwException()
+    private function throwException(): never
     {
         if (null === $error = error_get_last()) {
             throw new SocketException('Unknown error');
@@ -51,7 +49,7 @@ abstract class FileSocket implements SocketInterface
         throw new SocketException($error['message'], $error['type']);
     }
 
-    private function checkClosed()
+    private function checkClosed(): void
     {
         if (!isset($this->socket)) {
             throw new SocketException('The connection was closed');
@@ -60,8 +58,6 @@ abstract class FileSocket implements SocketInterface
 
     /**
      * Reads up to $length bytes from the socket.
-     *
-     * @return string
      */
     public function read(int $length): string
     {
@@ -80,8 +76,6 @@ abstract class FileSocket implements SocketInterface
     /**
      * Reads up to the next new-line.
      * Trailing whitespace is trimmed.
-     *
-     * @param int
      */
     public function getLine(): string
     {

@@ -1,0 +1,11 @@
+parameters:
+  level: 5
+  paths:
+    - src
+    - tests
+  treatPhpDocTypesAsCertain: false
+  ignoreErrors:
+    - '#Access to an undefined property Pheanstalk\\Contract\\ResponseInterface::\$#'
+  reportUnmatchedIgnoredErrors: true
+  bootstrapFiles:
+    - tests/bootstrap.php
