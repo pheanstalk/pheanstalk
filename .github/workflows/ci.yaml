@@ -5,6 +5,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    container: alpine
     services:
       beanstalk:
         image: schickling/beanstalkd
@@ -14,10 +15,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          tools: phpunit
       - name: Install dependencies including dev
         run: composer install
       - name: Tests
-        run: docker-compose run --rm phpunit
+        run: phpunit
       - uses: codecov/codecov-action@v2
         with:
           files: ./tests/coverage/coverage.xml
