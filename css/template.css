@@ -1,530 +1,188 @@
-@import url(bootstrap.min.css);
-@import url(bootstrap-responsive.css);
-@import url(prettify.css);
-@import url(jquery.iviewer.css);
-@import url(https://fonts.googleapis.com/css?family=Forum);
-
-body
-{
-    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    background:  #f9f9f9;
-    color:       #444;
-}
-
-a
-{
-    color: #55A72F;
-}
-
-td p:last-of-type {
-    margin: 0;
-}
-
-li.l0, li.l1, li.l2, li.l3, li.l5, li.l6, li.l7, li.l8
-{
-    list-style-type: decimal;
-}
-
-a.brand, h2, .hero-unit h1
-{
-    font-family: 'Forum', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.element .span4
-{
-    width: 275px;
-}
-
-.namespace-contents hr, .package-contents hr
-{
-    border-top: 3px dotted silver;
-}
-
-.namespace-indent, .package-indent
-{
-    padding-left: 10px; border-left: 1px dashed #f0f0f0;
-}
-
-.element h3 i, .namespace-contents h3 i, .package-contents h3 i
-{
-    margin-top: 2px;
-    margin-right: 5px;
-}
-
-.element h3, .namespace-contents h3, .package-contents h3
-{
-    margin-top: 25px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid silver;
-}
-
-.element h3:first-of-type, .namespace-contents h3:first-of-type,
-.package-contents h3:first-of-type
-{
-    margin-top: 30px;
-}
-
-.element h2
-{
-    font-family: inherit;
-    font-size: 1.2em;
-    color: black;
-}
-
-.element .type
-{
-    font-weight: bold;
-}
-
-#search-query
-{
-    height: auto;
-}
-
-.hero-unit, div.element, .well
-{
-    border: 1px solid #e0e0e0;
-    background: white;
-}
-
-.dropdown-menu a{
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-h2
-{
-    border-bottom:  1px dashed #55A72F;
-    margin-bottom:  10px;
-    padding-bottom: 0;
-    padding-left:   5px;
-    color:          #e9e9e9;
-    font-weight:    normal;
-    margin-top:     40px;
-}
-
-h2:first-of-type
-{
-    margin-top: 0;
-}
-
-.hero-unit
-{
-    background: #75a70d; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover, #bfd255 0%, #8eb92a 72%, #72aa00 96%, #9ecb2d 100%); /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#bfd255), color-stop(72%,#8eb92a), color-stop(96%,#72aa00), color-stop(100%,#9ecb2d)); /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 72%,#72aa00 96%,#9ecb2d 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 72%,#72aa00 96%,#9ecb2d 100%); /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 72%,#72aa00 96%,#9ecb2d 100%); /* IE10+ */
-    background: radial-gradient(center, ellipse cover, #bfd255 0%,#8eb92a 72%,#72aa00 96%,#9ecb2d 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-    padding: 40px 0 15px 0;
-    box-shadow: inset 0 0 10px gray;
-}
-
-.hero-unit h1
-{
-    font-weight: normal;
-    text-align:  center;
-    color:       white;
-    text-shadow: black 0 0 15px;
-}
-
-.hero-unit h2
-{
-    border:     none;
-    color:      white;
-    background: rgba(48, 48, 48, 0.5);
-    padding:    0;
-    margin:     0;
-    margin-top: 15px;
-    text-align: center;
-}
-
-.namespace-contents h2, .package-contents h2
-{
-    padding-left: 44px;
-    background: transparent url('../img/icons/icon-th-big.png') no-repeat 3px center;
-}
-
-.package-contents h2
-{
-    background-image: url('../img/icons/icon-folder-open-big.png');
-}
-
-.namespace-contents .element h2, .package-contents .element h2
-{
-    padding-left: 0;
-    background: none;
-}
-
-div.element
-{
-    border-left:    10px solid #55A72F;
-    border-radius:  5px;
-    padding:        7px 7px 2px 7px;
-    margin-bottom:  15px;
-    margin-left:    0;
-}
-
-div.element.protected
-{
-    border-left-color: orange;
-}
-
-div.element.private
-{
-    border-left-color: red;
-}
-
-div.element.class, div.element.interface, div.element.trait
-{
-    border-left-color: #e0e0e0;
-}
-
-div.element.class.abstract h1, div.element.interface.abstract h1
-{
+.phpdocumentor-summary {
     font-style: italic;
 }
-
-div.element h1
-{
-    font-size:     1.2em;
-    line-height:   1.5em;
-    margin-bottom: 10px;
-    padding-left:  22px;
-    background:    transparent no-repeat left 2px;
-    word-wrap:     break-word;
+.phpdocumentor-description {
+    margin-bottom: var(--spacing-md);
+}
+.phpdocumentor-element {
+    position: relative;
 }
 
-div.element h1 a
-{
-    color: transparent;
-    margin-left: 10px;
+.phpdocumentor .phpdocumentor-element__name {
+    line-height: 1;
 }
 
-div.element h1:hover a
-{
-    color: silver;
+.phpdocumentor-element__package,
+.phpdocumentor-element__extends,
+.phpdocumentor-element__implements {
+    display: block;
+    font-size: var(--text-xxs);
+    font-weight: normal;
+    opacity: .7;
 }
 
-div.element h1 a:hover
-{
-    color: navy;
+.phpdocumentor-element__package .phpdocumentor-breadcrumbs {
+    display: inline;
 }
 
-div.element a.more:hover
-{
-    background: #f0f0f0;
-    color:      #444;
-    text-decoration: none;
+.phpdocumentor-element:not(:last-child) {
+    border-bottom: 1px solid var(--primary-color-lighten);
+    padding-bottom: var(--spacing-lg);
 }
 
-div.element a.more
-{
-    font-weight: bold;
+.phpdocumentor-element.-deprecated .phpdocumentor-element__name {
+    text-decoration: line-through;
+}
+
+.phpdocumentor-element__modifier {
+    font-size: var(--text-xxs);
+    padding: calc(var(--spacing-base-size) / 4) calc(var(--spacing-base-size) / 2);
+    color: var(--text-color);
+    background-color: var(--light-gray);
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+.phpdocumentor-signature {
+    display: inline-block;
+    font-size: var(--text-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.phpdocumentor-signature.-deprecated .phpdocumentor-signature__name {
+    text-decoration: line-through;
+}
+.phpdocumentor-table-of-contents {
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry {
+    padding-top: var(--spacing-xs);
+    margin-left: 2rem;
+    display: flex;
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry > a {
+    flex: 0 1 auto;
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry > span {
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry:after {
+    content: '';
+    height: 12px;
+    width: 12px;
+    left: 16px;
+    position: absolute;
+}
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-private:after {
+    background: url('data:image/svg+xml;utf8,<svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="4" width="8" height="6" rx="1.4" fill="%23EE6749"/><path d="M2 4C2 3 2.4 1 4 1C5.6 1 6 3 6 4" stroke="%23EE6749" stroke-width="1.4"/></svg>') no-repeat;
+}
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-protected:after {
+    left: 13px;
+    background: url('data:image/svg+xml;utf8,<svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="8" height="6" rx="1.4" fill="%23EE9949"/><path d="M5 4C5 3 4.6 1 3 1C1.4 1 1 3 1 4" stroke="%23EE9949" stroke-width="1.4"/></svg>') no-repeat;
+}
+
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry:before {
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    background: transparent url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="%238DD35F"/></svg>') no-repeat center center;
+    content: '';
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    font-weight: 600;
+    color: white;
     text-align: center;
-    color:      gray;
-    border-top: 1px dashed silver;
-    display:    block;
-    margin-top: 5px;
-    padding:    5px 0;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    font-size: .75rem;
+    margin-top: .2rem;
 }
 
-div.element p
-{
-    font-size:     0.9em;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-method:before {
+    content: 'M';
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="%238DD35F"/></svg>');
 }
 
-div.element .table
-{
-    font-size: 0.9em;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-function:before {
+    content: 'M';
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="%238DD35F"/></svg>');
 }
 
-div.element .table th
-{
-    text-transform: capitalize;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-property:before {
+    content: 'P'
 }
 
-div.detail-description
-{
-    padding-left: 30px;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-constant:before {
+    content: 'C';
+    background-color: transparent;
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="-3.05176e-05" y="9.99998" width="14.1422" height="14.1422" transform="rotate(-45 -3.05176e-05 9.99998)" fill="%238DD35F"/></svg>');
 }
 
-div.detail-description table th {
-    vertical-align: top;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-class:before {
+    content: 'C'
 }
 
-body.invert
-{
-    background: white;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-interface:before {
+    content: 'I'
 }
 
-body.invert div.element
-{
-    background: #f9f9f9;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-trait:before {
+    content: 'T'
 }
 
-ul.side-nav
-{
-    clear: both;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-namespace:before {
+    content: 'N'
 }
 
-ul.side-nav li
-{
-    word-wrap: break-word;
-    padding-left: 10px;
-    text-indent: -10px;
+.phpdocumentor-table-of-contents .phpdocumentor-table-of-contents__entry.-package:before {
+    content: 'P'
 }
 
-ul.side-nav li a
-{
-    background:     transparent no-repeat 5px 3px;
-    padding-bottom: 10px;
-    font-style:     italic;
+.phpdocumentor-table-of-contents dd {
+    font-style: italic;
+    margin-left: 2rem;
+}
+.phpdocumentor-element-found-in {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: var(--text-sm);
+    color: gray;
 }
 
-ul.side-nav li pre
-{
-    font-size:        0.8em;
-    margin:           5px 15px 0 15px;
-    padding:          2px 5px;
-    background-color: #f8f8f8;
-    color:            gray;
-    font-style:       normal;
-    word-wrap:        break-word;
-    text-indent:      0;
+.phpdocumentor-element-found-in .phpdocumentor-element-found-in__source {
+    flex: 0 1 auto;
+    display: inline-flex;
 }
 
-ul.side-nav li.view-simple span.description
-{
-    display: none;
+.phpdocumentor-element-found-in .phpdocumentor-element-found-in__source:after {
+    width: 1.25rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
+    background: transparent url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="gray"><path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z" stroke="gray" stroke-width="1.4"/></svg>') no-repeat center center;
+    content: '';
+    left: 0;
+    border-radius: 50%;
+    font-weight: 600;
+    text-align: center;
+    font-size: .75rem;
+    margin-top: .2rem;
+}
+.phpdocumentor-class-graph {
+    width: 100%; height: 600px; border:1px solid black; overflow: hidden
 }
 
-ul.side-nav li.view-simple pre
-{
-    font-size:        inherit;
-    margin:           inherit;
-    padding:          inherit;
-    background-color: inherit;
-    border:           none;
-    color:            inherit;
-    font-family:      inherit;
-    font-style:       inherit;
-    padding-bottom:   0;
-    padding-left:     5px;
+.phpdocumentor-class-graph__graph {
+    width: 100%;
+}
+.phpdocumentor-tag-list__definition {
+    display: flex;
 }
 
-ul.side-nav li.view-simple a
-{
-    padding-bottom: 0;
-}
-
-i.icon-custom
-{
-    width: 16px;
-    height: 16px;
-    background-position: 0;
-}
-
-.table.markers
-{
-    background: white;
-}
-
-/* JS only functionality; disable by default */
-.btn-group.visibility, .btn-group.view, .btn-group.type-filter
-{
-    display: none;
-}
-
-.visibility button
-{
-    height: 24px;
-}
-
-div.element.constant h1,
-i.icon-constant  { background-image: url('../img/icons/constant.png'); }
-
-div.element.function h1,
-i.icon-function  { background-image: url('../img/icons/function.png'); }
-
-div.element.method h1,
-i.icon-method    { background-image: url('../img/icons/method.png'); }
-
-div.element.class h1,
-i.icon-class     { background-image: url('../img/icons/class.png'); }
-
-div.element.interface h1,
-i.icon-interface { background-image: url('../img/icons/interface.png'); }
-
-div.element.trait h1,
-i.icon-trait { background-image: url('../img/icons/trait.png'); }
-
-div.element.property h1,
-i.icon-property  { background-image: url('../img/icons/property.png'); }
-
-span.empty-namespace
-{
-    color: silver;
-}
-
-footer
-{
-    text-align: right;
-    font-size: 0.8em;
-    opacity: 0.5;
-}
-
-#mapHolder
-{
-    border:   4px solid #555;
-    padding:  0 !important;
-    overflow: hidden
-}
-
-div.element div.subelement
-{
-    margin-left:    10px;
-    padding-bottom: 5px;
-    clear: both;
-}
-
-pre code
-{
-    border: none;
-}
-
-div.element div.subelement  > code
-{
-    font-size:    0.8em;
-    float:        left;
-    margin-right: 10px;
-    padding:      0 5px;
-    line-height:  16px;
-}
-
-div.element div.subelement  > p
-{
-    margin-left: 20px;
-    margin-right: 50px;
-}
-
-div.element div.subelement h4
-{
-    color: #666;
-    margin-bottom: 5px;
-}
-
-div.element div.subelement.response
-{
-    padding-bottom: 15px;
-    margin-right: 50px;
-}
-
-div.labels
-{
-    text-align: right;
-}
-
-.nav-list .nav-header
-{
-    font-size: 13px;
-}
-
-.nav-list .nav-header .side-nav-header
-{
-    font-weight: bold;
-    line-height: 18px;
-    color: #999999;
-    text-transform: uppercase;
-}
-
-.detail-description code {
-    white-space: pre;
-    display:     inline-block;
-    padding:     10px;
-}
-
-.go_to_top
-{
-    float:                      right;
-    margin-right:               20px;
-    background:                 #2C2C2C;
-    color:                      #999;
-    padding:                    3px 10px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius:  5px;
-    text-shadow:                0 -1px 0 rgba(0, 0, 0, 0.25);
-    line-height:                19px;
-}
-
-.visibility .btn {
-    text-transform: uppercase;
-    font-size: 0.7em;
-    font-weight: bold;
-}
-
-.iviewer_common
-{
-    z-index: 100;
-}
-
-@media (min-width: 980px)
-{
-    a[name]
-    {
-        margin-top: -50px;
-        position:   absolute;
-    }
-}
-
-@media (min-width: 1200px)
-{
-    .method .span4
-    {
-        width: 345px;
-    }
-}
-
-/* redefined because twitter bootstrap assumes that bootstrap-responsive.css */
-@media (max-width: 980px)
-{
-    body
-    {
-        padding-top: 0;
-    }
-
-    .go_to_top
-    {
-        display: none;
-    }
-
-    .btn-group.visibility
-    {
-        font-size: 0.80em;
-        margin-bottom: 7px;
-        display: inline-block;
-        float: right;
-    }
-}
-
-@media (max-width: 768px)
-{
-    .hero-unit h1 {
-        font-size: 30px;
-    }
-    .hero-unit h2 {
-        font-size: 19px;
-    }
-
-}
-@media (min-width: 768px) and (max-width: 980px)
-{
-    .method .span4
-    {
-        width: 203px;
-    }
+.phpdocumentor-tag-link {
+    margin-right: var(--spacing-sm);
 }
