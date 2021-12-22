@@ -24,8 +24,8 @@ class SocketSocket implements SocketInterface
             throw new \Exception('Sockets extension not found');
         }
 
-        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if ($socket === false) {
+        $this->socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        if ($this->socket === false) {
             $this->throwException();
         }
         $this->socket = $socket;
@@ -68,7 +68,7 @@ class SocketSocket implements SocketInterface
     {
         $this->checkClosed();
         while (!empty($data)) {
-            $written = socket_write($this->socket, $data);
+            $written = @socket_write($this->socket, $data);
             if ($written === false) {
                 $this->throwException();
             }
@@ -99,8 +99,8 @@ class SocketSocket implements SocketInterface
         $this->checkClosed();
 
         $buffer = '';
-        while (mb_strlen($buffer, '8BIT') < $length) {
-            $result = socket_read($this->socket, $length - mb_strlen($buffer, '8BIT'));
+        while (mb_strlen($buffer, '8bit') < $length) {
+            $result = @socket_read($this->socket, $length - mb_strlen($buffer, '8bit'));
             if ($result === false) {
                 $this->throwException();
             }
@@ -117,7 +117,7 @@ class SocketSocket implements SocketInterface
         $buffer = '';
         // Reading stops at \r or \n. In case it stopped at \r we must continue reading.
         while (substr($buffer, -1, 1) !== "\n") {
-            $result = socket_read($this->socket, 1024, PHP_NORMAL_READ);
+            $result = @socket_read($this->socket, 1024, PHP_NORMAL_READ);
             if ($result === false) {
                 $this->throwException();
             }
