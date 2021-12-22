@@ -1,7 +1,9 @@
+---
 name: Continous integration
 on: [push, pull_request]
 jobs:
-  tests: Tests
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
     services:
       beanstalk:
@@ -36,8 +38,8 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev
       # This is disabled due to errors in the baseline, re-enable it when those have been fully cleaned.
-      #- name: Static analysis
-      #  run: phpstan analyse src
+      # - name: Static analysis
+      #   run: phpstan analyse src
       - name: Install dependencies including dev
         run: composer install
       # We run static analysis with dev dependencies due to baseline errors, when those have been cleaned we run them on
@@ -45,21 +47,19 @@ jobs:
       - name: Static analysis
         run: phpstan
       # This is disabled due to errors in the baseline, re-enable it when those have been fully cleaned.
-      #- name: Static analysis of tests
-      #  run: phpstan analyse tests
+      # - name: Static analysis of tests
+      #   run: phpstan analyse tests
   commitlint:
     name: commit-lint
     runs-on: ubuntu-latest
     steps:
       - uses: ahmadnassri/action-commit-lint@v1
         with:
-         config: conventional
+          config: conventional
   docs:
     name: Docs
     needs:
-      - code_checks
-      - tests
-      - commitlint
+      - release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
