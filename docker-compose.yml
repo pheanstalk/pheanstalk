@@ -17,5 +17,7 @@ services:
       - ./.phpunit.result.cache:/app/.phpunit.result.cache:rw
       - ./tests/coverage:/coverage:rw
     command:
+      - --coverage-clover
+      - /coverage/coverage.xml
       - --coverage-html
       - /coverage
