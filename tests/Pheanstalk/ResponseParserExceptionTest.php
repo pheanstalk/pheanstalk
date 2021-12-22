@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk;
 
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\JobIdInterface;
+use InvalidArgumentException;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Exception\CommandException;
+use Pheanstalk\Exception\ServerException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -75,13 +76,13 @@ class ResponseParserExceptionTest extends TestCase
 
     public function testPeekInvalidSubject()
     {
-        $this->expectException(\Pheanstalk\Exception\CommandException::class);
+        $this->expectException(CommandException::class);
         new Command\PeekCommand('invalid');
     }
 
     public function testYamlResponseParseInvalidMode()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new YamlResponseParser('test');
     }
 
@@ -132,7 +133,7 @@ class ResponseParserExceptionTest extends TestCase
         $this->expectExceptionForResponse(
             $parser,
             $response,
-            \Pheanstalk\Exception\ServerException::class
+            ServerException::class
         );
     }
 }

@@ -490,63 +490,8 @@ parameters:
         path: tests/Pheanstalk/ConnectionTest.php
 
     -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testClientException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testCommandException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testConnectionException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testPheanstalkException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testServerBadFormatException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testServerDrainingException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testServerException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testServerInternalErrorException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testServerOutOfMemoryException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\ExceptionsTest\\:\\:testServerUnknownCommandException\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ExceptionsTest.php
-
-    -
         message: "#^Cannot call method getData\\(\\) on Pheanstalk\\\\Job\\|null\\.$#"
         count: 4
-        path: tests/Pheanstalk/PheanstalkTest.php
-
-    -
-        message: "#^Cannot call method getId\\(\\) on Pheanstalk\\\\Job\\|null\\.$#"
-        count: 1
         path: tests/Pheanstalk/PheanstalkTest.php
 
     -
@@ -561,11 +506,6 @@ parameters:
 
     -
         message: "#^Method Pheanstalk\\\\PheanstalkTest\\:\\:testIgnoreLastTube\\(\\) has no return type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/PheanstalkTest.php
-
-    -
-        message: "#^Method Pheanstalk\\\\PheanstalkTest\\:\\:testInterface\\(\\) has no return type specified\\.$#"
         count: 1
         path: tests/Pheanstalk/PheanstalkTest.php
 
@@ -660,27 +600,12 @@ parameters:
         path: tests/Pheanstalk/PheanstalkTest.php
 
     -
-        message: "#^Method class@anonymous/tests/Pheanstalk/PheanstalkTest\\.php\\:398\\:\\:__construct\\(\\) has parameter \\$sockets with no value type specified in iterable type array\\.$#"
-        count: 1
-        path: tests/Pheanstalk/PheanstalkTest.php
-
-    -
-        message: "#^Parameter \\#1 \\$job of method Pheanstalk\\\\Pheanstalk\\:\\:delete\\(\\) expects Pheanstalk\\\\Contract\\\\JobIdInterface, Pheanstalk\\\\Job\\|null given\\.$#"
-        count: 1
-        path: tests/Pheanstalk/PheanstalkTest.php
-
-    -
         message: "#^Parameter \\#1 \\$job of method Pheanstalk\\\\Pheanstalk\\:\\:delete\\(\\) expects Pheanstalk\\\\Contract\\\\JobIdInterface, mixed given\\.$#"
         count: 1
         path: tests/Pheanstalk/PheanstalkTest.php
 
     -
         message: "#^Parameter \\#1 \\$job of method Pheanstalk\\\\Pheanstalk\\:\\:peek\\(\\) expects Pheanstalk\\\\Contract\\\\JobIdInterface, mixed given\\.$#"
-        count: 1
-        path: tests/Pheanstalk/PheanstalkTest.php
-
-    -
-        message: "#^Property class@anonymous/tests/Pheanstalk/PheanstalkTest\\.php\\:398\\:\\:\\$sockets has no type specified\\.$#"
         count: 1
         path: tests/Pheanstalk/PheanstalkTest.php
 
@@ -789,20 +714,13 @@ parameters:
         count: 1
         path: tests/Pheanstalk/ServerErrorExceptionTest.php
 
-    -
-        message: "#^Method class@anonymous/tests/Pheanstalk/ServerErrorExceptionTest\\.php\\:36\\:\\:__construct\\(\\) has parameter \\$socket with no type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ServerErrorExceptionTest.php
+
 
     -
         message: "#^Property Pheanstalk\\\\ServerErrorExceptionTest\\:\\:\\$command has no type specified\\.$#"
         count: 1
         path: tests/Pheanstalk/ServerErrorExceptionTest.php
 
-    -
-        message: "#^Property class@anonymous/tests/Pheanstalk/ServerErrorExceptionTest\\.php\\:36\\:\\:\\$socket has no type specified\\.$#"
-        count: 1
-        path: tests/Pheanstalk/ServerErrorExceptionTest.php
 
     -
         message: "#^Method Pheanstalk\\\\SocketFactoryTest\\:\\:testAutoDetect\\(\\) has no return type specified\\.$#"

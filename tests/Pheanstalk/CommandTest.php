@@ -6,9 +6,9 @@ namespace Pheanstalk;
 
 use Pheanstalk\Command\PeekCommand;
 use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -152,7 +152,7 @@ class CommandTest extends TestCase
     {
         $command = new Command\PutCommand('data', 5, 6, 7);
         $this->assertCommandLine($command, 'put 5 6 7 4', true);
-        $this->assertEquals($command->getData(), 'data');
+        Assert::assertEquals($command->getData(), 'data');
 
         $this->assertResponse(
             $command->getResponseParser()->parseResponse('INSERTED 4', null),
@@ -358,8 +358,8 @@ class CommandTest extends TestCase
 
     private function assertCommandLine(CommandInterface $command, string $expected, bool $expectData = false): void
     {
-        $this->assertEquals($expected, $command->getCommandLine());
-        $this->assertEquals($expectData, $command->hasData());
+        Assert::assertEquals($expected, $command->getCommandLine());
+        Assert::assertEquals($expectData, $command->hasData());
     }
 
     /**
@@ -369,7 +369,7 @@ class CommandTest extends TestCase
      */
     private function assertResponse(ResponseInterface $response, string $expectName, array $data = []): void
     {
-        $this->assertEquals($expectName, $response->getResponseName());
-        $this->assertEquals($data, iterator_to_array($response));
+        Assert::assertEquals($expectName, $response->getResponseName());
+        Assert::assertEquals($data, iterator_to_array($response));
     }
 }

@@ -6,6 +6,10 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ServerBadFormatException;
+use Pheanstalk\Exception\ServerDrainingException;
+use Pheanstalk\Exception\ServerInternalErrorException;
+use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
 use PHPUnit\Framework\TestCase;
 
@@ -26,18 +30,16 @@ class ServerErrorExceptionTest extends TestCase
      */
     private function connection(string $line): Connection
     {
-        $socket = $this->getMockBuilder(\Pheanstalk\Contract\SocketInterface::class)
+        $socket = $this->getMockBuilder(SocketInterface::class)
             ->getMock();
 
-        $socket->expects($this->any())
+        $socket->expects(self::any())
             ->method('getLine')
-            ->will($this->returnValue($line));
+            ->will(self::returnValue($line));
 
-        $connection = new Connection(new class($socket) implements SocketFactoryInterface {
-            private $socket;
-            public function __construct($socket)
+        return new Connection(new class($socket) implements SocketFactoryInterface {
+            public function __construct(private readonly SocketInterface $socket)
             {
-                $this->socket = $socket;
             }
 
             public function create(): SocketInterface
@@ -45,30 +47,29 @@ class ServerErrorExceptionTest extends TestCase
                 return $this->socket;
             }
         });
-        return $connection;
     }
 
     public function testCommandsHandleOutOfMemory()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerOutOfMemoryException::class);
+        $this->expectException(ServerOutOfMemoryException::class);
         $this->connection('OUT_OF_MEMORY')->dispatchCommand($this->command);
     }
 
     public function testCommandsHandleInternalError()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerInternalErrorException::class);
+        $this->expectException(ServerInternalErrorException::class);
         $this->connection('INTERNAL_ERROR')->dispatchCommand($this->command);
     }
 
     public function testCommandsHandleDraining()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerDrainingException::class);
+        $this->expectException(ServerDrainingException::class);
         $this->connection('DRAINING')->dispatchCommand($this->command);
     }
 
     public function testCommandsHandleBadFormat()
     {
-        $this->expectException(\Pheanstalk\Exception\ServerBadFormatException::class);
+        $this->expectException(ServerBadFormatException::class);
         $this->connection('BAD_FORMAT')->dispatchCommand($this->command);
     }
 

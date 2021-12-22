@@ -1,0 +1,63 @@
+name: Continous integration
+on: [push, pull_request]
+jobs:
+  code_checks:
+    name: Check code
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: symplify/easy-coding-standard, phpstan, phpunit, phpDocumentor
+      - name: Test code style
+        run: ecs
+      - name: Install dependencies
+        run: composer install --no-dev
+      - name: Static analysis
+        run: phpstan analyse src
+      - name: Install dependencies including dev
+        run: composer install
+      - name: Tests
+        run: phpunit --coverage-clover coverage.xml
+      - name: Static analysis of tests
+        run: phpstan analyse tests
+      - name: Generate docs
+        run: phpdoc run
+      - name: Deploy docs to pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+      - uses: codecov/codecov-action@v2
+        with:
+          files: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+  commitlint:
+    name: commit-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ahmadnassri/action-commit-lint@v1
+        with:
+         config: conventional
+  release:
+    name: Automated release
+    needs: [code_checks]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - run: >
+          npx
+          -p "@semantic-release/commit-analyzer"
+          -p "@semantic-release/release-notes-generator"
+          -p conventional-changelog-conventionalcommits
+          -p semantic-release
+          -- semantic-release 
+          --dry-run
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

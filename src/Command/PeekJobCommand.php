@@ -32,7 +32,7 @@ class PeekJobCommand extends JobCommand implements ResponseParserInterface
             throw new Exception\JobNotFoundException($message);
         }
 
-        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
+        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches) === 1) {
             return $this->createResponse(
                 ResponseInterface::RESPONSE_FOUND,
                 [

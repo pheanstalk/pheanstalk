@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,7 +30,7 @@ class BugfixConnectionTest extends TestCase
         $pheanstalk = $this->createPheanstalk();
         $pheanstalk->put(str_repeat('.', $length));
         $job = $pheanstalk->peekReady();
-        $this->assertEquals(strlen($job->getData()), $length, 'data length: %s');
+        Assert::assertEquals(strlen($job->getData()), $length, 'data length: %s');
     }
 
     /**
@@ -50,7 +51,7 @@ class BugfixConnectionTest extends TestCase
                 $pheanstalk->put($message);
                 $job = $pheanstalk->peekReady();
                 $pheanstalk->delete($job);
-                $this->assertEquals($job->getData(), $message);
+                Assert::assertEquals($job->getData(), $message);
             }
         }
     }

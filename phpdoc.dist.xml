@@ -2,23 +2,18 @@
 <phpdocumentor
         configVersion="3"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://www.phpdoc.org"
-        xsi:noNamespaceSchemaLocation="vendor/phpdocumentor/phpdocumentor/data/xsd/phpdoc.xsd"
+        xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/phpDocumentor/phpDocumentor/master/data/xsd/phpdoc.xsd"
 >
     <paths>
         <output>docs</output>
-        <cache>cache</cache>
     </paths>
     <version number="3.0.0">
         <api>
+            <default-package-name>SurveyJS Parser</default-package-name>
             <source dsn=".">
                 <path>src</path>
             </source>
-            <extensions>
-                <extension>php</extension>
-            </extensions>
-            <default-package-name>Pheanstalk</default-package-name>
         </api>
     </version>
-    <template name="default"/>
 </phpdocumentor>

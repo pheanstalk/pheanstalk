@@ -22,7 +22,7 @@ class IgnoreCommand extends TubeCommand implements ResponseParserInterface
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches)) {
+        if (preg_match('#^WATCHING (\d+)$#', $responseLine, $matches) === 1) {
             return $this->createResponse('WATCHING', [
                 'count' => (int) $matches[1],
             ]);

@@ -44,15 +44,15 @@ class YamlResponseParser implements ResponseParserInterface
             ));
         }
 
-        if (!preg_match('#^OK \d+$#', $responseLine)) {
+        if (preg_match('#^OK \d+$#', $responseLine) !== 1) {
             throw new Exception\ServerException(sprintf(
                 'Unhandled response: "%s"',
                 $responseLine
             ));
         }
 
-        $lines = array_filter(explode("\n", $responseData), function ($line) {
-            return !empty($line) && $line !== '---';
+        $lines = array_filter(explode("\n", $responseData), static function ($line) {
+            return $line !== '' && $line !== '---';
         });
 
         return $this->mode === self::MODE_LIST ? $this->parseList($lines) : $this->parseDictionary($lines);
@@ -74,7 +74,7 @@ class YamlResponseParser implements ResponseParserInterface
     {
         $data = [];
         foreach ($lines as $line) {
-            if (!preg_match('#(\S+):\s*(.*)#', $line, $matches)) {
+            if (preg_match('#(\S+):\s*(.*)#', $line, $matches) !== 1) {
                 throw new ClientException("YAML parse error for line: $line");
             }
             $data[$matches[1]] = $matches[2];

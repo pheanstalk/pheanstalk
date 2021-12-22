@@ -56,7 +56,7 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
             return $this->createResponse(ResponseInterface::RESPONSE_NOT_FOUND);
         }
 
-        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches)) {
+        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches) === 1) {
             return $this->createResponse(
                 ResponseInterface::RESPONSE_FOUND,
                 [

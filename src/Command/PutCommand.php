@@ -66,26 +66,26 @@ class PutCommand extends AbstractCommand implements ResponseParserInterface
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
     {
-        if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches)) {
+        if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches) === 1) {
             return $this->createResponse('INSERTED', [
                 'id' => (int) $matches[1],
             ]);
-        } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches)) {
+        } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches) === 1) {
             throw new Exception\ServerOutOfMemoryException(sprintf(
                 '%s: server ran out of memory trying to grow the priority queue data structure.',
                 $responseLine
             ));
-        } elseif (preg_match('#^JOB_TOO_BIG$#', $responseLine)) {
+        } elseif (preg_match('#^JOB_TOO_BIG$#', $responseLine) === 1) {
             throw new Exception\JobTooBigException(sprintf(
                 '%s: job data exceeds server-enforced limit',
                 $responseLine
             ));
-        } elseif (preg_match('#^EXPECTED_CRLF#', $responseLine)) {
+        } elseif (preg_match('#^EXPECTED_CRLF#', $responseLine) === 1) {
             throw new Exception\ClientBadFormatException(sprintf(
                 '%s: CRLF expected',
                 $responseLine
             ));
-        } elseif (preg_match('#^DRAINING#', $responseLine)) {
+        } elseif (preg_match('#^DRAINING#', $responseLine) === 1) {
             throw new Exception\ServerDrainingException(sprintf(
                 '%s: server is in drain mode and no longer accepting new jobs',
                 $responseLine

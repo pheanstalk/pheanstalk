@@ -61,15 +61,11 @@ class SocketSocket implements SocketInterface
 
     /**
      * Writes data to the socket.
-     *
-     * @param string $data
-     *
-     * @return void
      */
     public function write(string $data): void
     {
         $this->checkClosed();
-        while (!empty($data)) {
+        while ($data !== "") {
             $written = @socket_write($this->socket, $data);
             if ($written === false) {
                 $this->throwException();

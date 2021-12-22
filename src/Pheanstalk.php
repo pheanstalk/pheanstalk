@@ -431,8 +431,8 @@ class Pheanstalk implements PheanstalkInterface
             $this->watchOnly($tube);
             return $closure($this);
         } finally {
-            foreach ($watched as $tube) {
-                $this->watch($tube);
+            foreach ($watched as $watchedTube) {
+                $this->watch($watchedTube);
             }
             if (!in_array($tube, $watched, true)) {
                 $this->ignore($tube);

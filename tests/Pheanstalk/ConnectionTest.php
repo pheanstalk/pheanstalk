@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Pheanstalk;
 
-use Pheanstalk\Command\StatsCommand;
-use Pheanstalk\Contract\SocketFactoryInterface;
-use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
-use Pheanstalk\Exception\SocketException;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -63,7 +59,6 @@ class ConnectionTest extends TestCase
     }
 
     /**
-     * @throws Exception\ClientException
      * @dataProvider connectionProvider
      */
     public function testDispatchCommandSuccessful(Connection $connection)
@@ -71,7 +66,7 @@ class ConnectionTest extends TestCase
         $command = new Command\UseCommand('test');
         $response = $connection->dispatchCommand($command);
 
-        $this->assertInstanceOf(Contract\ResponseInterface::class, $response);
+        self::markTestIncomplete("Doesn't actually test anything");
     }
 
     /**
@@ -83,18 +78,18 @@ class ConnectionTest extends TestCase
         $baseCount = $pheanstalk->stats()['current-connections'];
 
 
-        $this->assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
+        Assert::assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
 
         // initial connection
         $connection->dispatchCommand(new Command\StatsCommand());
-        $this->assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
+        Assert::assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
 
         // disconnect
         $connection->disconnect();
-        $this->assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
+        Assert::assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
 
         // auto-reconnect
         $connection->dispatchCommand(new Command\StatsCommand());
-        $this->assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
+        Assert::assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
     }
 }

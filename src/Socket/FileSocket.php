@@ -24,7 +24,7 @@ abstract class FileSocket implements SocketInterface
         $this->checkClosed();
         $retries = 0;
         error_clear_last();
-        while (!empty($data) && $retries < 10) {
+        while ($data !== "" && $retries < 10) {
             $written = fwrite($this->socket, $data);
 
             if ($written === false) {
@@ -36,7 +36,7 @@ abstract class FileSocket implements SocketInterface
             $data = substr($data, $written);
         }
 
-        if (!empty($data)) {
+        if ($data !== "") {
             throw new SocketException('Write failed');
         }
     }
