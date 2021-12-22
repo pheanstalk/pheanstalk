@@ -5,10 +5,11 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    container: ubuntu
     services:
       beanstalk:
         image: schickling/beanstalkd
+        ports:
+          - "11300:11300"
     steps:
       - uses: actions/checkout@v2
       - name: Set up PHP
