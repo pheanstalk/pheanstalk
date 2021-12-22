@@ -14,7 +14,7 @@ class ServerErrorExceptionTest extends TestCase
 {
     private $command;
 
-    protected function setUp():void
+    protected function setUp(): void
     {
         $this->command = new Command\UseCommand('tube5');
     }

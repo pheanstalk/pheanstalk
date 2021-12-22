@@ -15,7 +15,6 @@ class FsockopenSocket extends FileSocket
         int $port,
         int $connectTimeout
     ) {
-
         if (!function_exists('fsockopen')) {
             throw new \Exception('Fsockopen not found');
         }

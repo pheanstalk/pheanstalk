@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ConnectionTest extends TestCase
 {
-    const CONNECT_TIMEOUT = 2;
+    public const CONNECT_TIMEOUT = 2;
 
 
     public function connectionProvider($test, $host = SERVER_HOST, $port = SERVER_PORT)
@@ -25,7 +25,7 @@ class ConnectionTest extends TestCase
             'stream' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::STREAM))],
             'fsockopen' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::FSOCKOPEN))],
             'socket' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::SOCKET))],
-            'autodetect' =>[new Connection(new SocketFactory($host, $port, 1, SocketFactory::AUTODETECT))]
+            'autodetect' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::AUTODETECT))]
         ];
     }
 

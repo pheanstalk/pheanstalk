@@ -294,7 +294,7 @@ class CommandTest extends TestCase
         $data = "---\nid: 8\ntube: test\nstate: delayed\n";
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
             ResponseInterface::RESPONSE_OK,
             ['id' => '8', 'tube' => 'test', 'state' => 'delayed']
         );
@@ -308,7 +308,7 @@ class CommandTest extends TestCase
         $data = "---\nname: test\ncurrent-jobs-ready: 5\n";
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
             ResponseInterface::RESPONSE_OK,
             ['name' => 'test', 'current-jobs-ready' => '5']
         );
@@ -322,7 +322,7 @@ class CommandTest extends TestCase
         $data = "---\npid: 123\nversion: 1.3\n";
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
             ResponseInterface::RESPONSE_OK,
             ['pid' => '123', 'version' => '1.3']
         );
@@ -346,7 +346,7 @@ class CommandTest extends TestCase
         $command = new Command\StatsCommand();
 
         $this->assertResponse(
-            $command->getResponseParser()->parseResponse('OK '.strlen($data), $data),
+            $command->getResponseParser()->parseResponse('OK ' . strlen($data), $data),
             ResponseInterface::RESPONSE_OK,
             ['pid' => '123', 'version' => '', 'key' => 'value']
         );

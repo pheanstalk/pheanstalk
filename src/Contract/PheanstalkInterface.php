@@ -6,11 +6,11 @@ use Pheanstalk\Job;
 
 interface PheanstalkInterface
 {
-    const DEFAULT_PORT = 11300;
-    const DEFAULT_DELAY = 0; // no delay
-    const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
-    const DEFAULT_TTR = 60; // 1 minute
-    const DEFAULT_TUBE = 'default';
+    public const DEFAULT_PORT = 11300;
+    public const DEFAULT_DELAY = 0; // no delay
+    public const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
+    public const DEFAULT_TTR = 60; // 1 minute
+    public const DEFAULT_TUBE = 'default';
 
     // ----------------------------------------
 

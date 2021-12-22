@@ -9,10 +9,10 @@ use Pheanstalk\Contract\JobIdInterface;
  */
 class Job implements JobIdInterface
 {
-    const STATUS_READY = 'ready';
-    const STATUS_RESERVED = 'reserved';
-    const STATUS_DELAYED = 'delayed';
-    const STATUS_BURIED = 'buried';
+    public const STATUS_READY = 'ready';
+    public const STATUS_RESERVED = 'reserved';
+    public const STATUS_DELAYED = 'delayed';
+    public const STATUS_BURIED = 'buried';
 
     /**
      * @var int

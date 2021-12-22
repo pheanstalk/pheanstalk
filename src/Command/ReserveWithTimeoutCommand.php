@@ -41,7 +41,7 @@ class ReserveWithTimeoutCommand extends AbstractCommand implements ResponseParse
         list($code, $id) = explode(' ', $responseLine);
 
         return $this->createResponse($code, [
-            'id'      => (int) $id,
+            'id' => (int) $id,
             'jobdata' => $responseData,
         ]);
     }

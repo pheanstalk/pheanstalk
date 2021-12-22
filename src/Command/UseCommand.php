@@ -16,7 +16,7 @@ class UseCommand extends TubeCommand implements ResponseParserInterface
 {
     public function getCommandLine(): string
     {
-        return 'use '.$this->tube;
+        return 'use ' . $this->tube;
     }
 
     public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse

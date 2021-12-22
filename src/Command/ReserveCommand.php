@@ -27,7 +27,7 @@ class ReserveCommand extends AbstractCommand implements ResponseParserInterface
 
         list($code, $id) = explode(' ', $responseLine);
         return $this->createResponse($code, [
-            'id'      => (int) $id,
+            'id' => (int) $id,
             'jobdata' => $responseData,
         ]);
     }

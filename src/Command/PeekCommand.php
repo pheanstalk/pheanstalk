@@ -15,10 +15,10 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class PeekCommand extends AbstractCommand implements ResponseParserInterface
 {
-    const TYPE_ID = 'id';
-    const TYPE_READY = 'ready';
-    const TYPE_DELAYED = 'delayed';
-    const TYPE_BURIED = 'buried';
+    public const TYPE_ID = 'id';
+    public const TYPE_READY = 'ready';
+    public const TYPE_DELAYED = 'delayed';
+    public const TYPE_BURIED = 'buried';
 
     private const SUBCOMMANDS = [
         self::TYPE_READY,
@@ -58,7 +58,7 @@ class PeekCommand extends AbstractCommand implements ResponseParserInterface
             return $this->createResponse(
                 ResponseInterface::RESPONSE_FOUND,
                 [
-                    'id'      => (int) $matches[1],
+                    'id' => (int) $matches[1],
                     'jobdata' => $responseData,
                 ]
             );

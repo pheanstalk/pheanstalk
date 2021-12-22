@@ -19,16 +19,16 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class Connection
 {
-    const CRLF = "\r\n";
-    const CRLF_LENGTH = 2;
-    const DEFAULT_CONNECT_TIMEOUT = 2;
+    public const CRLF = "\r\n";
+    public const CRLF_LENGTH = 2;
+    public const DEFAULT_CONNECT_TIMEOUT = 2;
 
     // responses which are global errors, mapped to their exception classes
     private static $errorResponses = [
-        ResponseInterface::RESPONSE_OUT_OF_MEMORY   => ServerOutOfMemoryException::class,
-        ResponseInterface::RESPONSE_INTERNAL_ERROR  => ServerInternalErrorException::class,
-        ResponseInterface::RESPONSE_DRAINING        => ServerDrainingException::class,
-        ResponseInterface::RESPONSE_BAD_FORMAT      => ServerBadFormatException::class,
+        ResponseInterface::RESPONSE_OUT_OF_MEMORY => ServerOutOfMemoryException::class,
+        ResponseInterface::RESPONSE_INTERNAL_ERROR => ServerInternalErrorException::class,
+        ResponseInterface::RESPONSE_DRAINING => ServerDrainingException::class,
+        ResponseInterface::RESPONSE_BAD_FORMAT => ServerBadFormatException::class,
         ResponseInterface::RESPONSE_UNKNOWN_COMMAND => ServerUnknownCommandException::class,
     ];
 
@@ -73,10 +73,10 @@ class Connection
     {
         $socket = $this->getSocket();
 
-        $to_send = $command->getCommandLine().self::CRLF;
+        $to_send = $command->getCommandLine() . self::CRLF;
 
         if ($command->hasData()) {
-            $to_send .= $command->getData().self::CRLF;
+            $to_send .= $command->getData() . self::CRLF;
         }
 
         $socket->write($to_send);

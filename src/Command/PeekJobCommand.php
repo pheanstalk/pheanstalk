@@ -34,7 +34,7 @@ class PeekJobCommand extends JobCommand implements ResponseParserInterface
             return $this->createResponse(
                 ResponseInterface::RESPONSE_FOUND,
                 [
-                    'id'      => (int) $matches[1],
+                    'id' => (int) $matches[1],
                     'jobdata' => $responseData,
                 ]
             );

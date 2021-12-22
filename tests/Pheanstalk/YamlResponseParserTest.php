@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 class YamlResponseParserTest extends TestCase
 {
-
     public function testList()
     {
         $parser = new YamlResponseParser(YamlResponseParser::MODE_LIST);
