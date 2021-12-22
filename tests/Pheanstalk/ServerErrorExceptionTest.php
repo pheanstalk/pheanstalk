@@ -4,6 +4,7 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ServerUnknownCommandException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,7 +14,7 @@ class ServerErrorExceptionTest extends TestCase
 {
     private $command;
 
-    public function setUp()
+    protected function setUp():void
     {
         $this->command = new Command\UseCommand('tube5');
     }
@@ -45,43 +46,33 @@ class ServerErrorExceptionTest extends TestCase
         return $connection;
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception\ServerOutOfMemoryException
-     */
     public function testCommandsHandleOutOfMemory()
     {
+        $this->expectException(\Pheanstalk\Exception\ServerOutOfMemoryException::class);
         $this->connection('OUT_OF_MEMORY')->dispatchCommand($this->command);
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception\ServerInternalErrorException
-     */
     public function testCommandsHandleInternalError()
     {
+        $this->expectException(\Pheanstalk\Exception\ServerInternalErrorException::class);
         $this->connection('INTERNAL_ERROR')->dispatchCommand($this->command);
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception\ServerDrainingException
-     */
     public function testCommandsHandleDraining()
     {
+        $this->expectException(\Pheanstalk\Exception\ServerDrainingException::class);
         $this->connection('DRAINING')->dispatchCommand($this->command);
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception\ServerBadFormatException
-     */
     public function testCommandsHandleBadFormat()
     {
+        $this->expectException(\Pheanstalk\Exception\ServerBadFormatException::class);
         $this->connection('BAD_FORMAT')->dispatchCommand($this->command);
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception\ServerUnknownCommandException
-     */
     public function testCommandsHandleUnknownCommand()
     {
+        $this->expectException(ServerUnknownCommandException::class);
         $this->connection('UNKNOWN_COMMAND')->dispatchCommand($this->command);
     }
 }

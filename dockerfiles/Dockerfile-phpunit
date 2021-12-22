@@ -1,17 +1,9 @@
-FROM alpine
-RUN apk add --update --no-cache \
-    tini \
-    curl \
-    git \
-    php7 \
-    php7-json \
-    php7-phar \
-    php7-mbstring \
-    php7-openssl \
-    php7-phpdbg \
-    php7-curl \
-    php7-dom \
-    php7-ctype \
-    php7-sockets \
-    php7-tokenizer
+FROM php:8.1-cli-alpine
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions \
+    && sync \
+    && install-php-extensions \
+    sockets \
+    pcov
+ENTRYPOINT ["/app/vendor/bin/phpunit"]
 WORKDIR /app

@@ -71,17 +71,15 @@ class ResponseParserExceptionTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception\CommandException
-     */
     public function testPeekInvalidSubject()
     {
+        $this->expectException(\Pheanstalk\Exception\CommandException::class);
         new Command\PeekCommand('invalid');
     }
 
-    /** @expectedException \InvalidArgumentException */
     public function testYamlResponseParseInvalidMode()
     {
+        $this->expectException(\InvalidArgumentException::class);
         new YamlResponseParser('test');
     }
 

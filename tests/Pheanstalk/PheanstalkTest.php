@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
  */
 class PheanstalkTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -71,11 +71,9 @@ class PheanstalkTest extends TestCase
         $this->assertEquals($pheanstalk->listTubesWatched(true), ['default']);
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception
-     */
     public function testIgnoreLastTube()
     {
+        $this->expectException(Exception::class);
         $pheanstalk = $this->getPheanstalk();
 
         $pheanstalk->ignore('default');
@@ -164,11 +162,9 @@ class PheanstalkTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Pheanstalk\Exception
-     */
     public function testPutJobTooBig()
     {
+        $this->expectException(Exception::class);
         $pheanstalk = $this->getPheanstalk();
 
         $pheanstalk->put(str_repeat('0', 0x10000));
