@@ -5,7 +5,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    container: alpine
+    container: ubuntu
     services:
       beanstalk:
         image: schickling/beanstalkd
