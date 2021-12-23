@@ -59,25 +59,26 @@ jobs:
       - uses: ahmadnassri/action-commit-lint@v1
         with:
           config: conventional
-  docs:
-    name: Docs
-    needs:
-      - release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          tools: phpDocumentor
-      - name: Generate docs
-        run: phpdoc run
-      - name: Deploy docs to pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+# Disabled, this should be moved to a separate CI workflow that triggers on a new tag.
+#  docs:
+#    name: Docs
+#    needs:
+#      - release
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Set up PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: '8.1'
+#          tools: phpDocumentor
+#      - name: Generate docs
+#        run: phpdoc run
+#      - name: Deploy docs to pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./docs
   release:
     name: Automated release
     needs:
@@ -94,6 +95,7 @@ jobs:
           npx
           -p "@semantic-release/commit-analyzer"
           -p "@semantic-release/release-notes-generator"
+          -p "@semantic-release/github"
           -p conventional-changelog-conventionalcommits
           -p semantic-release
           -- semantic-release 
