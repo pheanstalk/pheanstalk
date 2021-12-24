@@ -20,10 +20,10 @@ class ConnectionTest extends TestCase
     public function connectionProvider($test, $host = SERVER_HOST, $port = SERVER_PORT)
     {
         return [
-            'stream' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::STREAM))],
-            'fsockopen' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::FSOCKOPEN))],
-            'socket' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::SOCKET))],
-            'autodetect' => [new Connection(new SocketFactory($host, $port, 1, SocketFactory::AUTODETECT))]
+            'stream' => [new Connection(new SocketFactory($host, $port, 1, SocketImplementation::STREAM))],
+            'fsockopen' => [new Connection(new SocketFactory($host, $port, 1, SocketImplementation::FSOCKOPEN))],
+            'socket' => [new Connection(new SocketFactory($host, $port, 1, SocketImplementation::SOCKET))],
+            'autodetect' => [new Connection(new SocketFactory($host, $port, 1))]
         ];
     }
 
@@ -43,7 +43,7 @@ class ConnectionTest extends TestCase
     public function testConnectionFailsToIncorrectPort(Connection $connection)
     {
         $this->expectException(ConnectionException::class);
-        $command = new Command\UseCommand('test');
+        $command = new Command\UseCommand(new TubeName('test'));
         $connection->dispatchCommand($command);
     }
 
@@ -54,7 +54,7 @@ class ConnectionTest extends TestCase
     public function testConnectionFailsToIncorrectHost(Connection $connection)
     {
         $this->expectException(ConnectionException::class);
-        $command = new Command\UseCommand('test');
+        $command = new Command\UseCommand(new TubeName('test'));
         $connection->dispatchCommand($command);
     }
 
@@ -63,7 +63,7 @@ class ConnectionTest extends TestCase
      */
     public function testDispatchCommandSuccessful(Connection $connection)
     {
-        $command = new Command\UseCommand('test');
+        $command = new Command\UseCommand(new TubeName('test'));
         $response = $connection->dispatchCommand($command);
 
         self::markTestIncomplete("Doesn't actually test anything");

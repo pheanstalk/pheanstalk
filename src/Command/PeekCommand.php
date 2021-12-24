@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\CommandType;
 use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Exception;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\JobNotFoundExceptionParser;
+use Pheanstalk\Parser\JobParser;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
@@ -15,57 +17,31 @@ use Pheanstalk\Response\ArrayResponse;
  * The peek commands let the client inspect a job in the system. There are four
  * variations. All but the first (peek) operate only on the currently used tube.
  */
-class PeekCommand extends AbstractCommand implements ResponseParserInterface
+class PeekCommand extends AbstractCommand
 {
-    public const TYPE_ID = 'id';
-    public const TYPE_READY = 'ready';
-    public const TYPE_DELAYED = 'delayed';
-    public const TYPE_BURIED = 'buried';
-
-    private const SUBCOMMANDS = [
-        self::TYPE_READY,
-        self::TYPE_DELAYED,
-        self::TYPE_BURIED,
-    ];
-
-    /**
-     * @var string
-     */
-    private $subcommand;
-
-    public function __construct(string $peekSubject)
+    public function __construct(private readonly CommandType $type)
     {
-        if (in_array($peekSubject, self::SUBCOMMANDS, true)) {
-            $this->subcommand = $peekSubject;
-        } else {
-            throw new Exception\CommandException(sprintf(
-                'Invalid peek subject: %s',
-                $peekSubject
-            ));
+        if (!in_array($this->type, [CommandType::PEEK_BURIED, CommandType::PEEK_DELAYED, CommandType::PEEK_READY])) {
+            throw new \InvalidArgumentException("Unsupported command type: {$type->name} for PeekCommand");
         }
     }
 
     public function getCommandLine(): string
     {
-        return sprintf('peek-%s', $this->subcommand);
+        return $this->getType()->value;
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getResponseParser(): ResponseParserInterface
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            return $this->createResponse(ResponseInterface::RESPONSE_NOT_FOUND);
-        }
+        return new ChainedParser(
+            new JobNotFoundExceptionParser(),
+            new JobParser(ResponseType::FOUND),
 
-        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches) === 1) {
-            return $this->createResponse(
-                ResponseInterface::RESPONSE_FOUND,
-                [
-                    'id' => (int) $matches[1],
-                    'jobdata' => $responseData,
-                ]
-            );
-        }
+        );
+    }
 
-        throw new Exception\ServerException("Unexpected response");
+    public function getType(): CommandType
+    {
+        return $this->type;
     }
 }

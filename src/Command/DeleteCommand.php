@@ -4,32 +4,26 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\CommandType;
 use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Exception;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\EmptySuccessParser;
+use Pheanstalk\Parser\JobNotFoundExceptionParser;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'delete' command.
  * Permanently deletes an already-reserved job.
  */
-class DeleteCommand extends JobCommand implements ResponseParserInterface
+final class DeleteCommand extends JobCommand
 {
-    public function getCommandLine(): string
+    public function getType(): CommandType
     {
-        return 'delete ' . $this->jobId;
+        return CommandType::DELETE;
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getSuccessResponse(): ResponseType
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\JobNotFoundException(sprintf(
-                'Cannot delete job %u: %s',
-                $this->jobId,
-                $responseLine
-            ));
-        }
-
-        return $this->createResponse($responseLine);
+        return ResponseType::DELETED;
     }
 }

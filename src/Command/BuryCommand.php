@@ -4,47 +4,41 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Exception\UnsupportedResponseTypeException;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'bury' command.
  * Puts a job into a 'buried' state, revived only by 'kick' command.
  */
-class BuryCommand extends JobCommand implements ResponseParserInterface
+final class BuryCommand extends JobCommand
 {
-    private $priority;
-
-    public function __construct(JobIdInterface $job, int $priority)
+    public function __construct(JobIdInterface $jobId,
+        private readonly int $priority)
     {
-        parent::__construct($job);
-        $this->priority = $priority;
+        parent::__construct($jobId);
     }
 
     public function getCommandLine(): string
     {
-        return sprintf(
-            'bury %u %u',
-            $this->jobId,
-            $this->priority
-        );
+        return "bury {$this->jobId->getId()} {$this->priority}";
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+
+    public function getType(): CommandType
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\JobNotFoundException(sprintf(
-                '%s: Job %u is not reserved or does not exist.',
-                $responseLine,
-                $this->jobId
-            ));
-        } elseif ($responseLine === ResponseInterface::RESPONSE_BURIED) {
-            return $this->createResponse(ResponseInterface::RESPONSE_BURIED);
-        } else {
-            throw new Exception('Unhandled response: ' . $responseLine);
-        }
+        return CommandType::BURY;
+    }
+
+    public function getSuccessResponse(): ResponseType
+    {
+        return ResponseType::BURIED;
     }
 }

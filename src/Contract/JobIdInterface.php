@@ -7,5 +7,9 @@ namespace Pheanstalk\Contract;
 
 interface JobIdInterface
 {
-    public function getId(): int;
+    /**
+     * This is a string to support 64bit numbers on 32bit systems.
+     * @return string A numeric string representing the ID.
+     */
+    public function getId(): string;
 }

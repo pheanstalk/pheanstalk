@@ -35,6 +35,11 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-phpunit": "^1.0"
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Pheanstalk\\Tests": "tests/Pheanstalk"
+        }
+    },
     "autoload": {
         "psr-4": {
             "Pheanstalk\\": "src/"

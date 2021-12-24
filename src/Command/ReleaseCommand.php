@@ -4,60 +4,40 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Response\EmptySuccessResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'release' command.
  *
  * Releases a reserved job back onto the ready queue.
  */
-class ReleaseCommand extends JobCommand implements ResponseParserInterface
+class ReleaseCommand extends JobCommand
 {
-    private $priority;
-    private $delay;
-
-    public function __construct(JobIdInterface $job, int $priority, int $delay)
+    public function __construct(JobIdInterface $job, private readonly int $priority, private readonly int $delay)
     {
         parent::__construct($job);
-        $this->priority = $priority;
-        $this->delay = $delay;
     }
 
-    /* (non-phpdoc)
-     * @see Command::getCommandLine()
-     */
     public function getCommandLine(): string
     {
-        return sprintf(
-            'release %u %u %u',
-            $this->jobId,
-            $this->priority,
-            $this->delay
-        );
+        return "release {$this->jobId->getId()} {$this->priority} {$this->delay}";
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getType(): CommandType
     {
-        if ($responseLine === ResponseInterface::RESPONSE_BURIED) {
-            throw new Exception\ServerOutOfMemoryException(sprintf(
-                'Job %u %s: out of memory trying to grow data structure',
-                $this->jobId,
-                $responseLine
-            ));
-        }
+        return CommandType::RELEASE;
+    }
 
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\JobNotFoundException(sprintf(
-                'Job %u %s: does not exist or is not reserved by client',
-                $this->jobId,
-                $responseLine
-            ));
-        }
-
-        return $this->createResponse($responseLine);
+    public function getSuccessResponse(): ResponseType
+    {
+        return ResponseType::RELEASED;
     }
 }

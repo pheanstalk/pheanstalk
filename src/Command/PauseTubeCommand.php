@@ -4,54 +4,48 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\EmptySuccessParser;
+use Pheanstalk\Parser\TubeNotFoundExceptionParser;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseType;
+use Pheanstalk\TubeName;
 
 /**
  * The 'pause-tube' command.
  *
  * Temporarily prevent jobs being reserved from the given tube.
  */
-class PauseTubeCommand extends TubeCommand implements ResponseParserInterface
+class PauseTubeCommand extends TubeCommand
 {
     /**
-     * @var int
+     * @param int $delay Seconds before jobs may be reserved from this queue.
      */
-    private $delay;
-
-    /**
-     * @param string $tube  The tube to pause
-     * @param int    $delay Seconds before jobs may be reserved from this queue.
-     */
-    public function __construct(string $tube, int $delay)
+    public function __construct(TubeName $tube, private readonly int $delay)
     {
         parent::__construct($tube);
-        $this->delay = $delay;
     }
 
     public function getCommandLine(): string
     {
-        return sprintf(
-            'pause-tube %s %u',
-            $this->tube,
-            $this->delay
+        return "pause-tube {$this->tube} {$this->delay}";
+    }
+
+    public function getResponseParser(): ResponseParserInterface
+    {
+        return new ChainedParser(
+            new TubeNotFoundExceptionParser(),
+            new EmptySuccessParser(ResponseType::PAUSED)
         );
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getType(): CommandType
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            throw new Exception\ServerException(sprintf(
-                '%s: tube %s does not exist.',
-                $responseLine,
-                $this->tube
-            ));
-        } elseif ($responseLine === ResponseInterface::RESPONSE_PAUSED) {
-            return $this->createResponse(ResponseInterface::RESPONSE_PAUSED);
-        } else {
-            throw new Exception('Unhandled response: "' . $responseLine . '"');
-        }
+        return CommandType::PAUSE_TUBE;
     }
 }

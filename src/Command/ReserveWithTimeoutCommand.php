@@ -4,47 +4,51 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\EmptySuccessParser;
+use Pheanstalk\Parser\JobParser;
+use Pheanstalk\Parser\TimedOutExceptionParser;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Response\EmptySuccessResponse;
+use Pheanstalk\Response\RawDataResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'reserve' command.
  * Reserves/locks a ready job in a watched tube.
  */
-class ReserveWithTimeoutCommand extends AbstractCommand implements ResponseParserInterface
+class ReserveWithTimeoutCommand extends AbstractCommand
 {
-    private $timeout;
-
     /**
      * A timeout value of 0 will cause the server to immediately return either a
      * response or TIMED_OUT.  A positive value of timeout will limit the amount of
      * time the client will block on the reserve request until a job becomes
      * available.
+     * @param positive-int $timeout
      */
-    public function __construct(int $timeout)
+    public function __construct(private readonly int $timeout)
     {
-        $this->timeout = $timeout;
     }
 
     public function getCommandLine(): string
     {
-        return sprintf('reserve-with-timeout %s', $this->timeout);
+        return "reserve-with-timeout {$this->timeout}";
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getResponseParser(): ResponseParserInterface
     {
-        if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON
-            || $responseLine === ResponseInterface::RESPONSE_TIMED_OUT
-        ) {
-            return $this->createResponse($responseLine);
-        }
+        return new ChainedParser(
+            new EmptySuccessParser(ResponseType::TIMED_OUT),
+            new JobParser(ResponseType::RESERVED)
 
-        list($code, $id) = explode(' ', $responseLine);
-
-        return $this->createResponse($code, [
-            'id' => (int) $id,
-            'jobdata' => $responseData,
-        ]);
+        );
+    }
+    public function getType(): CommandType
+    {
+        return CommandType::RESERVE;
     }
 }

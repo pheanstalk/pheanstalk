@@ -9,6 +9,7 @@ use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\SocketException;
 use Pheanstalk\Socket\FsockopenSocket;
+use phpDocumentor\Reflection\Types\Void_;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
@@ -50,27 +51,20 @@ class PheanstalkTest extends TestCase
 
         $pheanstalk->useTube('test');
         Assert::assertEquals('test', $pheanstalk->listTubeUsed());
-        Assert::assertEquals('test', $pheanstalk->listTubeUsed(true));
     }
 
     public function testWatchlist()
     {
         $pheanstalk = $this->getPheanstalk();
 
-        Assert::assertEquals($pheanstalk->listTubesWatched(), ['default']);
-        Assert::assertEquals($pheanstalk->listTubesWatched(true), ['default']);
+        Assert::assertSame(['default'], $pheanstalk->listTubesWatched());
 
         $pheanstalk->watch('test');
-        Assert::assertEquals($pheanstalk->listTubesWatched(), ['default', 'test']);
-        Assert::assertEquals($pheanstalk->listTubesWatched(true), ['default', 'test']);
+        Assert::assertEquals(['default', 'test'], $pheanstalk->listTubesWatched());
 
         $pheanstalk->ignore('default');
-        Assert::assertEquals($pheanstalk->listTubesWatched(), ['test']);
-        Assert::assertEquals($pheanstalk->listTubesWatched(true), ['test']);
+        Assert::assertEquals(['test'], $pheanstalk->listTubesWatched());
 
-        $pheanstalk->watchOnly('default');
-        Assert::assertEquals($pheanstalk->listTubesWatched(), ['default']);
-        Assert::assertEquals($pheanstalk->listTubesWatched(true), ['default']);
     }
 
     public function testIgnoreLastTube()
@@ -83,32 +77,16 @@ class PheanstalkTest extends TestCase
 
     public function testPutReserveAndDeleteData()
     {
-        /** @var Pheanstalk $pheanstalk */
         $pheanstalk = $this->getPheanstalk();
 
         $putJob = $pheanstalk->put(__METHOD__);
 
         // reserve a job - can't assume it is the one just added
         $job = $pheanstalk->reserveWithTimeout(0);
-        \PHPUnit\Framework\Assert::assertNotNull($job);
+        Assert::assertNotNull($job);
         Assert::assertEquals($putJob->getId(), $job->getId());
 
 
-        // delete the reserved job
-        $pheanstalk->delete($job);
-
-        // put a job into an unused tube
-        $putJob = $pheanstalk->withUsedTube('test', function (Pheanstalk $pheanstalk) {
-            return $pheanstalk->put(__METHOD__);
-        });
-
-
-        // reserve a job from an unwatched tube - can't assume it is the one just added
-        $job = $pheanstalk->withWatchedTube('test', function (Pheanstalk $ph) {
-            return $ph->reserveWithTimeout(0);
-        });
-        \PHPUnit\Framework\Assert::assertNotNull($job);
-        Assert::assertEquals($putJob->getId(), $job->getId());
         // delete the reserved job
         $pheanstalk->delete($job);
     }
@@ -121,9 +99,9 @@ class PheanstalkTest extends TestCase
         $pheanstalk1->put(__METHOD__);
         $job = $pheanstalk1->reserve();
 
-        \PHPUnit\Framework\Assert::assertNull($pheanstalk2->reserveWithTimeout(0));
+        Assert::assertNull($pheanstalk2->reserveWithTimeout(0));
         $pheanstalk1->release($job);
-        \PHPUnit\Framework\Assert::assertNotNull($pheanstalk2->reserveWithTimeout(0));
+        Assert::assertNotNull($pheanstalk2->reserveWithTimeout(0));
     }
 
     public function testReleaseWithDelay()
@@ -134,14 +112,26 @@ class PheanstalkTest extends TestCase
         $pheanstalk1->put(__METHOD__);
         $job = $pheanstalk1->reserve();
 
-        \PHPUnit\Framework\Assert::assertNull($pheanstalk2->reserveWithTimeout(0));
+        Assert::assertNull($pheanstalk2->reserveWithTimeout(0));
         $pheanstalk1->release($job, 1, 1);
-        \PHPUnit\Framework\Assert::assertNull($pheanstalk2->reserveWithTimeout(0));
+        Assert::assertNull($pheanstalk2->reserveWithTimeout(0));
         sleep(2);
-        \PHPUnit\Framework\Assert::assertNotNull($pheanstalk2->reserveWithTimeout(0));
+        Assert::assertNotNull($pheanstalk2->reserveWithTimeout(0));
     }
 
+    /**
+     * @depends testStats
+     */
+    public function testPut(): void
+    {
+        $pheanstalk = $this->getPheanstalk();
 
+        $current = (int)$pheanstalk->stats()['current-jobs-ready'];
+
+        $pheanstalk->put('abc');
+        Assert::assertSame($current + 1, (int)$pheanstalk->stats()['current-jobs-ready']);
+
+    }
     public function testPutBuryAndKick()
     {
         $pheanstalk = $this->getPheanstalk();
@@ -202,83 +192,68 @@ class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
 
-        $putJob = $pheanstalk
-            ->useTube('testpeek')
-            ->watch('testpeek')
-            ->ignore('default')
-            ->put('test');
+        $pheanstalk->useTube('testpeek');
+        $pheanstalk->watch('testpeek');
+        $pheanstalk->ignore('default');
+        $putJob = $pheanstalk->put('test');
 
         $job = $pheanstalk->peek($putJob);
 
-        Assert::assertEquals($job->getData(), 'test');
+        Assert::assertEquals('test', $job->getData());
 
         // put job in an unused tube
-        $putJob = $pheanstalk->withUsedTube('testpeek2', function ($pheanstalk) {
-            return $pheanstalk->put('test2');
-        });
+        $pheanstalk->useTube('testpeek2');
+        $putJob2 =  $pheanstalk->put('test2');
 
-        $job = $pheanstalk->peek($putJob);
+        $job = $pheanstalk->peek($putJob2);
 
-        Assert::assertEquals($job->getData(), 'test2');
+        Assert::assertEquals('test2', $job->getData());
     }
 
     public function testPeekReady()
     {
         $pheanstalk = $this->getPheanstalk();
+        $pheanstalk->useTube('testpeekready');
+        $job = $pheanstalk->put('test');
 
-        $id = $pheanstalk
-            ->useTube('testpeekready')
-            ->watch('testpeekready')
-            ->ignore('default')
-            ->put('test');
+        $peekedJob = $pheanstalk->peekReady();
 
-        $job = $pheanstalk->peekReady();
-
-        Assert::assertEquals($job->getData(), 'test');
+        Assert::assertSame($job->getId(), $peekedJob->getId());
+        Assert::assertSame('test', $peekedJob->getData());
     }
 
     public function testPeekDelayed()
     {
         $pheanstalk = $this->getPheanstalk();
+        $pheanstalk->useTube('testpeekdelayed');
+        $job = $pheanstalk->put('test', 0, 2);
 
-        $id = $pheanstalk
-            ->useTube('testpeekdelayed')
-            ->watch('testpeekdelayed')
-            ->ignore('default')
-            ->put('test', 0, 2);
+        $peekedJob = $pheanstalk->peekDelayed();
 
-        $job = $pheanstalk->peekDelayed();
-
-        Assert::assertEquals($job->getData(), 'test');
+        Assert::assertSame($job->getId(), $peekedJob->getId());
+        Assert::assertSame('test', $peekedJob->getData());
     }
 
-    public function testPeekBuried()
+    public function testPeekBuried():void
     {
         $pheanstalk = $this->getPheanstalk();
+        $job = $pheanstalk->put('test', 0);
 
-        $putJob = $pheanstalk
-            ->useTube('testpeekburied')
-            ->watch('testpeekburied')
-            ->ignore('default')
-            ->put('test');
-
-        $job = $pheanstalk->reserve();
+        $pheanstalk->reserveJob($job);
         $pheanstalk->bury($job);
+        $peekedJob = $pheanstalk->peekBuried();
 
-        $job = $pheanstalk->peekBuried();
-
-        Assert::assertEquals($job->getData(), 'test');
+        Assert::assertSame($job->getId(), $peekedJob->getId());
+        Assert::assertSame('test', $peekedJob->getData());
     }
 
     public function testStatsJob()
     {
         $pheanstalk = $this->getPheanstalk();
 
-        $putJob = $pheanstalk
-            ->useTube('teststatsjob')
-            ->watch('teststatsjob')
-            ->ignore('default')
-            ->put('test');
+        $pheanstalk->useTube('teststatsjob');
+
+        $putJob = $pheanstalk->put('test');
 
         $stats = $pheanstalk->statsJob($putJob);
 
@@ -294,34 +269,7 @@ class PheanstalkTest extends TestCase
         Assert::assertEquals(0, $stats->kicks);
     }
 
-    public function testStatsJobWithJobObject()
-    {
-        $pheanstalk = $this->getPheanstalk();
-
-        $pheanstalk
-            ->useTube('teststatsjobwithjobobject')
-            ->watch('teststatsjobwithjobobject')
-            ->ignore('default')
-            ->put('test');
-
-        $job = $pheanstalk
-            ->reserve();
-
-        $stats = $pheanstalk->statsJob($job);
-
-        Assert::assertEquals($stats->id, $job->getId());
-        Assert::assertEquals($stats->tube, 'teststatsjobwithjobobject');
-        Assert::assertEquals($stats->state, 'reserved');
-        Assert::assertEquals($stats->pri, Pheanstalk::DEFAULT_PRIORITY);
-        Assert::assertEquals($stats->delay, Pheanstalk::DEFAULT_DELAY);
-        Assert::assertEquals($stats->ttr, Pheanstalk::DEFAULT_TTR);
-        Assert::assertEquals($stats->timeouts, 0);
-        Assert::assertEquals($stats->releases, 0);
-        Assert::assertEquals($stats->buries, 0);
-        Assert::assertEquals($stats->kicks, 0);
-    }
-
-    public function testStatsTube()
+    public function testStatsTube(): void
     {
         $pheanstalk = $this->getPheanstalk();
 
@@ -330,15 +278,15 @@ class PheanstalkTest extends TestCase
 
         $stats = $pheanstalk->statsTube($tube);
 
-        Assert::assertEquals($stats->name, $tube);
-        Assert::assertEquals($stats->current_jobs_reserved, '0');
+        Assert::assertEquals($tube, $stats->name, );
+        Assert::assertEquals('0', $stats->current_jobs_reserved);
     }
 
-    public function testStats()
+    public function testStats(): void
     {
         $pheanstalk = $this->getPheanstalk();
-
-        $stats = $pheanstalk->useTube('test-stats')->stats();
+        $pheanstalk->useTube('test-stats');
+        $stats = $pheanstalk->stats();
 
         $properties = ['pid', 'cmd_put', 'cmd_stats_job'];
         foreach ($properties as $property) {
@@ -358,53 +306,22 @@ class PheanstalkTest extends TestCase
         $tube = 'test-pause-tube';
         $pheanstalk = $this->getPheanstalk();
 
-        $pheanstalk
-            ->useTube($tube)
-            ->watch($tube)
-            ->ignore('default')
-            ->put(__METHOD__);
+        $pheanstalk->useTube($tube);
+        $pheanstalk->watch($tube);
+        $pheanstalk->ignore('default');
+        $pheanstalk->put(__METHOD__);
 
         // pause, expect no job from that queue
         $pheanstalk->pauseTube($tube, 60);
         $response = $pheanstalk->reserveWithTimeout(0);
 
-        \PHPUnit\Framework\Assert::assertNull($response);
+        Assert::assertNull($response);
 
         // resume, expect job
         $pheanstalk->resumeTube($tube);
         $response = $pheanstalk->reserveWithTimeout(0);
 
-        \PHPUnit\Framework\Assert::assertSame($response->getData(), __METHOD__);
-    }
-
-    public function testConnectionResetIfSocketExceptionIsThrown()
-    {
-        $sockets = [];
-
-        $sockets[0] = $this->getMockBuilder(SocketInterface::class)
-            ->getMock();
-
-        $sockets[1] = new FsockopenSocket(SERVER_HOST, 11300, 10);
-
-        $sockets[0]->expects(self::once())->method('write')->willThrowException(new SocketException('test'));
-
-        $socketFactory = new class($sockets) implements SocketFactoryInterface {
-            /**
-             * @param list<SocketInterface> $sockets
-             */
-            public function __construct(private array $sockets)
-            {
-            }
-
-            public function create(): SocketInterface
-            {
-                /** @phpstan-ignore-next-line */
-                return array_shift($this->sockets);
-            }
-        };
-
-        $pheanstalk = Pheanstalk::createWithFactory($socketFactory);
-        \PHPUnit\Framework\Assert::assertNotEmpty($pheanstalk->stats());
+        Assert::assertSame($response->getData(), __METHOD__);
     }
 
     // ----------------------------------------

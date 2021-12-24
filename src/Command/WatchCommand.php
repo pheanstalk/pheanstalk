@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Parser\EmptySuccessParser;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'watch' command.
  * Adds a tube to the watchlist to reserve jobs from.
  */
-class WatchCommand extends TubeCommand implements ResponseParserInterface
+class WatchCommand extends TubeCommand
 {
-    public function getCommandLine(): string
+    public function getType(): CommandType
     {
-        return 'watch ' . $this->tube;
+        return CommandType::WATCH;
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+
+    public function getResponseParser(): ResponseParserInterface
     {
-        return $this->createResponse('WATCHING', [
-            'count' => preg_replace('#^WATCHING (.+)$#', '$1', $responseLine),
-        ]);
+        return new EmptySuccessParser(ResponseType::WATCHING);
     }
 }

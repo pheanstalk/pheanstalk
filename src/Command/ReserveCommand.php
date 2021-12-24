@@ -4,33 +4,37 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\DeadlineSoonExceptionParser;
+use Pheanstalk\Parser\JobParser;
+use Pheanstalk\Parser\TimedOutExceptionParser;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'reserve' command.
  *
  * Reserves/locks a ready job in a watched tube.
  */
-class ReserveCommand extends AbstractCommand implements ResponseParserInterface
+class ReserveCommand extends AbstractCommand
 {
-    public function getCommandLine(): string
+    public function getResponseParser(): ResponseParserInterface
     {
-        return 'reserve';
+        return new ChainedParser(
+            new DeadlineSoonExceptionParser(),
+            new TimedOutExceptionParser(),
+            new JobParser(ResponseType::RESERVED)
+        );
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
-    {
-        if ($responseLine === ResponseInterface::RESPONSE_DEADLINE_SOON) {
-            throw new DeadlineSoonException();
-        }
 
-        list($code, $id) = explode(' ', $responseLine);
-        return $this->createResponse($code, [
-            'id' => (int) $id,
-            'jobdata' => $responseData,
-        ]);
+    public function getType(): CommandType
+    {
+        return CommandType::RESERVE;
     }
 }

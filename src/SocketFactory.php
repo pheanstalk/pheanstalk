@@ -7,58 +7,44 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\NoImplementationException;
 use Pheanstalk\Socket\FsockopenSocket;
 use Pheanstalk\Socket\SocketSocket;
 use Pheanstalk\Socket\StreamSocket;
 
 class SocketFactory implements SocketFactoryInterface
 {
-    public const AUTODETECT = 0;
-    public const STREAM = 1;
-    public const SOCKET = 2;
-    public const FSOCKOPEN = 3;
-
     private $timeout;
     private $host;
     private $port;
-    /** @var int */
-    private $implementation;
+    private readonly SocketImplementation $implementation;
 
-    public function __construct(string $host, int $port, int $timeout = 10, $implementation = self::AUTODETECT)
+    public function __construct(string $host, int $port, int $timeout = 10, null|SocketImplementation $implementation = null)
     {
         $this->host = $host;
         $this->port = $port;
         $this->timeout = $timeout;
-        $this->setImplementation($implementation);
+
+        $this->implementation = $implementation ?? $this->detectImplementation();
     }
 
-    public function getImplementation(): int
+    private function detectImplementation(): SocketImplementation
     {
-        return $this->implementation;
-    }
-
-    public function setImplementation(int $implementation)
-    {
-        if ($implementation === self::AUTODETECT) {
-            // Prefer socket
-            if (extension_loaded('sockets')) {
-                $this->implementation = self::SOCKET;
-                return;
-            }
-
-            // Then fall back to stream
-            if (function_exists('stream_socket_client')) {
-                $this->implementation = self::STREAM;
-                return;
-            }
-
-            // Then fall back to fsockopen
-            if (function_exists('fsockopen')) {
-                $this->implementation = self::FSOCKOPEN;
-            }
-        } else {
-            $this->implementation = $implementation;
+        // Prefer socket
+        if (extension_loaded('sockets')) {
+            return SocketImplementation::SOCKET;
         }
+
+        // Then fall back to stream
+        if (function_exists('stream_socket_client')) {
+            return SocketImplementation::STREAM;
+        }
+
+        // Then fall back to fsockopen
+        if (function_exists('fsockopen')) {
+            return SocketImplementation::FSOCKOPEN;
+        }
+        throw new NoImplementationException();
     }
 
     private function createStreamSocket(): StreamSocket
@@ -82,15 +68,10 @@ class SocketFactory implements SocketFactoryInterface
      */
     public function create(): SocketInterface
     {
-        switch ($this->implementation) {
-            case self::SOCKET:
-                return $this->createSocketSocket();
-            case self::STREAM:
-                return $this->createStreamSocket();
-            case self::FSOCKOPEN:
-                return $this->createFsockopenSocket();
-            default:
-                throw new \RuntimeException("Unknown implementation");
-        }
+        return match ($this->implementation) {
+            SocketImplementation::SOCKET => $this->createSocketSocket(),
+            SocketImplementation::STREAM => $this->createStreamSocket(),
+            SocketImplementation::FSOCKOPEN => $this->createFsockopenSocket()
+        };
     }
 }

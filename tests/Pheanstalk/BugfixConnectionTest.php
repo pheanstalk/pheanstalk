@@ -64,10 +64,9 @@ class BugfixConnectionTest extends TestCase
         $pheanstalk = Pheanstalk::create(SERVER_HOST);
         $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));
 
-        $pheanstalk
-            ->useTube($tube)
-            ->watch($tube)
-            ->ignore('default');
+        $pheanstalk->useTube($tube);
+        $pheanstalk->watch($tube);
+        $pheanstalk->ignore('default');
 
         while (null !== $job = $pheanstalk->peekDelayed()) {
             $pheanstalk->delete($job);

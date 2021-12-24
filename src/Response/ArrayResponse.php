@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pheanstalk\Response;
 
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\ResponseType;
 
 /**
  * A response with an ArrayObject interface to key => value data.
@@ -13,21 +14,14 @@ use Pheanstalk\Contract\ResponseInterface;
  */
 class ArrayResponse extends \ArrayObject implements ResponseInterface
 {
-    private $name;
-
-    /**
-     * @param string $name
-     * @param array  $data
-     */
-    public function __construct(string $name, array $data)
+    public function __construct(private ResponseType $responseType, array $data)
     {
-        $this->name = $name;
         parent::__construct($data);
     }
 
-    public function getResponseName(): string
+    public function getResponseType(): ResponseType
     {
-        return $this->name;
+        return $this->responseType;
     }
 
     /**

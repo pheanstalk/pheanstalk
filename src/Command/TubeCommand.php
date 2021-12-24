@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\TubeName;
+
 /**
  * A command that is executed against a tube
  */
 abstract class TubeCommand extends AbstractCommand
 {
-    protected $tube;
-
-    public function __construct(string $tube)
+    public function __construct(protected readonly TubeName $tube)
     {
-        $this->tube = $tube;
+    }
+    public function getCommandLine(): string
+    {
+        return "{$this->getType()->value} {$this->tube}";
     }
 }

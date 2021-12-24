@@ -6,13 +6,20 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseInterface;
+use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ClientException;
+use Pheanstalk\Exception\CommandException;
 use Pheanstalk\Exception\ServerBadFormatException;
 use Pheanstalk\Exception\ServerDrainingException;
 use Pheanstalk\Exception\ServerInternalErrorException;
 use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
+use Pheanstalk\Exception\SocketException;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\CommandParser;
+use Pheanstalk\Parser\GlobalExceptionParser;
 use Pheanstalk\Response\ArrayResponse;
 
 /**
@@ -21,46 +28,32 @@ use Pheanstalk\Response\ArrayResponse;
  */
 class Connection
 {
-    public const CRLF = "\r\n";
-    public const CRLF_LENGTH = 2;
-    public const DEFAULT_CONNECT_TIMEOUT = 2;
+    private const CRLF = "\r\n";
+    private const CRLF_LENGTH = 2;
 
-    // responses which are global errors, mapped to their exception classes
-    private static $errorResponses = [
-        ResponseInterface::RESPONSE_OUT_OF_MEMORY => ServerOutOfMemoryException::class,
-        ResponseInterface::RESPONSE_INTERNAL_ERROR => ServerInternalErrorException::class,
-        ResponseInterface::RESPONSE_DRAINING => ServerDrainingException::class,
-        ResponseInterface::RESPONSE_BAD_FORMAT => ServerBadFormatException::class,
-        ResponseInterface::RESPONSE_UNKNOWN_COMMAND => ServerUnknownCommandException::class,
-    ];
-
-    // responses which are followed by data
-    private static $dataResponses = [
-        ResponseInterface::RESPONSE_RESERVED,
-        ResponseInterface::RESPONSE_FOUND,
-        ResponseInterface::RESPONSE_OK,
-    ];
-
-    /**
-     * @var SocketFactoryInterface
-     */
-    private $factory;
-
-    /**
-     * @var ?SocketInterface
-     */
-    private $socket;
-
-    public function __construct(SocketFactoryInterface $factory)
+    private SocketInterface|null $socket;
+    private readonly ResponseParserInterface $parser;
+    public function __construct(
+        private readonly SocketFactoryInterface $factory,
+        null|ResponseParserInterface $parser = null
+    )
     {
-        $this->factory = $factory;
+        if (isset($parser)) {
+            $this->parser = $parser;
+        } else {
+            // Construct the parser.
+            $this->parser = new ChainedParser(
+                new GlobalExceptionParser(),
+                new CommandParser()
+            );
+        }
     }
 
     /**
      * Disconnect the socket.
      * Subsequent socket operations will create a new connection.
      */
-    public function disconnect()
+    public function disconnect(): void
     {
         if (isset($this->socket)) {
             $this->socket->disconnect();
@@ -68,64 +61,64 @@ class Connection
         }
     }
 
-    /**
-     * @throws Exception\ClientException
-     */
-    public function dispatchCommand(CommandInterface $command): ArrayResponse
+    private function readData(SocketInterface $socket, int $length): string
+    {
+        $result = $socket->read($length);
+        if ($socket->read(self::CRLF_LENGTH) !== self::CRLF) {
+            throw new Exception\ClientException(sprintf(
+                'Expected %u bytes of CRLF after %u bytes of data',
+                self::CRLF_LENGTH,
+                $length
+            ));
+        }
+        return $result;
+    }
+
+
+    private function sendCommand(CommandInterface $command): void
     {
         $socket = $this->getSocket();
-
         $to_send = $command->getCommandLine() . self::CRLF;
-
         if ($command->hasData()) {
             $to_send .= $command->getData() . self::CRLF;
         }
-
         $socket->write($to_send);
+    }
 
+    /**
+     * @throws Exception\ClientException
+     */
+    public function dispatchCommand(CommandInterface $command): ResponseInterface
+    {
+        $this->sendCommand($command);
+        $socket = $this->getSocket();
+
+        // This is always a simple line consisting of a response type name and 0 - 2 optional numerical arguments.
         $responseLine = $socket->getLine();
-        $responseName = preg_replace('#^(\S+).*$#s', '$1', $responseLine);
+        $responseParts = explode(' ' , $responseLine);
+        $responseType = ResponseType::from(array_shift($responseParts));
 
-        if (isset(self::$errorResponses[$responseName])) {
-            $exceptionClass = self::$errorResponses[$responseName];
 
-            throw new $exceptionClass(sprintf(
-                "%s in response to '%s'",
-                $responseName,
-                $command->getCommandLine()
-            ));
+        if ($responseType->hasData()) {
+            $dataLength = array_pop($responseParts);
+            $data = $this->readData($socket, (int)$dataLength);
         }
 
-        if (in_array($responseName, self::$dataResponses, true)) {
-            $dataLength = preg_replace('#^.*\b(\d+)$#', '$1', $responseLine);
-            $data = $socket->read((int) $dataLength);
-            $crlf = $socket->read(self::CRLF_LENGTH);
-            if ($crlf !== self::CRLF) {
-                throw new Exception\ClientException(sprintf(
-                    'Expected %u bytes of CRLF after %u bytes of data',
-                    self::CRLF_LENGTH,
-                    $dataLength
-                ));
-            }
-        } else {
-            $data = null;
+        $result = $this->parser->parseResponse($command, $responseType, $responseParts, $data ?? null);
+        if (!isset($result)) {
+            // Failed to parse.
+            throw new ClientException('Failed to parse response: ' . $responseLine);
         }
-
-        return $command
-            ->getResponseParser()
-            ->parseResponse($responseLine, $data);
+        return $result;
     }
 
     // ----------------------------------------
 
     /**
      * Socket handle for the connection to beanstalkd.
-     *
      * @throws Exception\ConnectionException
-     *
-     * @return SocketInterface
      */
-    private function getSocket()
+    private function getSocket(): SocketInterface
     {
         if (!isset($this->socket)) {
             $this->socket = $this->factory->create();

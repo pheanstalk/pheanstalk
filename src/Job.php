@@ -16,33 +16,20 @@ class Job implements JobIdInterface
     public const STATUS_DELAYED = 'delayed';
     public const STATUS_BURIED = 'buried';
 
-    /**
-     * @var int
-     */
-    private $id;
-    /**
-     * @var string
-     */
-    private $data;
-
-    /**
-     * @param int    $id   The job ID
-     * @param string $data The job data
-     */
-    public function __construct(int $id, string $data)
+    private readonly JobIdInterface $id;
+    public function __construct(
+        JobIdInterface|int|string $id,
+        private readonly string $data)
     {
-        $this->id = $id;
-        $this->data = $data;
+        $this->id = new JobId($id);
     }
 
     /**
      * The job ID, unique on the beanstalkd server.
-     *
-     * @return int
      */
-    public function getId(): int
+    public function getId(): string
     {
-        return $this->id;
+        return $this->id->getId();
     }
 
     /**

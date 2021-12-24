@@ -12,17 +12,24 @@ use Pheanstalk\Contract\JobIdInterface;
  */
 class JobId implements JobIdInterface
 {
-    private $id;
+    private readonly string $id;
 
-    public function __construct(int $id)
+    public function __construct(int|string|JobIdInterface $id)
     {
-        if ($id < 0) {
-            throw new \InvalidArgumentException('Id must be >= 0');
+        if ($id instanceof JobIdInterface) {
+            $this->id = $id->getId();
+            return;
         }
-        $this->id = $id;
+
+        if (is_string($id) && preg_match('/^\d+$/', $id) !== 1
+            || is_int($id) && $id < 0
+        ) {
+            throw new \InvalidArgumentException('Id must a numeric string or an integer with value >= 0');
+        }
+        $this->id = (string)$id;
     }
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }

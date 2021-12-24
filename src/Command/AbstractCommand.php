@@ -8,6 +8,7 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\CommandException;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * Common functionality for Command implementations.
@@ -29,19 +30,16 @@ abstract class AbstractCommand implements CommandInterface
         throw new CommandException('Command has no data');
     }
 
-    public function getResponseParser(): ResponseParserInterface
-    {
-        if ($this instanceof ResponseParserInterface) {
-            return $this;
-        }
-        throw new \RuntimeException('Concrete implementation must implement `ResponseParser` or override this method');
-    }
-
     /**
      * Creates a Response for the given data.
      */
-    protected function createResponse(string $name, array $data = []): ArrayResponse
+    protected function createResponse(ResponseType $responseType, array $data = []): ArrayResponse
     {
-        return new ArrayResponse($name, $data);
+        return new ArrayResponse($responseType, $data);
+    }
+
+    public function getCommandLine(): string
+    {
+        return $this->getType()->value;
     }
 }

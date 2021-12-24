@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
 use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\YamlResponseParser;
+use Pheanstalk\Parser\YamlListParser;
 
 /**
  * The 'list-tubes-watched' command.
@@ -14,13 +15,13 @@ use Pheanstalk\YamlResponseParser;
  */
 class ListTubesWatchedCommand extends AbstractCommand
 {
-    public function getCommandLine(): string
-    {
-        return 'list-tubes-watched';
-    }
-
     public function getResponseParser(): ResponseParserInterface
     {
-        return new YamlResponseParser(YamlResponseParser::MODE_LIST);
+        return new YamlListParser();
+    }
+
+    public function getType(): CommandType
+    {
+        return CommandType::LIST_TUBES_WATCHED;
     }
 }

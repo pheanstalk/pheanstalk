@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\ExceptionParser;
+use Pheanstalk\Parser\JobParser;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'put' command.
@@ -15,13 +19,8 @@ use Pheanstalk\Response\ArrayResponse;
  *
  * @see UseCommand
  */
-class PutCommand extends AbstractCommand implements ResponseParserInterface
+class PutCommand extends AbstractCommand
 {
-    private $data;
-    private $priority;
-    private $delay;
-    private $ttr;
-
     /**
      * Puts a job on the queue.
      *
@@ -30,23 +29,13 @@ class PutCommand extends AbstractCommand implements ResponseParserInterface
      * @param int    $delay    Seconds to wait before job becomes ready
      * @param int    $ttr      Time To Run: seconds a job can be reserved for
      */
-    public function __construct(string $data, int $priority, int $delay, int $ttr)
+    public function __construct(private readonly string $data, private readonly int $priority, private readonly int $delay, private readonly int $ttr)
     {
-        $this->data = $data;
-        $this->priority = $priority;
-        $this->delay = $delay;
-        $this->ttr = $ttr;
     }
 
     public function getCommandLine(): string
     {
-        return sprintf(
-            'put %u %u %u %u',
-            $this->priority,
-            $this->delay,
-            $this->ttr,
-            $this->getDataLength()
-        );
+        return "put {$this->priority} {$this->delay} {$this->ttr} {$this->getDataLength()}";
     }
 
     public function hasData(): bool
@@ -64,37 +53,20 @@ class PutCommand extends AbstractCommand implements ResponseParserInterface
         return mb_strlen($this->data, '8bit');
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getResponseParser(): ResponseParserInterface
     {
-        if (preg_match('#^INSERTED (\d+)$#', $responseLine, $matches) === 1) {
-            return $this->createResponse('INSERTED', [
-                'id' => (int) $matches[1],
-            ]);
-        } elseif (preg_match('#^BURIED (\d)+$#', $responseLine, $matches) === 1) {
-            throw new Exception\ServerOutOfMemoryException(sprintf(
-                '%s: server ran out of memory trying to grow the priority queue data structure.',
-                $responseLine
-            ));
-        } elseif (preg_match('#^JOB_TOO_BIG$#', $responseLine) === 1) {
-            throw new Exception\JobTooBigException(sprintf(
-                '%s: job data exceeds server-enforced limit',
-                $responseLine
-            ));
-        } elseif (preg_match('#^EXPECTED_CRLF#', $responseLine) === 1) {
-            throw new Exception\ClientBadFormatException(sprintf(
-                '%s: CRLF expected',
-                $responseLine
-            ));
-        } elseif (preg_match('#^DRAINING#', $responseLine) === 1) {
-            throw new Exception\ServerDrainingException(sprintf(
-                '%s: server is in drain mode and no longer accepting new jobs',
-                $responseLine
-            ));
-        } else {
-            throw new Exception(sprintf(
-                'Unhandled response: %s',
-                $responseLine
-            ));
-        }
+        return new ChainedParser(
+            new ExceptionParser(ResponseType::BURIED, new Exception\JobBuriedException()),
+            new ExceptionParser(ResponseType::EXPECTED_CRLF, new Exception\ExpectedCrlfException()),
+            new ExceptionParser(ResponseType::DRAINING, new Exception\ServerDrainingException()),
+            new ExceptionParser(ResponseType::JOB_TOO_BIG, new Exception\JobTooBigException()),
+            new JobParser(ResponseType::INSERTED),
+
+        );
+    }
+
+    public function getType(): CommandType
+    {
+        return CommandType::PUT;
     }
 }

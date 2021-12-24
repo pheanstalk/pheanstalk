@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\TubeNotFoundExceptionParser;
+use Pheanstalk\Parser\YamlDictionaryParser;
+use Pheanstalk\Parser\YamlListParser;
 use Pheanstalk\YamlResponseParser;
 
 /**
@@ -14,13 +19,19 @@ class StatsTubeCommand extends TubeCommand
 {
     public function getCommandLine(): string
     {
-        return sprintf('stats-tube %s', $this->tube);
+        return "stats-tube {$this->tube}";
     }
 
     public function getResponseParser(): \Pheanstalk\Contract\ResponseParserInterface
     {
-        return new YamlResponseParser(
-            YamlResponseParser::MODE_DICT
+        return new ChainedParser(
+            new TubeNotFoundExceptionParser(),
+            new YamlDictionaryParser()
         );
+    }
+
+    public function getType(): CommandType
+    {
+        return CommandType::STATS_TUBE;
     }
 }

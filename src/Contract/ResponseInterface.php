@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
+use Pheanstalk\ResponseType;
+
 /**
  * A response from the beanstalkd server.
- *
- * @author  Paul Annesley
  */
-interface ResponseInterface extends \ArrayAccess, \Traversable
+interface ResponseInterface
 {
     // global error responses
     public const RESPONSE_OUT_OF_MEMORY = 'OUT_OF_MEMORY';
@@ -38,9 +38,5 @@ interface ResponseInterface extends \ArrayAccess, \Traversable
     public const RESPONSE_TOUCHED = 'TOUCHED';
     public const RESPONSE_PAUSED = 'PAUSED';
 
-    /**
-     * The name of the response.
-     * @return string
-     */
-    public function getResponseName(): string;
+    public function getResponseType(): ResponseType;
 }

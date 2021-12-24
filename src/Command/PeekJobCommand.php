@@ -4,44 +4,39 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\JobNotFoundExceptionParser;
+use Pheanstalk\Parser\JobParser;
 use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\ResponseType;
 
 /**
  * The 'peek' command.
  *
  * The peek command let the client inspect a specific job in the system.
  */
-class PeekJobCommand extends JobCommand implements ResponseParserInterface
+final class PeekJobCommand extends JobCommand
 {
-    public function getCommandLine(): string
+    public function getResponseParser(): ResponseParserInterface
     {
-        return sprintf('peek %u', $this->jobId);
+        return new ChainedParser(
+            new JobNotFoundExceptionParser(),
+            new JobParser($this->getSuccessResponse())
+        );
     }
 
-    public function parseResponse(string $responseLine, ?string $responseData): ArrayResponse
+    public function getType(): CommandType
     {
-        if ($responseLine === ResponseInterface::RESPONSE_NOT_FOUND) {
-            $message = sprintf(
-                '%s: Job %u does not exist.',
-                $responseLine,
-                $this->jobId
-            );
-            throw new Exception\JobNotFoundException($message);
-        }
+        return CommandType::PEEK;
+    }
 
-        if (preg_match('#^FOUND (\d+) \d+$#', $responseLine, $matches) === 1) {
-            return $this->createResponse(
-                ResponseInterface::RESPONSE_FOUND,
-                [
-                    'id' => (int) $matches[1],
-                    'jobdata' => $responseData,
-                ]
-            );
-        }
-
-        throw new Exception\ServerException("Unexpected response: " . $responseLine);
+    public function getSuccessResponse(): ResponseType
+    {
+        return ResponseType::FOUND;
     }
 }

@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\CommandType;
 use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Parser\ChainedParser;
+use Pheanstalk\Parser\JobNotFoundExceptionParser;
+use Pheanstalk\Parser\YamlDictionaryParser;
+use Pheanstalk\ResponseType;
 use Pheanstalk\YamlResponseParser;
 
 /**
@@ -14,13 +19,21 @@ use Pheanstalk\YamlResponseParser;
  */
 class StatsJobCommand extends JobCommand
 {
-    public function getCommandLine(): string
-    {
-        return sprintf('stats-job %u', $this->jobId);
-    }
-
     public function getResponseParser(): ResponseParserInterface
     {
-        return new YamlResponseParser(YamlResponseParser::MODE_DICT);
+        return new ChainedParser(
+            new JobNotFoundExceptionParser(),
+            new YamlDictionaryParser(),
+        );
+    }
+
+    public function getType(): CommandType
+    {
+        return CommandType::STATS_JOB;
+    }
+
+    public function getSuccessResponse(): ResponseType
+    {
+        return ResponseType::OK;
     }
 }

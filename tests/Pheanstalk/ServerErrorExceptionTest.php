@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ServerBadFormatException;
-use Pheanstalk\Exception\ServerDrainingException;
 use Pheanstalk\Exception\ServerInternalErrorException;
 use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
@@ -18,11 +18,11 @@ use PHPUnit\Framework\TestCase;
  */
 class ServerErrorExceptionTest extends TestCase
 {
-    private $command;
+    private CommandInterface $command;
 
     protected function setUp(): void
     {
-        $this->command = new Command\UseCommand('tube5');
+        $this->command = new Command\UseCommand(new TubeName('tube5'));
     }
 
     /**
@@ -59,12 +59,6 @@ class ServerErrorExceptionTest extends TestCase
     {
         $this->expectException(ServerInternalErrorException::class);
         $this->connection('INTERNAL_ERROR')->dispatchCommand($this->command);
-    }
-
-    public function testCommandsHandleDraining()
-    {
-        $this->expectException(ServerDrainingException::class);
-        $this->connection('DRAINING')->dispatchCommand($this->command);
     }
 
     public function testCommandsHandleBadFormat()

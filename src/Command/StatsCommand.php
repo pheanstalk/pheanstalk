@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\YamlResponseParser;
+use Pheanstalk\CommandType;
+use Pheanstalk\Parser\YamlDictionaryParser;
 
 /**
  * The 'stats' command.
@@ -13,15 +14,13 @@ use Pheanstalk\YamlResponseParser;
  */
 class StatsCommand extends AbstractCommand
 {
-    public function getCommandLine(): string
-    {
-        return 'stats';
-    }
-
     public function getResponseParser(): \Pheanstalk\Contract\ResponseParserInterface
     {
-        return new YamlResponseParser(
-            YamlResponseParser::MODE_DICT
-        );
+        return new YamlDictionaryParser();
+    }
+
+    public function getType(): CommandType
+    {
+        return CommandType::STATS;
     }
 }
