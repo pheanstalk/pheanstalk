@@ -3,7 +3,13 @@
         "enabled": true,
         "actions": [
             {
-                "action": "\\Ramsey\\CaptainHook\\ValidateConventionalCommit"
+                "action": "\\Ramsey\\CaptainHook\\ValidateConventionalCommit",
+                "options": {
+                    "config": {
+                        "types": ["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
+                    }
+                }
+
             }
         ]
     },

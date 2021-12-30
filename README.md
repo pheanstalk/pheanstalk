@@ -7,6 +7,14 @@ Pheanstalk
 [![Code Coverage](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/pheanstalk/pheanstalk/?branch=master)
 [![Build Status](https://travis-ci.org/pheanstalk/pheanstalk.svg?branch=master)](https://travis-ci.org/pheanstalk/pheanstalk)
 
+Pheanstalk 5 is a pure PHP8.1+ client for use with [beanstalkd workqueue][1] versions 1.12 and later. In 2021 / 2022 it
+was completely rewritten from scratch with the following goals in mind:
+- Fully typed
+- Passing the strict rule set for static analysis using PHPStan
+- Splitting the different roles into separate parts
+
+Version 5 is still a WIP.
+
 Pheanstalk is a pure PHP 7.1+ client for the [beanstalkd workqueue][1].  It has
 been actively developed, and used in production by many, since late 2008.
 

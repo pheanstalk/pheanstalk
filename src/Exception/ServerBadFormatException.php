@@ -9,4 +9,8 @@ namespace Pheanstalk\Exception;
  */
 class ServerBadFormatException extends ServerException
 {
+    public function __construct(string $commandLine)
+    {
+        parent::__construct("Bad format for command {$commandLine}");
+    }
 }

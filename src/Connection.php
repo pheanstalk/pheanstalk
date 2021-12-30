@@ -67,18 +67,7 @@ class Connection
     }
 
 
-    private function sendCommand(CommandInterface $command): void
-    {
-        $socket = $this->getSocket();
-        $buffer = $command->getCommandLine() . self::CRLF;
-        if ($command instanceof CommandWithDataInterface) {
-            $buffer .= $command->getData() . self::CRLF;
-        }
-
-        $socket->write($buffer);
-    }
-
-    private function readRawResponse(): RawResponse
+    private function readRawResponse(string $commandLine): RawResponse
     {
         $socket = $this->getSocket();
 
@@ -104,7 +93,7 @@ class Connection
         return match ($responseType) {
             ResponseType::OutOfMemory => throw new ServerOutOfMemoryException(),
             ResponseType::InternalError => throw new ServerInternalErrorException(),
-            ResponseType::BadFormat => throw new ServerBadFormatException(),
+            ResponseType::BadFormat => throw new ServerBadFormatException($commandLine),
             ResponseType::UnknownCommand => throw new ServerUnknownCommandException(),
             default => new RawResponse($responseType, array_pop($responseParts), $data ?? null)
         };
@@ -112,8 +101,15 @@ class Connection
 
     public function dispatchCommand(CommandInterface $command): RawResponse
     {
-        $this->sendCommand($command);
-        return $this->readRawResponse();
+        $socket = $this->getSocket();
+        $commandLine = $command->getCommandLine();
+        $buffer = $commandLine . self::CRLF;
+        if ($command instanceof CommandWithDataInterface) {
+            $buffer .= $command->getData() . self::CRLF;
+        }
+
+        $socket->write($buffer);
+        return $this->readRawResponse($commandLine);
     }
 
     /**
