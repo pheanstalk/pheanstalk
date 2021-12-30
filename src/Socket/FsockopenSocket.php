@@ -21,9 +21,10 @@ class FsockopenSocket extends FileSocket
             throw new \Exception('Fsockopen not found');
         }
 
-        $this->socket = @fsockopen($host, $port, $error, $errorMessage, $connectTimeout);
-        if ($this->socket === false) {
+        $socket = @fsockopen($host, $port, $error, $errorMessage, $connectTimeout);
+        if ($socket === false) {
             throw new ConnectionException($error, $errorMessage);
         }
+        $this->socket = $socket;
     }
 }

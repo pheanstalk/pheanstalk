@@ -4,34 +4,35 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\TubeNotFoundExceptionParser;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\TubeNotFoundException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\JobStats;
 use Pheanstalk\Parser\YamlDictionaryParser;
-use Pheanstalk\Parser\YamlListParser;
-use Pheanstalk\YamlResponseParser;
+use Pheanstalk\RawResponse;
+use Pheanstalk\ResponseType;
+use Pheanstalk\TubeStats;
 
 /**
  * The 'stats-tube' command.
  * Gives statistical information about the specified tube if it exists.
  */
-class StatsTubeCommand extends TubeCommand
+final class StatsTubeCommand extends TubeCommand
 {
-    public function getCommandLine(): string
+    public function interpret(RawResponse $response): TubeStats
     {
-        return "stats-tube {$this->tube}";
+        if ($response->type === ResponseType::Ok && isset($response->data)) {
+            return TubeStats::fromBeanstalkArray((new YamlDictionaryParser())->parse($response->data));
+        }
+        return match ($response->type) {
+            ResponseType::NotFound => throw new TubeNotFoundException(),
+            ResponseType::Ok => throw MalformedResponseException::expectedData(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getResponseParser(): \Pheanstalk\Contract\ResponseParserInterface
+    protected function getCommandTemplate(): string
     {
-        return new ChainedParser(
-            new TubeNotFoundExceptionParser(),
-            new YamlDictionaryParser()
-        );
-    }
-
-    public function getType(): CommandType
-    {
-        return CommandType::STATS_TUBE;
+        return "stats-tube {tube}";
     }
 }

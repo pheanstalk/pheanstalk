@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
 use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Parser\EmptySuccessParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
@@ -19,25 +17,26 @@ use Pheanstalk\ResponseType;
  * If there are buried jobs, it will kick up to $max of them.
  * Otherwise, it will kick up to $max delayed jobs.
  */
-class KickCommand extends AbstractCommand
+final class KickCommand implements CommandInterface
 {
     public function __construct(private int $max)
     {
     }
-
-    public function getResponseParser(): ResponseParserInterface
-    {
-        return new EmptySuccessParser(ResponseType::KICKED);
-    }
-
 
     public function getCommandLine(): string
     {
         return "kick {$this->max}";
     }
 
-    public function getType(): CommandType
-    {
-        return CommandType::KICK;
+    public function interpret(
+        RawResponse $response
+    ): int {
+        if ($response->type === ResponseType::Kicked && is_int($response->argument)) {
+            return $response->argument;
+        }
+        return match ($response->type) {
+            ResponseType::Kicked => throw MalformedResponseException::expectedIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type),
+        };
     }
 }

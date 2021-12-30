@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\CommandWithDataInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\ExceptionParser;
-use Pheanstalk\Parser\JobParser;
+use Pheanstalk\JobId;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
@@ -19,7 +18,7 @@ use Pheanstalk\ResponseType;
  *
  * @see UseCommand
  */
-class PutCommand extends AbstractCommand
+final class PutCommand implements CommandInterface, CommandWithDataInterface
 {
     /**
      * Puts a job on the queue.
@@ -38,35 +37,30 @@ class PutCommand extends AbstractCommand
         return "put {$this->priority} {$this->delay} {$this->ttr} {$this->getDataLength()}";
     }
 
-    public function hasData(): bool
-    {
-        return true;
-    }
-
     public function getData(): string
     {
         return $this->data;
     }
 
-    public function getDataLength(): int
+    private function getDataLength(): int
     {
         return mb_strlen($this->data, '8bit');
     }
 
-    public function getResponseParser(): ResponseParserInterface
+    public function interpret(RawResponse $response): JobId
     {
-        return new ChainedParser(
-            new ExceptionParser(ResponseType::BURIED, new Exception\JobBuriedException()),
-            new ExceptionParser(ResponseType::EXPECTED_CRLF, new Exception\ExpectedCrlfException()),
-            new ExceptionParser(ResponseType::DRAINING, new Exception\ServerDrainingException()),
-            new ExceptionParser(ResponseType::JOB_TOO_BIG, new Exception\JobTooBigException()),
-            new JobParser(ResponseType::INSERTED),
-
-        );
-    }
-
-    public function getType(): CommandType
-    {
-        return CommandType::PUT;
+        if ($response->type === ResponseType::Inserted && isset($response->argument)) {
+            return new JobId($response->argument);
+        } elseif ($response->type === ResponseType::Buried && isset($response->argument)) {
+            throw new Exception\JobBuriedException(new JobId($response->argument));
+        }
+        return match ($response->type) {
+            ResponseType::Buried => throw Exception\MalformedResponseException::expectedIntegerArgument(),
+            ResponseType::ExpectedCrlf => throw new Exception\ExpectedCrlfException(),
+            ResponseType::Draining => throw new Exception\ServerDrainingException(),
+            ResponseType::JobTooBig => throw new Exception\JobTooBigException(),
+            ResponseType::Inserted => throw Exception\MalformedResponseException::expectedData(),
+            default => throw new Exception\UnsupportedResponseException($response->type)
+        };
     }
 }

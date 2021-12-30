@@ -4,40 +4,36 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response\ArrayResponse;
-use Pheanstalk\Response\EmptySuccessResponse;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 
 /**
  * The 'release' command.
  *
  * Releases a reserved job back onto the ready queue.
  */
-class ReleaseCommand extends JobCommand
+final class ReleaseCommand extends JobCommand
 {
     public function __construct(JobIdInterface $job, private readonly int $priority, private readonly int $delay)
     {
         parent::__construct($job);
     }
 
-    public function getCommandLine(): string
+    public function interpret(RawResponse $response): Success
     {
-        return "release {$this->jobId->getId()} {$this->priority} {$this->delay}";
+        return match ($response->type) {
+            ResponseType::NotFound => throw new Exception\JobNotFoundException(),
+            ResponseType::Released => new Success(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getType(): CommandType
+    protected function getCommandTemplate(): string
     {
-        return CommandType::RELEASE;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::RELEASED;
+        return "release {id} {$this->priority} {$this->delay}";
     }
 }

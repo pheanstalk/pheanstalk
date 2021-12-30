@@ -29,7 +29,7 @@
     "require-dev": {
         "phpunit/phpunit": ">9",
         "symplify/easy-coding-standard": "^10.0",
-        "phpstan/phpstan": "^1.2",
+        "phpstan/phpstan": "^1.3",
         "captainhook/plugin-composer": "^5.3",
         "ramsey/conventional-commits": "^1.2",
         "phpstan/extension-installer": "^1.1",
@@ -37,7 +37,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Pheanstalk\\Tests": "tests/Pheanstalk"
+            "Pheanstalk\\Tests\\": "tests/Pheanstalk"
         }
     },
     "autoload": {
@@ -48,7 +48,6 @@
     "scripts": {
         "phpunit": "docker-compose run --rm phpunit",
         "test": [
-            "@composer install",
             "@phpunit"
         ]
     }

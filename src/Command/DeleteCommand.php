@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\EmptySuccessParser;
-use Pheanstalk\Parser\JobNotFoundExceptionParser;
+use Pheanstalk\Exception\JobNotFoundException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 
 /**
  * The 'delete' command.
@@ -17,13 +16,17 @@ use Pheanstalk\ResponseType;
  */
 final class DeleteCommand extends JobCommand
 {
-    public function getType(): CommandType
+    public function interpret(RawResponse $response): Success
     {
-        return CommandType::DELETE;
+        return match ($response->type) {
+            ResponseType::NotFound => throw new JobNotFoundException(),
+            ResponseType::Deleted => new Success(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getSuccessResponse(): ResponseType
+    protected function getCommandTemplate(): string
     {
-        return ResponseType::DELETED;
+        return "delete {id}";
     }
 }

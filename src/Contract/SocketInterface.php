@@ -4,13 +4,6 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
-/**
- * A mockable wrapper around PHP "socket" or "file pointer" access.
- *
- * Only the subset of socket actions required by Pheanstalk are provided.
- *
- * @author  Paul Annesley
- */
 interface SocketInterface
 {
     /**
@@ -20,6 +13,7 @@ interface SocketInterface
 
     /**
      * Reads up to $length bytes from the socket.
+     * @param int<0, max> $length
      */
     public function read(int $length): string;
 

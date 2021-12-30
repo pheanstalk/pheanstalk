@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\JobNotFoundExceptionParser;
-use Pheanstalk\Parser\JobParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\JobNotFoundException;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\Job;
+use Pheanstalk\JobId;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
@@ -22,21 +20,20 @@ use Pheanstalk\ResponseType;
  */
 final class PeekJobCommand extends JobCommand
 {
-    public function getResponseParser(): ResponseParserInterface
+    public function interpret(RawResponse $response): Job
     {
-        return new ChainedParser(
-            new JobNotFoundExceptionParser(),
-            new JobParser($this->getSuccessResponse())
-        );
+        if ($response->type === ResponseType::Found && isset($response->argument, $response->data)) {
+            return new Job(new JobId($response->argument), $response->data);
+        }
+        return match ($response->type) {
+            ResponseType::NotFound => throw new JobNotFoundException(),
+            ResponseType::Found => throw MalformedResponseException::expectedDataAndIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getType(): CommandType
+    protected function getCommandTemplate(): string
     {
-        return CommandType::PEEK;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::FOUND;
+        return "peek {id}";
     }
 }

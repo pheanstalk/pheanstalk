@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response\ArrayResponse;
-use Pheanstalk\Response\EmptySuccessResponse;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 
 /**
  * The 'touch' command.
@@ -21,20 +18,19 @@ use Pheanstalk\ResponseType;
  * may periodically tell the server that it's still alive and processing a job
  * (e.g. it may do this on DEADLINE_SOON).
  */
-class TouchCommand extends JobCommand
+final class TouchCommand extends JobCommand
 {
-    public function getCommandLine(): string
+    public function interpret(RawResponse $response): Success
     {
-        return "touch {$this->jobId->getId()}";
+        return match ($response->type) {
+            ResponseType::NotFound => throw new Exception\JobNotFoundException(),
+            ResponseType::Touched => new Success(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getType(): CommandType
+    protected function getCommandTemplate(): string
     {
-        return CommandType::TOUCH;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::TOUCHED;
+        return "touch {id}";
     }
 }

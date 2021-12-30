@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\EmptySuccessParser;
-use Pheanstalk\Parser\TubeNotFoundExceptionParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 use Pheanstalk\TubeName;
 
 /**
@@ -21,7 +16,7 @@ use Pheanstalk\TubeName;
  *
  * Temporarily prevent jobs being reserved from the given tube.
  */
-class PauseTubeCommand extends TubeCommand
+final class PauseTubeCommand extends TubeCommand
 {
     /**
      * @param int $delay Seconds before jobs may be reserved from this queue.
@@ -31,21 +26,17 @@ class PauseTubeCommand extends TubeCommand
         parent::__construct($tube);
     }
 
-    public function getCommandLine(): string
+    public function interpret(RawResponse $response): Success
     {
-        return "pause-tube {$this->tube} {$this->delay}";
+        return match ($response->type) {
+            ResponseType::NotFound => throw new Exception\TubeNotFoundException(),
+            ResponseType::Paused => new Success(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getResponseParser(): ResponseParserInterface
+    protected function getCommandTemplate(): string
     {
-        return new ChainedParser(
-            new TubeNotFoundExceptionParser(),
-            new EmptySuccessParser(ResponseType::PAUSED)
-        );
-    }
-
-    public function getType(): CommandType
-    {
-        return CommandType::PAUSE_TUBE;
+        return "pause-tube {tube} {$this->delay}";
     }
 }

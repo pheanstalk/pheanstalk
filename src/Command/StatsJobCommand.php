@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\JobNotFoundExceptionParser;
+use Pheanstalk\Exception\JobNotFoundException;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\JobStats;
 use Pheanstalk\Parser\YamlDictionaryParser;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 use Pheanstalk\YamlResponseParser;
 
@@ -17,23 +18,22 @@ use Pheanstalk\YamlResponseParser;
  *
  * Gives statistical information about the specified job if it exists.
  */
-class StatsJobCommand extends JobCommand
+final class StatsJobCommand extends JobCommand
 {
-    public function getResponseParser(): ResponseParserInterface
+    public function interpret(RawResponse $response): JobStats
     {
-        return new ChainedParser(
-            new JobNotFoundExceptionParser(),
-            new YamlDictionaryParser(),
-        );
+        if ($response->type === ResponseType::Ok && isset($response->data)) {
+            return JobStats::fromBeanstalkArray((new YamlDictionaryParser())->parse($response->data));
+        }
+        return match ($response->type) {
+            ResponseType::NotFound => throw new JobNotFoundException(),
+            ResponseType::Ok => throw MalformedResponseException::expectedData(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getType(): CommandType
+    protected function getCommandTemplate(): string
     {
-        return CommandType::STATS_JOB;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::OK;
+        return "stats-job {id}";
     }
 }

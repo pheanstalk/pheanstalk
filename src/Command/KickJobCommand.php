@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 
 /**
  * The 'kick-job' command.
@@ -22,20 +20,19 @@ use Pheanstalk\ResponseType;
  * ready queue of the the same tube where it currently belongs.
  *
  */
-class KickJobCommand extends JobCommand
+final class KickJobCommand extends JobCommand
 {
-    public function getCommandLine(): string
+    public function interpret(RawResponse $response): Success
     {
-        return "kick-job {$this->jobId->getId()}";
+        return match ($response->type) {
+            ResponseType::NotFound => throw new Exception\JobNotFoundException(),
+            ResponseType::Kicked => new Success(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getType(): CommandType
+    protected function getCommandTemplate(): string
     {
-        return CommandType::KICK_JOB;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::KICKED;
+        return "kick-job {id}";
     }
 }

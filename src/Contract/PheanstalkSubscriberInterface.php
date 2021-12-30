@@ -1,15 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
 use Pheanstalk\Job;
+use Pheanstalk\TubeList;
+use Pheanstalk\TubeName;
 
 interface PheanstalkSubscriberInterface
 {
-
-
-
     /**
      * Permanently deletes a job.
      */
@@ -17,18 +17,16 @@ interface PheanstalkSubscriberInterface
 
     /**
      * Remove the specified tube from the watchlist.
+     * @return int The number of watched tubes for the connection
      */
-    public function ignore(string $tube): void;
+    public function ignore(TubeName $tube): int;
 
     /**
      * The names of the tubes being watched, to reserve jobs from.
      *
-     * Returns the cached watchlist if $askServer is false (the default),
-     * or queries the server for the watchlist if $askServer is true.
-     *
-     * @return list<string>
+     * Returns the watchlist, always queries the server
      */
-    public function listTubesWatched(): array;
+    public function listTubesWatched(): TubeList;
 
     /**
      * Puts a reserved job back into the ready queue.
@@ -65,6 +63,7 @@ interface PheanstalkSubscriberInterface
      * response or TIMED_OUT.  A positive value of timeout will limit the amount of
      * time the client will block on the reserve request until a job becomes
      * available.
+     * @param int<0, max> $timeout
      */
     public function reserveWithTimeout(int $timeout): ?Job;
 
@@ -82,8 +81,7 @@ interface PheanstalkSubscriberInterface
 
     /**
      * Add the specified tube to the watchlist, to reserve jobs from.
-     * @param string $tube
-     *
+     * @return int The number of watched tubes for the connection
      */
-    public function watch(string $tube): void;
+    public function watch(TubeName $tube): int;
 }

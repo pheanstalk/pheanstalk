@@ -19,8 +19,8 @@ class Job implements JobIdInterface
     private readonly JobIdInterface $id;
     public function __construct(
         JobIdInterface|int|string $id,
-        private readonly string $data)
-    {
+        private readonly string $data
+    ) {
         $this->id = new JobId($id);
     }
 

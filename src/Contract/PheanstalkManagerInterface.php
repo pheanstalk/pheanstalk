@@ -1,9 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
 use Pheanstalk\Job;
+use Pheanstalk\JobStats;
+use Pheanstalk\ServerStats;
+use Pheanstalk\TubeList;
+use Pheanstalk\TubeName;
+use Pheanstalk\TubeStats;
 
 interface PheanstalkManagerInterface
 {
@@ -27,10 +33,8 @@ interface PheanstalkManagerInterface
 
     /**
      * The names of all tubes on the server.
-     *
-     * @return string[]
      */
-    public function listTubes(): array;
+    public function listTubes(): TubeList;
 
 
 
@@ -39,16 +43,14 @@ interface PheanstalkManagerInterface
     /**
      * Temporarily prevent jobs being reserved from the given tube.
      *
-     * @param string $tube  The tube to pause
      * @param int    $delay Seconds before jobs may be reserved from this queue.
      */
-    public function pauseTube(string $tube, int $delay): void;
+    public function pauseTube(TubeName $tube, int $delay): void;
 
     /**
      * Resume jobs for a given paused tube.
-     * @param string $tube The tube to resume
      */
-    public function resumeTube(string $tube): void;
+    public function resumeTube(TubeName $tube): void;
 
     /**
      * Inspect a job in the system, regardless of what tube it is in.
@@ -80,15 +82,15 @@ interface PheanstalkManagerInterface
     /**
      * Gives statistical information about the specified job if it exists.
      */
-    public function statsJob(JobIdInterface $job): ResponseInterface;
+    public function statsJob(JobIdInterface $job): JobStats;
 
     /**
      * Gives statistical information about the specified tube if it exists.
      */
-    public function statsTube(string $tube): ResponseInterface;
+    public function statsTube(TubeName $tube): TubeStats;
 
     /**
      * Gives statistical information about the beanstalkd system as a whole.
      */
-    public function stats(): ResponseInterface;
+    public function stats(): ServerStats;
 }

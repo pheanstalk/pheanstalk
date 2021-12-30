@@ -5,10 +5,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Socket;
 
+use Pheanstalk\Contract\DataLengthProviderInterface;
+use Pheanstalk\Contract\ResponseHandlerInterface;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\SocketException;
-use function PHPStan\dumpType;
 
 /**
  * A Socket implementation using the Sockets extension
@@ -30,19 +31,19 @@ class SocketSocket implements SocketInterface
         if ($socket === false) {
             $this->throwException();
         }
-        $this->socket = $socket;
+
 
         $timeout = [
             'sec' => $connectTimeout,
             'usec' => 0
         ];
 
-        $sendTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_SNDTIMEO);
-        $receiveTimeout = socket_get_option($this->socket, SOL_SOCKET, SO_RCVTIMEO);
-        socket_set_option($this->socket, SOL_SOCKET, SO_KEEPALIVE, 1);
-        socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
-        socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
-        if (socket_set_block($this->socket) === false) {
+        $sendTimeout = socket_get_option($socket, SOL_SOCKET, SO_SNDTIMEO);
+        $receiveTimeout = socket_get_option($socket, SOL_SOCKET, SO_RCVTIMEO);
+        socket_set_option($socket, SOL_SOCKET, SO_KEEPALIVE, 1);
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
+        if (socket_set_block($socket) === false) {
             throw new ConnectionException(0, "Failed to set socket to blocking mode");
         }
 
@@ -50,13 +51,21 @@ class SocketSocket implements SocketInterface
         if ($addresses === false) {
             throw new ConnectionException(0, "Could not resolve hostname $host");
         }
-        if (@socket_connect($this->socket, $addresses[0], $port) === false) {
-            $error = socket_last_error($this->socket);
+        if (@socket_connect($socket, $addresses[0], $port) === false) {
+            $error = socket_last_error($socket);
             throw new ConnectionException($error, socket_strerror($error));
         };
 
-        socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout);
-        socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout);
+        if ($sendTimeout !== false) {
+            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout);
+        }
+
+        if ($receiveTimeout !== false) {
+            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout);
+        }
+
+
+        $this->socket = $socket;
     }
 
     /**

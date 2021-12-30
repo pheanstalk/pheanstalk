@@ -5,22 +5,15 @@ declare(strict_types=1);
 namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
+use Pheanstalk\Contract\CommandWithDataInterface;
+use Pheanstalk\Contract\DataLengthProviderInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
-use Pheanstalk\Exception\ClientException;
-use Pheanstalk\Exception\CommandException;
+use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\ServerBadFormatException;
-use Pheanstalk\Exception\ServerDrainingException;
 use Pheanstalk\Exception\ServerInternalErrorException;
 use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
-use Pheanstalk\Exception\SocketException;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\CommandParser;
-use Pheanstalk\Parser\GlobalExceptionParser;
-use Pheanstalk\Response\ArrayResponse;
 
 /**
  * A connection to a beanstalkd server, backed by any type of socket.
@@ -32,21 +25,17 @@ class Connection
     private const CRLF_LENGTH = 2;
 
     private SocketInterface|null $socket;
-    private readonly ResponseParserInterface $parser;
     public function __construct(
-        private readonly SocketFactoryInterface $factory,
-        null|ResponseParserInterface $parser = null
-    )
+        private readonly SocketFactoryInterface $factory
+    ) {
+    }
+
+    /**
+     * Connect the socket, this is done automatically when dispatching commands
+     */
+    public function connect(): void
     {
-        if (isset($parser)) {
-            $this->parser = $parser;
-        } else {
-            // Construct the parser.
-            $this->parser = new ChainedParser(
-                new GlobalExceptionParser(),
-                new CommandParser()
-            );
-        }
+        $this->getSocket();
     }
 
     /**
@@ -61,6 +50,9 @@ class Connection
         }
     }
 
+    /**
+     * @param int<0, max> $length
+     */
     private function readData(SocketInterface $socket, int $length): string
     {
         $result = $socket->read($length);
@@ -78,41 +70,51 @@ class Connection
     private function sendCommand(CommandInterface $command): void
     {
         $socket = $this->getSocket();
-        $to_send = $command->getCommandLine() . self::CRLF;
-        if ($command->hasData()) {
-            $to_send .= $command->getData() . self::CRLF;
+        $buffer = $command->getCommandLine() . self::CRLF;
+        if ($command instanceof CommandWithDataInterface) {
+            $buffer .= $command->getData() . self::CRLF;
         }
-        $socket->write($to_send);
+
+        $socket->write($buffer);
     }
 
-    /**
-     * @throws Exception\ClientException
-     */
-    public function dispatchCommand(CommandInterface $command): ResponseInterface
+    private function readRawResponse(): RawResponse
     {
-        $this->sendCommand($command);
         $socket = $this->getSocket();
 
         // This is always a simple line consisting of a response type name and 0 - 2 optional numerical arguments.
         $responseLine = $socket->getLine();
-        $responseParts = explode(' ' , $responseLine);
-        $responseType = ResponseType::from(array_shift($responseParts));
 
+
+        $responseParts = explode(' ', $responseLine);
+        // count($responseParts) == 1|2|3
+
+        $responseType = ResponseType::from(array_shift($responseParts));
+        // count($responseParts) == 1|2
 
         if ($responseType->hasData()) {
-            $dataLength = array_pop($responseParts);
-            $data = $this->readData($socket, (int)$dataLength);
+            $dataLength = (int) array_pop($responseParts);
+            if ($dataLength < 0) {
+                throw MalformedResponseException::negativeDataLength();
+            }
+            $data = $this->readData($socket, $dataLength);
         }
+        // count($responseParts) = 0|1
 
-        $result = $this->parser->parseResponse($command, $responseType, $responseParts, $data ?? null);
-        if (!isset($result)) {
-            // Failed to parse.
-            throw new ClientException('Failed to parse response: ' . $responseLine);
-        }
-        return $result;
+        return match ($responseType) {
+            ResponseType::OutOfMemory => throw new ServerOutOfMemoryException(),
+            ResponseType::InternalError => throw new ServerInternalErrorException(),
+            ResponseType::BadFormat => throw new ServerBadFormatException(),
+            ResponseType::UnknownCommand => throw new ServerUnknownCommandException(),
+            default => new RawResponse($responseType, array_pop($responseParts), $data ?? null)
+        };
     }
 
-    // ----------------------------------------
+    public function dispatchCommand(CommandInterface $command): RawResponse
+    {
+        $this->sendCommand($command);
+        return $this->readRawResponse();
+    }
 
     /**
      * Socket handle for the connection to beanstalkd.

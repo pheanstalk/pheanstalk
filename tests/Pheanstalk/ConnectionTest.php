@@ -2,94 +2,92 @@
 
 declare(strict_types=1);
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
-use Pheanstalk\Exception\ConnectionException;
-use PHPUnit\Framework\Assert;
+use Pheanstalk\Command\UseCommand;
+use Pheanstalk\Connection;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ServerBadFormatException;
+use Pheanstalk\Exception\ServerInternalErrorException;
+use Pheanstalk\Exception\ServerOutOfMemoryException;
+use Pheanstalk\Exception\ServerUnknownCommandException;
+use Pheanstalk\ResponseType;
+use Pheanstalk\TubeName;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the Connection.
  * Relies on a running beanstalkd server.
+ * @covers \Pheanstalk\Connection
  */
 class ConnectionTest extends TestCase
 {
-    public const CONNECT_TIMEOUT = 2;
-
-
-    public function connectionProvider($test, $host = SERVER_HOST, $port = SERVER_PORT)
+    public function testDisconnect(): void
     {
-        return [
-            'stream' => [new Connection(new SocketFactory($host, $port, 1, SocketImplementation::STREAM))],
-            'fsockopen' => [new Connection(new SocketFactory($host, $port, 1, SocketImplementation::FSOCKOPEN))],
-            'socket' => [new Connection(new SocketFactory($host, $port, 1, SocketImplementation::SOCKET))],
-            'autodetect' => [new Connection(new SocketFactory($host, $port, 1))]
-        ];
-    }
+        $socket = $this->getMockBuilder(SocketInterface::class)->getMock();
+        $socket->expects(self::once())->method('disconnect');
+        $factory = $this->getMockBuilder(SocketFactoryInterface::class)->getMock();
+        $factory->expects(self::atLeastOnce())->method('create')->willReturn($socket);
 
-    public function badPortConnectionProvider($test)
-    {
-        return $this->connectionProvider($test, SERVER_HOST, SERVER_PORT + 1);
-    }
-
-    public function badHostConnectionProvider($test)
-    {
-        return $this->connectionProvider($test, SERVER_HOST . 'abc', SERVER_PORT);
-    }
-
-    /**
-     * @dataProvider badPortConnectionProvider
-     */
-    public function testConnectionFailsToIncorrectPort(Connection $connection)
-    {
-        $this->expectException(ConnectionException::class);
-        $command = new Command\UseCommand(new TubeName('test'));
-        $connection->dispatchCommand($command);
-    }
-
-
-    /**
-     * @dataProvider badHostConnectionProvider
-     */
-    public function testConnectionFailsToIncorrectHost(Connection $connection)
-    {
-        $this->expectException(ConnectionException::class);
-        $command = new Command\UseCommand(new TubeName('test'));
-        $connection->dispatchCommand($command);
-    }
-
-    /**
-     * @dataProvider connectionProvider
-     */
-    public function testDispatchCommandSuccessful(Connection $connection)
-    {
-        $command = new Command\UseCommand(new TubeName('test'));
-        $response = $connection->dispatchCommand($command);
-
-        self::markTestIncomplete("Doesn't actually test anything");
-    }
-
-    /**
-     * @dataProvider connectionProvider
-     */
-    public function testDisconnect(Connection $connection)
-    {
-        $pheanstalk = new Pheanstalk(new Connection(new SocketFactory(SERVER_HOST, SERVER_PORT)));
-        $baseCount = $pheanstalk->stats()['current-connections'];
-
-
-        Assert::assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
-
-        // initial connection
-        $connection->dispatchCommand(new Command\StatsCommand());
-        Assert::assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
-
-        // disconnect
+        $connection = new Connection($factory);
+        $connection->connect();
         $connection->disconnect();
-        Assert::assertEquals($baseCount, $pheanstalk->stats()['current-connections']);
+    }
 
-        // auto-reconnect
-        $connection->dispatchCommand(new Command\StatsCommand());
-        Assert::assertEquals($baseCount + 1, $pheanstalk->stats()['current-connections']);
+    private function getCommand(): CommandInterface
+    {
+        return new  UseCommand(new TubeName('tube5'));
+    }
+
+    /**
+     * A connection with a mock socket, configured to return the given line.
+     */
+    private function getConnection(string $line): Connection
+    {
+        $socket = $this->getMockBuilder(SocketInterface::class)
+            ->getMock();
+
+        $socket->expects(self::once())
+            ->method('getLine')
+            ->will(self::returnValue($line));
+
+        $socket->expects(self::once())->method('write');
+
+        return new Connection(new class($socket) implements SocketFactoryInterface {
+            public function __construct(private readonly SocketInterface $socket)
+            {
+            }
+
+            public function create(): SocketInterface
+            {
+                return $this->socket;
+            }
+        });
+    }
+
+    public function testCommandsHandleOutOfMemory(): void
+    {
+        $this->expectException(ServerOutOfMemoryException::class);
+        $this->getConnection(ResponseType::OutOfMemory->value)->dispatchCommand($this->getCommand());
+    }
+
+    public function testCommandsHandleInternalError(): void
+    {
+        $this->expectException(ServerInternalErrorException::class);
+        $this->getConnection(ResponseType::InternalError->value)->dispatchCommand($this->getCommand());
+    }
+
+    public function testCommandsHandleBadFormat(): void
+    {
+        $this->expectException(ServerBadFormatException::class);
+        $this->getConnection(ResponseType::BadFormat->value)->dispatchCommand($this->getCommand());
+    }
+
+    public function testCommandsHandleUnknownCommand(): void
+    {
+        $this->expectException(ServerUnknownCommandException::class);
+        $this->getConnection(ResponseType::UnknownCommand->value)->dispatchCommand($this->getCommand());
     }
 }

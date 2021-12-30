@@ -21,7 +21,9 @@ abstract class FileSocket implements SocketInterface
      */
     public function write(string $data): void
     {
-        $this->checkClosed();
+        if (!isset($this->socket)) {
+            $this->throw();
+        }
         $retries = 0;
         error_clear_last();
         while ($data !== "" && $retries < 10) {
@@ -49,22 +51,23 @@ abstract class FileSocket implements SocketInterface
         throw new SocketException($error['message'], $error['type']);
     }
 
-    private function checkClosed(): void
+    private function throw(): never
     {
-        if (!isset($this->socket)) {
-            throw new SocketException('The connection was closed');
-        }
+        throw new SocketException('The connection was closed');
     }
 
     /**
      * Reads up to $length bytes from the socket.
+     * @param int<0, max> $length
      */
     public function read(int $length): string
     {
-        $this->checkClosed();
+        if (!isset($this->socket)) {
+            $this->throw();
+        }
         $buffer = '';
-        while (mb_strlen($buffer, '8bit') < $length) {
-            $result = fread($this->socket, $length - mb_strlen($buffer, '8bit'));
+        while (0 < $remaining = $length - mb_strlen($buffer, '8bit')) {
+            $result = fread($this->socket, $remaining);
             if ($result === false) {
                 $this->throwException();
             }
@@ -79,7 +82,9 @@ abstract class FileSocket implements SocketInterface
      */
     public function getLine(): string
     {
-        $this->checkClosed();
+        if (!isset($this->socket)) {
+            $this->throw();
+        }
         $result = fgets($this->socket, 8192);
         if ($result === false) {
             $this->throwException();
@@ -92,7 +97,9 @@ abstract class FileSocket implements SocketInterface
      */
     public function disconnect(): void
     {
-        $this->checkClosed();
+        if (!isset($this->socket)) {
+            $this->throw();
+        }
         fclose($this->socket);
         $this->socket = null;
     }

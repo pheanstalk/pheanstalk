@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\Job;
+use Pheanstalk\TubeName;
 
 interface PheanstalkPublisherInterface
 {
@@ -18,12 +19,9 @@ interface PheanstalkPublisherInterface
 
     /**
      * The name of the current tube used for publishing jobs to.
-     *
-     * Returns the cached value if $askServer is false (the default),
-     * or queries the server for the currently used tube if $askServer
-     * is true.
+     * Always queries the server
      */
-    public function listTubeUsed(): string;
+    public function listTubeUsed(): TubeName;
 
     /**
      * Puts a job on the queue.
@@ -38,11 +36,10 @@ interface PheanstalkPublisherInterface
         int $priority = self::DEFAULT_PRIORITY,
         int $delay = self::DEFAULT_DELAY,
         int $ttr = self::DEFAULT_TTR
-    ): Job;
+    ): JobIdInterface;
 
     /**
      * Change to the specified tube name for publishing jobs to.
      */
-    public function useTube(string $tube);
-
+    public function useTube(TubeName $tube): void;
 }

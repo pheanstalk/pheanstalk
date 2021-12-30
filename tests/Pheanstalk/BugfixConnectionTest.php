@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
  * an existing category of tests.
  * Relies on a running beanstalkd server.
  *
+ * @coversNothing
  */
 class BugfixConnectionTest extends TestCase
 {
@@ -28,9 +29,10 @@ class BugfixConnectionTest extends TestCase
         $length = 8192 * 3;
 
         $pheanstalk = $this->createPheanstalk();
-        $pheanstalk->put(str_repeat('.', $length));
-        $job = $pheanstalk->peekReady();
-        Assert::assertEquals(strlen($job->getData()), $length, 'data length: %s');
+        $data = str_repeat('.', $length);
+        $jobId = $pheanstalk->put($data);
+        $job = $pheanstalk->peek($jobId);
+        Assert::assertSame($data, $job->getData());
     }
 
     /**
@@ -48,8 +50,8 @@ class BugfixConnectionTest extends TestCase
         // Let's repeat 20 times to make problem more obvious on Linux OS (it happens randomly)
         for ($i = 0; $i < 16; $i++) {
             for ($message = $delta; strlen($message) < $maxLength; $message .= $delta) {
-                $pheanstalk->put($message);
-                $job = $pheanstalk->peekReady();
+                $jobId = $pheanstalk->put($message);
+                $job = $pheanstalk->peek($jobId);
                 $pheanstalk->delete($job);
                 Assert::assertEquals($job->getData(), $message);
             }
@@ -62,11 +64,11 @@ class BugfixConnectionTest extends TestCase
     private function createPheanstalk(): Pheanstalk
     {
         $pheanstalk = Pheanstalk::create(SERVER_HOST);
-        $tube = preg_replace('#[^a-z]#', '', strtolower(__CLASS__));
+        $tube = new TubeName('BugFixConnectionTest');
 
         $pheanstalk->useTube($tube);
         $pheanstalk->watch($tube);
-        $pheanstalk->ignore('default');
+        $pheanstalk->ignore(new TubeName('default'));
 
         while (null !== $job = $pheanstalk->peekDelayed()) {
             $pheanstalk->delete($job);

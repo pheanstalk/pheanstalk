@@ -4,28 +4,30 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Parser\EmptySuccessParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
  * The 'watch' command.
  * Adds a tube to the watchlist to reserve jobs from.
  */
-class WatchCommand extends TubeCommand
+final class WatchCommand extends TubeCommand
 {
-    public function getType(): CommandType
+    public function interpret(RawResponse $response): int
     {
-        return CommandType::WATCH;
+        if ($response->type === ResponseType::Watching && is_int($response->argument)) {
+            return $response->argument;
+        }
+        return match ($response->type) {
+            ResponseType::Watching => throw MalformedResponseException::expectedIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-
-    public function getResponseParser(): ResponseParserInterface
+    protected function getCommandTemplate(): string
     {
-        return new EmptySuccessParser(ResponseType::WATCHING);
+        return "watch {tube}";
     }
 }

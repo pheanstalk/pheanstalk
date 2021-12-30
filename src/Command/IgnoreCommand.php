@@ -4,33 +4,34 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\EmptySuccessParser;
-use Pheanstalk\Parser\ExceptionParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\NotIgnoredException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
  * The 'ignore' command.
  * Removes a tube from the watch list to reserve jobs from.
  */
-class IgnoreCommand extends TubeCommand
+final class IgnoreCommand extends TubeCommand
 {
-    public function getType(): CommandType
+    public function interpret(RawResponse $response): int
     {
-        return CommandType::IGNORE;
+        if ($response->type === ResponseType::Watching && is_int($response->argument)) {
+            return $response->argument;
+        }
+
+        return match ($response->type) {
+            ResponseType::NotIgnored => throw new NotIgnoredException(),
+            ResponseType::Watching => throw MalformedResponseException::expectedIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getResponseParser(): ResponseParserInterface
+    protected function getCommandTemplate(): string
     {
-        return new ChainedParser(
-            new ExceptionParser(ResponseType::NOT_IGNORED, new Exception\NotIgnoredException()),
-            new EmptySuccessParser(ResponseType::WATCHING)
-        );
+        return "ignore {tube}";
     }
 }

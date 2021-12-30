@@ -14,17 +14,14 @@ use Pheanstalk\Socket\StreamSocket;
 
 class SocketFactory implements SocketFactoryInterface
 {
-    private $timeout;
-    private $host;
-    private $port;
     private readonly SocketImplementation $implementation;
 
-    public function __construct(string $host, int $port, int $timeout = 10, null|SocketImplementation $implementation = null)
-    {
-        $this->host = $host;
-        $this->port = $port;
-        $this->timeout = $timeout;
-
+    public function __construct(
+        private readonly string $host,
+        private readonly  int $port,
+        private readonly int $timeout = 10,
+        null|SocketImplementation $implementation = null
+    ) {
         $this->implementation = $implementation ?? $this->detectImplementation();
     }
 

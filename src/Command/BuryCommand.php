@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Exception\UnsupportedResponseTypeException;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 
 /**
  * The 'bury' command.
@@ -20,25 +17,24 @@ use Pheanstalk\ResponseType;
  */
 final class BuryCommand extends JobCommand
 {
-    public function __construct(JobIdInterface $jobId,
-        private readonly int $priority)
-    {
+    public function __construct(
+        JobIdInterface $jobId,
+        private readonly int $priority
+    ) {
         parent::__construct($jobId);
     }
 
-    public function getCommandLine(): string
+    protected function getCommandTemplate(): string
     {
-        return "bury {$this->jobId->getId()} {$this->priority}";
+        return "bury {id} {$this->priority}";
     }
 
-
-    public function getType(): CommandType
+    public function interpret(RawResponse $response): Success
     {
-        return CommandType::BURY;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::BURIED;
+        return match ($response->type) {
+            ResponseType::NotFound => throw new Exception\JobNotFoundException(),
+            ResponseType::Buried => new Success(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 }

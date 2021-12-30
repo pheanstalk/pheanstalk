@@ -7,17 +7,10 @@ namespace Pheanstalk;
 use Pheanstalk\Command\ReserveJobCommand;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
-use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Contract\PheanstalkManagerInterface;
 use Pheanstalk\Contract\PheanstalkPublisherInterface;
 use Pheanstalk\Contract\PheanstalkSubscriberInterface;
-use Pheanstalk\Contract\ResponseInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
-use Pheanstalk\Exception\DeadlineSoonException;
-use Pheanstalk\Exception\JobNotFoundException;
-use Pheanstalk\Response\ArrayResponse;
-use Pheanstalk\Response\EmptySuccessResponse;
-use Pheanstalk\Response\JobResponse;
 
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
@@ -26,7 +19,6 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
 {
     public function __construct(private readonly Connection $connection)
     {
-
     }
 
     /**
@@ -47,81 +39,68 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
 
     // ----------------------------------------
 
-    /**
-     * {@inheritdoc}
-     */
     public function bury(JobIdInterface $job, int $priority = PheanstalkPublisherInterface::DEFAULT_PRIORITY): void
     {
-        $this->dispatch(new Command\BuryCommand($job, $priority));
+        $command = new Command\BuryCommand($job, $priority);
+        $command->interpret($this->dispatch2($command));
     }
 
     public function delete(JobIdInterface $job): void
     {
-        $this->dispatch(new Command\DeleteCommand($job));
+        $command = new Command\DeleteCommand($job);
+        $command->interpret($this->dispatch2($command));
     }
 
-    public function ignore(string $tube): void
+    public function ignore(TubeName $tube): int
     {
-        $this->dispatch(new Command\IgnoreCommand(new TubeName($tube)));
+        $command = new Command\IgnoreCommand($tube);
+        return $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function kick(int $max): int
     {
-        $response = $this->dispatch(new Command\KickCommand($max));
-
-        return $response['kicked'];
+        $command = new Command\KickCommand($max);
+        return $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function kickJob(JobIdInterface $job): void
     {
-        $this->dispatch(new Command\KickJobCommand($job));
+        $command = new Command\KickJobCommand($job);
+        $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function listTubes(): array
+    private function dispatch2(CommandInterface $command): RawResponse
     {
-        return (array)$this->dispatch(
-            new Command\ListTubesCommand()
-        );
+        return $this->connection->dispatchCommand($command);
     }
 
-    public function listTubesWatched(): array
+    public function listTubes(): TubeList
     {
-        /** @var ArrayResponse $response */
-        $response = $this->dispatch(new Command\ListTubesWatchedCommand());
-        return (array) $response;
-
+        $command = new Command\ListTubesCommand();
+        return $command->interpret($this->dispatch2($command));
     }
 
-    public function listTubeUsed(): string
+    public function listTubesWatched(): TubeList
     {
+        $command = new Command\ListTubesWatchedCommand();
+        $response = $this->dispatch2($command);
 
-        $response = $this->dispatch(
-            new Command\ListTubeUsedCommand()
-        );
-        return $response['tube'];
+        return $command->interpret($response);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function pauseTube(string $tube, int $delay): void
+    public function listTubeUsed(): TubeName
     {
-        $this->dispatch(new Command\PauseTubeCommand(new TubeName($tube), $delay));
+        $command = new Command\ListTubeUsedCommand();
+        return $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function resumeTube(string $tube): void
+    public function pauseTube(TubeName $tube, int $delay): void
+    {
+        $command = new Command\PauseTubeCommand($tube, $delay);
+        $command->interpret($this->dispatch2($command));
+    }
+
+    public function resumeTube(TubeName $tube): void
     {
         // Pause a tube with zero delay will resume the tube
         $this->pauseTube($tube, 0);
@@ -129,195 +108,124 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
 
     public function peek(JobIdInterface $job): Job
     {
-        /** @var JobResponse $response */
-        $response = $this->dispatch(
-            new Command\PeekJobCommand($job)
-        );
-
+        $command = new Command\PeekJobCommand($job);
+        $response = $command->interpret($this->dispatch2($command));
         return new Job($response->getId(), $response->getData());
     }
 
-    public function peekReady(): ?Job
+    public function peekReady(): null|Job
     {
-        try {
-            /** @var JobResponse $response */
-            $response = $this->dispatch(
-                new Command\PeekCommand(CommandType::PEEK_READY)
-            );
-
-            return new Job($response->getId()->getId(), $response->getData());
-        } catch (JobNotFoundException $e) {
-            return null;
-        }
+        return $this->peekState(JobState::READY);
     }
 
-    public function peekDelayed(): ?Job
+    public function peekDelayed(): null|Job
     {
-        try {
-            $response = $this->dispatch(
-                new Command\PeekCommand(CommandType::PEEK_DELAYED)
-            );
-
-            return new Job($response->getId()->getId(), $response->getData());
-        } catch (JobNotFoundException $e) {
-            return null;
-        }
+        return $this->peekState(JobState::DELAYED);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function peekBuried(): ?Job
+    private function peekState(JobState $state): null|Job
     {
-        try {
-            $response = $this->dispatch(
-                new Command\PeekCommand(CommandType::PEEK_BURIED)
-            );
-
-            return new Job($response->getId()->getId(), $response->getData());
-        } catch (JobNotFoundException $e) {
-            return null;
-        }
+        $command = new Command\PeekCommand($state);
+        $response = $command->interpret($this->dispatch2($command));
+        return $response instanceof Success ? null : $response;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    public function peekBuried(): null|Job
+    {
+        return $this->peekState(JobState::BURIED);
+    }
+
     public function put(
         string $data,
         int $priority = PheanstalkPublisherInterface::DEFAULT_PRIORITY,
         int $delay = PheanstalkPublisherInterface::DEFAULT_DELAY,
         int $ttr = PheanstalkPublisherInterface::DEFAULT_TTR
-    ): Job {
-        /** @var JobResponse $response */
-        $response = $this->dispatch(
-            new Command\PutCommand($data, $priority, $delay, $ttr)
-        );
-
-        return new Job($response->getId(), $data);
+    ): JobIdInterface {
+        $command = new Command\PutCommand($data, $priority, $delay, $ttr);
+        return $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function release(
         JobIdInterface $job,
         int $priority = PheanstalkPublisherInterface::DEFAULT_PRIORITY,
         int $delay = PheanstalkPublisherInterface::DEFAULT_DELAY
     ): void {
-        $this->dispatch(
-            new Command\ReleaseCommand($job, $priority, $delay)
-        );
+        $command = new Command\ReleaseCommand($job, $priority, $delay);
+        $command->interpret($this->dispatch2($command));
     }
 
 
     public function reserve(): Job
     {
-        /** @var JobResponse $response */
-        $response = $this->dispatch(
-            new Command\ReserveCommand()
-        );
+        $command = new Command\ReserveCommand();
+
+        $response = $command->interpret($this->dispatch2($command));
 
         return new Job($response->getId(), $response->getData());
     }
 
     /**
-     * {@inheritdoc}
+     * @param int $timeout
+     * @return Job|null
+     * @throws Exception\DeadlineSoonException
+     * @throws Exception\UnsupportedResponseException
+     * @param int<0, max> $timeout
      */
     public function reserveWithTimeout(int $timeout): ?Job
     {
-        /** @var JobResponse|EmptySuccessResponse $response */
-        $response = $this->dispatch(
-            new Command\ReserveWithTimeoutCommand($timeout)
-        );
+        $command = new Command\ReserveWithTimeoutCommand($timeout);
+        $response = $command->interpret($this->dispatch2($command));
 
-        if ($response instanceof EmptySuccessResponse) {
+        if ($response instanceof Success) {
             return null;
         }
 
         return new Job($response->getId(), $response->getData());
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function statsJob(JobIdInterface $job): ResponseInterface
+    public function statsJob(JobIdInterface $job): JobStats
     {
-        return $this->dispatch(new Command\StatsJobCommand($job));
+        $command = new Command\StatsJobCommand($job);
+        return $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function statsTube(string $tube): ResponseInterface
+    public function statsTube(TubeName $tube): TubeStats
     {
-        return $this->dispatch(new Command\StatsTubeCommand(new TubeName($tube)));
+        $command = new Command\StatsTubeCommand($tube);
+        return $command->interpret($this->dispatch2($command));
     }
 
-    public function stats(): ArrayResponse
+
+
+    public function stats(): ServerStats
     {
-        return $this->dispatch(new Command\StatsCommand());
+        $command = new Command\StatsCommand();
+        return $command->interpret($this->dispatch2($command));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function touch(JobIdInterface $job): void
     {
-        $this->dispatch(new Command\TouchCommand($job));
+        $command = new Command\TouchCommand($job);
+        $command->interpret($this->dispatch2($command));
     }
 
-    public function useTube(string $tube): void
+    public function useTube(TubeName $tube): void
     {
-        $this->dispatch(new Command\UseCommand(new TubeName($tube)));
+        $command = new Command\UseCommand($tube);
+        $response = $this->dispatch2($command);
+        $command->interpret($response);
     }
 
-    public function watch(string $tube): void
+    public function watch(TubeName $tube): int
     {
-        $this->dispatch(new Command\WatchCommand(new TubeName($tube)));
-    }
-
-
-    // ----------------------------------------
-
-    /**
-     * Dispatches the specified command to the connection object.
-     */
-    private function dispatch(CommandInterface $command): ResponseInterface
-    {
-        return $this->connection->dispatchCommand($command);
-
-    }
-
-    /**
-     * Creates a new connection object, based on the existing connection object,
-     * and re-establishes the used tube and watchlist.
-     */
-    private function reconnect()
-    {
-        throw new \RuntimeException('not supported');
-        $this->connection->disconnect();
-
-        if ($this->using !== PheanstalkInterface::DEFAULT_TUBE) {
-            $this->dispatch(new Command\UseCommand($this->using));
-        }
-
-        foreach ($this->watching as $tube => $true) {
-            if ($tube !== PheanstalkInterface::DEFAULT_TUBE) {
-                unset($this->watching[$tube]);
-                $this->watch($tube);
-            }
-        }
-
-        if (!isset($this->watching[PheanstalkInterface::DEFAULT_TUBE])) {
-            $this->ignore(PheanstalkInterface::DEFAULT_TUBE);
-        }
+        $command = new Command\WatchCommand($tube);
+        return $command->interpret($this->dispatch2($command));
     }
 
     public function reserveJob(JobIdInterface $job): Job
     {
-        /** @var JobResponse $response */
-        $response = $this->dispatch(new ReserveJobCommand($job));
+        $command = new ReserveJobCommand($job);
+        $response = $command->interpret($this->dispatch2($command));
         return new Job($response->getId(), $response->getData());
     }
 }

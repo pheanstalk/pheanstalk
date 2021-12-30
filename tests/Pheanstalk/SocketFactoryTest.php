@@ -3,28 +3,39 @@
 declare(strict_types=1);
 
 
-namespace Pheanstalk;
+namespace Pheanstalk\Tests;
 
+use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Socket\FsockopenSocket;
 use Pheanstalk\Socket\SocketSocket;
 use Pheanstalk\Socket\StreamSocket;
+use Pheanstalk\SocketFactory;
+use Pheanstalk\SocketImplementation;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-class SocketFactoryTest extends TestCase
+/**
+ * @covers \Pheanstalk\SocketFactory
+ */
+final class SocketFactoryTest extends TestCase
 {
-    public function testImplementations()
+    /**
+     * @phpstan-return iterable<array{0: SocketFactory, 1: class-string}>
+     */
+    public function factoryProvider(): iterable
     {
-        $socketFactory = new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::SOCKET);
-        Assert::assertInstanceOf(SocketSocket::class, $socketFactory->create());
+        yield [new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::SOCKET), SocketSocket::class];
+        yield [new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::STREAM), StreamSocket::class];
+        yield [new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
+    }
 
-        $socketFactory = new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::STREAM);
-        Assert::assertInstanceOf(StreamSocket::class, $socketFactory->create());
-
-        $socketFactory = new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::FSOCKOPEN);
-        Assert::assertInstanceOf(FsockopenSocket::class, $socketFactory->create());
-
-        $socketFactory = new SocketFactory(SERVER_HOST, 11300, 10);
-        Assert::assertInstanceOf(SocketSocket::class, $socketFactory->create());
+    /**
+     * @dataProvider factoryProvider
+     * @param class-string<SocketInterface> $expectedImplementationClass
+     */
+    public function testImplementations(SocketFactoryInterface $factory, string $expectedImplementationClass): void
+    {
+        Assert::assertInstanceOf($expectedImplementationClass, $factory->create());
     }
 }

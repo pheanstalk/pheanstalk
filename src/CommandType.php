@@ -1,18 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Pheanstalk;
-
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Exception\ExpectedCrlfException;
-use Pheanstalk\Exception\JobNotFoundException;
-use Pheanstalk\Exception\JobTooBigException;
-use Pheanstalk\Exception\NotIgnoredException;
-use Pheanstalk\Exception\ServerBadFormatException;
-use Pheanstalk\Exception\ServerDrainingException;
-use Pheanstalk\Exception\ServerInternalErrorException;
-use Pheanstalk\Exception\ServerOutOfMemoryException;
-use Pheanstalk\Exception\ServerUnknownCommandException;
 
 enum CommandType: string
 {

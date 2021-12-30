@@ -4,36 +4,25 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
+use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\JobIdInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\EmptySuccessParser;
-use Pheanstalk\Parser\JobNotFoundExceptionParser;
-use Pheanstalk\ResponseType;
 
 /**
  * A command that is executed against a single job
  */
-abstract class JobCommand extends AbstractCommand
+abstract class JobCommand implements CommandInterface
 {
-    abstract public function getSuccessResponse(): ResponseType;
+    /**
+     * @return string A template for generating the command
+     */
+    abstract protected function getCommandTemplate(): string;
 
-    public function getCommandLine(): string
+    final public function getCommandLine(): string
     {
-        return "{$this->getType()->value} {$this->jobId->getId()}";
+        return strtr($this->getCommandTemplate(), ['{id}' => $this->jobId->getId()]);
     }
 
-    public function getResponseParser(): ResponseParserInterface
-    {
-        return new ChainedParser(
-            // Every job command can result in NOT_FOUND
-            new JobNotFoundExceptionParser(),
-            // Every job command has 1 result indicating success
-            new EmptySuccessParser($this->getSuccessResponse())
-        );
-    }
-
-    public function __construct(protected readonly JobIdInterface $jobId)
+    public function __construct(private readonly JobIdInterface $jobId)
     {
     }
 }

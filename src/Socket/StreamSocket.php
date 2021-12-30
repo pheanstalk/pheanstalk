@@ -17,16 +17,11 @@ class StreamSocket extends FileSocket
         int $port,
         int $connectTimeout
     ) {
-        $addresses = gethostbynamel($host);
-        if ($addresses === false) {
-            throw new ConnectionException(0, "Could not resolve hostname $host");
-        }
-        $target = "tcp://{$addresses[0]}:$port";
-
         $context = stream_context_create();
-        $this->socket = @stream_socket_client($target, $error, $errorMessage, $connectTimeout, STREAM_CLIENT_CONNECT, $context);
-        if ($this->socket === false) {
+        $socket = @stream_socket_client("tcp://$host:$port", $error, $errorMessage, $connectTimeout, STREAM_CLIENT_CONNECT, $context);
+        if ($socket === false) {
             throw new ConnectionException($errorMessage, $error);
         }
+        $this->socket = $socket;
     }
 }

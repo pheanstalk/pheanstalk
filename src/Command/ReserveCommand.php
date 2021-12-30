@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
 use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\DeadlineSoonExceptionParser;
-use Pheanstalk\Parser\JobParser;
-use Pheanstalk\Parser\TimedOutExceptionParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\TimedOutException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\Job;
+use Pheanstalk\JobId;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
@@ -21,20 +19,23 @@ use Pheanstalk\ResponseType;
  *
  * Reserves/locks a ready job in a watched tube.
  */
-class ReserveCommand extends AbstractCommand
+final class ReserveCommand implements CommandInterface
 {
-    public function getResponseParser(): ResponseParserInterface
+    public function getCommandLine(): string
     {
-        return new ChainedParser(
-            new DeadlineSoonExceptionParser(),
-            new TimedOutExceptionParser(),
-            new JobParser(ResponseType::RESERVED)
-        );
+        return 'reserve';
     }
 
-
-    public function getType(): CommandType
+    public function interpret(RawResponse $response): Job
     {
-        return CommandType::RESERVE;
+        if ($response->type === ResponseType::Reserved && isset($response->argument) && isset($response->data)) {
+            return new Job($response->argument, $response->data);
+        }
+        return match ($response->type) {
+            ResponseType::DeadlineSoon => throw new DeadlineSoonException(),
+            ResponseType::TimedOut => throw new TimedOutException(),
+            ResponseType::Reserved => throw MalformedResponseException::expectedDataAndIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 }

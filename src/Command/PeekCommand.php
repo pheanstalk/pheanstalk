@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\ResponseParserInterface;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\JobNotFoundExceptionParser;
-use Pheanstalk\Parser\JobParser;
+use Pheanstalk\Contract\CommandInterface;
+use Pheanstalk\Exception\MalformedResponseException;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\Job;
+use Pheanstalk\JobState;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
+use Pheanstalk\Success;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
@@ -17,31 +19,33 @@ use Pheanstalk\ResponseType;
  * The peek commands let the client inspect a job in the system. There are four
  * variations. All but the first (peek) operate only on the currently used tube.
  */
-class PeekCommand extends AbstractCommand
+final class PeekCommand implements CommandInterface
 {
-    public function __construct(private readonly CommandType $type)
+    private readonly string $command;
+    public function __construct(JobState $state)
     {
-        if (!in_array($this->type, [CommandType::PEEK_BURIED, CommandType::PEEK_DELAYED, CommandType::PEEK_READY])) {
-            throw new \InvalidArgumentException("Unsupported command type: {$type->name} for PeekCommand");
-        }
+        $this->command = match ($state) {
+            JobState::BURIED => 'peek-buried',
+            JobState::DELAYED => 'peek-delayed',
+            JobState::READY => 'peek-ready',
+            JobState::RESERVED => throw new \InvalidArgumentException("Peeking at reserved jobs is not supported")
+        };
     }
 
     public function getCommandLine(): string
     {
-        return $this->getType()->value;
+        return $this->command;
     }
 
-    public function getResponseParser(): ResponseParserInterface
+    public function interpret(RawResponse $response): Job|Success
     {
-        return new ChainedParser(
-            new JobNotFoundExceptionParser(),
-            new JobParser(ResponseType::FOUND),
-
-        );
-    }
-
-    public function getType(): CommandType
-    {
-        return $this->type;
+        if ($response->type === ResponseType::Found && isset($response->argument) && isset($response->data)) {
+            return new Job($response->argument, $response->data);
+        }
+        return match ($response->type) {
+            ResponseType::NotFound => new Success(),
+            ResponseType::Found => throw MalformedResponseException::expectedDataAndIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 }

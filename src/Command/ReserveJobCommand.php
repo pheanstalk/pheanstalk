@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\CommandType;
-use Pheanstalk\Contract\CommandInterface;
-use Pheanstalk\Contract\ResponseInterface;
-use Pheanstalk\Contract\ResponseParserInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\Parser\ChainedParser;
-use Pheanstalk\Parser\JobNotFoundExceptionParser;
-use Pheanstalk\Parser\JobParser;
-use Pheanstalk\Response\ArrayResponse;
+use Pheanstalk\Exception\UnsupportedResponseException;
+use Pheanstalk\Job;
+use Pheanstalk\JobId;
+use Pheanstalk\RawResponse;
 use Pheanstalk\ResponseType;
 
 /**
@@ -20,21 +16,20 @@ use Pheanstalk\ResponseType;
  */
 final class ReserveJobCommand extends JobCommand
 {
-    public function getResponseParser(): ResponseParserInterface
+    public function interpret(RawResponse $response): Job
     {
-        return new ChainedParser(
-            new JobNotFoundExceptionParser(),
-            new JobParser($this->getSuccessResponse()),
-        );
+        if ($response->type === ResponseType::Reserved && isset($response->argument) && isset($response->data)) {
+            return new Job($response->argument, $response->data);
+        }
+        return match ($response->type) {
+            ResponseType::NotFound => throw new Exception\JobNotFoundException(),
+            ResponseType::Reserved => throw Exception\MalformedResponseException::expectedDataAndIntegerArgument(),
+            default => throw new UnsupportedResponseException($response->type)
+        };
     }
 
-    public function getType(): CommandType
+    protected function getCommandTemplate(): string
     {
-        return CommandType::RESERVE_JOB;
-    }
-
-    public function getSuccessResponse(): ResponseType
-    {
-        return ResponseType::RESERVED;
+        return "reserve-job {id}";
     }
 }
