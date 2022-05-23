@@ -7,17 +7,20 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\Job;
-use Pheanstalk\JobState;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobId;
+use Pheanstalk\Values\JobState;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'peek', 'peek-ready', 'peek-delayed' and 'peek-buried' commands.
  *
  * The peek commands let the client inspect a job in the system. There are four
  * variations. All but the first (peek) operate only on the currently used tube.
+ *
+ * @internal
  */
 final class PeekCommand implements CommandInterface
 {
@@ -40,7 +43,7 @@ final class PeekCommand implements CommandInterface
     public function interpret(RawResponse $response): Job|Success
     {
         if ($response->type === ResponseType::Found && isset($response->argument) && isset($response->data)) {
-            return new Job($response->argument, $response->data);
+            return new Job(new JobId($response->argument), $response->data);
         }
         return match ($response->type) {
             ResponseType::NotFound => new Success(),

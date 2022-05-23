@@ -8,15 +8,17 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Exception\DeadlineSoonException;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\Job;
-use Pheanstalk\JobId;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobId;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'reserve' command.
  * Reserves/locks a ready job in a watched tube.
+ *
+ * @internal
  */
 final class ReserveWithTimeoutCommand implements CommandInterface
 {
@@ -38,13 +40,12 @@ final class ReserveWithTimeoutCommand implements CommandInterface
 
     public function interpret(RawResponse $response): Success|Job
     {
-        if ($response->type === ResponseType::Reserved && isset($response->argument) && isset($response->data)) {
-            return new Job($response->argument, $response->data);
-        }
-        return match ($response->type) {
-            ResponseType::TimedOut => new Success(),
-            ResponseType::DeadlineSoon => throw new DeadlineSoonException(),
-            ResponseType::Reserved => throw MalformedResponseException::expectedDataAndIntegerArgument(),
+        return match (true) {
+            $response->type === ResponseType::Reserved && isset($response->argument, $response->data) => new Job(new JobId($response->argument), $response->data),
+            $response->type === ResponseType::Reserved => throw MalformedResponseException::expectedDataAndIntegerArgument(),
+            $response->type === ResponseType::TimedOut => new Success(),
+            $response->type === ResponseType::DeadlineSoon => throw new DeadlineSoonException(),
+
             default => throw new UnsupportedResponseException($response->type)
         };
     }

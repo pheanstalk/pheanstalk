@@ -6,9 +6,10 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\TubeName;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeCommandTemplate;
+use Pheanstalk\Values\TubeName;
 
 /**
  * The 'use' command.
@@ -16,23 +17,23 @@ use Pheanstalk\TubeName;
  * The "use" command is for producers. Subsequent put commands will put jobs into
  * the tube specified by this command. If no use command has been issued, jobs
  * will be put into the tube named "default".
+ *
+ * @internal
  */
 final class UseCommand extends TubeCommand
 {
     public function interpret(
         RawResponse $response
     ): TubeName {
-        if ($response->type === ResponseType::Using && is_string($response->argument)) {
-            return new TubeName($response->argument);
-        }
-        return match ($response->type) {
-            ResponseType::Using => throw MalformedResponseException::expectedStringArgument(),
+        return match (true) {
+            $response->type === ResponseType::Using && isset($response->argument) => new TubeName(is_int($response->argument) ? (string) $response->argument : $response->argument),
+            $response->type === ResponseType::Using => throw MalformedResponseException::expectedIntegerArgument(),
             default => throw new UnsupportedResponseException($response->type)
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): TubeCommandTemplate
     {
-        return "use {tube}";
+        return new TubeCommandTemplate("use {tube}");
     }
 }

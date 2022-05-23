@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<ruleset>
-    <file>src</file>
-    <file>tests/Pheanstalk</file>
-    <exclude-pattern>tests/coverage/*</exclude-pattern>
-    <rule ref="PSR2" />
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found"/>
-
-</ruleset>

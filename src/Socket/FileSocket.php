@@ -13,7 +13,9 @@ use Pheanstalk\Exception\SocketException;
  */
 abstract class FileSocket implements SocketInterface
 {
-    /** @var ?resource */
+    /**
+     * @var null|resource|closed-resource
+     */
     protected $socket;
 
     /**

@@ -1,9 +1,7 @@
 version: "3"
 services:
   beanstalk:
-    build:
-      context: ./dockerfiles
-      dockerfile: Dockerfile-beanstalkd
+    image: ghcr.io/sammousa/beanstalkd:latest
   phpunit:
     build:
       context: ./dockerfiles

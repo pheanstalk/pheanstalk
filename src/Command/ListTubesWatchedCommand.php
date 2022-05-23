@@ -8,15 +8,16 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
 use Pheanstalk\Parser\YamlListParser;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\TubeList;
-use Pheanstalk\TubeName;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeList;
+use Pheanstalk\Values\TubeName;
 
 /**
  * The 'list-tubes-watched' command.
  *
  * Lists the tubes on the watchlist.
+ * @internal
  */
 final class ListTubesWatchedCommand implements CommandInterface
 {

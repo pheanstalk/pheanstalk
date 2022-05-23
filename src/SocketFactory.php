@@ -11,14 +11,15 @@ use Pheanstalk\Exception\NoImplementationException;
 use Pheanstalk\Socket\FsockopenSocket;
 use Pheanstalk\Socket\SocketSocket;
 use Pheanstalk\Socket\StreamSocket;
+use Pheanstalk\Values\SocketImplementation;
 
 class SocketFactory implements SocketFactoryInterface
 {
-    private readonly SocketImplementation $implementation;
+    public readonly SocketImplementation $implementation;
 
     public function __construct(
         private readonly string $host,
-        private readonly  int $port,
+        private readonly  int $port = self::DEFAULT_PORT,
         private readonly int $timeout = 10,
         null|SocketImplementation $implementation = null
     ) {

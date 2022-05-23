@@ -6,12 +6,15 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeCommandTemplate;
 
 /**
  * The 'watch' command.
  * Adds a tube to the watchlist to reserve jobs from.
+ *
+ * @internal
  */
 final class WatchCommand extends TubeCommand
 {
@@ -26,8 +29,8 @@ final class WatchCommand extends TubeCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): TubeCommandTemplate
     {
-        return "watch {tube}";
+        return new TubeCommandTemplate("watch {tube}");
     }
 }

@@ -8,14 +8,16 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
 use Pheanstalk\Parser\YamlDictionaryParser;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\ServerStats;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\ServerStats;
 
 /**
  * The 'stats' command.
  *
  * Statistical information about the system as a whole.
+ *
+ * @internal
  */
 final class StatsCommand implements CommandInterface
 {

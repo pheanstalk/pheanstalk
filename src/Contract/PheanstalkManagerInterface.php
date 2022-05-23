@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\Job;
-use Pheanstalk\JobStats;
-use Pheanstalk\ServerStats;
-use Pheanstalk\TubeList;
-use Pheanstalk\TubeName;
-use Pheanstalk\TubeStats;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobStats;
+use Pheanstalk\Values\ServerStats;
+use Pheanstalk\Values\TubeList;
+use Pheanstalk\Values\TubeName;
+use Pheanstalk\Values\TubeStats;
 
 interface PheanstalkManagerInterface
 {

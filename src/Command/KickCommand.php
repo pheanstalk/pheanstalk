@@ -7,8 +7,8 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
 
 /**
  * The 'kick' command.
@@ -16,10 +16,12 @@ use Pheanstalk\ResponseType;
  * Kicks buried or delayed jobs into a 'ready' state.
  * If there are buried jobs, it will kick up to $max of them.
  * Otherwise, it will kick up to $max delayed jobs.
+ *
+ * @internal
  */
 final class KickCommand implements CommandInterface
 {
-    public function __construct(private int $max)
+    public function __construct(private readonly int $max)
     {
     }
 

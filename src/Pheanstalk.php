@@ -11,6 +11,15 @@ use Pheanstalk\Contract\PheanstalkManagerInterface;
 use Pheanstalk\Contract\PheanstalkPublisherInterface;
 use Pheanstalk\Contract\PheanstalkSubscriberInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobState;
+use Pheanstalk\Values\JobStats;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ServerStats;
+use Pheanstalk\Values\Success;
+use Pheanstalk\Values\TubeList;
+use Pheanstalk\Values\TubeName;
+use Pheanstalk\Values\TubeStats;
 
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
@@ -109,8 +118,7 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
     public function peek(JobIdInterface $job): Job
     {
         $command = new Command\PeekJobCommand($job);
-        $response = $command->interpret($this->dispatch2($command));
-        return new Job($response->getId(), $response->getData());
+        return $command->interpret($this->dispatch2($command));
     }
 
     public function peekReady(): null|Job
@@ -159,19 +167,14 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
     {
         $command = new Command\ReserveCommand();
 
-        $response = $command->interpret($this->dispatch2($command));
-
-        return new Job($response->getId(), $response->getData());
+        return $command->interpret($this->dispatch2($command));
     }
 
     /**
-     * @param int $timeout
-     * @return Job|null
-     * @throws Exception\DeadlineSoonException
-     * @throws Exception\UnsupportedResponseException
      * @param int<0, max> $timeout
+     * @throws Exception\UnsupportedResponseException|Exception\MalformedResponseException|Exception\DeadlineSoonException
      */
-    public function reserveWithTimeout(int $timeout): ?Job
+    public function reserveWithTimeout(int $timeout): null|Job
     {
         $command = new Command\ReserveWithTimeoutCommand($timeout);
         $response = $command->interpret($this->dispatch2($command));
@@ -180,7 +183,7 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
             return null;
         }
 
-        return new Job($response->getId(), $response->getData());
+        return $response;
     }
 
     public function statsJob(JobIdInterface $job): JobStats
@@ -225,7 +228,6 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
     public function reserveJob(JobIdInterface $job): Job
     {
         $command = new ReserveJobCommand($job);
-        $response = $command->interpret($this->dispatch2($command));
-        return new Job($response->getId(), $response->getData());
+        return $command->interpret($this->dispatch2($command));
     }
 }

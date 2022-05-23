@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Command;
 
-use Pheanstalk\Exception;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\NotIgnoredException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeCommandTemplate;
 
 /**
  * The 'ignore' command.
  * Removes a tube from the watch list to reserve jobs from.
+ * @internal
  */
 final class IgnoreCommand extends TubeCommand
 {
@@ -30,8 +31,8 @@ final class IgnoreCommand extends TubeCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): TubeCommandTemplate
     {
-        return "ignore {tube}";
+        return new TubeCommandTemplate("ignore {tube}");
     }
 }

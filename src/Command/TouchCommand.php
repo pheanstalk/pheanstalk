@@ -6,9 +6,10 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\JobCommandTemplate;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'touch' command.
@@ -17,6 +18,8 @@ use Pheanstalk\Success;
  * the benefits of a TTR pulling a job away from an unresponsive worker.  A worker
  * may periodically tell the server that it's still alive and processing a job
  * (e.g. it may do this on DEADLINE_SOON).
+ *
+ * @internal
  */
 final class TouchCommand extends JobCommand
 {
@@ -29,8 +32,8 @@ final class TouchCommand extends JobCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): JobCommandTemplate
     {
-        return "touch {id}";
+        return new JobCommandTemplate("touch {id}");
     }
 }

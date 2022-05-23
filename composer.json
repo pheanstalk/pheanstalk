@@ -33,11 +33,13 @@
         "captainhook/plugin-composer": "^5.3",
         "ramsey/conventional-commits": "^1.2",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-phpunit": "^1.0"
+        "phpstan/phpstan-phpunit": "^1.0",
+        "vimeo/psalm": "^4.23"
     },
     "autoload-dev": {
         "psr-4": {
-            "Pheanstalk\\Tests\\": "tests/Pheanstalk"
+            "Pheanstalk\\Tests\\Unit\\": "tests/unit",
+            "Pheanstalk\\Tests\\Integration\\": "tests/integration"
         }
     },
     "autoload": {
@@ -50,5 +52,11 @@
         "test": [
             "@phpunit"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "captainhook/plugin-composer": true,
+            "phpstan/extension-installer": true
+        }
     }
 }

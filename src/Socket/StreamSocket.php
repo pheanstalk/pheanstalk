@@ -20,7 +20,7 @@ class StreamSocket extends FileSocket
         $context = stream_context_create();
         $socket = @stream_socket_client("tcp://$host:$port", $error, $errorMessage, $connectTimeout, STREAM_CLIENT_CONNECT, $context);
         if ($socket === false) {
-            throw new ConnectionException($errorMessage, $error);
+            throw new ConnectionException($error, $errorMessage);
         }
         $this->socket = $socket;
     }

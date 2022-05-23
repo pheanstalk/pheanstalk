@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\Job;
-use Pheanstalk\TubeList;
-use Pheanstalk\TubeName;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\TubeList;
+use Pheanstalk\Values\TubeName;
 
 interface PheanstalkSubscriberInterface
 {

@@ -5,18 +5,17 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Socket;
 
-use Pheanstalk\Contract\DataLengthProviderInterface;
-use Pheanstalk\Contract\ResponseHandlerInterface;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\SocketException;
+use \Socket;
 
 /**
  * A Socket implementation using the Sockets extension
  */
 class SocketSocket implements SocketInterface
 {
-    private \Socket $socket;
+    private null|\Socket $socket;
 
     public function __construct(
         string $host,
@@ -54,7 +53,7 @@ class SocketSocket implements SocketInterface
         if (@socket_connect($socket, $addresses[0], $port) === false) {
             $error = socket_last_error($socket);
             throw new ConnectionException($error, socket_strerror($error));
-        };
+        }
 
         if ($sendTimeout !== false) {
             socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout);
@@ -85,10 +84,17 @@ class SocketSocket implements SocketInterface
 
     private function throwException(): never
     {
-        $error = socket_last_error($this->socket);
-        throw new SocketException(socket_strerror($error), $error);
+        if (isset($this->socket)) {
+            $error = socket_last_error($this->socket);
+            throw new SocketException(socket_strerror($error), $error);
+        }
+        throw new SocketException("Unknown error");
+
     }
 
+    /**
+     * @psalm-assert \Socket $this->socket
+     */
     private function checkClosed(): void
     {
         if (!isset($this->socket)) {

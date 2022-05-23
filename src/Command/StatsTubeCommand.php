@@ -7,15 +7,16 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\TubeNotFoundException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\JobStats;
 use Pheanstalk\Parser\YamlDictionaryParser;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\TubeStats;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeCommandTemplate;
+use Pheanstalk\Values\TubeStats;
 
 /**
  * The 'stats-tube' command.
  * Gives statistical information about the specified tube if it exists.
+ * @internal
  */
 final class StatsTubeCommand extends TubeCommand
 {
@@ -31,8 +32,8 @@ final class StatsTubeCommand extends TubeCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): TubeCommandTemplate
     {
-        return "stats-tube {tube}";
+        return new TubeCommandTemplate("stats-tube {tube}");
     }
 }

@@ -7,9 +7,9 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\CommandWithDataInterface;
 use Pheanstalk\Exception;
-use Pheanstalk\JobId;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
+use Pheanstalk\Values\JobId;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
 
 /**
  * The 'put' command.
@@ -17,6 +17,8 @@ use Pheanstalk\ResponseType;
  * Inserts a job into the client's currently used tube.
  *
  * @see UseCommand
+ *
+ * @internal
  */
 final class PutCommand implements CommandInterface, CommandWithDataInterface
 {

@@ -6,30 +6,30 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\Job;
-use Pheanstalk\JobId;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobCommandTemplate;
+use Pheanstalk\Values\JobId;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
 
 /**
  * The 'reserve-job' command.
+ * @internal
  */
 final class ReserveJobCommand extends JobCommand
 {
     public function interpret(RawResponse $response): Job
     {
-        if ($response->type === ResponseType::Reserved && isset($response->argument) && isset($response->data)) {
-            return new Job($response->argument, $response->data);
-        }
-        return match ($response->type) {
-            ResponseType::NotFound => throw new Exception\JobNotFoundException(),
-            ResponseType::Reserved => throw Exception\MalformedResponseException::expectedDataAndIntegerArgument(),
+        return match (true) {
+            $response->type === ResponseType::Reserved && isset($response->argument, $response->data) => new Job(new JobId($response->argument), $response->data),
+            $response->type === ResponseType::Reserved => throw Exception\MalformedResponseException::expectedDataAndIntegerArgument(),
+            $response->type === ResponseType::NotFound => throw new Exception\JobNotFoundException(),
             default => throw new UnsupportedResponseException($response->type)
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): JobCommandTemplate
     {
-        return "reserve-job {id}";
+        return new JobCommandTemplate("reserve-job {id}");
     }
 }

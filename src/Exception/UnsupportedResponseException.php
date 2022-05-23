@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Exception;
 
-use Pheanstalk\ResponseType;
+use Pheanstalk\Values\ResponseType;
 
 class UnsupportedResponseException extends ClientException
 {

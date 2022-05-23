@@ -7,13 +7,15 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\JobCommandTemplate;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'bury' command.
  * Puts a job into a 'buried' state, revived only by 'kick' command.
+ * @internal
  */
 final class BuryCommand extends JobCommand
 {
@@ -24,9 +26,9 @@ final class BuryCommand extends JobCommand
         parent::__construct($jobId);
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): JobCommandTemplate
     {
-        return "bury {id} {$this->priority}";
+        return new JobCommandTemplate("bury {id} {$this->priority}");
     }
 
     public function interpret(RawResponse $response): Success

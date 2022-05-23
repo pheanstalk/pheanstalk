@@ -7,14 +7,17 @@ namespace Pheanstalk\Command;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\JobCommandTemplate;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'release' command.
  *
  * Releases a reserved job back onto the ready queue.
+ *
+ * @internal
  */
 final class ReleaseCommand extends JobCommand
 {
@@ -32,8 +35,8 @@ final class ReleaseCommand extends JobCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): JobCommandTemplate
     {
-        return "release {id} {$this->priority} {$this->delay}";
+        return new JobCommandTemplate("release {id} {$this->priority} {$this->delay}");
     }
 }

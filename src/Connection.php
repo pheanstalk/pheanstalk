@@ -6,7 +6,6 @@ namespace Pheanstalk;
 
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\CommandWithDataInterface;
-use Pheanstalk\Contract\DataLengthProviderInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\MalformedResponseException;
@@ -14,17 +13,22 @@ use Pheanstalk\Exception\ServerBadFormatException;
 use Pheanstalk\Exception\ServerInternalErrorException;
 use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
 
 /**
  * A connection to a beanstalkd server, backed by any type of socket.
- *
+ * The connection is responsible for:
+ * - managing the connection to the server via its socket factory
+ * - dispatching commands
+ * - parsing the response into a RawResponse object
  */
 class Connection
 {
     private const CRLF = "\r\n";
     private const CRLF_LENGTH = 2;
 
-    private SocketInterface|null $socket;
+    private SocketInterface|null $socket = null;
     public function __construct(
         private readonly SocketFactoryInterface $factory
     ) {
@@ -51,7 +55,10 @@ class Connection
     }
 
     /**
+     * @param SocketInterface $socket
      * @param int<0, max> $length
+     * @return string
+     * @throws Exception\ClientException
      */
     private function readData(SocketInterface $socket, int $length): string
     {
@@ -83,10 +90,12 @@ class Connection
 
         if ($responseType->hasData()) {
             $dataLength = (int) array_pop($responseParts);
-            if ($dataLength < 0) {
+            if ($dataLength <= 0) {
                 throw MalformedResponseException::negativeDataLength();
             }
             $data = $this->readData($socket, $dataLength);
+        } else {
+            $data = null;
         }
         // count($responseParts) = 0|1
 

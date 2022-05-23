@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\TubeName;
+use Pheanstalk\Values\TubeName;
 
 interface PheanstalkPublisherInterface
 {

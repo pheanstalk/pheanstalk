@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Parser;
 
-use function PHPStan\dumpType;
-
 /**
  * A parser that parses Yaml a simple dictionary
  * This is a very basic implementation that only supports single line strings and not any of the advanced YAML features
@@ -14,7 +12,7 @@ use function PHPStan\dumpType;
 class YamlDictionaryParser
 {
     /**
-     * @phpstan-return array<string, bool|float|int|string>
+     * @return array<string, bool|float|int|string>
      */
     public function parse(string $data): array
     {

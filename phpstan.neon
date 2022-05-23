@@ -7,16 +7,5 @@ parameters:
   reportUnmatchedIgnoredErrors: true
   bootstrapFiles:
     - tests/bootstrap.php
-  ignoreErrors:
-    -
-      message: "#^Variable property access on Pheanstalk\\\\JobStats\\.$#"
-      count: 1
-      path: src/JobStats.php
-    -
-      message: "#^Variable property access on Pheanstalk\\\\ServerStats\\.$#"
-      count: 1
-      path: src/ServerStats.php
-    -
-      message: "#^Variable property access on Pheanstalk\\\\TubeStats\\.$#"
-      count: 1
-      path: src/TubeStats.php
+includes:
+  - phpstan-baseline.neon

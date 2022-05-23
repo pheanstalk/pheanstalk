@@ -8,16 +8,16 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\UnsupportedResponseException;
 use Pheanstalk\Parser\YamlListParser;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\TubeList;
-use Pheanstalk\TubeName;
-use Pheanstalk\YamlResponseParser;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeList;
+use Pheanstalk\Values\TubeName;
 
 /**
  * The 'list-tubes' command.
  *
  * List all existing tubes.
+ * @internal
  */
 final class ListTubesCommand implements CommandInterface
 {

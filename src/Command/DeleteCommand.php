@@ -6,13 +6,15 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception\JobNotFoundException;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\JobCommandTemplate;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'delete' command.
  * Permanently deletes an already-reserved job.
+ * @internal
  */
 final class DeleteCommand extends JobCommand
 {
@@ -25,8 +27,8 @@ final class DeleteCommand extends JobCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): JobCommandTemplate
     {
-        return "delete {id}";
+        return new JobCommandTemplate("delete {id}");
     }
 }

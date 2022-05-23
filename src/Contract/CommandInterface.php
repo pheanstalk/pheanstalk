@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
-use Pheanstalk\Job;
-use Pheanstalk\JobId;
-use Pheanstalk\JobStats;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ServerStats;
-use Pheanstalk\Success;
-use Pheanstalk\TubeList;
-use Pheanstalk\TubeName;
-use Pheanstalk\TubeStats;
+use Pheanstalk\Values\Job;
+use Pheanstalk\Values\JobId;
+use Pheanstalk\Values\JobStats;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ServerStats;
+use Pheanstalk\Values\Success;
+use Pheanstalk\Values\TubeList;
+use Pheanstalk\Values\TubeName;
+use Pheanstalk\Values\TubeStats;
 
 /**
  * A command to be sent to the beanstalkd server, and response processing logic.

@@ -19,8 +19,11 @@
     </include>
   </coverage>
   <testsuites>
-    <testsuite name="Pheanstalk Test Suite">
-      <directory>./tests</directory>
+    <testsuite name="Pheanstalk Unit Tests">
+      <directory>./tests/unit</directory>
+    </testsuite>
+    <testsuite name="Pheanstalk Integration Tests">
+      <directory>./tests/integration</directory>
     </testsuite>
   </testsuites>
 </phpunit>

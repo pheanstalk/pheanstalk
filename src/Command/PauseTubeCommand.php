@@ -6,15 +6,17 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
-use Pheanstalk\TubeName;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
+use Pheanstalk\Values\TubeCommandTemplate;
+use Pheanstalk\Values\TubeName;
 
 /**
  * The 'pause-tube' command.
  *
  * Temporarily prevent jobs being reserved from the given tube.
+ * @internal
  */
 final class PauseTubeCommand extends TubeCommand
 {
@@ -35,8 +37,8 @@ final class PauseTubeCommand extends TubeCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): TubeCommandTemplate
     {
-        return "pause-tube {tube} {$this->delay}";
+        return new TubeCommandTemplate("pause-tube {tube} {$this->delay}");
     }
 }

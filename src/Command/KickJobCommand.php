@@ -6,9 +6,10 @@ namespace Pheanstalk\Command;
 
 use Pheanstalk\Exception;
 use Pheanstalk\Exception\UnsupportedResponseException;
-use Pheanstalk\RawResponse;
-use Pheanstalk\ResponseType;
-use Pheanstalk\Success;
+use Pheanstalk\Values\JobCommandTemplate;
+use Pheanstalk\Values\RawResponse;
+use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Success;
 
 /**
  * The 'kick-job' command.
@@ -17,8 +18,9 @@ use Pheanstalk\Success;
  *
  * A variant of kick that operates with a single job. If the given job
  * exists and is in a buried or delayed state, it will be moved to the
- * ready queue of the the same tube where it currently belongs.
+ * ready queue of the same tube where it currently belongs.
  *
+ * @internal
  */
 final class KickJobCommand extends JobCommand
 {
@@ -31,8 +33,8 @@ final class KickJobCommand extends JobCommand
         };
     }
 
-    protected function getCommandTemplate(): string
+    protected function getCommandTemplate(): JobCommandTemplate
     {
-        return "kick-job {id}";
+        return new JobCommandTemplate("kick-job {id}");
     }
 }
