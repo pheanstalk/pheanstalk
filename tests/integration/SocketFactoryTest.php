@@ -25,9 +25,9 @@ final class SocketFactoryTest extends TestCase
      */
     public function factoryProvider(): iterable
     {
-        yield [new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::SOCKET), SocketSocket::class];
-        yield [new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::STREAM), StreamSocket::class];
-        yield [new SocketFactory(SERVER_HOST, 11300, 10, SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
+        yield [new SocketFactory(SERVER_HOST, 11300, SocketImplementation::SOCKET), SocketSocket::class];
+        yield [new SocketFactory(SERVER_HOST, 11300, SocketImplementation::STREAM), StreamSocket::class];
+        yield [new SocketFactory(SERVER_HOST, 11300, SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
     }
 
     /**

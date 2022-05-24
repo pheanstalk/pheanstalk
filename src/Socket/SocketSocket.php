@@ -8,6 +8,7 @@ namespace Pheanstalk\Socket;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\SocketException;
+use Pheanstalk\Values\Timeout;
 use Socket;
 
 /**
@@ -20,7 +21,9 @@ class SocketSocket implements SocketInterface
     public function __construct(
         string $host,
         int $port,
-        int $connectTimeout
+        Timeout $connectTimeout,
+        Timeout $sendTimeout,
+        Timeout $receiveTimeout
     ) {
         if (!extension_loaded('sockets')) {
             throw new \Exception('Sockets extension not found');
@@ -32,18 +35,9 @@ class SocketSocket implements SocketInterface
         }
 
 
-        $timeout = [
-            'sec' => $connectTimeout,
-            'usec' => 0
-        ];
-
-        /** @var int|false $sendTimeout */
-        $sendTimeout = socket_get_option($socket, SOL_SOCKET, SO_SNDTIMEO);
-        /** @var int|false $receiveTimeout */
-        $receiveTimeout = socket_get_option($socket, SOL_SOCKET, SO_RCVTIMEO);
         socket_set_option($socket, SOL_SOCKET, SO_KEEPALIVE, 1);
-        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
-        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout);
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $connectTimeout->toArray());
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $connectTimeout->toArray());
         if (socket_set_block($socket) === false) {
             throw new ConnectionException(0, "Failed to set socket to blocking mode");
         }
@@ -57,14 +51,8 @@ class SocketSocket implements SocketInterface
             throw new ConnectionException($error, socket_strerror($error));
         }
 
-        if ($sendTimeout !== false) {
-            socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout);
-        }
-
-        if ($receiveTimeout !== false) {
-            socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout);
-        }
-
+        socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout->toArray());
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout->toArray());
 
         $this->socket = $socket;
     }

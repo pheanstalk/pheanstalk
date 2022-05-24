@@ -7,6 +7,7 @@ namespace Pheanstalk\Socket;
 
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\SocketException;
+use Pheanstalk\Values\Timeout;
 
 /**
  * A Socket implementation using the standard file functions.
@@ -19,12 +20,13 @@ abstract class FileSocket implements SocketInterface
      */
     private $socket;
 
-    protected function __construct(mixed $socket)
+    protected function __construct(mixed $socket, Timeout $receiveTimeout)
     {
         if (!is_resource($socket)) {
             throw new \InvalidArgumentException("A valid resource is required");
         }
 
+        stream_set_timeout($socket, $receiveTimeout->seconds, $receiveTimeout->microSeconds);
         $this->socket = $socket;
     }
 

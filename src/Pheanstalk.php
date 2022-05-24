@@ -17,6 +17,7 @@ use Pheanstalk\Values\JobStats;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ServerStats;
 use Pheanstalk\Values\Success;
+use Pheanstalk\Values\Timeout;
 use Pheanstalk\Values\TubeList;
 use Pheanstalk\Values\TubeName;
 use Pheanstalk\Values\TubeStats;
@@ -33,9 +34,9 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
     /**
      * Static constructor that uses auto-detection to choose an underlying socket implementation
      */
-    public static function create(string $host, int $port = 11300, int $connectTimeout = 10): self
+    public static function create(string $host, int $port = 11300, Timeout $connectTimeout = null, Timeout $receiveTimeout = null): self
     {
-        return self::createWithFactory(new SocketFactory($host, $port, $connectTimeout));
+        return self::createWithFactory(new SocketFactory($host, $port, null, $connectTimeout, $receiveTimeout));
     }
 
     /**

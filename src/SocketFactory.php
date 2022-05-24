@@ -12,18 +12,39 @@ use Pheanstalk\Socket\FsockopenSocket;
 use Pheanstalk\Socket\SocketSocket;
 use Pheanstalk\Socket\StreamSocket;
 use Pheanstalk\Values\SocketImplementation;
+use Pheanstalk\Values\Timeout;
 
 class SocketFactory implements SocketFactoryInterface
 {
+    private const DEFAULT_TIMEOUT = 10;
     public readonly SocketImplementation $implementation;
 
+    private readonly Timeout $connectTimeout;
+    private readonly Timeout $receiveTimeout;
+    private readonly Timeout $sendTimeout;
+
+    /**
+     * @param string $host
+     * @param int $port
+     * @param SocketImplementation|null $implementation
+     * @param Timeout|null $connectTimeout
+     * @param Timeout|null $receiveTimeout
+     * @param Timeout|null $sendTimeout the timeout used for sending data, not supported by all implementations
+     * @throws NoImplementationException
+     */
     public function __construct(
         private readonly string $host,
         private readonly  int $port = self::DEFAULT_PORT,
-        private readonly int $timeout = 10,
-        null|SocketImplementation $implementation = null
+        null|SocketImplementation $implementation = null,
+        Timeout $connectTimeout = null,
+        Timeout $receiveTimeout = null,
+        Timeout $sendTimeout = null,
     ) {
         $this->implementation = $implementation ?? $this->detectImplementation();
+
+        $this->connectTimeout = $connectTimeout ?? new Timeout(self::DEFAULT_TIMEOUT, 0);
+        $this->receiveTimeout = $receiveTimeout ?? new Timeout(self::DEFAULT_TIMEOUT, 0);
+        $this->sendTimeout = $sendTimeout ?? new Timeout(self::DEFAULT_TIMEOUT, 0);
     }
 
     private function detectImplementation(): SocketImplementation
@@ -47,17 +68,17 @@ class SocketFactory implements SocketFactoryInterface
 
     private function createStreamSocket(): StreamSocket
     {
-        return new StreamSocket($this->host, $this->port, $this->timeout);
+        return new StreamSocket($this->host, $this->port, $this->connectTimeout, $this->receiveTimeout);
     }
 
     private function createSocketSocket(): SocketSocket
     {
-        return new SocketSocket($this->host, $this->port, $this->timeout);
+        return new SocketSocket($this->host, $this->port, $this->connectTimeout, $this->sendTimeout, $this->receiveTimeout);
     }
 
     private function createFsockopenSocket(): FsockopenSocket
     {
-        return new FsockopenSocket($this->host, $this->port, $this->timeout);
+        return new FsockopenSocket($this->host, $this->port, $this->connectTimeout, $this->receiveTimeout);
     }
 
     /**

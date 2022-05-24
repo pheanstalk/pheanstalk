@@ -17,6 +17,6 @@ class StreamPheanstalkTest extends PheanstalkTest
 {
     protected function getPheanstalk(string $host = SERVER_HOST): Pheanstalk
     {
-        return new Pheanstalk(new Connection(new SocketFactory($host, 11300, 1, SocketImplementation::STREAM)));
+        return new Pheanstalk(new Connection(new SocketFactory($host, 11300, SocketImplementation::STREAM)));
     }
 }
