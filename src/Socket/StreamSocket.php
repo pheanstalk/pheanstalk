@@ -22,6 +22,6 @@ class StreamSocket extends FileSocket
         if ($socket === false) {
             throw new ConnectionException($error, $errorMessage);
         }
-        $this->socket = $socket;
+        parent::__construct($socket);
     }
 }

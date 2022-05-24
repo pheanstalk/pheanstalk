@@ -390,7 +390,7 @@ abstract class PheanstalkTest extends TestCase
     {
         return [
             ['not-valid'],
-            ['127.0.0.123']
+            ['192.0.2.123']
         ];
     }
 

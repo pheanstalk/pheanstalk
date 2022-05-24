@@ -1,0 +1,146 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$id of class Pheanstalk\\\\Values\\\\JobId constructor expects int\\|Pheanstalk\\\\Contract\\\\JobIdInterface\\|string, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of class Pheanstalk\\\\Values\\\\TubeName constructor expects int\\|string, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of static method Pheanstalk\\\\Values\\\\JobState\\:\\:from\\(\\) expects int\\|string, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$age of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$buries of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$delay of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$file of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$kicks of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$priority of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$releases of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$reserves of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$timeLeft of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$timeToRelease of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\$timeouts of class Pheanstalk\\\\Values\\\\JobStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/JobStats.php
+
+		-
+			message: "#^Parameter \\#1 \\$currentJobsUrgent of class Pheanstalk\\\\Values\\\\ServerStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/ServerStats.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of class Pheanstalk\\\\Values\\\\TubeName constructor expects int\\|string, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$cmdDelete of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$cmdPauseTube of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentJobsBuried of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentJobsDelayed of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentJobsReady of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentJobsReserved of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentJobsUrgent of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentUsing of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentWaiting of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$currentWatching of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$pause of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$pauseTimeLeft of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php
+
+		-
+			message: "#^Parameter \\$totalJobs of class Pheanstalk\\\\Values\\\\TubeStats constructor expects int, bool\\|float\\|int\\|string given\\.$#"
+			count: 1
+			path: src/Values/TubeStats.php

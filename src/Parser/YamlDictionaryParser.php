@@ -17,11 +17,14 @@ class YamlDictionaryParser
     public function parse(string $data): array
     {
         $dictionary = [];
+        /** @var list<string> $matches */
+        $matches = [];
         foreach (explode("\n", $data) as $line) {
             if (preg_match('#(\S+):\s*(.*)#', $line, $matches) === 1) {
-                $dictionary[(string) $matches[1]] = $this->cast($matches[2], $matches[1]);
+                $dictionary[$matches[1]] = $this->cast($matches[2], $matches[1]);
             }
         }
+        /** @phpstan-ignore-next-line https://github.com/phpstan/phpstan/issues/6426 */
         return $dictionary;
     }
 

@@ -8,7 +8,7 @@ namespace Pheanstalk\Socket;
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\SocketException;
-use \Socket;
+use Socket;
 
 /**
  * A Socket implementation using the Sockets extension
@@ -37,7 +37,9 @@ class SocketSocket implements SocketInterface
             'usec' => 0
         ];
 
+        /** @var int|false $sendTimeout */
         $sendTimeout = socket_get_option($socket, SOL_SOCKET, SO_SNDTIMEO);
+        /** @var int|false $receiveTimeout */
         $receiveTimeout = socket_get_option($socket, SOL_SOCKET, SO_RCVTIMEO);
         socket_set_option($socket, SOL_SOCKET, SO_KEEPALIVE, 1);
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout);
@@ -72,9 +74,9 @@ class SocketSocket implements SocketInterface
      */
     public function write(string $data): void
     {
-        $this->checkClosed();
+        $socket = $this->getSocket();
         while ($data !== "") {
-            $written = @socket_write($this->socket, $data);
+            $written = @socket_write($socket, $data);
             if ($written === false) {
                 $this->throwException();
             }
@@ -89,17 +91,14 @@ class SocketSocket implements SocketInterface
             throw new SocketException(socket_strerror($error), $error);
         }
         throw new SocketException("Unknown error");
-
     }
 
-    /**
-     * @psalm-assert \Socket $this->socket
-     */
-    private function checkClosed(): void
+    private function getSocket(): Socket
     {
         if (!isset($this->socket)) {
             throw new SocketException('The connection was closed');
         }
+        return $this->socket;
     }
 
     /**
@@ -109,11 +108,11 @@ class SocketSocket implements SocketInterface
      */
     public function read(int $length): string
     {
-        $this->checkClosed();
+        $socket = $this->getSocket();
 
         $buffer = '';
         while (mb_strlen($buffer, '8bit') < $length) {
-            $result = @socket_read($this->socket, $length - mb_strlen($buffer, '8bit'));
+            $result = @socket_read($socket, $length - mb_strlen($buffer, '8bit'));
             if ($result === false) {
                 $this->throwException();
             }
@@ -125,12 +124,12 @@ class SocketSocket implements SocketInterface
 
     public function getLine(): string
     {
-        $this->checkClosed();
+        $socket = $this->getSocket();
 
         $buffer = '';
         // Reading stops at \r or \n. In case it stopped at \r we must continue reading.
         while (!str_ends_with($buffer, "\n")) {
-            $result = @socket_read($this->socket, 1024, PHP_NORMAL_READ);
+            $result = @socket_read($socket, 1024, PHP_NORMAL_READ);
             if ($result === false) {
                 $this->throwException();
             }
@@ -144,11 +143,14 @@ class SocketSocket implements SocketInterface
 
     /**
      * Disconnect the socket; subsequent usage of the socket will fail.
+     * This function is idempotent
+     * @idempotent
      */
     public function disconnect(): void
     {
-        $this->checkClosed();
-        socket_close($this->socket);
-        unset($this->socket);
+        if (isset($this->socket)) {
+            socket_close($this->socket);
+            unset($this->socket);
+        }
     }
 }

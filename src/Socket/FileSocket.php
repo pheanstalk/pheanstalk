@@ -14,22 +14,44 @@ use Pheanstalk\Exception\SocketException;
 abstract class FileSocket implements SocketInterface
 {
     /**
-     * @var null|resource|closed-resource
+     * @phpstan-var resource
+     * @psalm-var resource|closed-resource
      */
-    protected $socket;
+    private $socket;
+
+    protected function __construct(mixed $socket)
+    {
+        if (!is_resource($socket)) {
+            throw new \InvalidArgumentException("A valid resource is required");
+        }
+
+        $this->socket = $socket;
+    }
+
+    /**
+     * @return resource
+     * @throws SocketException
+     */
+    final protected function getSocket()
+    {
+        /** @phpstan-ignore-next-line (Bug: https://github.com/phpstan/phpstan/issues/5845) */
+        if (!is_resource($this->socket)) {
+            $this->throwClosed();
+        }
+        return $this->socket;
+    }
 
     /**
      * Writes data to the socket.
      */
     public function write(string $data): void
     {
-        if (!isset($this->socket)) {
-            $this->throw();
-        }
+        $socket = $this->getSocket();
+
         $retries = 0;
         error_clear_last();
         while ($data !== "" && $retries < 10) {
-            $written = fwrite($this->socket, $data);
+            $written = fwrite($socket, $data);
 
             if ($written === false) {
                 $this->throwException();
@@ -45,6 +67,15 @@ abstract class FileSocket implements SocketInterface
         }
     }
 
+    /**
+     * @return never
+     * @throws SocketException
+     */
+    private function throwClosed(): never
+    {
+        throw new SocketException('The connection was closed');
+    }
+
     private function throwException(): never
     {
         if (null === $error = error_get_last()) {
@@ -53,23 +84,16 @@ abstract class FileSocket implements SocketInterface
         throw new SocketException($error['message'], $error['type']);
     }
 
-    private function throw(): never
-    {
-        throw new SocketException('The connection was closed');
-    }
-
     /**
      * Reads up to $length bytes from the socket.
      * @param int<0, max> $length
      */
     public function read(int $length): string
     {
-        if (!isset($this->socket)) {
-            $this->throw();
-        }
+        $socket = $this->getSocket();
         $buffer = '';
         while (0 < $remaining = $length - mb_strlen($buffer, '8bit')) {
-            $result = fread($this->socket, $remaining);
+            $result = fread($socket, $remaining);
             if ($result === false) {
                 $this->throwException();
             }
@@ -84,10 +108,8 @@ abstract class FileSocket implements SocketInterface
      */
     public function getLine(): string
     {
-        if (!isset($this->socket)) {
-            $this->throw();
-        }
-        $result = fgets($this->socket, 8192);
+        $socket = $this->getSocket();
+        $result = fgets($socket, 8192);
         if ($result === false) {
             $this->throwException();
         }
@@ -96,13 +118,13 @@ abstract class FileSocket implements SocketInterface
 
     /**
      * Disconnect the socket; subsequent usage of the socket will fail.
+     * @idempotent
      */
     public function disconnect(): void
     {
-        if (!isset($this->socket)) {
-            $this->throw();
+        /** @phpstan-ignore-next-line (Bug: https://github.com/phpstan/phpstan/issues/5845) */
+        if (is_resource($this->socket)) {
+            fclose($this->socket);
         }
-        fclose($this->socket);
-        $this->socket = null;
     }
 }
