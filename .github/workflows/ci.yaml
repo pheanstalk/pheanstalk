@@ -50,13 +50,6 @@ jobs:
       # This is disabled due to errors in the baseline, re-enable it when those have been fully cleaned.
       # - name: Static analysis of tests
       #   run: phpstan analyse tests
-  commitlint:
-    name: commit-lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ahmadnassri/action-commit-lint@v1
-        with:
-          config: conventional
 # Disabled, this should be moved to a separate CI workflow that triggers on a new tag.
 #  docs:
 #    name: Docs
@@ -82,7 +75,6 @@ jobs:
     needs:
       - code_checks
       - tests
-      - commitlint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
