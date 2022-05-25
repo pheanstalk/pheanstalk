@@ -11,16 +11,15 @@ use Pheanstalk\Values\SocketImplementation;
 use Pheanstalk\Values\Timeout;
 
 /**
- * @covers \Pheanstalk\Socket\FsockopenSocket
- * @covers \Pheanstalk\Socket\FileSocket
+ * @covers \Pheanstalk\Socket\SocketSocket
  * @covers \Pheanstalk\PheanstalkSubscriber
  * @covers \Pheanstalk\PheanstalkManager
  * @covers \Pheanstalk\PheanstalkPublisher
  */
-class FSockOpenPheanstalkTest extends PheanstalkTest
+class SocketUnixPheanstalkTest extends PheanstalkTest
 {
     protected function getPheanstalk(): Pheanstalk
     {
-        return new Pheanstalk(new Connection(new SocketFactory($this->getHost(), implementation: SocketImplementation::FSOCKOPEN, connectTimeout: new Timeout(1, 0))));
+        return new Pheanstalk(new Connection(new SocketFactory($this->getHost(), implementation: SocketImplementation::SOCKET, connectTimeout: new Timeout(1))));
     }
 }

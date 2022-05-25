@@ -18,6 +18,12 @@ use Pheanstalk\Values\TubeCommandTemplate;
  */
 final class WatchCommand extends TubeCommand
 {
+    /**
+     * @param RawResponse $response
+     * @return int The number of tubes currently in the watch list
+     * @throws MalformedResponseException
+     * @throws UnsupportedResponseException
+     */
     public function interpret(RawResponse $response): int
     {
         if ($response->type === ResponseType::Watching && is_int($response->argument)) {

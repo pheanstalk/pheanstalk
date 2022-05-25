@@ -6,7 +6,7 @@ namespace Pheanstalk\Values;
 
 class Timeout
 {
-    public function __construct(public readonly int $seconds, public readonly int $microSeconds)
+    public function __construct(public readonly int $seconds, public readonly int $microSeconds = 0)
     {
     }
 

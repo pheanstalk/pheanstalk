@@ -7,7 +7,6 @@ namespace Pheanstalk\Socket;
 
 use Pheanstalk\Contract\SocketInterface;
 use Pheanstalk\Exception\ConnectionException;
-use Pheanstalk\Exception\SocketException;
 use Pheanstalk\Values\Timeout;
 use Socket;
 
@@ -16,7 +15,7 @@ use Socket;
  */
 class SocketSocket implements SocketInterface
 {
-    private null|\Socket $socket;
+    private readonly null|\Socket $socket;
 
     public function __construct(
         string $host,
@@ -25,30 +24,30 @@ class SocketSocket implements SocketInterface
         Timeout $sendTimeout,
         Timeout $receiveTimeout
     ) {
-        if (!extension_loaded('sockets')) {
-            throw new \Exception('Sockets extension not found');
+        if (str_starts_with($host, 'unix://')) {
+            $socket = @socket_create(AF_UNIX, SOCK_STREAM, SOL_SOCKET);
+        } else {
+            $socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         }
-
-        $socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if ($socket === false) {
-            $this->throwException();
+            throw new ConnectionException(0, "Failed to create socket");
         }
 
 
         socket_set_option($socket, SOL_SOCKET, SO_KEEPALIVE, 1);
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $connectTimeout->toArray());
         socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $connectTimeout->toArray());
-        if (socket_set_block($socket) === false) {
-            throw new ConnectionException(0, "Failed to set socket to blocking mode");
-        }
 
-        $addresses = gethostbynamel($host);
-        if ($addresses === false) {
-            throw new ConnectionException(0, "Could not resolve hostname $host");
-        }
-        if (@socket_connect($socket, $addresses[0], $port) === false) {
-            $error = socket_last_error($socket);
-            throw new ConnectionException($error, socket_strerror($error));
+        if (!str_starts_with($host, 'unix://')) {
+            $addresses = gethostbynamel($host);
+            if ($addresses === false) {
+                throw new ConnectionException(0, "Could not resolve hostname $host");
+            }
+            if (@socket_connect($socket, $addresses[0], $port) === false) {
+                $this->throwException($socket);
+            }
+        } elseif (@socket_connect($socket, substr($host, 7)) === false) {
+            $this->throwException($socket);
         }
 
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout->toArray());
@@ -66,25 +65,22 @@ class SocketSocket implements SocketInterface
         while ($data !== "") {
             $written = @socket_write($socket, $data);
             if ($written === false) {
-                $this->throwException();
+                $this->throwException($socket);
             }
             $data = substr($data, $written);
         }
     }
 
-    private function throwException(): never
+    private function throwException(Socket $socket): never
     {
-        if (isset($this->socket)) {
-            $error = socket_last_error($this->socket);
-            throw new SocketException(socket_strerror($error), $error);
-        }
-        throw new SocketException("Unknown error");
+        $error = socket_last_error($socket);
+        throw new ConnectionException($error, socket_strerror($error));
     }
 
     private function getSocket(): Socket
     {
         if (!isset($this->socket)) {
-            throw new SocketException('The connection was closed');
+            throw new ConnectionException(0, 'The connection was closed');
         }
         return $this->socket;
     }
@@ -102,7 +98,7 @@ class SocketSocket implements SocketInterface
         while (mb_strlen($buffer, '8bit') < $length) {
             $result = @socket_read($socket, $length - mb_strlen($buffer, '8bit'));
             if ($result === false) {
-                $this->throwException();
+                $this->throwException($socket);
             }
             $buffer .= $result;
         }
@@ -119,7 +115,7 @@ class SocketSocket implements SocketInterface
         while (!str_ends_with($buffer, "\n")) {
             $result = @socket_read($socket, 1024, PHP_NORMAL_READ);
             if ($result === false) {
-                $this->throwException();
+                $this->throwException($socket);
             }
             $buffer .= $result;
         }

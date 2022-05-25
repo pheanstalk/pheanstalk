@@ -47,7 +47,12 @@ interface PheanstalkSubscriberInterface
     /**
      * Reserves/locks a ready job in a watched tube.
      */
-    public function reserve(): ?Job;
+    public function reserve(): Job;
+
+    /**
+     * Puts a job into a 'buried' state, revived only by 'kick' command.
+     */
+    public function bury(JobIdInterface $job, int $priority = PheanstalkPublisherInterface::DEFAULT_PRIORITY): void;
 
     /**
      * Reserves/locks a specific job

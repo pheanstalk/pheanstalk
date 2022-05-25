@@ -19,11 +19,8 @@ class FsockopenSocket extends FileSocket
         Timeout $connectTimeout,
         Timeout $readTimeout
     ) {
-        if (!function_exists('fsockopen')) {
-            throw new \Exception('Fsockopen not found');
-        }
+        $socket = @fsockopen($host, str_starts_with($host, 'unix://') ? -1 : $port, $error, $errorMessage, $connectTimeout->toFloat());
 
-        $socket = @fsockopen($host, $port, $error, $errorMessage, $connectTimeout->toFloat());
         if ($socket === false) {
             throw new ConnectionException($error, $errorMessage);
         }

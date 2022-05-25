@@ -19,7 +19,7 @@ use Pheanstalk\Values\Timeout;
  * @covers \Pheanstalk\Command\ReserveCommand
  * @covers \Pheanstalk\Command\ReserveWithTimeoutCommand
  */
-class AutoPheanstalkTest extends PheanstalkTest
+class AutoUnixPheanstalkTest extends PheanstalkTest
 {
     protected function getPheanstalk(): Pheanstalk
     {

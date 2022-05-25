@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Pheanstalk\Socket;
 
 use Pheanstalk\Contract\SocketInterface;
-use Pheanstalk\Exception\SocketException;
+use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Values\Timeout;
 
 /**
@@ -32,13 +32,12 @@ abstract class FileSocket implements SocketInterface
 
     /**
      * @return resource
-     * @throws SocketException
      */
     final protected function getSocket()
     {
         /** @phpstan-ignore-next-line (Bug: https://github.com/phpstan/phpstan/issues/5845) */
         if (!is_resource($this->socket)) {
-            $this->throwClosed();
+            throw new ConnectionException(0, "The connection was closed");
         }
         return $this->socket;
     }
@@ -65,25 +64,16 @@ abstract class FileSocket implements SocketInterface
         }
 
         if ($data !== "") {
-            throw new SocketException('Write failed');
+            throw new ConnectionException(0, 'Write failed for 10 attempts');
         }
-    }
-
-    /**
-     * @return never
-     * @throws SocketException
-     */
-    private function throwClosed(): never
-    {
-        throw new SocketException('The connection was closed');
     }
 
     private function throwException(): never
     {
         if (null === $error = error_get_last()) {
-            throw new SocketException('Unknown error');
+            throw new ConnectionException(0, 'Unknown error');
         }
-        throw new SocketException($error['message'], $error['type']);
+        throw new ConnectionException($error['type'], $error['message']);
     }
 
     /**

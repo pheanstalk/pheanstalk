@@ -38,6 +38,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Pheanstalk\\Tests\\": "tests/",
             "Pheanstalk\\Tests\\Unit\\": "tests/unit",
             "Pheanstalk\\Tests\\Integration\\": "tests/integration"
         }

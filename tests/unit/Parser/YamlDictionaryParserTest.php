@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 final class YamlDictionaryParserTest extends TestCase
 {
     /**
-     * @phpstan-return iterable<array{0: string, 1: array<string, string|int>}>
+     * @phpstan-return iterable<array{0: string, 1: array<string, string|int|float|bool>}>
      */
     public function yamlDictionaryProvider(): iterable
     {
@@ -22,6 +22,18 @@ final class YamlDictionaryParserTest extends TestCase
         yield ["---\n  a: def\n  b: 15", ['a' => 'def', 'b' => 15]];
         yield ["---\n  a:     def\n  b: 15", ['a' => 'def', 'b' => 15]];
         yield ["---\n  a: \"    def\"\n  b: 15", ['a' => '    def', 'b' => 15]];
+
+        // Special cases, some keys are not quoted, but will be in the future
+        //  https://github.com/beanstalkd/beanstalkd/issues/610
+        yield ["---\n  os: test123\n  b: 15", ['os' => 'test123', 'b' => 15]];
+        yield ["---\n  os: \"test123\"\n  b: 15", ['os' => 'test123', 'b' => 15]];
+
+
+        // Floats
+        yield ["---\n  a: \"    def\"\n  b: 1.5", ['a' => '    def', 'b' => 1.5]];
+
+        // Booleans
+        yield ["---\n  a: true\n  b: false", ['a' => true, 'b' => false]];
     }
 
     /**

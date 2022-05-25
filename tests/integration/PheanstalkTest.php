@@ -6,7 +6,6 @@ namespace Pheanstalk\Tests\Integration;
 
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\PheanstalkPublisherInterface;
-use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\DeadlineSoonException;
 use Pheanstalk\Exception\JobNotFoundException;
 use Pheanstalk\Exception\JobTooBigException;
@@ -21,9 +20,14 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Pheanstalk
  * @covers \Pheanstalk\Values\ResponseType
+ * @covers \Pheanstalk\PheanstalkSubscriber
+ * @covers \Pheanstalk\PheanstalkManager
+ * @covers \Pheanstalk\PheanstalkPublisher
  */
 abstract class PheanstalkTest extends TestCase
 {
+    private null|string $host = null;
+
     use BugfixConnectionTest;
     protected function setUp(): void
     {
@@ -383,25 +387,13 @@ abstract class PheanstalkTest extends TestCase
         self::assertSame(JobState::READY, $pheanstalk->statsJob($jobId)->state);
     }
 
-    /**
-     * @return list<array{0: string}>
-     */
-    public function invalidHostProvider(): array
+    final protected function getHost(): string
     {
-        return [
-            ['not-valid'],
-            ['192.0.2.123']
-        ];
+        return $this->host ?? (str_contains(static::class, "Unix") ? UNIX_SERVER_HOST : SERVER_HOST);
     }
-
-    /**
-     * @dataProvider invalidHostProvider
-     */
-    public function testExceptionOnNonExistentHost(string $host): void
+    final protected function setHost(string $host): void
     {
-        $client = $this->getPheanstalk($host);
-        $this->expectException(ConnectionException::class);
-        $client->stats();
+        $this->host = $host;
     }
-    abstract protected function getPheanstalk(string $host = SERVER_HOST): Pheanstalk;
+    abstract protected function getPheanstalk(): Pheanstalk;
 }

@@ -1,5 +1,17 @@
-version: "3"
+version: "3.8"
+volumes:
+  shared:
 services:
+  beanstalk-unix:
+    image: ghcr.io/sammousa/beanstalkd:latest
+    entrypoint:
+      - /usr/bin/beanstalkd
+      - -l
+      - unix:/shared/beanstalkd.sock
+    volumes:
+      - type: volume
+        source: shared
+        target: /shared
   beanstalk:
     image: ghcr.io/sammousa/beanstalkd:latest
   phpunit:
@@ -10,7 +22,11 @@ services:
       SERVER_HOST: beanstalk
     depends_on:
       - beanstalk
+      - beanstalk-unix
     volumes:
+      - type: volume
+        source: shared
+        target: /shared
       - ./:/app:ro
       - ./.phpunit.result.cache:/app/.phpunit.result.cache:rw
       - ./tests/coverage:/coverage:rw

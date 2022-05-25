@@ -17,7 +17,7 @@ use Pheanstalk\Values\Timeout;
  * @covers \Pheanstalk\PheanstalkManager
  * @covers \Pheanstalk\PheanstalkPublisher
  */
-class FSockOpenPheanstalkTest extends PheanstalkTest
+class FSockOpenUnixPheanstalkTest extends PheanstalkTest
 {
     protected function getPheanstalk(): Pheanstalk
     {

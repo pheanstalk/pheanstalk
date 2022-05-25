@@ -7,16 +7,21 @@ namespace Pheanstalk\Tests\Integration;
 
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Socket\FsockopenSocket;
 use Pheanstalk\Socket\SocketSocket;
 use Pheanstalk\Socket\StreamSocket;
 use Pheanstalk\SocketFactory;
 use Pheanstalk\Values\SocketImplementation;
+use Pheanstalk\Values\Timeout;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Pheanstalk\SocketFactory
+ * @covers \Pheanstalk\Socket\SocketSocket
+ * @covers \Pheanstalk\Socket\FsockopenSocket
+ * @covers \Pheanstalk\Socket\StreamSocket
  */
 final class SocketFactoryTest extends TestCase
 {
@@ -25,9 +30,12 @@ final class SocketFactoryTest extends TestCase
      */
     public function factoryProvider(): iterable
     {
-        yield [new SocketFactory(SERVER_HOST, 11300, SocketImplementation::SOCKET), SocketSocket::class];
-        yield [new SocketFactory(SERVER_HOST, 11300, SocketImplementation::STREAM), StreamSocket::class];
-        yield [new SocketFactory(SERVER_HOST, 11300, SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
+        yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
+        yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::STREAM), StreamSocket::class];
+        yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
+        yield [new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
+        yield [new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::STREAM), StreamSocket::class];
+        yield [new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
     }
 
     /**
@@ -37,5 +45,29 @@ final class SocketFactoryTest extends TestCase
     public function testImplementations(SocketFactoryInterface $factory, string $expectedImplementationClass): void
     {
         Assert::assertInstanceOf($expectedImplementationClass, $factory->create());
+    }
+
+    /**
+     * @return iterable<array{0: string, 1: SocketImplementation|null}>
+     */
+    public function invalidHostProvider(): iterable
+    {
+        $hosts = ['not-valid', '192.0.2.123', 'unix:///invalid-file'];
+        $implementations = [...SocketImplementation::cases(), null];
+        foreach ($hosts as $host) {
+            foreach ($implementations as $implementation) {
+                yield [$host, $implementation];
+            }
+        }
+    }
+
+    /**
+     * @dataProvider invalidHostProvider
+     */
+    public function testExceptionOnNonExistentHost(string $host, SocketImplementation|null $implementation): void
+    {
+        $factory = new SocketFactory(host: $host, implementation: $implementation, connectTimeout: new Timeout(0, 500000));
+        $this->expectException(ConnectionException::class);
+        $factory->create();
     }
 }

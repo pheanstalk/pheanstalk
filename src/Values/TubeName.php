@@ -19,7 +19,7 @@ final class TubeName implements Stringable
             $value = (string)$value;
         }
         if (mb_strlen($value, '8bit') > 200) {
-            throw new \InvalidArgumentException("Tube name too long");
+            throw new \InvalidArgumentException("Tube name must not exceed 200 bytes");
         } elseif (preg_match(self::NAME_REGEX, $value) === 0) {
             throw new \InvalidArgumentException("Invalid tube name format");
         }

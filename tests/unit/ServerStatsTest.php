@@ -50,14 +50,14 @@ final class ServerStatsTest extends TestCase
         'current-waiting' => 33,
         'total-connections' => 34,
         'pid' => 35,
-        'version' => 1.2,
+        'version' => "1.2",
         'rusage-utime' => 0.4,
         'rusage-stime' => 0.5,
         'binlog-oldest-index' => 40,
         'binlog-current-index' => 41,
         'binlog-max-size' => 42,
         'binlog-records-written' => 43,
-        'draining' => 0,
+        'draining' => false,
         'id' => 'what',
         'hostname' => 'hostname1',
         'os' => 'debian',
@@ -86,5 +86,12 @@ final class ServerStatsTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         ServerStats::fromBeanstalkArray($sample);
+    }
+
+    public function testHappyPath(): void
+    {
+        $sample = self::SAMPLE;
+        $stats = ServerStats::fromBeanstalkArray($sample);
+        self::assertSame($sample['rusage-utime'], $stats->rusageUtime);
     }
 }

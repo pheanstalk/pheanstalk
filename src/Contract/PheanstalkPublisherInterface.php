@@ -13,11 +13,6 @@ interface PheanstalkPublisherInterface
     public const DEFAULT_TTR = 60; // 1 minute
 
     /**
-     * Puts a job into a 'buried' state, revived only by 'kick' command.
-     */
-    public function bury(JobIdInterface $job, int $priority = self::DEFAULT_PRIORITY): void;
-
-    /**
      * The name of the current tube used for publishing jobs to.
      * Always queries the server
      */
@@ -29,13 +24,13 @@ interface PheanstalkPublisherInterface
      * @param string $data     The job data
      * @param int    $priority From 0 (most urgent) to 0xFFFFFFFF (least urgent)
      * @param int    $delay    Seconds to wait before job becomes ready
-     * @param int    $ttr      Time To Run: seconds a job can be reserved for
+     * @param int    $timeToRelease      Time To Run: seconds a job can be reserved for
      */
     public function put(
         string $data,
         int $priority = self::DEFAULT_PRIORITY,
         int $delay = self::DEFAULT_DELAY,
-        int $ttr = self::DEFAULT_TTR
+        int $timeToRelease = self::DEFAULT_TTR
     ): JobIdInterface;
 
     /**
