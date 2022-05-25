@@ -5,16 +5,6 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    services:
-      beanstalk:
-        image: ghcr.io/sammousa/beanstalkd:latest
-        ports:
-          - "11300:11300"
-      beanstalk2:
-        image: ghcr.io/sammousa/beanstalkd:latest
-        volumes:
-          - /tmp:/tmp
-        options: -l unix:///tmp/beanstalkd.sock
     steps:
       - run: ls -la /tmp/
       - uses: actions/checkout@v2
@@ -26,9 +16,7 @@ jobs:
       - name: Install dependencies including dev
         run: composer install
       - name: Tests
-        run: phpunit
-        env:
-          UNIX_SERVER_HOST: "unix:///tmp/beanstalkd.sock"
+        run: composer test
       - uses: codecov/codecov-action@v2
         with:
           files: ./tests/coverage/coverage.xml
