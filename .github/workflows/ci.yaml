@@ -10,6 +10,11 @@ jobs:
         image: ghcr.io/sammousa/beanstalkd:latest
         ports:
           - "11300:11300"
+      beanstalk2:
+        image: ghcr.io/sammousa/beanstalkd:latest
+        volumes:
+          - /tmp:/tmp
+        options: -l unix:///tmp/beanstalkd.sock
     steps:
       - uses: actions/checkout@v2
       - name: Set up PHP
@@ -21,6 +26,8 @@ jobs:
         run: composer install
       - name: Tests
         run: phpunit
+        env:
+          UNIX_SERVER_HOST: "unix:///tmp/beanstalkd.sock"
       - uses: codecov/codecov-action@v2
         with:
           files: ./tests/coverage/coverage.xml
@@ -47,8 +54,10 @@ jobs:
         run: composer install
       # We run static analysis with dev dependencies due to baseline errors, when those have been cleaned we run them on
       # src and tests separately, this allows us to detect accidental usage of dev dependencies in src.
-      - name: Static analysis
+      - name: Static analysis (phpstan)
         run: phpstan
+      - name: Static analysis (psalm)
+        run: vendor/bin/psalm
       # This is disabled due to errors in the baseline, re-enable it when those have been fully cleaned.
       # - name: Static analysis of tests
       #   run: phpstan analyse tests
