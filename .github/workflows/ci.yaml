@@ -16,6 +16,7 @@ jobs:
           - /tmp:/tmp
         options: -l unix:///tmp/beanstalkd.sock
     steps:
+      - run: ls -la /tmp/
       - uses: actions/checkout@v2
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
