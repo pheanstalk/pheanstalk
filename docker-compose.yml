@@ -20,6 +20,7 @@ services:
       dockerfile: Dockerfile-phpunit
     environment:
       SERVER_HOST: beanstalk
+      UNIX_SERVER_HOST: unix:///shared/beanstalkd.sock
     depends_on:
       - beanstalk
       - beanstalk-unix

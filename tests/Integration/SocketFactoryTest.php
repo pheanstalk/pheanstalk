@@ -30,12 +30,28 @@ final class SocketFactoryTest extends TestCase
      */
     public function factoryProvider(): iterable
     {
-        yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
-        yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::STREAM), StreamSocket::class];
-        yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
-        yield [new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
-        yield [new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::STREAM), StreamSocket::class];
-        yield [new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::FSOCKOPEN), FsockopenSocket::class];
+        if (!empty(SERVER_HOST)) {
+            yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
+            yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::STREAM), StreamSocket::class];
+            yield [
+                new SocketFactory(SERVER_HOST, implementation: SocketImplementation::FSOCKOPEN),
+                FsockopenSocket::class
+            ];
+        }
+        if (!empty(UNIX_SERVER_HOST)) {
+            yield [
+                new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::SOCKET),
+                SocketSocket::class
+            ];
+            yield [
+                new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::STREAM),
+                StreamSocket::class
+            ];
+            yield [
+                new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::FSOCKOPEN),
+                FsockopenSocket::class
+            ];
+        }
     }
 
     /**

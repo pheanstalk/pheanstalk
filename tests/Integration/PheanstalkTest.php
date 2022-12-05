@@ -26,8 +26,6 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class PheanstalkTest extends TestCase
 {
-    private null|string $host = null;
-
     use BugfixConnectionTest;
     protected function setUp(): void
     {
@@ -389,11 +387,15 @@ abstract class PheanstalkTest extends TestCase
 
     final protected function getHost(): string
     {
-        return $this->host ?? (str_contains(static::class, "Unix") ? UNIX_SERVER_HOST : SERVER_HOST);
-    }
-    final protected function setHost(string $host): void
-    {
-        $this->host = $host;
+        if (str_contains(static::class, "Unix")) {
+            if (empty(UNIX_SERVER_HOST)) {
+                $this->markTestSkipped('No Unix socket configured via UNIX_SERVER_HOST');
+            }
+            return UNIX_SERVER_HOST;
+        } elseif (empty(SERVER_HOST)) {
+            $this->markTestSkipped('No server host configured via SERVER_HOST');
+        }
+        return SERVER_HOST;
     }
     abstract protected function getPheanstalk(): Pheanstalk;
 }
