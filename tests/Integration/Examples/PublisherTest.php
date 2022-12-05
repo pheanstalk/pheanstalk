@@ -15,8 +15,8 @@ final class PublisherTest extends TestCase
      */
     public function testPublishJob(): void
     {
-        if (empty(SERVER_HOST)) {
-            $this->markTestSkipped('No SERVER_HOST configured');
+        if (SERVER_HOST === '') {
+            self::markTestSkipped('No SERVER_HOST configured');
         }
         $pheanstalk = PheanstalkPublisher::create(SERVER_HOST);
 

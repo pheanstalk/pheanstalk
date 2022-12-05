@@ -388,12 +388,12 @@ abstract class PheanstalkTest extends TestCase
     final protected function getHost(): string
     {
         if (str_contains(static::class, "Unix")) {
-            if (empty(UNIX_SERVER_HOST)) {
-                $this->markTestSkipped('No Unix socket configured via UNIX_SERVER_HOST');
+            if (UNIX_SERVER_HOST === '') {
+                self::markTestSkipped('No Unix socket configured via UNIX_SERVER_HOST');
             }
             return UNIX_SERVER_HOST;
-        } elseif (empty(SERVER_HOST)) {
-            $this->markTestSkipped('No server host configured via SERVER_HOST');
+        } elseif (SERVER_HOST === '') {
+            self::markTestSkipped('No server host configured via SERVER_HOST');
         }
         return SERVER_HOST;
     }

@@ -30,7 +30,7 @@ final class SocketFactoryTest extends TestCase
      */
     public function factoryProvider(): iterable
     {
-        if (!empty(SERVER_HOST)) {
+        if (SERVER_HOST !== '') {
             yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
             yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::STREAM), StreamSocket::class];
             yield [
@@ -38,7 +38,7 @@ final class SocketFactoryTest extends TestCase
                 FsockopenSocket::class
             ];
         }
-        if (!empty(UNIX_SERVER_HOST)) {
+        if (UNIX_SERVER_HOST !== '') {
             yield [
                 new SocketFactory(UNIX_SERVER_HOST, implementation: SocketImplementation::SOCKET),
                 SocketSocket::class
