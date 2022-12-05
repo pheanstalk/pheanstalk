@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 // ecs.php
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\LanguageConstruct\SingleSpaceAfterConstructFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
@@ -25,12 +26,7 @@ return static function (ECSConfig $config): void {
     $config->import(SetList::STRICT);
     $config->import(SetList::CLEAN_CODE);
 
-    // B. standalone rule
-    $services = $config->services();
-    $services->set(ArraySyntaxFixer::class)
-        ->call('configure', [[
-            'syntax' => 'short',
-        ]]);
-
+    $config->ruleWithConfiguration(ArraySyntaxFixer::class, ['syntax' => 'short']);
+    $config->rule(SingleSpaceAfterConstructFixer::class);
     $config->lineEnding("\n");
 };

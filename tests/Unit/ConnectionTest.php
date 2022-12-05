@@ -38,7 +38,7 @@ class ConnectionTest extends TestCase
 
     private function getCommand(): CommandInterface
     {
-        return new  UseCommand(new TubeName('tube5'));
+        return new UseCommand(new TubeName('tube5'));
     }
 
     /**

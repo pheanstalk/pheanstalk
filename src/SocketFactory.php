@@ -34,7 +34,7 @@ class SocketFactory implements SocketFactoryInterface
      */
     public function __construct(
         private readonly string $host,
-        private readonly  int $port = self::DEFAULT_PORT,
+        private readonly int $port = self::DEFAULT_PORT,
         null|SocketImplementation $implementation = null,
         Timeout $connectTimeout = null,
         Timeout $receiveTimeout = null,
