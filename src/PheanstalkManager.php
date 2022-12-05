@@ -21,11 +21,9 @@ use Pheanstalk\Values\TubeStats;
  * This class implements "management" functions for the beanstalk protocol.
  *
  */
-class PheanstalkManager implements PheanstalkManagerInterface
+final class PheanstalkManager implements PheanstalkManagerInterface
 {
-    public function __construct(private readonly Connection $connection)
-    {
-    }
+    use StaticFactoryTrait;
 
     public function kick(int $max): int
     {

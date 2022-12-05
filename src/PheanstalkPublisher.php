@@ -14,11 +14,9 @@ use Pheanstalk\Values\TubeName;
 /**
  * Implements the methods in the dispatcher interface.
  */
-class PheanstalkPublisher implements PheanstalkPublisherInterface
+final class PheanstalkPublisher implements PheanstalkPublisherInterface
 {
-    public function __construct(private readonly Connection $connection)
-    {
-    }
+    use StaticFactoryTrait;
 
     public function listTubeUsed(): TubeName
     {

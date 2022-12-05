@@ -16,11 +16,9 @@ use Pheanstalk\Values\Success;
 use Pheanstalk\Values\TubeList;
 use Pheanstalk\Values\TubeName;
 
-class PheanstalkSubscriber implements PheanstalkSubscriberInterface
+final class PheanstalkSubscriber implements PheanstalkSubscriberInterface
 {
-    public function __construct(private readonly Connection $connection)
-    {
-    }
+    use StaticFactoryTrait;
 
     private function dispatch(CommandInterface $command): RawResponse
     {

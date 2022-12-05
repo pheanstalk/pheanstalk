@@ -24,7 +24,6 @@ class YamlDictionaryParser
                 $dictionary[$matches[1]] = $this->cast($matches[2], $matches[1]);
             }
         }
-        /** @phpstan-ignore-next-line https://github.com/phpstan/phpstan/issues/6426 */
         return $dictionary;
     }
 

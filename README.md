@@ -8,35 +8,89 @@ Pheanstalk
 [![Build Status](https://travis-ci.org/pheanstalk/pheanstalk.svg?branch=master)](https://travis-ci.org/pheanstalk/pheanstalk)
 
 Pheanstalk 5 is a pure PHP8.1+ client for use with [beanstalkd workqueue][1] versions 1.12 and later. In 2021 / 2022 it
-was completely rewritten from scratch with the following goals in mind:
+was almost completely rewritten from scratch with the following goals in mind:
 - Fully typed
-- Passing the strict rule set for static analysis using PHPStan
+- Passing the strict rule set for static analysis using PHPStan and Psalm
 - Splitting the different roles into separate parts
 
-Version 5 is still a WIP.
-
-Pheanstalk is a pure PHP 7.1+ client for the [beanstalkd workqueue][1].  It has
-been actively developed, and used in production by many, since late 2008.
-
-Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written
-using encapsulated, maintainable object oriented design.  Community feedback,
-bug reports and patches has led to a stable 1.0 release in 2010, a 2.0 release
-in 2013, and a 3.0 release in 2014.
-
-Pheanstalk 3.0 introduces PHP namespaces, PSR-1 and PSR-2 coding standards,
-and PSR-4 autoloader standard.
-
-beanstalkd up to the latest version 1.10 is supported.  All commands and
-responses specified in the [protocol documentation][4] for beanstalkd 1.3 are
-implemented.
-
-  [1]: https://beanstalkd.github.io/
-  [2]: https://paul.annesley.cc/
-  [3]: https://github.com/sammousa
-  [4]: https://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true
-  
-Pheanstalk 4
+Usage Example
 -------------
+
+#### Producer
+
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Pheanstalk\Pheanstalk;
+
+$pheanstalk = Pheanstalk::create('127.0.0.1');
+
+// Queue a Job
+$pheanstalk
+  ->useTube('testtube')
+  ->put("job payload goes here\n");
+
+$pheanstalk
+    ->useTube('testtube')
+    ->put(
+        json_encode(['test' => 'data']),  // encode data in payload
+        Pheanstalk::DEFAULT_PRIORITY,     // default priority
+        30, // delay by 30s
+        60  // beanstalk will retry job after 60s
+     );
+
+```
+
+
+#### Consumer / Worker
+```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+use Pheanstalk\Pheanstalk;
+
+$pheanstalk = Pheanstalk::create('127.0.0.1');
+
+// we want jobs from 'testtube' only.
+$pheanstalk->watch('testtube');
+
+// this hangs until a Job is produced.
+$job = $pheanstalk->reserve();
+
+try {
+    $jobPayload = $job->getData();
+    // do work.
+
+    sleep(2);
+    // If it's going to take a long time, periodically
+    // tell beanstalk we're alive to stop it rescheduling the job.
+    $pheanstalk->touch($job);
+    sleep(2);
+
+    // eventually we're done, delete job.
+    $pheanstalk->delete($job);
+}
+catch(\Exception $e) {
+    // handle exception.
+    // and let some other worker retry.
+    $pheanstalk->release($job); 
+}
+```
+
+
+Running the tests
+-----------------
+
+Make sure you have docker-compose installed.
+```sh
+> composer test
+```
+
+
+# History
+
+## Pheanstalk 4
+
 In 2018 [Sam Mousa][3] took on the responsibility of maintaining Pheanstalk.
 
 Pheanstalk 4.0 drops support for older PHP versions. It contains the following changes (among other things):
@@ -105,8 +159,7 @@ Another issue with this approach is that it is harder to deal with errors. If an
 we did or did not switch tube.
 
 
-Migration to v4
--------------
+### Migration to v4
 A migration should in most cases be relatively simple:
 - Change the constructor, either use the static constructor, use a DI container to construct the dependencies, or manually 
 instantiate them.
@@ -116,127 +169,24 @@ instantiate them.
 default usage of a socket implementation that has read / write timeouts).
 
 
+## Pheanstalk 3
 
+Pheanstalk is a pure PHP 7.1+ client for the [beanstalkd workqueue][1].  It has
+been actively developed, and used in production by many, since late 2008.
 
+Created by [Paul Annesley][2], Pheanstalk is rigorously unit tested and written
+using encapsulated, maintainable object oriented design.  Community feedback,
+bug reports and patches has led to a stable 1.0 release in 2010, a 2.0 release
+in 2013, and a 3.0 release in 2014.
 
-Installation with Composer
--------------
+Pheanstalk 3.0 introduces PHP namespaces, PSR-1 and PSR-2 coding standards,
+and PSR-4 autoloader standard.
 
-Install pheanstalk as a dependency with composer:
+beanstalkd up to the latest version 1.10 is supported.  All commands and
+responses specified in the [protocol documentation][4] for beanstalkd 1.3 are
+implemented.
 
-```bash
-composer require pda/pheanstalk
-```
-
-
-Usage Example
--------------
-
-#### Producer 
-
-```php
-<?php
-require __DIR__ . '/vendor/autoload.php';
-
-use Pheanstalk\Pheanstalk;
-
-$pheanstalk = Pheanstalk::create('127.0.0.1');
-
-// Queue a Job
-$pheanstalk
-  ->useTube('testtube')
-  ->put("job payload goes here\n");
-
-$pheanstalk
-    ->useTube('testtube')
-    ->put(
-        json_encode(['test' => 'data']),  // encode data in payload
-        Pheanstalk::DEFAULT_PRIORITY,     // default priority
-        30, // delay by 30s
-        60  // beanstalk will retry job after 60s
-     );
-
-```
-
-
-#### Consumer / Worker
-```php
-<?php
-require __DIR__ . '/vendor/autoload.php';
-use Pheanstalk\Pheanstalk;
-
-$pheanstalk = Pheanstalk::create('127.0.0.1');
-
-// we want jobs from 'testtube' only.
-$pheanstalk->watch('testtube');
-
-// this hangs until a Job is produced.
-$job = $pheanstalk->reserve();
-
-try {
-    $jobPayload = $job->getData();
-    // do work.
-
-    sleep(2);
-    // If it's going to take a long time, periodically
-    // tell beanstalk we're alive to stop it rescheduling the job.
-    $pheanstalk->touch($job);
-    sleep(2);
-
-    // eventually we're done, delete job.
-    $pheanstalk->delete($job);
-}
-catch(\Exception $e) {
-    // handle exception.
-    // and let some other worker retry.
-    $pheanstalk->release($job); 
-}
-```
-
-
-Running the tests
------------------
-
-If you have docker-compose installed running tests is as simple as:
-```sh
-> composer test
-```
-
-If you don't then you manually need to set up a beanstalk server and run:
-```sh
-> vendor/bin/phpunit
-```
-
-Contributors
-------------
-
-  * [Paul Annesley](https://github.com/pda)
-  * [Lachlan Donald](https://github.com/lox)
-  * [Joakim Bick](https://github.com/minimoe)
-  * [Vyacheslav](https://github.com/SlNPacifist)
-  * [leprechaun](https://github.com/leprechaun)
-  * [Peter McArthur](https://github.com/ptrmcrthr)
-  * [robbiehudson](https://github.com/robbiehudson)
-  * [Geoff Catlin](https://github.com/gcatlin)
-  * [Steven Lewis](https://github.com/srjlewis)
-  * [Lars Yencken](https://github.com/larsyencken)
-  * [Josh Butts](https://github.com/jimbojsb)
-  * [Henry Smith](https://github.com/h2s)
-  * [Javier Spagnoletti](https://github.com/phansys)
-  * [Graham Campbell](https://github.com/GrahamCampbell)
-  * [Thomas Tourlourat](https://github.com/armetiz)
-  * [Matthieu Napoli](https://github.com/mnapoli)
-  * [Christoph](https://github.com/xrstf)
-  * [James Hamilton](https://github.com/mrjameshamilton)
-  * [Hannes Van De Vreken](https://github.com/hannesvdvreken)
-  * [Yaniv Davidovitch](https://github.com/YanivD)
-  * [Sam Mousa](https://github.com/sammousa)
-  * .. [more?](https://github.com/pda/pheanstalk/contributors) Let me know if you're missing.
-
-
-License
--------
-
-© Paul Annesley
-
-Released under the [The MIT License](http://www.opensource.org/licenses/mit-license.php)
+[1]: https://beanstalkd.github.io/
+[2]: https://paul.annesley.cc/
+[3]: https://github.com/sammousa
+[4]: https://github.com/kr/beanstalkd/tree/v1.3/doc/protocol.txt?raw=true

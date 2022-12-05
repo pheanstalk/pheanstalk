@@ -20,7 +20,7 @@ use Pheanstalk\Values\TubeStats;
 /**
  * Pheanstalk is a PHP client for the beanstalkd workqueue.
  */
-class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInterface, PheanstalkSubscriberInterface
+final class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInterface, PheanstalkSubscriberInterface
 {
     private PheanstalkManagerInterface $manager;
     private PheanstalkPublisherInterface $publisher;
@@ -41,16 +41,16 @@ class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInter
         int $port = 11300,
         Timeout $connectTimeout = null,
         Timeout $receiveTimeout = null
-    ): self {
-        return self::createWithFactory(new SocketFactory($host, $port, null, $connectTimeout, $receiveTimeout));
+    ): static {
+        return static::createWithFactory(new SocketFactory($host, $port, null, $connectTimeout, $receiveTimeout));
     }
 
     /**
      * Static constructor that uses a given socket factory for underlying connections
      */
-    public static function createWithFactory(SocketFactoryInterface $factory): self
+    public static function createWithFactory(SocketFactoryInterface $factory): static
     {
-        return new self(new Connection($factory));
+        return new static(new Connection($factory));
     }
 
 
