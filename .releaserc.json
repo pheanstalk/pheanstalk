@@ -1,6 +1,9 @@
 {
   "branches": [
-    "master",
+    {
+      "name": "v4",
+      "range" : "4.x"
+    },
     { "name": "v5",
       "prerelease": "beta",
       "channel": "beta"

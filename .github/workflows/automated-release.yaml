@@ -1,7 +1,7 @@
 ---
-name: Continous integration
+name: Automated releases
 on:
-  pull_request:
+  push:
     branches:
       - v4
       - v5
@@ -70,3 +70,43 @@ jobs:
         run: psalm tests/
       - name: Static analysis of tests (phpstan)
         run: phpstan analyse tests
+  docs:
+    name: Docs
+    needs:
+      - release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: phpDocumentor
+      - name: Generate docs
+        run: phpdoc run
+      - name: Deploy docs to pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+  release:
+    name: Automated release
+    needs:
+      - code_style
+      - static_analysis_tests
+      - static_analysis_src
+      - tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: >
+          npx
+          -p "@semantic-release/commit-analyzer"
+          -p "@semantic-release/release-notes-generator"
+          -p "@semantic-release/github"
+          -p conventional-changelog-conventionalcommits
+          -p semantic-release
+          -- semantic-release 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
