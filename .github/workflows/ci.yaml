@@ -22,8 +22,8 @@ jobs:
           files: ./tests/coverage/coverage.xml
           flags: unittests
           name: codecov-umbrella
-  code_checks:
-    name: Check code
+  code_style:
+    name: Check code style
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,15 +31,35 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: symplify/easy-coding-standard, phpstan, phpunit, psalm
+          tools: symplify/easy-coding-standard
       - name: Test code style
         run: ecs
+  static_analysis_src:
+    name: Static analysis of source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: phpstan, psalm
       - name: Install dependencies
         run: composer install --no-dev
       - name: Static analysis (phpstan)
         run: phpstan analyse src
       - name: Static analysis (psalm)
         run: psalm src/
+  static_analysis_tests:
+    name: Static analysis of tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: phpstan, psalm
       - name: Install dependencies including dev
         run: composer install
       - name: Static analysis of tests (psalm)
@@ -69,7 +89,9 @@ jobs:
   release:
     name: Automated release
     needs:
-      - code_checks
+      - code_style
+      - static_analysis_tests
+      - static_analysis_src
       - tests
     runs-on: ubuntu-latest
     steps:
