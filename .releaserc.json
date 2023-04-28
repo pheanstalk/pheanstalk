@@ -1,5 +1,11 @@
 {
-  "branches": ["master"],
+  "branches": [
+    "master",
+    { "name": "v5",
+      "prerelease": "beta",
+      "channel": "beta"
+    }
+  ],
   "plugins": [
     ["@semantic-release/commit-analyzer", {
       "preset": "conventionalcommits"
