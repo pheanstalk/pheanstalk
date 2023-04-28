@@ -17,13 +17,13 @@ abstract class TubeCommandTestBase extends CommandTestBase
 
     public function testInterpretNotFound(): void
     {
-        if (!in_array(ResponseType::NotFound, static::getSupportedResponses(), true)) {
-            Assert::markTestSkipped("Not applicable");
+        if (in_array(ResponseType::NotFound, static::getSupportedResponses(), true)) {
+            $command = $this->getSubject();
+            $this->expectException(TubeNotFoundException::class);
+            $command->interpret(new RawResponse(ResponseType::NotFound));
+        } else {
+            $this->expectNotToPerformAssertions();
         }
-        $command = $this->getSubject();
-
-        $this->expectException(TubeNotFoundException::class);
-        $command->interpret(new RawResponse(ResponseType::NotFound));
     }
 
 

@@ -267,8 +267,8 @@ abstract class PheanstalkTestBase extends TestCase
         $pheanstalk->useTube(new TubeName('test-stats'));
         $stats = $pheanstalk->stats();
 
-        self::assertTrue($stats->pid > 0, 'stats should have pid > 0');
-        self::assertTrue($stats->cmdUse > 0, 'stats should have cmd_use > 0');
+        self::assertGreaterThan(0, $stats->pid, 'stats should have pid > 0');
+        self::assertGreaterThan(0, $stats->cmdUse, 'stats should have cmd_use > 0');
     }
 
     public function testPauseTube(): void

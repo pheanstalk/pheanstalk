@@ -29,7 +29,7 @@ services:
         source: shared
         target: /shared
       - ./:/app:ro
-      - ./.phpunit.result.cache:/app/.phpunit.result.cache:rw
+      - ./.phpunit.cache:/app/.phpunit.cache:rw
       - ./tests/coverage:/coverage:rw
     command:
       - --coverage-clover

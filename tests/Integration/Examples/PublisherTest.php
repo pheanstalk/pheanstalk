@@ -8,6 +8,9 @@ use Pheanstalk\PheanstalkPublisher;
 use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @coversNothing
+ */
 final class PublisherTest extends TestCase
 {
     /**
