@@ -36,20 +36,16 @@ jobs:
         run: ecs
       - name: Install dependencies
         run: composer install --no-dev
-      # This is disabled due to errors in the baseline, re-enable it when those have been fully cleaned.
-      # - name: Static analysis
-      #   run: phpstan analyse src
+      - name: Static analysis (phpstan)
+        run: phpstan analyse src
+      - name: Static analysis (psalm)
+        run: psalm src/
       - name: Install dependencies including dev
         run: composer install
-      # We run static analysis with dev dependencies due to baseline errors, when those have been cleaned we run them on
-      # src and tests separately, this allows us to detect accidental usage of dev dependencies in src.
-      - name: Static analysis (phpstan)
-        run: phpstan
-      - name: Static analysis (psalm)
-        run: vendor/bin/psalm
-      # This is disabled due to errors in the baseline, re-enable it when those have been fully cleaned.
-      # - name: Static analysis of tests
-      #   run: phpstan analyse tests
+      - name: Static analysis of tests (psalm)
+        run: psalm tests/
+      - name: Static analysis of tests (phpstan)
+        run: phpstan analyse tests
 # Disabled, this should be moved to a separate CI workflow that triggers on a new tag.
 #  docs:
 #    name: Docs
@@ -78,9 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
+      - uses: actions/setup-node@v3
       - run: >
           npx
           -p "@semantic-release/commit-analyzer"
