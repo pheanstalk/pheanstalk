@@ -27,10 +27,10 @@ final class PeekJobCommand extends JobCommand
         if ($response->type === ResponseType::Found && isset($response->argument, $response->data)) {
             return new Job(new JobId($response->argument), $response->data);
         }
-        return match ($response->type) {
-            ResponseType::NotFound => throw new JobNotFoundException(),
-            ResponseType::Found => throw MalformedResponseException::expectedDataAndIntegerArgument(),
-            default => throw new UnsupportedResponseException($response->type)
+        throw match ($response->type) {
+            ResponseType::NotFound => new JobNotFoundException(),
+            ResponseType::Found => MalformedResponseException::expectedDataAndIntegerArgument(),
+            default => new UnsupportedResponseException($response->type)
         };
     }
 

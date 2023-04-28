@@ -11,21 +11,21 @@ use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-abstract class CommandTest extends TestCase
+abstract class CommandTestBase extends TestCase
 {
     /**
-     * @return list<\Pheanstalk\Values\ResponseType>
+     * @return list<ResponseType>
      */
-    abstract protected function getSupportedResponses(): array;
+    abstract protected static function getSupportedResponses(): array;
 
     abstract protected function getSubject(): CommandInterface;
 
     /**
      * @phpstan-return iterable<array{0: ResponseType}>
      */
-    final public function supportedResponseProvider(): iterable
+    final public static function supportedResponseProvider(): iterable
     {
-        foreach ($this->getSupportedResponses() as $responseType) {
+        foreach (static::getSupportedResponses() as $responseType) {
             yield [$responseType];
         }
     }
@@ -45,9 +45,9 @@ abstract class CommandTest extends TestCase
     /**
      * @phpstan-return iterable<array{0: ResponseType}>
      */
-    final public function unsupportedResponseProvider(): iterable
+    final public static function unsupportedResponseProvider(): iterable
     {
-        $supported = $this->getSupportedResponses();
+        $supported = static::getSupportedResponses();
         foreach (ResponseType::cases() as $responseType) {
             if (!in_array($responseType, $supported, true)) {
                 yield [$responseType];

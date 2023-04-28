@@ -13,7 +13,7 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\BuryCommand
  */
-final class BuryCommandTest extends JobCommandTest
+final class BuryCommandTest extends JobCommandTestBase
 {
     public function testInterpretBuried(): void
     {
@@ -23,7 +23,7 @@ final class BuryCommandTest extends JobCommandTest
         $command->interpret(new RawResponse(ResponseType::Buried));
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Buried];
     }

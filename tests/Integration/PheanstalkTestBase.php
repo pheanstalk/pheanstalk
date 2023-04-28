@@ -24,9 +24,9 @@ use PHPUnit\Framework\TestCase;
  * @covers \Pheanstalk\PheanstalkManager
  * @covers \Pheanstalk\PheanstalkPublisher
  */
-abstract class PheanstalkTest extends TestCase
+abstract class PheanstalkTestBase extends TestCase
 {
-    use BugfixConnectionTest;
+    use BugfixConnectionTests;
     protected function setUp(): void
     {
         parent::setUp();
@@ -50,7 +50,7 @@ abstract class PheanstalkTest extends TestCase
     /**
      * @return iterable<list<string>>
      */
-    public function tubeNameProvider(): iterable
+    public static function tubeNameProvider(): iterable
     {
         yield ['random$test'];
         yield ['110234'];
@@ -314,7 +314,7 @@ abstract class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
         $jobId = $pheanstalk->put('abc', 1, 0, 1);
-        $job = $pheanstalk->reserveJob($jobId);
+        $pheanstalk->reserveJob($jobId);
         $this->expectException(DeadlineSoonException::class);
         $pheanstalk->reserveWithTimeout(3);
     }
@@ -323,7 +323,7 @@ abstract class PheanstalkTest extends TestCase
     {
         $pheanstalk = $this->getPheanstalk();
         $jobId = $pheanstalk->put('abc', 1, 0, 1);
-        $job = $pheanstalk->reserveJob($jobId);
+        $pheanstalk->reserveJob($jobId);
         $this->expectException(DeadlineSoonException::class);
         $pheanstalk->reserve();
     }

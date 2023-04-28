@@ -13,7 +13,7 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\KickJobCommand
  */
-final class KickJobCommandTest extends JobCommandTest
+final class KickJobCommandTest extends JobCommandTestBase
 {
     public function testInterpretKicked(): void
     {
@@ -22,7 +22,7 @@ final class KickJobCommandTest extends JobCommandTest
         $this->expectNotToPerformAssertions();
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Kicked];
     }

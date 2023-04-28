@@ -12,7 +12,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\StatsCommand
  */
-final class StatsCommandTest extends CommandTest
+final class StatsCommandTest extends CommandTestBase
 {
     private const SAMPLE = [
         'current-jobs-urgent' => 1,
@@ -85,7 +85,7 @@ final class StatsCommandTest extends CommandTest
         Assert::assertSame("1.2", $stats->version);
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Ok];
     }

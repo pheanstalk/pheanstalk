@@ -33,9 +33,9 @@ final class TubeNameTest extends TestCase
     }
 
     /**
-     * @return iterable<list<string|int>>
+     * @return iterable<array{0: string|int}>
      */
-    public function nameProvider(): iterable
+    public static function nameProvider(): iterable
     {
         return [
             ["abcd"],

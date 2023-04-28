@@ -29,9 +29,9 @@ final class WatchCommand extends TubeCommand
         if ($response->type === ResponseType::Watching && is_int($response->argument)) {
             return $response->argument;
         }
-        return match ($response->type) {
-            ResponseType::Watching => throw MalformedResponseException::expectedIntegerArgument(),
-            default => throw new UnsupportedResponseException($response->type)
+        throw match ($response->type) {
+            ResponseType::Watching => MalformedResponseException::expectedIntegerArgument(),
+            default => new UnsupportedResponseException($response->type)
         };
     }
 

@@ -31,9 +31,9 @@ final class StatsCommand implements CommandInterface
         if ($response->type === ResponseType::Ok && is_string($response->data)) {
             return ServerStats::fromBeanstalkArray((new YamlDictionaryParser())->parse($response->data));
         }
-        return match ($response->type) {
-            ResponseType::Ok => throw MalformedResponseException::expectedData(),
-            default => throw new UnsupportedResponseException($response->type)
+        throw match ($response->type) {
+            ResponseType::Ok => MalformedResponseException::expectedData(),
+            default => new UnsupportedResponseException($response->type)
         };
     }
 }

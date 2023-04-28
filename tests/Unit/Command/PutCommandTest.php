@@ -16,7 +16,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\PutCommand
  */
-final class PutCommandTest extends CommandTest
+final class PutCommandTest extends CommandTestBase
 {
     public function testInterpretBuried(): void
     {
@@ -53,7 +53,7 @@ final class PutCommandTest extends CommandTest
         Assert::assertSame($id, $this->getSubject()->interpret(new RawResponse(ResponseType::Inserted, $id))->getId());
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Buried, ResponseType::ExpectedCrlf, ResponseType::Draining, ResponseType::JobTooBig, ResponseType::Inserted];
     }
@@ -67,7 +67,7 @@ final class PutCommandTest extends CommandTest
     /**
      * @phpstan-return iterable<array{0: string, 1: int}>
      */
-    public function dataProvider(): iterable
+    public static function dataProvider(): iterable
     {
         yield ["ϸϹϻ", 6];
         /**

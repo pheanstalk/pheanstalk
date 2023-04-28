@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\ReserveJobCommand
  */
-final class ReserveJobCommandTest extends JobCommandTest
+final class ReserveJobCommandTest extends JobCommandTestBase
 {
     public function testInterpretReserved(): void
     {
@@ -25,7 +25,7 @@ final class ReserveJobCommandTest extends JobCommandTest
         Assert::assertSame("abcdef", $job->getData());
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Reserved];
     }

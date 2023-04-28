@@ -12,7 +12,7 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
 
-abstract class JobCommandTest extends CommandTest
+abstract class JobCommandTestBase extends CommandTestBase
 {
     abstract protected function getSubject(JobIdInterface $jobId = null): JobCommand;
 
@@ -28,7 +28,7 @@ abstract class JobCommandTest extends CommandTest
     /**
      * @phpstan-return iterable<array{0: string}>
      */
-    public function jobIdProvider(): iterable
+    public static function jobIdProvider(): iterable
     {
         yield ["5"];
         yield ["12345678901234562222222323112312312312312312312312312312312312321312312313212378900"];

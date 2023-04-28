@@ -16,15 +16,16 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\JobCommand
  */
-class ConcreteJobCommandTest extends JobCommandTest
+class ConcreteJobCommandTest extends JobCommandTestBase
 {
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound];
     }
 
     protected function getSubject(JobIdInterface $jobId = null): JobCommand
     {
+        /** @psalm-suppress InternalClass */
         return new class($jobId ?? new JobId(5)) extends JobCommand {
             public function interpret(
                 RawResponse $response

@@ -15,7 +15,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\PeekCommand
  */
-final class PeekCommandTest extends CommandTest
+final class PeekCommandTest extends CommandTestBase
 {
     public function testPeekReserved(): void
     {
@@ -43,7 +43,7 @@ final class PeekCommandTest extends CommandTest
         Assert::assertSame($data, $result->getData());
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Found];
     }

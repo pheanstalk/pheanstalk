@@ -16,7 +16,7 @@ final class YamlListParserTest extends TestCase
     /**
      * @phpstan-return iterable<array{0: string, 1: list<string>}>
      */
-    public function yamlListProvider(): iterable
+    public static function yamlListProvider(): iterable
     {
         yield ["---\n- a\n- b", ['a', 'b']];
     }

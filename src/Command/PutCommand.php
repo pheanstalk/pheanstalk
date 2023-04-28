@@ -56,13 +56,13 @@ final class PutCommand implements CommandInterface, CommandWithDataInterface
         } elseif ($response->type === ResponseType::Buried && isset($response->argument)) {
             throw new Exception\JobBuriedException(new JobId($response->argument));
         }
-        return match ($response->type) {
-            ResponseType::Buried => throw Exception\MalformedResponseException::expectedIntegerArgument(),
-            ResponseType::ExpectedCrlf => throw new Exception\ExpectedCrlfException(),
-            ResponseType::Draining => throw new Exception\ServerDrainingException(),
-            ResponseType::JobTooBig => throw new Exception\JobTooBigException(),
-            ResponseType::Inserted => throw Exception\MalformedResponseException::expectedData(),
-            default => throw new Exception\UnsupportedResponseException($response->type)
+        throw match ($response->type) {
+            ResponseType::Buried => Exception\MalformedResponseException::expectedIntegerArgument(),
+            ResponseType::ExpectedCrlf => new Exception\ExpectedCrlfException(),
+            ResponseType::Draining => new Exception\ServerDrainingException(),
+            ResponseType::JobTooBig => new Exception\JobTooBigException(),
+            ResponseType::Inserted => Exception\MalformedResponseException::expectedData(),
+            default => new Exception\UnsupportedResponseException($response->type)
         };
     }
 }

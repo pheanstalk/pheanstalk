@@ -12,7 +12,7 @@ use Pheanstalk\Values\TubeName;
 /**
  * @covers \Pheanstalk\Command\PauseTubeCommand
  */
-class PauseTubeCommandTest extends TubeCommandTest
+class PauseTubeCommandTest extends TubeCommandTestBase
 {
     public function testInterpretPaused(): void
     {
@@ -21,7 +21,7 @@ class PauseTubeCommandTest extends TubeCommandTest
         $this->expectNotToPerformAssertions();
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Paused];
     }

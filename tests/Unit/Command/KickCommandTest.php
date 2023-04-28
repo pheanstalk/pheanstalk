@@ -12,7 +12,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\KickCommand
  */
-class KickCommandTest extends CommandTest
+class KickCommandTest extends CommandTestBase
 {
     public function testInterpretKicked(): void
     {
@@ -20,7 +20,7 @@ class KickCommandTest extends CommandTest
         Assert::assertSame(15, $result);
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Kicked];
     }

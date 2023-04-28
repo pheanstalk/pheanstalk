@@ -47,7 +47,7 @@ final class JobStats
     /**
      * @param array<string, scalar> $data
      * @throws \InvalidArgumentException
-     * @psalm-suppress InvalidArgument
+     * @psalm-suppress ArgumentTypeCoercion
      */
     public static function fromBeanstalkArray(array $data): self
     {

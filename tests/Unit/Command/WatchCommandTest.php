@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\WatchCommand
  */
-class WatchCommandTest extends TubeCommandTest
+class WatchCommandTest extends TubeCommandTestBase
 {
     public function testInterpretWatching(): void
     {
@@ -22,7 +22,7 @@ class WatchCommandTest extends TubeCommandTest
         Assert::assertSame(5, $watching);
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Watching];
     }

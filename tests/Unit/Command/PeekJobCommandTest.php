@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\PeekJobCommand
  */
-final class PeekJobCommandTest extends JobCommandTest
+final class PeekJobCommandTest extends JobCommandTestBase
 {
     public function testInterpretFound(): void
     {
@@ -25,7 +25,7 @@ final class PeekJobCommandTest extends JobCommandTest
         Assert::assertSame("abcdef", $job->getData());
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Found];
     }

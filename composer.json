@@ -27,14 +27,14 @@
         "ext-sockets": "Socket implementation works best for long running processes"
     },
     "require-dev": {
-        "phpunit/phpunit": ">9",
-        "symplify/easy-coding-standard": "^10.0",
+        "phpunit/phpunit": "^10",
+        "symplify/easy-coding-standard": "^11",
         "phpstan/phpstan": "^1",
         "captainhook/plugin-composer": "^5.3",
         "ramsey/conventional-commits": "^1.2",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-phpunit": "^1.0",
-        "vimeo/psalm": "^4.23"
+        "vimeo/psalm": "^5"
     },
     "autoload-dev": {
         "psr-4": {

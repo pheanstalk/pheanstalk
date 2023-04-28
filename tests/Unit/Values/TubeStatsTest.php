@@ -53,6 +53,7 @@ class TubeStatsTest extends TestCase
 
     public function testTubeName(): void
     {
+        /** @psalm-suppress DuplicateArrayKey */
         $stats = TubeStats::fromBeanstalkArray([...self::SAMPLE,
             'name' => 'a-$test'
         ]);
@@ -62,7 +63,7 @@ class TubeStatsTest extends TestCase
     /**
      * @return iterable<array{0: array<string, string|int>}>
      */
-    public function sampleWithSingleMissingKeyProvider(): iterable
+    public static function sampleWithSingleMissingKeyProvider(): iterable
     {
         $sample = self::SAMPLE;
         $keys = array_keys($sample);

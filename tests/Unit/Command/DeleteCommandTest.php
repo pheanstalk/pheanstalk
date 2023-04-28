@@ -13,7 +13,7 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\DeleteCommand
  */
-final class DeleteCommandTest extends JobCommandTest
+final class DeleteCommandTest extends JobCommandTestBase
 {
     public function testInterpretDeleted(): void
     {
@@ -22,7 +22,7 @@ final class DeleteCommandTest extends JobCommandTest
         $this->expectNotToPerformAssertions();
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Deleted];
     }

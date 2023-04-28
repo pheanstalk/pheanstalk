@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\ListTubesCommand
  */
-final class ListTubesCommandTest extends CommandTest
+final class ListTubesCommandTest extends CommandTestBase
 {
     public function testInterpretOk(): void
     {
@@ -33,7 +33,7 @@ final class ListTubesCommandTest extends CommandTest
         Assert::assertSame('$(a.4)((b', $tubeNames[2]->value);
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Ok];
     }

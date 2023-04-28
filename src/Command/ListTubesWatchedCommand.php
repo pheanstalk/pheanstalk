@@ -29,9 +29,9 @@ final class ListTubesWatchedCommand implements CommandInterface
                 (new YamlListParser())->parse($response->data)
             ));
         }
-        return match ($response->type) {
-            ResponseType::Ok => throw MalformedResponseException::expectedData(),
-            default => throw new UnsupportedResponseException($response->type)
+        throw match ($response->type) {
+            ResponseType::Ok => MalformedResponseException::expectedData(),
+            default => new UnsupportedResponseException($response->type)
         };
     }
 

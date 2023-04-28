@@ -16,7 +16,7 @@ final class YamlDictionaryParserTest extends TestCase
     /**
      * @phpstan-return iterable<array{0: string, 1: array<string, string|int|float|bool>}>
      */
-    public function yamlDictionaryProvider(): iterable
+    public static function yamlDictionaryProvider(): iterable
     {
         yield ["---\n  a: def\n  b: 15", ['a' => 'def', 'b' => 15]];
         yield ["---\n  a: def\n  b: 15", ['a' => 'def', 'b' => 15]];

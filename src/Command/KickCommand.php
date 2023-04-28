@@ -36,9 +36,9 @@ final class KickCommand implements CommandInterface
         if ($response->type === ResponseType::Kicked && is_int($response->argument)) {
             return $response->argument;
         }
-        return match ($response->type) {
-            ResponseType::Kicked => throw MalformedResponseException::expectedIntegerArgument(),
-            default => throw new UnsupportedResponseException($response->type),
+        throw match ($response->type) {
+            ResponseType::Kicked => MalformedResponseException::expectedIntegerArgument(),
+            default => new UnsupportedResponseException($response->type),
         };
     }
 }

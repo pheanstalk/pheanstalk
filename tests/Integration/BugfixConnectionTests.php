@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
  *
  * @coversNothing
  */
-trait BugfixConnectionTest
+trait BugfixConnectionTests
 {
     /**
      * Issue: NativeSocket's read() doesn't work with jobs larger than 8192 bytes.

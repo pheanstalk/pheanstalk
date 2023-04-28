@@ -12,14 +12,14 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\ListTubeUsedCommand
  */
-final class ListTubeUsedCommandTest extends CommandTest
+final class ListTubeUsedCommandTest extends CommandTestBase
 {
     public function testInterpretUsing(): void
     {
         Assert::assertSame("using", $this->getSubject()->interpret(new RawResponse(ResponseType::Using, "using"))->value);
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Using];
     }

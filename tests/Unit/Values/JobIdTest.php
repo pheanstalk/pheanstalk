@@ -15,7 +15,7 @@ class JobIdTest extends TestCase
     /**
      * @return list<array{0: string|int}>
      */
-    public function validSamples(): array
+    public static function validSamples(): array
     {
         return [
             ['123'],
@@ -26,7 +26,7 @@ class JobIdTest extends TestCase
     /**
      * @return list<array{0: string|int}>
      */
-    public function invalidSamples(): array
+    public static function invalidSamples(): array
     {
         return [
             ['ab'],

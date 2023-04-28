@@ -35,7 +35,6 @@ abstract class FileSocket implements SocketInterface
      */
     final protected function getSocket()
     {
-        /** @phpstan-ignore-next-line (Bug: https://github.com/phpstan/phpstan/issues/5845) */
         if (!is_resource($this->socket)) {
             throw new ConnectionException(0, "The connection was closed");
         }
@@ -114,7 +113,6 @@ abstract class FileSocket implements SocketInterface
      */
     public function disconnect(): void
     {
-        /** @phpstan-ignore-next-line (Bug: https://github.com/phpstan/phpstan/issues/5845) */
         if (is_resource($this->socket)) {
             fclose($this->socket);
         }

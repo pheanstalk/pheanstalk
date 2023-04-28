@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\ReserveCommand
  */
-final class ReserveCommandTest extends CommandTest
+final class ReserveCommandTest extends CommandTestBase
 {
     public function testInterpretDeadlineSoon(): void
     {
@@ -40,7 +40,7 @@ final class ReserveCommandTest extends CommandTest
         Assert::assertSame($data, $job->getData());
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::DeadlineSoon, ResponseType::TimedOut, ResponseType::Reserved];
     }

@@ -67,7 +67,7 @@ final class ServerStatsTest extends TestCase
     /**
      * @return iterable<array{0: array<string, scalar>}>
      */
-    public function sampleWithSingleMissingKeyProvider(): iterable
+    public static function sampleWithSingleMissingKeyProvider(): iterable
     {
         $sample = self::SAMPLE;
         $keys = array_keys($sample);

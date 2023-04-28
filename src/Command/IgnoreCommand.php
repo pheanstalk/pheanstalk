@@ -24,10 +24,10 @@ final class IgnoreCommand extends TubeCommand
             return $response->argument;
         }
 
-        return match ($response->type) {
-            ResponseType::NotIgnored => throw new NotIgnoredException(),
-            ResponseType::Watching => throw MalformedResponseException::expectedIntegerArgument(),
-            default => throw new UnsupportedResponseException($response->type)
+        throw match ($response->type) {
+            ResponseType::NotIgnored => new NotIgnoredException(),
+            ResponseType::Watching => MalformedResponseException::expectedIntegerArgument(),
+            default => new UnsupportedResponseException($response->type)
         };
     }
 

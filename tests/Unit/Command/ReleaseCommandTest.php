@@ -13,7 +13,7 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\ReleaseCommand
  */
-final class ReleaseCommandTest extends JobCommandTest
+final class ReleaseCommandTest extends JobCommandTestBase
 {
     public function testInterpretReleased(): void
     {
@@ -23,7 +23,7 @@ final class ReleaseCommandTest extends JobCommandTest
         $this->expectNotToPerformAssertions();
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Released];
     }

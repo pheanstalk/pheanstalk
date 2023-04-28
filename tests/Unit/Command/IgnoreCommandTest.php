@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\IgnoreCommand
  */
-class IgnoreCommandTest extends TubeCommandTest
+class IgnoreCommandTest extends TubeCommandTestBase
 {
     public function testInterpretWatching(): void
     {
@@ -30,7 +30,7 @@ class IgnoreCommandTest extends TubeCommandTest
         $command->interpret(new RawResponse(ResponseType::NotIgnored));
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotIgnored, ResponseType::Watching];
     }

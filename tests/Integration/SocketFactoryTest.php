@@ -28,7 +28,7 @@ final class SocketFactoryTest extends TestCase
     /**
      * @phpstan-return iterable<array{0: SocketFactory, 1: class-string}>
      */
-    public function factoryProvider(): iterable
+    public static function factoryProvider(): iterable
     {
         if (SERVER_HOST !== '') {
             yield [new SocketFactory(SERVER_HOST, implementation: SocketImplementation::SOCKET), SocketSocket::class];
@@ -66,7 +66,7 @@ final class SocketFactoryTest extends TestCase
     /**
      * @return iterable<array{0: string, 1: SocketImplementation|null}>
      */
-    public function invalidHostProvider(): iterable
+    public static function invalidHostProvider(): iterable
     {
         $hosts = ['not-valid', '192.0.2.123', 'unix:///invalid-file'];
         $implementations = [...SocketImplementation::cases(), null];

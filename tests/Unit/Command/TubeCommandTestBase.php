@@ -11,13 +11,13 @@ use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\Assert;
 
-abstract class TubeCommandTest extends CommandTest
+abstract class TubeCommandTestBase extends CommandTestBase
 {
     abstract protected function getSubject(TubeName $tube = null): TubeCommand;
 
     public function testInterpretNotFound(): void
     {
-        if (!in_array(ResponseType::NotFound, $this->getSupportedResponses(), true)) {
+        if (!in_array(ResponseType::NotFound, static::getSupportedResponses(), true)) {
             Assert::markTestSkipped("Not applicable");
         }
         $command = $this->getSubject();
@@ -28,9 +28,9 @@ abstract class TubeCommandTest extends CommandTest
 
 
     /**
-     * @phpstan-return iterable<array<string>>
+     * @phpstan-return iterable<array{0: string}>
      */
-    public function tubeNameProvider(): iterable
+    public static function tubeNameProvider(): iterable
     {
         yield ["5"];
         yield ["12345678901234562222222323112312312312312312312312312312312312321312312313212378900"];

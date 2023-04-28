@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\StatsJobCommand
  */
-final class StatsJobCommandTest extends JobCommandTest
+final class StatsJobCommandTest extends JobCommandTestBase
 {
     public function testInterpretOk(): void
     {
@@ -44,7 +44,7 @@ final class StatsJobCommandTest extends JobCommandTest
         Assert::assertSame("5", $jobStats->id->getId());
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Ok];
     }

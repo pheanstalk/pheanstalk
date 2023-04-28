@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\UseCommand
  */
-class UseCommandTest extends TubeCommandTest
+class UseCommandTest extends TubeCommandTestBase
 {
     public function testInterpretUsing(): void
     {
@@ -22,7 +22,10 @@ class UseCommandTest extends TubeCommandTest
         Assert::assertSame("1ab5", $using->value);
     }
 
-    protected function getSupportedResponses(): array
+    /**
+     * @return list<ResponseType>
+     */
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::Using];
     }

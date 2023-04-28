@@ -13,7 +13,7 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\TouchCommand
  */
-final class TouchCommandTest extends JobCommandTest
+final class TouchCommandTest extends JobCommandTestBase
 {
     public function testInterpretTouched(): void
     {
@@ -22,7 +22,7 @@ final class TouchCommandTest extends JobCommandTest
         $this->expectNotToPerformAssertions();
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Touched];
     }

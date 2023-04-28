@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\StatsTubeCommand
  */
-final class StatsTubeCommandTest extends TubeCommandTest
+final class StatsTubeCommandTest extends TubeCommandTestBase
 {
     private const SAMPLE = [
         'name' => 'tubename',
@@ -56,7 +56,7 @@ final class StatsTubeCommandTest extends TubeCommandTest
         Assert::assertSame("tube-123.a(true\$story)", $tubeStats->name->value);
     }
 
-    protected function getSupportedResponses(): array
+    protected static function getSupportedResponses(): array
     {
         return [ResponseType::NotFound, ResponseType::Ok];
     }

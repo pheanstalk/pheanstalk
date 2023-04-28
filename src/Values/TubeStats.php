@@ -45,7 +45,7 @@ class TubeStats
 
     /**
      * @param array<string, string|int|bool|float> $data
-     * @psalm-suppress InvalidArgument
+     * @psalm-suppress ArgumentTypeCoercion
      */
     public static function fromBeanstalkArray(array $data): self
     {
