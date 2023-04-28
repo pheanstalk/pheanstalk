@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Values;
 
-/**
- * @internal
- */
 final class JobStats
 {
     private const KEYS = [
