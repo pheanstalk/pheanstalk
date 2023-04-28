@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - v4
-      - v6
+      - v5
 jobs:
   tests:
     name: Tests
