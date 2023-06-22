@@ -1,5 +1,5 @@
 ---
-name: Continous integration
+name: Continuous integration
 on:
   pull_request:
     branches:
@@ -9,18 +9,23 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.1', '8.2' ]
     steps:
       - run: ls -la /tmp/
       - uses: actions/checkout@v3
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php }}
           tools: phpunit
+          extensions: sockets pcov
       - name: Install dependencies including dev
         run: composer install
       - name: Tests
-        run: composer test
+        run: composer phpunit-native
       - uses: codecov/codecov-action@v3.1.1
         with:
           files: ./tests/coverage/coverage.xml
