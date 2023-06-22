@@ -48,6 +48,7 @@
     },
     "scripts": {
         "phpunit": "docker compose run --rm phpunit",
+        "phpunit-native": "phpunit --config phpunit.xml.dist",
         "test": [
             "@phpunit"
         ]
