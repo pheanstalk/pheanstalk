@@ -1,571 +1,6 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\Pheanstalk\\Command\\AbstractCommand",
-            "name": "AbstractCommand",
-            "summary": "Common\u0020functionality\u0020for\u0020Command\u0020implementations.",
-            "url": "classes/Pheanstalk-Command-AbstractCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\AbstractCommand\u003A\u003AhasData\u0028\u0029",
-            "name": "hasData",
-            "summary": "Whether\u0020the\u0020command\u0020is\u0020followed\u0020by\u0020data.",
-            "url": "classes/Pheanstalk-Command-AbstractCommand.html#method_hasData"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\AbstractCommand\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "The\u0020binary\u0020data\u0020to\u0020follow\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Command-AbstractCommand.html#method_getData"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\AbstractCommand\u003A\u003AgetDataLength\u0028\u0029",
-            "name": "getDataLength",
-            "summary": "The\u0020length\u0020of\u0020the\u0020binary\u0020data\u0020in\u0020bytes.",
-            "url": "classes/Pheanstalk-Command-AbstractCommand.html#method_getDataLength"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\AbstractCommand\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "The\u0020response\u0020parser\u0020for\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Command-AbstractCommand.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\AbstractCommand\u003A\u003AcreateResponse\u0028\u0029",
-            "name": "createResponse",
-            "summary": "Creates\u0020a\u0020Response\u0020for\u0020the\u0020given\u0020data.",
-            "url": "classes/Pheanstalk-Command-AbstractCommand.html#method_createResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\BuryCommand",
-            "name": "BuryCommand",
-            "summary": "The\u0020\u0027bury\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-BuryCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\BuryCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-BuryCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\BuryCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-BuryCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\BuryCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-BuryCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\BuryCommand\u003A\u003A\u0024priority",
-            "name": "priority",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-BuryCommand.html#property_priority"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\DeleteCommand",
-            "name": "DeleteCommand",
-            "summary": "The\u0020\u0027delete\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-DeleteCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\DeleteCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-DeleteCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\DeleteCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-DeleteCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\IgnoreCommand",
-            "name": "IgnoreCommand",
-            "summary": "The\u0020\u0027ignore\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-IgnoreCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\IgnoreCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-IgnoreCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\IgnoreCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-IgnoreCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\JobCommand",
-            "name": "JobCommand",
-            "summary": "A\u0020command\u0020that\u0020is\u0020executed\u0020against\u0020a\u0020single\u0020job",
-            "url": "classes/Pheanstalk-Command-JobCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\JobCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-JobCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\JobCommand\u003A\u003A\u0024jobId",
-            "name": "jobId",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-JobCommand.html#property_jobId"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickCommand",
-            "name": "KickCommand",
-            "summary": "The\u0020\u0027kick\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-KickCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-KickCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-KickCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-KickCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickCommand\u003A\u003A\u0024max",
-            "name": "max",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-KickCommand.html#property_max"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickJobCommand",
-            "name": "KickJobCommand",
-            "summary": "The\u0020\u0027kick\u002Djob\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-KickJobCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickJobCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-KickJobCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\KickJobCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-KickJobCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubesCommand",
-            "name": "ListTubesCommand",
-            "summary": "The\u0020\u0027list\u002Dtubes\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-ListTubesCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubesCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ListTubesCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubesCommand\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "The\u0020response\u0020parser\u0020for\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Command-ListTubesCommand.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubesWatchedCommand",
-            "name": "ListTubesWatchedCommand",
-            "summary": "The\u0020\u0027list\u002Dtubes\u002Dwatched\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-ListTubesWatchedCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubesWatchedCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ListTubesWatchedCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubesWatchedCommand\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "The\u0020response\u0020parser\u0020for\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Command-ListTubesWatchedCommand.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubeUsedCommand",
-            "name": "ListTubeUsedCommand",
-            "summary": "The\u0020\u0027list\u002Dtube\u002Dused\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-ListTubeUsedCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubeUsedCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ListTubeUsedCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ListTubeUsedCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-ListTubeUsedCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PauseTubeCommand",
-            "name": "PauseTubeCommand",
-            "summary": "The\u0020\u0027pause\u002Dtube\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-PauseTubeCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PauseTubeCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PauseTubeCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PauseTubeCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PauseTubeCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PauseTubeCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-PauseTubeCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PauseTubeCommand\u003A\u003A\u0024delay",
-            "name": "delay",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PauseTubeCommand.html#property_delay"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand",
-            "name": "PeekCommand",
-            "summary": "The\u0020\u0027peek\u0027,\u0020\u0027peek\u002Dready\u0027,\u0020\u0027peek\u002Ddelayed\u0027\u0020and\u0020\u0027peek\u002Dburied\u0027\u0020commands.",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003ATYPE_ID",
-            "name": "TYPE_ID",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#constant_TYPE_ID"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003ATYPE_READY",
-            "name": "TYPE_READY",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#constant_TYPE_READY"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003ATYPE_DELAYED",
-            "name": "TYPE_DELAYED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#constant_TYPE_DELAYED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003ATYPE_BURIED",
-            "name": "TYPE_BURIED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#constant_TYPE_BURIED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003ASUBCOMMANDS",
-            "name": "SUBCOMMANDS",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#constant_SUBCOMMANDS"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekCommand\u003A\u003A\u0024subcommand",
-            "name": "subcommand",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekCommand.html#property_subcommand"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekJobCommand",
-            "name": "PeekJobCommand",
-            "summary": "The\u0020\u0027peek\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-PeekJobCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekJobCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PeekJobCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PeekJobCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-PeekJobCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand",
-            "name": "PutCommand",
-            "summary": "The\u0020\u0027put\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-PutCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003AhasData\u0028\u0029",
-            "name": "hasData",
-            "summary": "Whether\u0020the\u0020command\u0020is\u0020followed\u0020by\u0020data.",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#method_hasData"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "The\u0020binary\u0020data\u0020to\u0020follow\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#method_getData"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003AgetDataLength\u0028\u0029",
-            "name": "getDataLength",
-            "summary": "The\u0020length\u0020of\u0020the\u0020binary\u0020data\u0020in\u0020bytes.",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#method_getDataLength"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003A\u0024data",
-            "name": "data",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#property_data"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003A\u0024priority",
-            "name": "priority",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#property_priority"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003A\u0024delay",
-            "name": "delay",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#property_delay"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\PutCommand\u003A\u003A\u0024ttr",
-            "name": "ttr",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-PutCommand.html#property_ttr"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReleaseCommand",
-            "name": "ReleaseCommand",
-            "summary": "The\u0020\u0027release\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-ReleaseCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReleaseCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReleaseCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReleaseCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReleaseCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReleaseCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-ReleaseCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReleaseCommand\u003A\u003A\u0024priority",
-            "name": "priority",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReleaseCommand.html#property_priority"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReleaseCommand\u003A\u003A\u0024delay",
-            "name": "delay",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReleaseCommand.html#property_delay"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveCommand",
-            "name": "ReserveCommand",
-            "summary": "The\u0020\u0027reserve\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-ReserveCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReserveCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-ReserveCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveWithTimeoutCommand",
-            "name": "ReserveWithTimeoutCommand",
-            "summary": "The\u0020\u0027reserve\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-ReserveWithTimeoutCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveWithTimeoutCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "A\u0020timeout\u0020value\u0020of\u00200\u0020will\u0020cause\u0020the\u0020server\u0020to\u0020immediately\u0020return\u0020either\u0020a\nresponse\u0020or\u0020TIMED_OUT.\u0020\u0020A\u0020positive\u0020value\u0020of\u0020timeout\u0020will\u0020limit\u0020the\u0020amount\u0020of\ntime\u0020the\u0020client\u0020will\u0020block\u0020on\u0020the\u0020reserve\u0020request\u0020until\u0020a\u0020job\u0020becomes\navailable.",
-            "url": "classes/Pheanstalk-Command-ReserveWithTimeoutCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveWithTimeoutCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReserveWithTimeoutCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveWithTimeoutCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-ReserveWithTimeoutCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\ReserveWithTimeoutCommand\u003A\u003A\u0024timeout",
-            "name": "timeout",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-ReserveWithTimeoutCommand.html#property_timeout"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsCommand",
-            "name": "StatsCommand",
-            "summary": "The\u0020\u0027stats\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-StatsCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-StatsCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsCommand\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "The\u0020response\u0020parser\u0020for\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Command-StatsCommand.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsJobCommand",
-            "name": "StatsJobCommand",
-            "summary": "The\u0020\u0027stats\u002Djob\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-StatsJobCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsJobCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-StatsJobCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsJobCommand\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-StatsJobCommand.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsTubeCommand",
-            "name": "StatsTubeCommand",
-            "summary": "The\u0020\u0027stats\u002Dtube\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-StatsTubeCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsTubeCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-StatsTubeCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\StatsTubeCommand\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-StatsTubeCommand.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\TouchCommand",
-            "name": "TouchCommand",
-            "summary": "The\u0020\u0027touch\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-TouchCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\TouchCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-TouchCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\TouchCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-TouchCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\TubeCommand",
-            "name": "TubeCommand",
-            "summary": "A\u0020command\u0020that\u0020is\u0020executed\u0020against\u0020a\u0020tube",
-            "url": "classes/Pheanstalk-Command-TubeCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\TubeCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-TubeCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\TubeCommand\u003A\u003A\u0024tube",
-            "name": "tube",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-TubeCommand.html#property_tube"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\UseCommand",
-            "name": "UseCommand",
-            "summary": "The\u0020\u0027use\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-UseCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\UseCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-UseCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\UseCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-UseCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\WatchCommand",
-            "name": "WatchCommand",
-            "summary": "The\u0020\u0027watch\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Command-WatchCommand.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\WatchCommand\u003A\u003AgetCommandLine\u0028\u0029",
-            "name": "getCommandLine",
-            "summary": "",
-            "url": "classes/Pheanstalk-Command-WatchCommand.html#method_getCommandLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Command\\WatchCommand\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Command-WatchCommand.html#method_parseResponse"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection",
-            "name": "Connection",
-            "summary": "A\u0020connection\u0020to\u0020a\u0020beanstalkd\u0020server,\u0020backed\u0020by\u0020any\u0020type\u0020of\u0020socket.",
-            "url": "classes/Pheanstalk-Connection.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003Adisconnect\u0028\u0029",
-            "name": "disconnect",
-            "summary": "Disconnect\u0020the\u0020socket.",
-            "url": "classes/Pheanstalk-Connection.html#method_disconnect"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003AdispatchCommand\u0028\u0029",
-            "name": "dispatchCommand",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#method_dispatchCommand"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003AgetSocket\u0028\u0029",
-            "name": "getSocket",
-            "summary": "Socket\u0020handle\u0020for\u0020the\u0020connection\u0020to\u0020beanstalkd.",
-            "url": "classes/Pheanstalk-Connection.html#method_getSocket"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003ACRLF",
-            "name": "CRLF",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#constant_CRLF"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003ACRLF_LENGTH",
-            "name": "CRLF_LENGTH",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#constant_CRLF_LENGTH"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003ADEFAULT_CONNECT_TIMEOUT",
-            "name": "DEFAULT_CONNECT_TIMEOUT",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#constant_DEFAULT_CONNECT_TIMEOUT"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003A\u0024errorResponses",
-            "name": "errorResponses",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#property_errorResponses"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003A\u0024dataResponses",
-            "name": "dataResponses",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#property_dataResponses"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003A\u0024factory",
-            "name": "factory",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#property_factory"
-        },                {
-            "fqsen": "\\Pheanstalk\\Connection\u003A\u003A\u0024socket",
-            "name": "socket",
-            "summary": "",
-            "url": "classes/Pheanstalk-Connection.html#property_socket"
-        },                {
             "fqsen": "\\Pheanstalk\\Contract\\CommandInterface",
             "name": "CommandInterface",
             "summary": "A\u0020command\u0020to\u0020be\u0020sent\u0020to\u0020the\u0020beanstalkd\u0020server,\u0020and\u0020response\u0020processing\u0020logic.",
@@ -576,100 +11,30 @@ Search.appendIndex(
             "summary": "The\u0020command\u0020line,\u0020without\u0020trailing\u0020CRLF.",
             "url": "classes/Pheanstalk-Contract-CommandInterface.html#method_getCommandLine"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003AhasData\u0028\u0029",
-            "name": "hasData",
-            "summary": "Whether\u0020the\u0020command\u0020is\u0020followed\u0020by\u0020data.",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#method_hasData"
+            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003Ainterpret\u0028\u0029",
+            "name": "interpret",
+            "summary": "Interprets\u0020a\u0020raw\u0020response\u0020object\nMUST\u0020throw\u0020an\u0020exception\u0020if\u0020the\u0020parser\u0020determines\u0020the\u0020response\u0020to\u0020be\u0020invalid\nMUST\u0020return\u0020the\u0020response\u0020type\u0020as\u0020defined\u0020in\u0020the\u0020PheanstalkInterface\u0020for\u0020the\u0020command\u0020type.",
+            "url": "classes/Pheanstalk-Contract-CommandInterface.html#method_interpret"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003AgetData\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\CommandWithDataInterface",
+            "name": "CommandWithDataInterface",
+            "summary": "Some\u0020commands\u0020carry\u0020data\u0020besides\u0020their\u0020command\u0020line.\u0020Commands\u0020carrying\u0020data\u0020implement\u0020this\u0020interface\u0020so\u0020that\u0020it\u0020can\nbe\u0020detected\u0020and\u0020sent\u0020by\u0020the\u0020dispatching\u0020code\u0020in\u0020Connection",
+            "url": "classes/Pheanstalk-Contract-CommandWithDataInterface.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Contract\\CommandWithDataInterface\u003A\u003AgetData\u0028\u0029",
             "name": "getData",
             "summary": "The\u0020binary\u0020data\u0020to\u0020follow\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#method_getData"
+            "url": "classes/Pheanstalk-Contract-CommandWithDataInterface.html#method_getData"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003AgetDataLength\u0028\u0029",
-            "name": "getDataLength",
-            "summary": "The\u0020length\u0020of\u0020the\u0020binary\u0020data\u0020in\u0020bytes.",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#method_getDataLength"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003AgetResponseParser\u0028\u0029",
-            "name": "getResponseParser",
-            "summary": "The\u0020response\u0020parser\u0020for\u0020the\u0020command.",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#method_getResponseParser"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_PUT",
-            "name": "COMMAND_PUT",
+            "fqsen": "\\Pheanstalk\\Contract\\DispatcherInterface",
+            "name": "DispatcherInterface",
             "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_PUT"
+            "url": "classes/Pheanstalk-Contract-DispatcherInterface.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_USE",
-            "name": "COMMAND_USE",
+            "fqsen": "\\Pheanstalk\\Contract\\DispatcherInterface\u003A\u003Adispatch\u0028\u0029",
+            "name": "dispatch",
             "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_USE"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_RESERVE",
-            "name": "COMMAND_RESERVE",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_RESERVE"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_DELETE",
-            "name": "COMMAND_DELETE",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_DELETE"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_RELEASE",
-            "name": "COMMAND_RELEASE",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_RELEASE"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_BURY",
-            "name": "COMMAND_BURY",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_BURY"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_WATCH",
-            "name": "COMMAND_WATCH",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_WATCH"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_IGNORE",
-            "name": "COMMAND_IGNORE",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_IGNORE"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_PEEK",
-            "name": "COMMAND_PEEK",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_PEEK"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_KICK",
-            "name": "COMMAND_KICK",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_KICK"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_STATS_JOB",
-            "name": "COMMAND_STATS_JOB",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_STATS_JOB"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_STATS",
-            "name": "COMMAND_STATS",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_STATS"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_LIST_TUBES",
-            "name": "COMMAND_LIST_TUBES",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_LIST_TUBES"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_LIST_TUBE_USED",
-            "name": "COMMAND_LIST_TUBE_USED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_LIST_TUBE_USED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\CommandInterface\u003A\u003ACOMMAND_LIST_TUBES_WATCHED",
-            "name": "COMMAND_LIST_TUBES_WATCHED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-CommandInterface.html#constant_COMMAND_LIST_TUBES_WATCHED"
+            "url": "classes/Pheanstalk-Contract-DispatcherInterface.html#method_dispatch"
         },                {
             "fqsen": "\\Pheanstalk\\Contract\\JobIdInterface",
             "name": "JobIdInterface",
@@ -678,298 +43,133 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Pheanstalk\\Contract\\JobIdInterface\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
-            "summary": "",
+            "summary": "This\u0020is\u0020a\u0020string\u0020to\u0020support\u002064bit\u0020numbers\u0020on\u002032bit\u0020systems.",
             "url": "classes/Pheanstalk-Contract-JobIdInterface.html#method_getId"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface",
-            "name": "PheanstalkInterface",
+            "fqsen": "\\Pheanstalk\\Contract\\JobIdResponseInterface",
+            "name": "JobIdResponseInterface",
+            "summary": "A\u0020response\u0020from\u0020the\u0020beanstalkd\u0020server.",
+            "url": "classes/Pheanstalk-Contract-JobIdResponseInterface.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Contract\\JobIdResponseInterface\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
             "summary": "",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html"
+            "url": "classes/Pheanstalk-Contract-JobIdResponseInterface.html#method_getId"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Abury\u0028\u0029",
-            "name": "bury",
-            "summary": "Puts\u0020a\u0020job\u0020into\u0020a\u0020\u0027buried\u0027\u0020state,\u0020revived\u0020only\u0020by\u0020\u0027kick\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_bury"
+            "fqsen": "\\Pheanstalk\\Contract\\JobResponseInterface",
+            "name": "JobResponseInterface",
+            "summary": "A\u0020response\u0020from\u0020the\u0020beanstalkd\u0020server.",
+            "url": "classes/Pheanstalk-Contract-JobResponseInterface.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Adelete\u0028\u0029",
-            "name": "delete",
-            "summary": "Permanently\u0020deletes\u0020a\u0020job.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_delete"
+            "fqsen": "\\Pheanstalk\\Contract\\JobResponseInterface\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "",
+            "url": "classes/Pheanstalk-Contract-JobResponseInterface.html#method_getData"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Aignore\u0028\u0029",
-            "name": "ignore",
-            "summary": "Remove\u0020the\u0020specified\u0020tube\u0020from\u0020the\u0020watchlist.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_ignore"
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface",
+            "name": "PheanstalkManagerInterface",
+            "summary": "",
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Akick\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003Akick\u0028\u0029",
             "name": "kick",
             "summary": "Kicks\u0020buried\u0020or\u0020delayed\u0020jobs\u0020into\u0020a\u0020\u0027ready\u0027\u0020state.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_kick"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_kick"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AkickJob\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003AkickJob\u0028\u0029",
             "name": "kickJob",
             "summary": "A\u0020variant\u0020of\u0020kick\u0020that\u0020operates\u0020with\u0020a\u0020single\u0020job.\u0020If\u0020the\u0020given\u0020job\nexists\u0020and\u0020is\u0020in\u0020a\u0020buried\u0020or\u0020delayed\u0020state,\u0020it\u0020will\u0020be\u0020moved\u0020to\u0020the\nready\u0020queue\u0020of\u0020the\u0020the\u0020same\u0020tube\u0020where\u0020it\u0020currently\u0020belongs.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_kickJob"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_kickJob"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AlistTubes\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003AlistTubes\u0028\u0029",
             "name": "listTubes",
             "summary": "The\u0020names\u0020of\u0020all\u0020tubes\u0020on\u0020the\u0020server.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_listTubes"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_listTubes"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AlistTubesWatched\u0028\u0029",
-            "name": "listTubesWatched",
-            "summary": "The\u0020names\u0020of\u0020the\u0020tubes\u0020being\u0020watched,\u0020to\u0020reserve\u0020jobs\u0020from.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_listTubesWatched"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AlistTubeUsed\u0028\u0029",
-            "name": "listTubeUsed",
-            "summary": "The\u0020name\u0020of\u0020the\u0020current\u0020tube\u0020used\u0020for\u0020publishing\u0020jobs\u0020to.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_listTubeUsed"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ApauseTube\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003ApauseTube\u0028\u0029",
             "name": "pauseTube",
             "summary": "Temporarily\u0020prevent\u0020jobs\u0020being\u0020reserved\u0020from\u0020the\u0020given\u0020tube.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_pauseTube"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_pauseTube"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AresumeTube\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003AresumeTube\u0028\u0029",
             "name": "resumeTube",
             "summary": "Resume\u0020jobs\u0020for\u0020a\u0020given\u0020paused\u0020tube.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_resumeTube"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_resumeTube"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Apeek\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003Apeek\u0028\u0029",
             "name": "peek",
             "summary": "Inspect\u0020a\u0020job\u0020in\u0020the\u0020system,\u0020regardless\u0020of\u0020what\u0020tube\u0020it\u0020is\u0020in.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_peek"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_peek"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ApeekReady\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003ApeekReady\u0028\u0029",
             "name": "peekReady",
             "summary": "Inspect\u0020the\u0020next\u0020ready\u0020job\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_peekReady"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_peekReady"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ApeekDelayed\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003ApeekDelayed\u0028\u0029",
             "name": "peekDelayed",
             "summary": "Inspect\u0020the\u0020shortest\u002Dremaining\u002Ddelayed\u0020job\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_peekDelayed"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_peekDelayed"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ApeekBuried\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003ApeekBuried\u0028\u0029",
             "name": "peekBuried",
             "summary": "Inspect\u0020the\u0020next\u0020job\u0020in\u0020the\u0020list\u0020of\u0020buried\u0020jobs\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_peekBuried"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_peekBuried"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Aput\u0028\u0029",
-            "name": "put",
-            "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_put"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Arelease\u0028\u0029",
-            "name": "release",
-            "summary": "Puts\u0020a\u0020reserved\u0020job\u0020back\u0020into\u0020the\u0020ready\u0020queue.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_release"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Areserve\u0028\u0029",
-            "name": "reserve",
-            "summary": "Reserves\/locks\u0020a\u0020ready\u0020job\u0020in\u0020a\u0020watched\u0020tube.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_reserve"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AreserveWithTimeout\u0028\u0029",
-            "name": "reserveWithTimeout",
-            "summary": "Reserves\/locks\u0020a\u0020ready\u0020job\u0020in\u0020a\u0020watched\u0020tube,\u0020uses\u0020the\u0020\u0027reserve\u002Dwith\u002Dtimeout\u0027\u0020instead\u0020of\u0020\u0027reserve\u0027.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_reserveWithTimeout"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AstatsJob\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003AstatsJob\u0028\u0029",
             "name": "statsJob",
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020specified\u0020job\u0020if\u0020it\u0020exists.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_statsJob"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_statsJob"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AstatsTube\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003AstatsTube\u0028\u0029",
             "name": "statsTube",
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020specified\u0020tube\u0020if\u0020it\u0020exists.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_statsTube"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_statsTube"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Astats\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface\u003A\u003Astats\u0028\u0029",
             "name": "stats",
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020beanstalkd\u0020system\u0020as\u0020a\u0020whole.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_stats"
+            "url": "classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#method_stats"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Atouch\u0028\u0029",
-            "name": "touch",
-            "summary": "Allows\u0020a\u0020worker\u0020to\u0020request\u0020more\u0020time\u0020to\u0020work\u0020on\u0020a\u0020job.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_touch"
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface",
+            "name": "PheanstalkPublisherInterface",
+            "summary": "",
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AuseTube\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface\u003A\u003AlistTubeUsed\u0028\u0029",
+            "name": "listTubeUsed",
+            "summary": "The\u0020name\u0020of\u0020the\u0020current\u0020tube\u0020used\u0020for\u0020publishing\u0020jobs\u0020to.",
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html#method_listTubeUsed"
+        },                {
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface\u003A\u003Aput\u0028\u0029",
+            "name": "put",
+            "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html#method_put"
+        },                {
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface\u003A\u003AuseTube\u0028\u0029",
             "name": "useTube",
             "summary": "Change\u0020to\u0020the\u0020specified\u0020tube\u0020name\u0020for\u0020publishing\u0020jobs\u0020to.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_useTube"
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html#method_useTube"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003Awatch\u0028\u0029",
-            "name": "watch",
-            "summary": "Add\u0020the\u0020specified\u0020tube\u0020to\u0020the\u0020watchlist,\u0020to\u0020reserve\u0020jobs\u0020from.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_watch"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003AwatchOnly\u0028\u0029",
-            "name": "watchOnly",
-            "summary": "Adds\u0020the\u0020specified\u0020tube\u0020to\u0020the\u0020watchlist,\u0020to\u0020reserve\u0020jobs\u0020from,\u0020and\nignores\u0020any\u0020other\u0020tubes\u0020remaining\u0020on\u0020the\u0020watchlist.",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#method_watchOnly"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ADEFAULT_PORT",
-            "name": "DEFAULT_PORT",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#constant_DEFAULT_PORT"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ADEFAULT_DELAY",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface\u003A\u003ADEFAULT_DELAY",
             "name": "DEFAULT_DELAY",
             "summary": "",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#constant_DEFAULT_DELAY"
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html#constant_DEFAULT_DELAY"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ADEFAULT_PRIORITY",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface\u003A\u003ADEFAULT_PRIORITY",
             "name": "DEFAULT_PRIORITY",
             "summary": "",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#constant_DEFAULT_PRIORITY"
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html#constant_DEFAULT_PRIORITY"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ADEFAULT_TTR",
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkPublisherInterface\u003A\u003ADEFAULT_TTR",
             "name": "DEFAULT_TTR",
             "summary": "",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#constant_DEFAULT_TTR"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkInterface\u003A\u003ADEFAULT_TUBE",
-            "name": "DEFAULT_TUBE",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-PheanstalkInterface.html#constant_DEFAULT_TUBE"
+            "url": "classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html#constant_DEFAULT_TTR"
         },                {
             "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface",
             "name": "ResponseInterface",
             "summary": "A\u0020response\u0020from\u0020the\u0020beanstalkd\u0020server.",
             "url": "classes/Pheanstalk-Contract-ResponseInterface.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003AgetResponseName\u0028\u0029",
-            "name": "getResponseName",
-            "summary": "The\u0020name\u0020of\u0020the\u0020response.",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#method_getResponseName"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_OUT_OF_MEMORY",
-            "name": "RESPONSE_OUT_OF_MEMORY",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_OUT_OF_MEMORY"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_INTERNAL_ERROR",
-            "name": "RESPONSE_INTERNAL_ERROR",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_INTERNAL_ERROR"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_DRAINING",
-            "name": "RESPONSE_DRAINING",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_DRAINING"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_BAD_FORMAT",
-            "name": "RESPONSE_BAD_FORMAT",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_BAD_FORMAT"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_UNKNOWN_COMMAND",
-            "name": "RESPONSE_UNKNOWN_COMMAND",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_UNKNOWN_COMMAND"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_INSERTED",
-            "name": "RESPONSE_INSERTED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_INSERTED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_BURIED",
-            "name": "RESPONSE_BURIED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_BURIED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_EXPECTED_CRLF",
-            "name": "RESPONSE_EXPECTED_CRLF",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_EXPECTED_CRLF"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_JOB_TOO_BIG",
-            "name": "RESPONSE_JOB_TOO_BIG",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_JOB_TOO_BIG"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_USING",
-            "name": "RESPONSE_USING",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_USING"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_DEADLINE_SOON",
-            "name": "RESPONSE_DEADLINE_SOON",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_DEADLINE_SOON"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_RESERVED",
-            "name": "RESPONSE_RESERVED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_RESERVED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_DELETED",
-            "name": "RESPONSE_DELETED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_DELETED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_NOT_FOUND",
-            "name": "RESPONSE_NOT_FOUND",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_NOT_FOUND"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_RELEASED",
-            "name": "RESPONSE_RELEASED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_RELEASED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_WATCHING",
-            "name": "RESPONSE_WATCHING",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_WATCHING"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_NOT_IGNORED",
-            "name": "RESPONSE_NOT_IGNORED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_NOT_IGNORED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_FOUND",
-            "name": "RESPONSE_FOUND",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_FOUND"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_KICKED",
-            "name": "RESPONSE_KICKED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_KICKED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_OK",
-            "name": "RESPONSE_OK",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_OK"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_TIMED_OUT",
-            "name": "RESPONSE_TIMED_OUT",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_TIMED_OUT"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_TOUCHED",
-            "name": "RESPONSE_TOUCHED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_TOUCHED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseInterface\u003A\u003ARESPONSE_PAUSED",
-            "name": "RESPONSE_PAUSED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Contract-ResponseInterface.html#constant_RESPONSE_PAUSED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseParserInterface",
-            "name": "ResponseParserInterface",
-            "summary": "A\u0020parser\u0020for\u0020response\u0020data\u0020sent\u0020from\u0020the\u0020beanstalkd\u0020server.",
-            "url": "classes/Pheanstalk-Contract-ResponseParserInterface.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\ResponseParserInterface\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-Contract-ResponseParserInterface.html#method_parseResponse"
         },                {
             "fqsen": "\\Pheanstalk\\Contract\\SocketFactoryInterface",
             "name": "SocketFactoryInterface",
@@ -981,30 +181,10 @@ Search.appendIndex(
             "summary": "This\u0020function\u0020must\u0020return\u0020a\u0020connected\u0020socket\u0020that\u0020is\u0020ready\u0020for\u0020reading\u0020\/\u0020writing.",
             "url": "classes/Pheanstalk-Contract-SocketFactoryInterface.html#method_create"
         },                {
-            "fqsen": "\\Pheanstalk\\Contract\\SocketInterface",
-            "name": "SocketInterface",
-            "summary": "A\u0020mockable\u0020wrapper\u0020around\u0020PHP\u0020\u0022socket\u0022\u0020or\u0020\u0022file\u0020pointer\u0022\u0020access.",
-            "url": "classes/Pheanstalk-Contract-SocketInterface.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\SocketInterface\u003A\u003Awrite\u0028\u0029",
-            "name": "write",
-            "summary": "Writes\u0020data\u0020to\u0020the\u0020socket.",
-            "url": "classes/Pheanstalk-Contract-SocketInterface.html#method_write"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\SocketInterface\u003A\u003Aread\u0028\u0029",
-            "name": "read",
-            "summary": "Reads\u0020up\u0020to\u0020\u0024length\u0020bytes\u0020from\u0020the\u0020socket.",
-            "url": "classes/Pheanstalk-Contract-SocketInterface.html#method_read"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\SocketInterface\u003A\u003AgetLine\u0028\u0029",
-            "name": "getLine",
-            "summary": "Reads\u0020up\u0020to\u0020the\u0020next\u0020new\u002Dline.",
-            "url": "classes/Pheanstalk-Contract-SocketInterface.html#method_getLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Contract\\SocketInterface\u003A\u003Adisconnect\u0028\u0029",
-            "name": "disconnect",
-            "summary": "Disconnect\u0020the\u0020socket\u003B\u0020subsequent\u0020usage\u0020of\u0020the\u0020socket\u0020will\u0020fail.",
-            "url": "classes/Pheanstalk-Contract-SocketInterface.html#method_disconnect"
+            "fqsen": "\\Pheanstalk\\Contract\\SocketFactoryInterface\u003A\u003ADEFAULT_PORT",
+            "name": "DEFAULT_PORT",
+            "summary": "",
+            "url": "classes/Pheanstalk-Contract-SocketFactoryInterface.html#constant_DEFAULT_PORT"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\ClientBadFormatException",
             "name": "ClientBadFormatException",
@@ -1036,6 +216,26 @@ Search.appendIndex(
             "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-DeadlineSoonException.html"
         },                {
+            "fqsen": "\\Pheanstalk\\Exception\\ExpectedCrlfException",
+            "name": "ExpectedCrlfException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-ExpectedCrlfException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\JobBuriedException",
+            "name": "JobBuriedException",
+            "summary": "Indicates\u0020that\u0020the\u0020given\u0020job\u0020body\u0020was\u0020buried\u0020due\u0020to\u0020the\u0020server\u0020being\u0020OOM",
+            "url": "classes/Pheanstalk-Exception-JobBuriedException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\JobBuriedException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-JobBuriedException.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\JobBuriedException\u003A\u003A\u0024jobId",
+            "name": "jobId",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-JobBuriedException.html#property_jobId"
+        },                {
             "fqsen": "\\Pheanstalk\\Exception\\JobNotFoundException",
             "name": "JobNotFoundException",
             "summary": "Indicates\u0020that\u0020the\u0020given\u0020job\u0020was\u0020not\u0020found\u0020by\u0020the\u0020server",
@@ -1046,10 +246,60 @@ Search.appendIndex(
             "summary": "Indicates\u0020that\u0020the\u0020given\u0020job\u0020body\u0020is\u0020larger\u0020then\u0020the\u0020servers\u0020configured\u0020max\u002Djob\u002Dsize",
             "url": "classes/Pheanstalk-Exception-JobTooBigException.html"
         },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException",
+            "name": "MalformedResponseException",
+            "summary": "An\u0020exception\u0020indicating\u0020that\u0020the\u0020beanstalkd\u0020server\u0020sent\u0020a\u0020response\u0020in\u0020an\u0020incorrect\u0020or\u0020unsupported\u0020format",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException\u003A\u003AexpectedDataAndIntegerArgument\u0028\u0029",
+            "name": "expectedDataAndIntegerArgument",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html#method_expectedDataAndIntegerArgument"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException\u003A\u003AnegativeDataLength\u0028\u0029",
+            "name": "negativeDataLength",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html#method_negativeDataLength"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException\u003A\u003AexpectedData\u0028\u0029",
+            "name": "expectedData",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html#method_expectedData"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException\u003A\u003AexpectedIntegerArgument\u0028\u0029",
+            "name": "expectedIntegerArgument",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html#method_expectedIntegerArgument"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException\u003A\u003AexpectedStringArgument\u0028\u0029",
+            "name": "expectedStringArgument",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html#method_expectedStringArgument"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\MalformedResponseException\u003A\u003AexpectedArgument\u0028\u0029",
+            "name": "expectedArgument",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-MalformedResponseException.html#method_expectedArgument"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\NoImplementationException",
+            "name": "NoImplementationException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-NoImplementationException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\NotIgnoredException",
+            "name": "NotIgnoredException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-NotIgnoredException.html"
+        },                {
             "fqsen": "\\Pheanstalk\\Exception\\ServerBadFormatException",
             "name": "ServerBadFormatException",
             "summary": "An\u0020exception\u0020originating\u0020as\u0020a\u0020beanstalkd\u0020server\u0020error.",
             "url": "classes/Pheanstalk-Exception-ServerBadFormatException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\ServerBadFormatException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-ServerBadFormatException.html#method___construct"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\ServerDrainingException",
             "name": "ServerDrainingException",
@@ -1076,85 +326,55 @@ Search.appendIndex(
             "summary": "An\u0020exception\u0020originating\u0020as\u0020a\u0020beanstalkd\u0020server\u0020error.",
             "url": "classes/Pheanstalk-Exception-ServerUnknownCommandException.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Exception\\SocketException",
-            "name": "SocketException",
-            "summary": "An\u0020exception\u0020relating\u0020to\u0020the\u0020connection\u0020socket.",
-            "url": "classes/Pheanstalk-Exception-SocketException.html"
+            "fqsen": "\\Pheanstalk\\Exception\\TimedOutException",
+            "name": "TimedOutException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-TimedOutException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\TubeNotFoundException",
+            "name": "TubeNotFoundException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-TubeNotFoundException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\UnsupportedResponseException",
+            "name": "UnsupportedResponseException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-UnsupportedResponseException.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\UnsupportedResponseException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-UnsupportedResponseException.html#method___construct"
         },                {
             "fqsen": "\\Pheanstalk\\Exception",
             "name": "Exception",
             "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020Pheanstalk\u0020package.",
             "url": "classes/Pheanstalk-Exception.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Job",
-            "name": "Job",
-            "summary": "A\u0020job\u0020in\u0020a\u0020beanstalkd\u0020server.",
-            "url": "classes/Pheanstalk-Job.html"
+            "fqsen": "\\Pheanstalk\\Parser\\YamlDictionaryParser",
+            "name": "YamlDictionaryParser",
+            "summary": "A\u0020parser\u0020that\u0020parses\u0020Yaml\u0020a\u0020simple\u0020dictionary\nThis\u0020is\u0020a\u0020very\u0020basic\u0020implementation\u0020that\u0020only\u0020supports\u0020single\u0020line\u0020strings\u0020and\u0020not\u0020any\u0020of\u0020the\u0020advanced\u0020YAML\u0020features\nlike\u0020multiline\u0020strings.",
+            "url": "classes/Pheanstalk-Parser-YamlDictionaryParser.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
+            "fqsen": "\\Pheanstalk\\Parser\\YamlDictionaryParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
             "summary": "",
-            "url": "classes/Pheanstalk-Job.html#method___construct"
+            "url": "classes/Pheanstalk-Parser-YamlDictionaryParser.html#method_parse"
         },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "The\u0020job\u0020ID,\u0020unique\u0020on\u0020the\u0020beanstalkd\u0020server.",
-            "url": "classes/Pheanstalk-Job.html#method_getId"
-        },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003AgetData\u0028\u0029",
-            "name": "getData",
-            "summary": "The\u0020job\u0020data.",
-            "url": "classes/Pheanstalk-Job.html#method_getData"
-        },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003ASTATUS_READY",
-            "name": "STATUS_READY",
+            "fqsen": "\\Pheanstalk\\Parser\\YamlDictionaryParser\u003A\u003Acast\u0028\u0029",
+            "name": "cast",
             "summary": "",
-            "url": "classes/Pheanstalk-Job.html#constant_STATUS_READY"
+            "url": "classes/Pheanstalk-Parser-YamlDictionaryParser.html#method_cast"
         },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003ASTATUS_RESERVED",
-            "name": "STATUS_RESERVED",
+            "fqsen": "\\Pheanstalk\\Parser\\YamlListParser",
+            "name": "YamlListParser",
+            "summary": "A\u0020parser\u0020that\u0020parses\u0020Yaml\u0020lists\u0020of\u0020strings\nThis\u0020is\u0020a\u0020very\u0020basic\u0020implementation\u0020that\u0020only\u0020supports\u0020single\u0020line\u0020strings\u0020and\u0020not\u0020any\u0020of\u0020the\u0020advanced\u0020YAML\u0020features\nlike\u0020multiline\u0020strings.",
+            "url": "classes/Pheanstalk-Parser-YamlListParser.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Parser\\YamlListParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
             "summary": "",
-            "url": "classes/Pheanstalk-Job.html#constant_STATUS_RESERVED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003ASTATUS_DELAYED",
-            "name": "STATUS_DELAYED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Job.html#constant_STATUS_DELAYED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003ASTATUS_BURIED",
-            "name": "STATUS_BURIED",
-            "summary": "",
-            "url": "classes/Pheanstalk-Job.html#constant_STATUS_BURIED"
-        },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003A\u0024id",
-            "name": "id",
-            "summary": "",
-            "url": "classes/Pheanstalk-Job.html#property_id"
-        },                {
-            "fqsen": "\\Pheanstalk\\Job\u003A\u003A\u0024data",
-            "name": "data",
-            "summary": "",
-            "url": "classes/Pheanstalk-Job.html#property_data"
-        },                {
-            "fqsen": "\\Pheanstalk\\JobId",
-            "name": "JobId",
-            "summary": "This\u0020class\u0020implements\u0020a\u0020value\u0020object\u0020for\u0020beanstalkd\u0020job\u0020IDs.",
-            "url": "classes/Pheanstalk-JobId.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\JobId\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-JobId.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\JobId\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "",
-            "url": "classes/Pheanstalk-JobId.html#method_getId"
-        },                {
-            "fqsen": "\\Pheanstalk\\JobId\u003A\u003A\u0024id",
-            "name": "id",
-            "summary": "",
-            "url": "classes/Pheanstalk-JobId.html#property_id"
+            "url": "classes/Pheanstalk-Parser-YamlListParser.html#method_parse"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk",
             "name": "Pheanstalk",
@@ -1168,28 +388,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Acreate\u0028\u0029",
             "name": "create",
-            "summary": "Static\u0020constructor\u0020that\u0020uses\u0020autodetection\u0020to\u0020choose\u0020an\u0020underlying\u0020socket\u0020implementation",
+            "summary": "Static\u0020constructor\u0020that\u0020uses\u0020auto\u002Ddetection\u0020to\u0020choose\u0020an\u0020underlying\u0020socket\u0020implementation",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_create"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AcreateWithFactory\u0028\u0029",
             "name": "createWithFactory",
             "summary": "Static\u0020constructor\u0020that\u0020uses\u0020a\u0020given\u0020socket\u0020factory\u0020for\u0020underlying\u0020connections",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_createWithFactory"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Abury\u0028\u0029",
-            "name": "bury",
-            "summary": "Puts\u0020a\u0020job\u0020into\u0020a\u0020\u0027buried\u0027\u0020state,\u0020revived\u0020only\u0020by\u0020\u0027kick\u0027\u0020command.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_bury"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Adelete\u0028\u0029",
-            "name": "delete",
-            "summary": "Permanently\u0020deletes\u0020a\u0020job.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_delete"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Aignore\u0028\u0029",
-            "name": "ignore",
-            "summary": "Remove\u0020the\u0020specified\u0020tube\u0020from\u0020the\u0020watchlist.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_ignore"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Akick\u0028\u0029",
             "name": "kick",
@@ -1205,16 +410,6 @@ Search.appendIndex(
             "name": "listTubes",
             "summary": "The\u0020names\u0020of\u0020all\u0020tubes\u0020on\u0020the\u0020server.",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_listTubes"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AlistTubesWatched\u0028\u0029",
-            "name": "listTubesWatched",
-            "summary": "The\u0020names\u0020of\u0020the\u0020tubes\u0020being\u0020watched,\u0020to\u0020reserve\u0020jobs\u0020from.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_listTubesWatched"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AlistTubeUsed\u0028\u0029",
-            "name": "listTubeUsed",
-            "summary": "The\u0020name\u0020of\u0020the\u0020current\u0020tube\u0020used\u0020for\u0020publishing\u0020jobs\u0020to.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_listTubeUsed"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003ApauseTube\u0028\u0029",
             "name": "pauseTube",
@@ -1246,26 +441,6 @@ Search.appendIndex(
             "summary": "Inspect\u0020the\u0020next\u0020job\u0020in\u0020the\u0020list\u0020of\u0020buried\u0020jobs\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_peekBuried"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Aput\u0028\u0029",
-            "name": "put",
-            "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_put"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Arelease\u0028\u0029",
-            "name": "release",
-            "summary": "Puts\u0020a\u0020reserved\u0020job\u0020back\u0020into\u0020the\u0020ready\u0020queue.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_release"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Areserve\u0028\u0029",
-            "name": "reserve",
-            "summary": "Reserves\/locks\u0020a\u0020ready\u0020job\u0020in\u0020a\u0020watched\u0020tube.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_reserve"
-        },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AreserveWithTimeout\u0028\u0029",
-            "name": "reserveWithTimeout",
-            "summary": "Reserves\/locks\u0020a\u0020ready\u0020job\u0020in\u0020a\u0020watched\u0020tube,\u0020uses\u0020the\u0020\u0027reserve\u002Dwith\u002Dtimeout\u0027\u0020instead\u0020of\u0020\u0027reserve\u0027.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_reserveWithTimeout"
-        },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AstatsJob\u0028\u0029",
             "name": "statsJob",
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020specified\u0020job\u0020if\u0020it\u0020exists.",
@@ -1281,125 +456,185 @@ Search.appendIndex(
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020beanstalkd\u0020system\u0020as\u0020a\u0020whole.",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_stats"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Atouch\u0028\u0029",
-            "name": "touch",
-            "summary": "Allows\u0020a\u0020worker\u0020to\u0020request\u0020more\u0020time\u0020to\u0020work\u0020on\u0020a\u0020job.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_touch"
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Abury\u0028\u0029",
+            "name": "bury",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_bury"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AlistTubeUsed\u0028\u0029",
+            "name": "listTubeUsed",
+            "summary": "The\u0020name\u0020of\u0020the\u0020current\u0020tube\u0020used\u0020for\u0020publishing\u0020jobs\u0020to.",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_listTubeUsed"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Aput\u0028\u0029",
+            "name": "put",
+            "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_put"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AuseTube\u0028\u0029",
             "name": "useTube",
             "summary": "Change\u0020to\u0020the\u0020specified\u0020tube\u0020name\u0020for\u0020publishing\u0020jobs\u0020to.",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_useTube"
         },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Adelete\u0028\u0029",
+            "name": "delete",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_delete"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Aignore\u0028\u0029",
+            "name": "ignore",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_ignore"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AlistTubesWatched\u0028\u0029",
+            "name": "listTubesWatched",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_listTubesWatched"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Arelease\u0028\u0029",
+            "name": "release",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_release"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Areserve\u0028\u0029",
+            "name": "reserve",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_reserve"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AreserveJob\u0028\u0029",
+            "name": "reserveJob",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_reserveJob"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AreserveWithTimeout\u0028\u0029",
+            "name": "reserveWithTimeout",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_reserveWithTimeout"
+        },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Atouch\u0028\u0029",
+            "name": "touch",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_touch"
+        },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Awatch\u0028\u0029",
             "name": "watch",
-            "summary": "Add\u0020the\u0020specified\u0020tube\u0020to\u0020the\u0020watchlist,\u0020to\u0020reserve\u0020jobs\u0020from.",
+            "summary": "",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_watch"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003AwatchOnly\u0028\u0029",
-            "name": "watchOnly",
-            "summary": "Adds\u0020the\u0020specified\u0020tube\u0020to\u0020the\u0020watchlist,\u0020to\u0020reserve\u0020jobs\u0020from,\u0020and\nignores\u0020any\u0020other\u0020tubes\u0020remaining\u0020on\u0020the\u0020watchlist.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_watchOnly"
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003A\u0024manager",
+            "name": "manager",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#property_manager"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Adispatch\u0028\u0029",
-            "name": "dispatch",
-            "summary": "Dispatches\u0020the\u0020specified\u0020command\u0020to\u0020the\u0020connection\u0020object.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_dispatch"
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003A\u0024publisher",
+            "name": "publisher",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#property_publisher"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Areconnect\u0028\u0029",
-            "name": "reconnect",
-            "summary": "Creates\u0020a\u0020new\u0020connection\u0020object,\u0020based\u0020on\u0020the\u0020existing\u0020connection\u0020object,\nand\u0020re\u002Destablishes\u0020the\u0020used\u0020tube\u0020and\u0020watchlist.",
-            "url": "classes/Pheanstalk-Pheanstalk.html#method_reconnect"
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003A\u0024subscriber",
+            "name": "subscriber",
+            "summary": "",
+            "url": "classes/Pheanstalk-Pheanstalk.html#property_subscriber"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003A\u0024connection",
             "name": "connection",
             "summary": "",
             "url": "classes/Pheanstalk-Pheanstalk.html#property_connection"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003A\u0024using",
-            "name": "using",
+            "fqsen": "\\Pheanstalk\\PheanstalkManager",
+            "name": "PheanstalkManager",
+            "summary": "This\u0020class\u0020implements\u0020\u0022management\u0022\u0020functions\u0020for\u0020the\u0020beanstalk\u0020protocol.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003Akick\u0028\u0029",
+            "name": "kick",
+            "summary": "Kicks\u0020buried\u0020or\u0020delayed\u0020jobs\u0020into\u0020a\u0020\u0027ready\u0027\u0020state.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_kick"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003AkickJob\u0028\u0029",
+            "name": "kickJob",
+            "summary": "A\u0020variant\u0020of\u0020kick\u0020that\u0020operates\u0020with\u0020a\u0020single\u0020job.\u0020If\u0020the\u0020given\u0020job\nexists\u0020and\u0020is\u0020in\u0020a\u0020buried\u0020or\u0020delayed\u0020state,\u0020it\u0020will\u0020be\u0020moved\u0020to\u0020the\nready\u0020queue\u0020of\u0020the\u0020the\u0020same\u0020tube\u0020where\u0020it\u0020currently\u0020belongs.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_kickJob"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003Adispatch\u0028\u0029",
+            "name": "dispatch",
             "summary": "",
-            "url": "classes/Pheanstalk-Pheanstalk.html#property_using"
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_dispatch"
         },                {
-            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003A\u0024watching",
-            "name": "watching",
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003AlistTubes\u0028\u0029",
+            "name": "listTubes",
+            "summary": "The\u0020names\u0020of\u0020all\u0020tubes\u0020on\u0020the\u0020server.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_listTubes"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003ApauseTube\u0028\u0029",
+            "name": "pauseTube",
+            "summary": "Temporarily\u0020prevent\u0020jobs\u0020being\u0020reserved\u0020from\u0020the\u0020given\u0020tube.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_pauseTube"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003AresumeTube\u0028\u0029",
+            "name": "resumeTube",
+            "summary": "Resume\u0020jobs\u0020for\u0020a\u0020given\u0020paused\u0020tube.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_resumeTube"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003Apeek\u0028\u0029",
+            "name": "peek",
+            "summary": "Inspect\u0020a\u0020job\u0020in\u0020the\u0020system,\u0020regardless\u0020of\u0020what\u0020tube\u0020it\u0020is\u0020in.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_peek"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003ApeekReady\u0028\u0029",
+            "name": "peekReady",
+            "summary": "Inspect\u0020the\u0020next\u0020ready\u0020job\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_peekReady"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003ApeekDelayed\u0028\u0029",
+            "name": "peekDelayed",
+            "summary": "Inspect\u0020the\u0020shortest\u002Dremaining\u002Ddelayed\u0020job\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_peekDelayed"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003ApeekState\u0028\u0029",
+            "name": "peekState",
             "summary": "",
-            "url": "classes/Pheanstalk-Pheanstalk.html#property_watching"
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_peekState"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse",
-            "name": "ArrayResponse",
-            "summary": "A\u0020response\u0020with\u0020an\u0020ArrayObject\u0020interface\u0020to\u0020key\u0020\u003D\u003E\u0020value\u0020data.",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html"
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003ApeekBuried\u0028\u0029",
+            "name": "peekBuried",
+            "summary": "Inspect\u0020the\u0020next\u0020job\u0020in\u0020the\u0020list\u0020of\u0020buried\u0020jobs\u0020in\u0020the\u0020currently\u0020used\u0020tube.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_peekBuried"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html#method___construct"
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003AstatsJob\u0028\u0029",
+            "name": "statsJob",
+            "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020specified\u0020job\u0020if\u0020it\u0020exists.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_statsJob"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse\u003A\u003AgetResponseName\u0028\u0029",
-            "name": "getResponseName",
-            "summary": "The\u0020name\u0020of\u0020the\u0020response.",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html#method_getResponseName"
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003AstatsTube\u0028\u0029",
+            "name": "statsTube",
+            "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020specified\u0020tube\u0020if\u0020it\u0020exists.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_statsTube"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse\u003A\u003A__get\u0028\u0029",
-            "name": "__get",
-            "summary": "Object\u0020property\u0020access\u0020to\u0020ArrayObject\u0020data.",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html#method___get"
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003Astats\u0028\u0029",
+            "name": "stats",
+            "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020beanstalkd\u0020system\u0020as\u0020a\u0020whole.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_stats"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse\u003A\u003A__isset\u0028\u0029",
-            "name": "__isset",
-            "summary": "Object\u0020property\u0020access\u0020to\u0020ArrayObject\u0020data.",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html#method___isset"
+            "fqsen": "\\Pheanstalk\\PheanstalkPublisher",
+            "name": "PheanstalkPublisher",
+            "summary": "Implements\u0020the\u0020methods\u0020in\u0020the\u0020dispatcher\u0020interface.",
+            "url": "classes/Pheanstalk-PheanstalkPublisher.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse\u003A\u003AtransformPropertyName\u0028\u0029",
-            "name": "transformPropertyName",
-            "summary": "Tranform\u0020underscored\u0020property\u0020name\u0020to\u0020hyphenated\u0020array\u0020key.",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html#method_transformPropertyName"
+            "fqsen": "\\Pheanstalk\\PheanstalkPublisher\u003A\u003AlistTubeUsed\u0028\u0029",
+            "name": "listTubeUsed",
+            "summary": "The\u0020name\u0020of\u0020the\u0020current\u0020tube\u0020used\u0020for\u0020publishing\u0020jobs\u0020to.",
+            "url": "classes/Pheanstalk-PheanstalkPublisher.html#method_listTubeUsed"
         },                {
-            "fqsen": "\\Pheanstalk\\Response\\ArrayResponse\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/Pheanstalk-Response-ArrayResponse.html#property_name"
+            "fqsen": "\\Pheanstalk\\PheanstalkPublisher\u003A\u003AuseTube\u0028\u0029",
+            "name": "useTube",
+            "summary": "Change\u0020to\u0020the\u0020specified\u0020tube\u0020name\u0020for\u0020publishing\u0020jobs\u0020to.",
+            "url": "classes/Pheanstalk-PheanstalkPublisher.html#method_useTube"
         },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket",
-            "name": "FileSocket",
-            "summary": "A\u0020Socket\u0020implementation\u0020using\u0020the\u0020standard\u0020file\u0020functions.",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003Awrite\u0028\u0029",
-            "name": "write",
-            "summary": "Writes\u0020data\u0020to\u0020the\u0020socket.",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#method_write"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003AthrowException\u0028\u0029",
-            "name": "throwException",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#method_throwException"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003AcheckClosed\u0028\u0029",
-            "name": "checkClosed",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#method_checkClosed"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003Aread\u0028\u0029",
-            "name": "read",
-            "summary": "Reads\u0020up\u0020to\u0020\u0024length\u0020bytes\u0020from\u0020the\u0020socket.",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#method_read"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003AgetLine\u0028\u0029",
-            "name": "getLine",
-            "summary": "Reads\u0020up\u0020to\u0020the\u0020next\u0020new\u002Dline.",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#method_getLine"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003Adisconnect\u0028\u0029",
-            "name": "disconnect",
-            "summary": "Disconnect\u0020the\u0020socket\u003B\u0020subsequent\u0020usage\u0020of\u0020the\u0020socket\u0020will\u0020fail.",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#method_disconnect"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\FileSocket\u003A\u003A\u0024socket",
-            "name": "socket",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-FileSocket.html#property_socket"
+            "fqsen": "\\Pheanstalk\\PheanstalkPublisher\u003A\u003Aput\u0028\u0029",
+            "name": "put",
+            "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
+            "url": "classes/Pheanstalk-PheanstalkPublisher.html#method_put"
         },                {
             "fqsen": "\\Pheanstalk\\Socket\\FsockopenSocket",
             "name": "FsockopenSocket",
@@ -1431,10 +666,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-Socket-SocketSocket.html#method_throwException"
         },                {
-            "fqsen": "\\Pheanstalk\\Socket\\SocketSocket\u003A\u003AcheckClosed\u0028\u0029",
-            "name": "checkClosed",
+            "fqsen": "\\Pheanstalk\\Socket\\SocketSocket\u003A\u003AgetSocket\u0028\u0029",
+            "name": "getSocket",
             "summary": "",
-            "url": "classes/Pheanstalk-Socket-SocketSocket.html#method_checkClosed"
+            "url": "classes/Pheanstalk-Socket-SocketSocket.html#method_getSocket"
         },                {
             "fqsen": "\\Pheanstalk\\Socket\\SocketSocket\u003A\u003Aread\u0028\u0029",
             "name": "read",
@@ -1443,7 +678,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Pheanstalk\\Socket\\SocketSocket\u003A\u003AgetLine\u0028\u0029",
             "name": "getLine",
-            "summary": "Reads\u0020up\u0020to\u0020the\u0020next\u0020new\u002Dline.",
+            "summary": "",
             "url": "classes/Pheanstalk-Socket-SocketSocket.html#method_getLine"
         },                {
             "fqsen": "\\Pheanstalk\\Socket\\SocketSocket\u003A\u003Adisconnect\u0028\u0029",
@@ -1466,46 +701,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-Socket-StreamSocket.html#method___construct"
         },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory",
-            "name": "WriteHistory",
-            "summary": "A\u0020limited\u0020history\u0020of\u0020recent\u0020socket\u0020write\u0020length\/success.",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#method___construct"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003AisFull\u0028\u0029",
-            "name": "isFull",
-            "summary": "Whether\u0020the\u0020history\u0020has\u0020reached\u0020its\u0020limit\u0020of\u0020entries.",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#method_isFull"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003AhasWrites\u0028\u0029",
-            "name": "hasWrites",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#method_hasWrites"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003AisFullWithNoWrites\u0028\u0029",
-            "name": "isFullWithNoWrites",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#method_isFullWithNoWrites"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003Alog\u0028\u0029",
-            "name": "log",
-            "summary": "Logs\u0020the\u0020return\u0020value\u0020from\u0020a\u0020write\u0020call.",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#method_log"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003A\u0024limit",
-            "name": "limit",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#property_limit"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket\\WriteHistory\u003A\u003A\u0024data",
-            "name": "data",
-            "summary": "",
-            "url": "classes/Pheanstalk-Socket-WriteHistory.html#property_data"
-        },                {
             "fqsen": "\\Pheanstalk\\SocketFactory",
             "name": "SocketFactory",
             "summary": "",
@@ -1516,15 +711,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-SocketFactory.html#method___construct"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003AgetImplementation\u0028\u0029",
-            "name": "getImplementation",
+            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003AdetectImplementation\u0028\u0029",
+            "name": "detectImplementation",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#method_getImplementation"
-        },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003AsetImplementation\u0028\u0029",
-            "name": "setImplementation",
-            "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#method_setImplementation"
+            "url": "classes/Pheanstalk-SocketFactory.html#method_detectImplementation"
         },                {
             "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003AcreateStreamSocket\u0028\u0029",
             "name": "createStreamSocket",
@@ -1546,30 +736,30 @@ Search.appendIndex(
             "summary": "This\u0020function\u0020must\u0020return\u0020a\u0020connected\u0020socket\u0020that\u0020is\u0020ready\u0020for\u0020reading\u0020\/\u0020writing.",
             "url": "classes/Pheanstalk-SocketFactory.html#method_create"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003AAUTODETECT",
-            "name": "AUTODETECT",
+            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003ADEFAULT_TIMEOUT",
+            "name": "DEFAULT_TIMEOUT",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#constant_AUTODETECT"
+            "url": "classes/Pheanstalk-SocketFactory.html#constant_DEFAULT_TIMEOUT"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003ASTREAM",
-            "name": "STREAM",
+            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024implementation",
+            "name": "implementation",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#constant_STREAM"
+            "url": "classes/Pheanstalk-SocketFactory.html#property_implementation"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003ASOCKET",
-            "name": "SOCKET",
+            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024connectTimeout",
+            "name": "connectTimeout",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#constant_SOCKET"
+            "url": "classes/Pheanstalk-SocketFactory.html#property_connectTimeout"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003AFSOCKOPEN",
-            "name": "FSOCKOPEN",
+            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024receiveTimeout",
+            "name": "receiveTimeout",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#constant_FSOCKOPEN"
+            "url": "classes/Pheanstalk-SocketFactory.html#property_receiveTimeout"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024timeout",
-            "name": "timeout",
+            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024sendTimeout",
+            "name": "sendTimeout",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#property_timeout"
+            "url": "classes/Pheanstalk-SocketFactory.html#property_sendTimeout"
         },                {
             "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024host",
             "name": "host",
@@ -1581,50 +771,970 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-SocketFactory.html#property_port"
         },                {
-            "fqsen": "\\Pheanstalk\\SocketFactory\u003A\u003A\u0024implementation",
-            "name": "implementation",
+            "fqsen": "\\Pheanstalk\\StaticFactoryTrait",
+            "name": "StaticFactoryTrait",
             "summary": "",
-            "url": "classes/Pheanstalk-SocketFactory.html#property_implementation"
+            "url": "classes/Pheanstalk-StaticFactoryTrait.html"
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser",
-            "name": "YamlResponseParser",
-            "summary": "A\u0020response\u0020parser\u0020for\u0020commands\u0020that\u0020return\u0020a\u0020subset\u0020of\u0020YAML.",
-            "url": "classes/Pheanstalk-YamlResponseParser.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Pheanstalk\\StaticFactoryTrait\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#method___construct"
+            "url": "classes/Pheanstalk-StaticFactoryTrait.html#method___construct"
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003AparseResponse\u0028\u0029",
-            "name": "parseResponse",
-            "summary": "Parses\u0020raw\u0020response\u0020data\u0020into\u0020a\u0020Response\u0020object.",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#method_parseResponse"
+            "fqsen": "\\Pheanstalk\\StaticFactoryTrait\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "Static\u0020constructor\u0020that\u0020uses\u0020auto\u002Ddetection\u0020to\u0020choose\u0020an\u0020underlying\u0020socket\u0020implementation",
+            "url": "classes/Pheanstalk-StaticFactoryTrait.html#method_create"
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003AparseList\u0028\u0029",
-            "name": "parseList",
+            "fqsen": "\\Pheanstalk\\StaticFactoryTrait\u003A\u003AcreateWithFactory\u0028\u0029",
+            "name": "createWithFactory",
+            "summary": "Static\u0020constructor\u0020that\u0020uses\u0020a\u0020given\u0020socket\u0020factory\u0020for\u0020underlying\u0020connections",
+            "url": "classes/Pheanstalk-StaticFactoryTrait.html#method_createWithFactory"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType",
+            "name": "CommandType",
             "summary": "",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#method_parseList"
+            "url": "classes/Pheanstalk-Values-CommandType.html"
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003AparseDictionary\u0028\u0029",
-            "name": "parseDictionary",
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003APUT",
+            "name": "PUT",
             "summary": "",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#method_parseDictionary"
+            "url": ""
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003AMODE_LIST",
-            "name": "MODE_LIST",
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003AUSE",
+            "name": "USE",
             "summary": "",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#constant_MODE_LIST"
+            "url": ""
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003AMODE_DICT",
-            "name": "MODE_DICT",
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ARESERVE",
+            "name": "RESERVE",
             "summary": "",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#constant_MODE_DICT"
+            "url": ""
         },                {
-            "fqsen": "\\Pheanstalk\\YamlResponseParser\u003A\u003A\u0024mode",
-            "name": "mode",
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ARESERVE_WITH_TIMEOUT",
+            "name": "RESERVE_WITH_TIMEOUT",
             "summary": "",
-            "url": "classes/Pheanstalk-YamlResponseParser.html#property_mode"
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ARESERVE_JOB",
+            "name": "RESERVE_JOB",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ADELETE",
+            "name": "DELETE",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ARELEASE",
+            "name": "RELEASE",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ATOUCH",
+            "name": "TOUCH",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ABURY",
+            "name": "BURY",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003AWATCH",
+            "name": "WATCH",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003AIGNORE",
+            "name": "IGNORE",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003APEEK",
+            "name": "PEEK",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003APEEK_READY",
+            "name": "PEEK_READY",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003APEEK_BURIED",
+            "name": "PEEK_BURIED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003APEEK_DELAYED",
+            "name": "PEEK_DELAYED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003AKICK",
+            "name": "KICK",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003AKICK_JOB",
+            "name": "KICK_JOB",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ASTATS_JOB",
+            "name": "STATS_JOB",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ASTATS",
+            "name": "STATS",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ASTATS_TUBE",
+            "name": "STATS_TUBE",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ALIST_TUBES",
+            "name": "LIST_TUBES",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ALIST_TUBE_USED",
+            "name": "LIST_TUBE_USED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003ALIST_TUBES_WATCHED",
+            "name": "LIST_TUBES_WATCHED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\CommandType\u003A\u003APAUSE_TUBE",
+            "name": "PAUSE_TUBE",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Job",
+            "name": "Job",
+            "summary": "A\u0020job\u0020in\u0020a\u0020beanstalkd\u0020server.",
+            "url": "classes/Pheanstalk-Values-Job.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Job\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Job.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Job\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "The\u0020job\u0020ID,\u0020unique\u0020on\u0020the\u0020beanstalkd\u0020server.",
+            "url": "classes/Pheanstalk-Values-Job.html#method_getId"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Job\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "The\u0020job\u0020data.",
+            "url": "classes/Pheanstalk-Values-Job.html#method_getData"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Job\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Job.html#property_id"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Job\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Job.html#property_data"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobCommandTemplate",
+            "name": "JobCommandTemplate",
+            "summary": "Simple\u0020value\u0020object\u0020that\u0020has\u0020a\u0020very\u0020basic\u0020render\u0020function",
+            "url": "classes/Pheanstalk-Values-JobCommandTemplate.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobCommandTemplate\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobCommandTemplate.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobCommandTemplate\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobCommandTemplate.html#method_render"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobCommandTemplate\u003A\u003APLACEHOLDER",
+            "name": "PLACEHOLDER",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobCommandTemplate.html#constant_PLACEHOLDER"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobCommandTemplate\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobCommandTemplate.html#property_value"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobId",
+            "name": "JobId",
+            "summary": "This\u0020class\u0020implements\u0020a\u0020value\u0020object\u0020for\u0020beanstalkd\u0020job\u0020IDs.",
+            "url": "classes/Pheanstalk-Values-JobId.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobId\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobId.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobId\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "This\u0020is\u0020a\u0020string\u0020to\u0020support\u002064bit\u0020numbers\u0020on\u002032bit\u0020systems.",
+            "url": "classes/Pheanstalk-Values-JobId.html#method_getId"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobId\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobId.html#property_id"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobState",
+            "name": "JobState",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobState.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobState\u003A\u003ADELAYED",
+            "name": "DELAYED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobState\u003A\u003AREADY",
+            "name": "READY",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobState\u003A\u003ABURIED",
+            "name": "BURIED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobState\u003A\u003ARESERVED",
+            "name": "RESERVED",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats",
+            "name": "JobStats",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003AfromBeanstalkArray\u0028\u0029",
+            "name": "fromBeanstalkArray",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#method_fromBeanstalkArray"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003AKEYS",
+            "name": "KEYS",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#constant_KEYS"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_id"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024tube",
+            "name": "tube",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_tube"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024state",
+            "name": "state",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_state"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024priority",
+            "name": "priority",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_priority"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024age",
+            "name": "age",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_age"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024delay",
+            "name": "delay",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_delay"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024timeToRelease",
+            "name": "timeToRelease",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_timeToRelease"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024timeLeft",
+            "name": "timeLeft",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_timeLeft"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024file",
+            "name": "file",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_file"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024reserves",
+            "name": "reserves",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_reserves"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024timeouts",
+            "name": "timeouts",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_timeouts"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024releases",
+            "name": "releases",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_releases"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024buries",
+            "name": "buries",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_buries"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\JobStats\u003A\u003A\u0024kicks",
+            "name": "kicks",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-JobStats.html#property_kicks"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\RawResponse",
+            "name": "RawResponse",
+            "summary": "Wraps\u0020the\u0020parts\u0020of\u0020a\u0020response\u0020to\u0020a\u0020beanstalkd",
+            "url": "classes/Pheanstalk-Values-RawResponse.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\RawResponse\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-RawResponse.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\RawResponse\u003A\u003A\u0024argument",
+            "name": "argument",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-RawResponse.html#property_argument"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\RawResponse\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-RawResponse.html#property_type"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\RawResponse\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-RawResponse.html#property_data"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType",
+            "name": "ResponseType",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ResponseType.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AhasData\u0028\u0029",
+            "name": "hasData",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ResponseType.html#method_hasData"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AOutOfMemory",
+            "name": "OutOfMemory",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AInternalError",
+            "name": "InternalError",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ADraining",
+            "name": "Draining",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ABadFormat",
+            "name": "BadFormat",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AUnknownCommand",
+            "name": "UnknownCommand",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AInserted",
+            "name": "Inserted",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ABuried",
+            "name": "Buried",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AExpectedCrlf",
+            "name": "ExpectedCrlf",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AJobTooBig",
+            "name": "JobTooBig",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AUsing",
+            "name": "Using",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ADeadlineSoon",
+            "name": "DeadlineSoon",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AReserved",
+            "name": "Reserved",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ADeleted",
+            "name": "Deleted",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ANotFound",
+            "name": "NotFound",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AReleased",
+            "name": "Released",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AWatching",
+            "name": "Watching",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ANotIgnored",
+            "name": "NotIgnored",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AFound",
+            "name": "Found",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AKicked",
+            "name": "Kicked",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003AOk",
+            "name": "Ok",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ATimedOut",
+            "name": "TimedOut",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003ATouched",
+            "name": "Touched",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ResponseType\u003A\u003APaused",
+            "name": "Paused",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats",
+            "name": "ServerStats",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003Acamelize\u0028\u0029",
+            "name": "camelize",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#method_camelize"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003AfromBeanstalkArray\u0028\u0029",
+            "name": "fromBeanstalkArray",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#method_fromBeanstalkArray"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003AKEYS",
+            "name": "KEYS",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#constant_KEYS"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentJobsUrgent",
+            "name": "currentJobsUrgent",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentJobsUrgent"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentJobsReady",
+            "name": "currentJobsReady",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentJobsReady"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentJobsReserved",
+            "name": "currentJobsReserved",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentJobsReserved"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentJobsDelayed",
+            "name": "currentJobsDelayed",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentJobsDelayed"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentJobsBuried",
+            "name": "currentJobsBuried",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentJobsBuried"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdPut",
+            "name": "cmdPut",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdPut"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdPeek",
+            "name": "cmdPeek",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdPeek"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdPeekReady",
+            "name": "cmdPeekReady",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdPeekReady"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdPeekDelayed",
+            "name": "cmdPeekDelayed",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdPeekDelayed"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdReserveWithTimeout",
+            "name": "cmdReserveWithTimeout",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdReserveWithTimeout"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdPeekBuried",
+            "name": "cmdPeekBuried",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdPeekBuried"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdReserve",
+            "name": "cmdReserve",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdReserve"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdUse",
+            "name": "cmdUse",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdUse"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdWatch",
+            "name": "cmdWatch",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdWatch"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdIgnore",
+            "name": "cmdIgnore",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdIgnore"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdDelete",
+            "name": "cmdDelete",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdDelete"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdRelease",
+            "name": "cmdRelease",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdRelease"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdBury",
+            "name": "cmdBury",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdBury"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdKick",
+            "name": "cmdKick",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdKick"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdStats",
+            "name": "cmdStats",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdStats"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdStatsJob",
+            "name": "cmdStatsJob",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdStatsJob"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdStatsTube",
+            "name": "cmdStatsTube",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdStatsTube"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdListTubes",
+            "name": "cmdListTubes",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdListTubes"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdListTubeUsed",
+            "name": "cmdListTubeUsed",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdListTubeUsed"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdListTubesWatched",
+            "name": "cmdListTubesWatched",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdListTubesWatched"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdPauseTube",
+            "name": "cmdPauseTube",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdPauseTube"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024jobTimeouts",
+            "name": "jobTimeouts",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_jobTimeouts"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024totalJobs",
+            "name": "totalJobs",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_totalJobs"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024maxJobSize",
+            "name": "maxJobSize",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_maxJobSize"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentTubes",
+            "name": "currentTubes",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentTubes"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentConnections",
+            "name": "currentConnections",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentConnections"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentProducers",
+            "name": "currentProducers",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentProducers"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentWorkers",
+            "name": "currentWorkers",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentWorkers"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024currentWaiting",
+            "name": "currentWaiting",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_currentWaiting"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024totalConnections",
+            "name": "totalConnections",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_totalConnections"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024pid",
+            "name": "pid",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_pid"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024version",
+            "name": "version",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_version"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024rusageUtime",
+            "name": "rusageUtime",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_rusageUtime"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024rusageStime",
+            "name": "rusageStime",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_rusageStime"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024binlogOldestIndex",
+            "name": "binlogOldestIndex",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_binlogOldestIndex"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024binlogCurrentIndex",
+            "name": "binlogCurrentIndex",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_binlogCurrentIndex"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024binlogMaxSize",
+            "name": "binlogMaxSize",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_binlogMaxSize"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024binlogRecordsWritten",
+            "name": "binlogRecordsWritten",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_binlogRecordsWritten"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024draining",
+            "name": "draining",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_draining"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_id"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024hostname",
+            "name": "hostname",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_hostname"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024os",
+            "name": "os",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_os"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024platform",
+            "name": "platform",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_platform"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\SocketImplementation",
+            "name": "SocketImplementation",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-SocketImplementation.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\SocketImplementation\u003A\u003ASTREAM",
+            "name": "STREAM",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\SocketImplementation\u003A\u003ASOCKET",
+            "name": "SOCKET",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\SocketImplementation\u003A\u003AFSOCKOPEN",
+            "name": "FSOCKOPEN",
+            "summary": "",
+            "url": ""
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Success",
+            "name": "Success",
+            "summary": "This\u0020class\u0020indicates\u0020a\u0020successful\u0020operation\u0020with\u0020no\u0020\u0028relevant\u0029\u0020data\nWe\u0020don\u0027t\u0020use\u0020\u0060null\u0060\u0020for\u0020this\u0020because\u0020we\u0020cannot\u0020narrow\u0020return\u0020values\u0020to\u0020just\u0020null.",
+            "url": "classes/Pheanstalk-Values-Success.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout",
+            "name": "Timeout",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html#method_toArray"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003AtoFloat\u0028\u0029",
+            "name": "toFloat",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html#method_toFloat"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003A\u0024seconds",
+            "name": "seconds",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html#property_seconds"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003A\u0024microSeconds",
+            "name": "microSeconds",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html#property_microSeconds"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeCommandTemplate",
+            "name": "TubeCommandTemplate",
+            "summary": "Simple\u0020value\u0020object\u0020that\u0020has\u0020a\u0020very\u0020basic\u0020render\u0020function",
+            "url": "classes/Pheanstalk-Values-TubeCommandTemplate.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeCommandTemplate\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeCommandTemplate.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeCommandTemplate\u003A\u003Arender\u0028\u0029",
+            "name": "render",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeCommandTemplate.html#method_render"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeCommandTemplate\u003A\u003APLACEHOLDER",
+            "name": "PLACEHOLDER",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeCommandTemplate.html#constant_PLACEHOLDER"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeCommandTemplate\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeCommandTemplate.html#property_value"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeList",
+            "name": "TubeList",
+            "summary": "This\u0020class\u0020wraps\u0020a\u0020list\u0020of\u0020tube\u0020names",
+            "url": "classes/Pheanstalk-Values-TubeList.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeList\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeList.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeList\u003A\u003AgetIterator\u0028\u0029",
+            "name": "getIterator",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeList.html#method_getIterator"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeList\u003A\u003A\u0024tubes",
+            "name": "tubes",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeList.html#property_tubes"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeName",
+            "name": "TubeName",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeName.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeName\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeName.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeName\u003A\u003A__toString\u0028\u0029",
+            "name": "__toString",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeName.html#method___toString"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeName\u003A\u003ANAME_REGEX",
+            "name": "NAME_REGEX",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeName.html#constant_NAME_REGEX"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeName\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeName.html#property_value"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats",
+            "name": "TubeStats",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003AfromBeanstalkArray\u0028\u0029",
+            "name": "fromBeanstalkArray",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#method_fromBeanstalkArray"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003AKEYS",
+            "name": "KEYS",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#constant_KEYS"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_name"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentJobsUrgent",
+            "name": "currentJobsUrgent",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentJobsUrgent"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentJobsReady",
+            "name": "currentJobsReady",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentJobsReady"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentJobsReserved",
+            "name": "currentJobsReserved",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentJobsReserved"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentJobsDelayed",
+            "name": "currentJobsDelayed",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentJobsDelayed"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentJobsBuried",
+            "name": "currentJobsBuried",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentJobsBuried"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024totalJobs",
+            "name": "totalJobs",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_totalJobs"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentUsing",
+            "name": "currentUsing",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentUsing"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentWaiting",
+            "name": "currentWaiting",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentWaiting"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024currentWatching",
+            "name": "currentWatching",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_currentWatching"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024pause",
+            "name": "pause",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_pause"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024cmdDelete",
+            "name": "cmdDelete",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_cmdDelete"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024cmdPauseTube",
+            "name": "cmdPauseTube",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_cmdPauseTube"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeStats\u003A\u003A\u0024pauseTimeLeft",
+            "name": "pauseTimeLeft",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeStats.html#property_pauseTimeLeft"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -1636,11 +1746,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/pheanstalk-command.html"
         },                {
-            "fqsen": "\\Pheanstalk",
-            "name": "Pheanstalk",
-            "summary": "",
-            "url": "namespaces/pheanstalk.html"
-        },                {
             "fqsen": "\\Pheanstalk\\Contract",
             "name": "Contract",
             "summary": "",
@@ -1651,14 +1756,24 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/pheanstalk-exception.html"
         },                {
-            "fqsen": "\\Pheanstalk\\Response",
-            "name": "Response",
+            "fqsen": "\\Pheanstalk",
+            "name": "Pheanstalk",
             "summary": "",
-            "url": "namespaces/pheanstalk-response.html"
+            "url": "namespaces/pheanstalk.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Parser",
+            "name": "Parser",
+            "summary": "",
+            "url": "namespaces/pheanstalk-parser.html"
         },                {
             "fqsen": "\\Pheanstalk\\Socket",
             "name": "Socket",
             "summary": "",
             "url": "namespaces/pheanstalk-socket.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values",
+            "name": "Values",
+            "summary": "",
+            "url": "namespaces/pheanstalk-values.html"
         }            ]
 );

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,26 +55,32 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/pheanstalk-command.html">Command</a>
+                <a href="namespaces/pheanstalk-command.html" class="">Command</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-contract.html">Contract</a>
+                <a href="namespaces/pheanstalk-contract.html" class="">Contract</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-exception.html">Exception</a>
+                <a href="namespaces/pheanstalk-exception.html" class="">Exception</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-response.html">Response</a>
+                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-socket.html">Socket</a>
+                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
@@ -81,7 +88,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
+</h4>
 
                         </section>
             
@@ -124,7 +133,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -137,13 +146,14 @@
 
 
 <h3 id="interfaces_class_traits">
-    Interfaces, Classes and Traits
+    Interfaces, Classes, Traits and Enums
     <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a></dt>
         <dd></dd>
+    
     
     
     </dl>
@@ -155,108 +165,94 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/Pheanstalk-SocketFactory.html#constant_AUTODETECT">AUTODETECT</a>
+            <dt class="phpdocumentor-table-of-contents__entry -constant -private">
+    <a href="classes/Pheanstalk-SocketFactory.html#constant_DEFAULT_TIMEOUT">DEFAULT_TIMEOUT</a>
     <span>
-        &nbsp;= 0                    </span>
+        &nbsp;= 10                            </span>
 </dt>
 <dd></dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/Pheanstalk-SocketFactory.html#constant_FSOCKOPEN">FSOCKOPEN</a>
+                    <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/Pheanstalk-SocketFactory.html#property_implementation">$implementation</a>
     <span>
-        &nbsp;= 3                    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/Pheanstalk-SocketFactory.html#constant_SOCKET">SOCKET</a>
-    <span>
-        &nbsp;= 2                    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="classes/Pheanstalk-SocketFactory.html#constant_STREAM">STREAM</a>
-    <span>
-        &nbsp;= 1                    </span>
-</dt>
-<dd></dd>
-
-                <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pheanstalk-SocketFactory.html#property_host">$host</a>
-    <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: <a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a>            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pheanstalk-SocketFactory.html#property_implementation">$implementation</a>
+    <a href="classes/Pheanstalk-SocketFactory.html#property_connectTimeout">$connectTimeout</a>
     <span>
-                &nbsp;: int            </span>
+                        &nbsp;: <a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-SocketFactory.html#property_host">$host</a>
+    <span>
+                        &nbsp;: string            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Pheanstalk-SocketFactory.html#property_port">$port</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: int            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pheanstalk-SocketFactory.html#property_timeout">$timeout</a>
+    <a href="classes/Pheanstalk-SocketFactory.html#property_receiveTimeout">$receiveTimeout</a>
     <span>
-                &nbsp;: mixed            </span>
+                        &nbsp;: <a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-SocketFactory.html#property_sendTimeout">$sendTimeout</a>
+    <span>
+                        &nbsp;: <a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>            </span>
 </dt>
 <dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-SocketFactory.html#method___construct">__construct()</a>
     <span>
-                        &nbsp;: mixed    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-SocketFactory.html#method_create">create()</a>
     <span>
-                        &nbsp;: <a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a>    </span>
+                                &nbsp;: <abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr>    </span>
 </dt>
 <dd>This function must return a connected socket that is ready for reading / writing.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-SocketFactory.html#method_getImplementation">getImplementation()</a>
-    <span>
-                        &nbsp;: int    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-SocketFactory.html#method_setImplementation">setImplementation()</a>
-    <span>
-                        &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Pheanstalk-SocketFactory.html#method_createFsockopenSocket">createFsockopenSocket()</a>
     <span>
-                        &nbsp;: <a href="classes/Pheanstalk-Socket-FsockopenSocket.html"><abbr title="\Pheanstalk\Socket\FsockopenSocket">FsockopenSocket</abbr></a>    </span>
+                                &nbsp;: <a href="classes/Pheanstalk-Socket-FsockopenSocket.html"><abbr title="\Pheanstalk\Socket\FsockopenSocket">FsockopenSocket</abbr></a>    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Pheanstalk-SocketFactory.html#method_createSocketSocket">createSocketSocket()</a>
     <span>
-                        &nbsp;: <a href="classes/Pheanstalk-Socket-SocketSocket.html"><abbr title="\Pheanstalk\Socket\SocketSocket">SocketSocket</abbr></a>    </span>
+                                &nbsp;: <a href="classes/Pheanstalk-Socket-SocketSocket.html"><abbr title="\Pheanstalk\Socket\SocketSocket">SocketSocket</abbr></a>    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Pheanstalk-SocketFactory.html#method_createStreamSocket">createStreamSocket()</a>
     <span>
-                        &nbsp;: <a href="classes/Pheanstalk-Socket-StreamSocket.html"><abbr title="\Pheanstalk\Socket\StreamSocket">StreamSocket</abbr></a>    </span>
+                                &nbsp;: <a href="classes/Pheanstalk-Socket-StreamSocket.html"><abbr title="\Pheanstalk\Socket\StreamSocket">StreamSocket</abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a href="classes/Pheanstalk-SocketFactory.html#method_detectImplementation">detectImplementation()</a>
+    <span>
+                                &nbsp;: <a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a>    </span>
 </dt>
 <dd></dd>
 
@@ -270,39 +266,10 @@
             Constants
             <a href="classes/Pheanstalk-SocketFactory.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_AUTODETECT">
-        AUTODETECT
-        <a href="classes/Pheanstalk-SocketFactory.html#constant_AUTODETECT" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">16</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">AUTODETECT</span>
-    = <span class="phpdocumentor-signature__default-value">0</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_FSOCKOPEN">
-        FSOCKOPEN
-        <a href="classes/Pheanstalk-SocketFactory.html#constant_FSOCKOPEN" class="headerlink"><i class="fas fa-link"></i></a>
+                    <article class="phpdocumentor-element -constant -private ">
+    <h4 class="phpdocumentor-element__name" id="constant_DEFAULT_TIMEOUT">
+        DEFAULT_TIMEOUT
+        <a href="classes/Pheanstalk-SocketFactory.html#constant_DEFAULT_TIMEOUT" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
@@ -314,68 +281,10 @@
 
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">FSOCKOPEN</span>
-    = <span class="phpdocumentor-signature__default-value">3</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_SOCKET">
-        SOCKET
-        <a href="classes/Pheanstalk-SocketFactory.html#constant_SOCKET" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">18</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">SOCKET</span>
-    = <span class="phpdocumentor-signature__default-value">2</span>
-</code>
-
-
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_STREAM">
-        STREAM
-        <a href="classes/Pheanstalk-SocketFactory.html#constant_STREAM" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">17</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">STREAM</span>
-    = <span class="phpdocumentor-signature__default-value">1</span>
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">DEFAULT_TIMEOUT</span>
+    = <span class="phpdocumentor-signature__default-value">10</span>
 </code>
 
 
@@ -398,14 +307,48 @@
         class="
             phpdocumentor-element
             -property
-            -private
-                                                        "
+            -public
+                                                -read-only        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_host">
-        $host
-        <a href="classes/Pheanstalk-SocketFactory.html#property_host" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_implementation">
+        $implementation
+        <a href="classes/Pheanstalk-SocketFactory.html#property_implementation" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">20</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$implementation</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_connectTimeout">
+        $connectTimeout
+        <a href="classes/Pheanstalk-SocketFactory.html#property_connectTimeout" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
@@ -417,7 +360,41 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$connectTimeout</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_host">
+        $host
+        <a href="classes/Pheanstalk-SocketFactory.html#property_host" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">36</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$host</span>
     </code>
 
@@ -433,18 +410,18 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                -read-only        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_implementation">
-        $implementation
-        <a href="classes/Pheanstalk-SocketFactory.html#property_implementation" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_port">
+        $port
+        <a href="classes/Pheanstalk-SocketFactory.html#property_port" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">37</span>
 
     </aside>
 
@@ -452,11 +429,13 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$implementation</span>
-    </code>
+    <span class="phpdocumentor-signature__name">$port</span>
+     = <span class="phpdocumentor-signature__default-value">self::DEFAULT_PORT</span></code>
 
-    
-    
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
     
 
 </article>
@@ -465,13 +444,13 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                -read-only        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_port">
-        $port
-        <a href="classes/Pheanstalk-SocketFactory.html#property_port" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_receiveTimeout">
+        $receiveTimeout
+        <a href="classes/Pheanstalk-SocketFactory.html#property_receiveTimeout" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
@@ -483,8 +462,8 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">$port</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$receiveTimeout</span>
     </code>
 
         <section class="phpdocumentor-description"></section>
@@ -499,26 +478,26 @@
             phpdocumentor-element
             -property
             -private
-                                                        "
+                                                -read-only        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_timeout">
-        $timeout
-        <a href="classes/Pheanstalk-SocketFactory.html#property_timeout" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_sendTimeout">
+        $sendTimeout
+        <a href="classes/Pheanstalk-SocketFactory.html#property_sendTimeout" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
-                                </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">$timeout</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$sendTimeout</span>
     </code>
 
         <section class="phpdocumentor-description"></section>
@@ -548,17 +527,16 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$timeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">10</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$implementation</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">self::AUTODETECT</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_PORT</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$implementation</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connectTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receiveTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sendTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -566,36 +544,62 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$port</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_PORT</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$timeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">10</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$implementation</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">self::AUTODETECT</span>            </dt>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$connectTimeout</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$receiveTimeout</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$sendTimeout</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>the timeout used for sending data, not supported by all implementations</p>
+</section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Pheanstalk-Exception-NoImplementationException.html"><abbr title="\Pheanstalk\Exception\NoImplementationException">NoImplementationException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
@@ -616,7 +620,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
@@ -624,91 +628,14 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">create</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a></span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getImplementation">
-        getImplementation()
-        <a href="classes/Pheanstalk-SocketFactory.html#method_getImplementation" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">35</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">getImplementation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setImplementation">
-        setImplementation()
-        <a href="classes/Pheanstalk-SocketFactory.html#method_setImplementation" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">40</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">setImplementation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$implementation</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$implementation</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></span>
             &mdash;
         
     
@@ -726,14 +653,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">createFsockopenSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-FsockopenSocket.html"><abbr title="\Pheanstalk\Socket\FsockopenSocket">FsockopenSocket</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">createFsockopenSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-FsockopenSocket.html"><abbr title="\Pheanstalk\Socket\FsockopenSocket">FsockopenSocket</abbr></a></span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -759,14 +686,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">createSocketSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-SocketSocket.html"><abbr title="\Pheanstalk\Socket\SocketSocket">SocketSocket</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">createSocketSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-SocketSocket.html"><abbr title="\Pheanstalk\Socket\SocketSocket">SocketSocket</abbr></a></span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -792,14 +719,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                <span class="phpdocumentor-signature__name">createStreamSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-StreamSocket.html"><abbr title="\Pheanstalk\Socket\StreamSocket">StreamSocket</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">createStreamSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-StreamSocket.html"><abbr title="\Pheanstalk\Socket\StreamSocket">StreamSocket</abbr></a></span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -808,6 +735,39 @@
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Socket-StreamSocket.html"><abbr title="\Pheanstalk\Socket\StreamSocket">StreamSocket</abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_detectImplementation">
+        detectImplementation()
+        <a href="classes/Pheanstalk-SocketFactory.html#method_detectImplementation" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/SocketFactory.php"><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">50</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">detectImplementation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a></span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-SocketImplementation.html"><abbr title="\Pheanstalk\Values\SocketImplementation">SocketImplementation</abbr></a></span>
             &mdash;
         
     

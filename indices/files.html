@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,26 +55,32 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/pheanstalk-command.html">Command</a>
+                <a href="namespaces/pheanstalk-command.html" class="">Command</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-contract.html">Contract</a>
+                <a href="namespaces/pheanstalk-contract.html" class="">Contract</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-exception.html">Exception</a>
+                <a href="namespaces/pheanstalk-exception.html" class="">Exception</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-response.html">Response</a>
+                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-socket.html">Socket</a>
+                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
@@ -81,7 +88,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
+</h4>
 
                         </section>
             
@@ -101,12 +110,7 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     
     <h2 class="phpdocumentor-content__title">Files</h2>
-                            <h3>A</h3>
-        <ul class="phpdocumentor-list">
-                    <li><a href="files/src-command-abstractcommand.html"><abbr title="src/Command/AbstractCommand.php">AbstractCommand.php</abbr></a></li>
-                    <li><a href="files/src-response-arrayresponse.html"><abbr title="src/Response/ArrayResponse.php">ArrayResponse.php</abbr></a></li>
-                </ul>
-                                    <h3>B</h3>
+                                                <h3>B</h3>
         <ul class="phpdocumentor-list">
                     <li><a href="files/src-command-burycommand.html"><abbr title="src/Command/BuryCommand.php">BuryCommand.php</abbr></a></li>
                 </ul>
@@ -116,6 +120,8 @@
                     <li><a href="files/src-exception-clientexception.html"><abbr title="src/Exception/ClientException.php">ClientException.php</abbr></a></li>
                     <li><a href="files/src-exception-commandexception.html"><abbr title="src/Exception/CommandException.php">CommandException.php</abbr></a></li>
                     <li><a href="files/src-contract-commandinterface.html"><abbr title="src/Contract/CommandInterface.php">CommandInterface.php</abbr></a></li>
+                    <li><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></li>
+                    <li><a href="files/src-contract-commandwithdatainterface.html"><abbr title="src/Contract/CommandWithDataInterface.php">CommandWithDataInterface.php</abbr></a></li>
                     <li><a href="files/src-connection.html"><abbr title="src/Connection.php">Connection.php</abbr></a></li>
                     <li><a href="files/src-exception-connectionexception.html"><abbr title="src/Exception/ConnectionException.php">ConnectionException.php</abbr></a></li>
                 </ul>
@@ -123,10 +129,12 @@
         <ul class="phpdocumentor-list">
                     <li><a href="files/src-exception-deadlinesoonexception.html"><abbr title="src/Exception/DeadlineSoonException.php">DeadlineSoonException.php</abbr></a></li>
                     <li><a href="files/src-command-deletecommand.html"><abbr title="src/Command/DeleteCommand.php">DeleteCommand.php</abbr></a></li>
+                    <li><a href="files/src-contract-dispatcherinterface.html"><abbr title="src/Contract/DispatcherInterface.php">DispatcherInterface.php</abbr></a></li>
                 </ul>
                                     <h3>E</h3>
         <ul class="phpdocumentor-list">
                     <li><a href="files/src-exception.html"><abbr title="src/Exception.php">Exception.php</abbr></a></li>
+                    <li><a href="files/src-exception-expectedcrlfexception.html"><abbr title="src/Exception/ExpectedCrlfException.php">ExpectedCrlfException.php</abbr></a></li>
                 </ul>
                                     <h3>F</h3>
         <ul class="phpdocumentor-list">
@@ -139,11 +147,17 @@
                 </ul>
                                     <h3>J</h3>
         <ul class="phpdocumentor-list">
-                    <li><a href="files/src-job.html"><abbr title="src/Job.php">Job.php</abbr></a></li>
+                    <li><a href="files/src-values-job.html"><abbr title="src/Values/Job.php">Job.php</abbr></a></li>
+                    <li><a href="files/src-exception-jobburiedexception.html"><abbr title="src/Exception/JobBuriedException.php">JobBuriedException.php</abbr></a></li>
                     <li><a href="files/src-command-jobcommand.html"><abbr title="src/Command/JobCommand.php">JobCommand.php</abbr></a></li>
-                    <li><a href="files/src-jobid.html"><abbr title="src/JobId.php">JobId.php</abbr></a></li>
+                    <li><a href="files/src-values-jobcommandtemplate.html"><abbr title="src/Values/JobCommandTemplate.php">JobCommandTemplate.php</abbr></a></li>
+                    <li><a href="files/src-values-jobid.html"><abbr title="src/Values/JobId.php">JobId.php</abbr></a></li>
                     <li><a href="files/src-contract-jobidinterface.html"><abbr title="src/Contract/JobIdInterface.php">JobIdInterface.php</abbr></a></li>
+                    <li><a href="files/src-contract-jobidresponseinterface.html"><abbr title="src/Contract/JobIdResponseInterface.php">JobIdResponseInterface.php</abbr></a></li>
                     <li><a href="files/src-exception-jobnotfoundexception.html"><abbr title="src/Exception/JobNotFoundException.php">JobNotFoundException.php</abbr></a></li>
+                    <li><a href="files/src-contract-jobresponseinterface.html"><abbr title="src/Contract/JobResponseInterface.php">JobResponseInterface.php</abbr></a></li>
+                    <li><a href="files/src-values-jobstate.html"><abbr title="src/Values/JobState.php">JobState.php</abbr></a></li>
+                    <li><a href="files/src-values-jobstats.html"><abbr title="src/Values/JobStats.php">JobStats.php</abbr></a></li>
                     <li><a href="files/src-exception-jobtoobigexception.html"><abbr title="src/Exception/JobTooBigException.php">JobTooBigException.php</abbr></a></li>
                 </ul>
                                     <h3>K</h3>
@@ -157,22 +171,38 @@
                     <li><a href="files/src-command-listtubescommand.html"><abbr title="src/Command/ListTubesCommand.php">ListTubesCommand.php</abbr></a></li>
                     <li><a href="files/src-command-listtubeswatchedcommand.html"><abbr title="src/Command/ListTubesWatchedCommand.php">ListTubesWatchedCommand.php</abbr></a></li>
                 </ul>
-                                                                                                <h3>P</h3>
+                                    <h3>M</h3>
+        <ul class="phpdocumentor-list">
+                    <li><a href="files/src-exception-malformedresponseexception.html"><abbr title="src/Exception/MalformedResponseException.php">MalformedResponseException.php</abbr></a></li>
+                </ul>
+                                    <h3>N</h3>
+        <ul class="phpdocumentor-list">
+                    <li><a href="files/src-exception-noimplementationexception.html"><abbr title="src/Exception/NoImplementationException.php">NoImplementationException.php</abbr></a></li>
+                    <li><a href="files/src-exception-notignoredexception.html"><abbr title="src/Exception/NotIgnoredException.php">NotIgnoredException.php</abbr></a></li>
+                </ul>
+                                                        <h3>P</h3>
         <ul class="phpdocumentor-list">
                     <li><a href="files/src-command-pausetubecommand.html"><abbr title="src/Command/PauseTubeCommand.php">PauseTubeCommand.php</abbr></a></li>
                     <li><a href="files/src-command-peekcommand.html"><abbr title="src/Command/PeekCommand.php">PeekCommand.php</abbr></a></li>
                     <li><a href="files/src-command-peekjobcommand.html"><abbr title="src/Command/PeekJobCommand.php">PeekJobCommand.php</abbr></a></li>
                     <li><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></li>
-                    <li><a href="files/src-contract-pheanstalkinterface.html"><abbr title="src/Contract/PheanstalkInterface.php">PheanstalkInterface.php</abbr></a></li>
+                    <li><a href="files/src-pheanstalkmanager.html"><abbr title="src/PheanstalkManager.php">PheanstalkManager.php</abbr></a></li>
+                    <li><a href="files/src-contract-pheanstalkmanagerinterface.html"><abbr title="src/Contract/PheanstalkManagerInterface.php">PheanstalkManagerInterface.php</abbr></a></li>
+                    <li><a href="files/src-pheanstalkpublisher.html"><abbr title="src/PheanstalkPublisher.php">PheanstalkPublisher.php</abbr></a></li>
+                    <li><a href="files/src-contract-pheanstalkpublisherinterface.html"><abbr title="src/Contract/PheanstalkPublisherInterface.php">PheanstalkPublisherInterface.php</abbr></a></li>
+                    <li><a href="files/src-pheanstalksubscriber.html"><abbr title="src/PheanstalkSubscriber.php">PheanstalkSubscriber.php</abbr></a></li>
+                    <li><a href="files/src-contract-pheanstalksubscriberinterface.html"><abbr title="src/Contract/PheanstalkSubscriberInterface.php">PheanstalkSubscriberInterface.php</abbr></a></li>
                     <li><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></li>
                 </ul>
                                                         <h3>R</h3>
         <ul class="phpdocumentor-list">
+                    <li><a href="files/src-values-rawresponse.html"><abbr title="src/Values/RawResponse.php">RawResponse.php</abbr></a></li>
                     <li><a href="files/src-command-releasecommand.html"><abbr title="src/Command/ReleaseCommand.php">ReleaseCommand.php</abbr></a></li>
                     <li><a href="files/src-command-reservecommand.html"><abbr title="src/Command/ReserveCommand.php">ReserveCommand.php</abbr></a></li>
+                    <li><a href="files/src-command-reservejobcommand.html"><abbr title="src/Command/ReserveJobCommand.php">ReserveJobCommand.php</abbr></a></li>
                     <li><a href="files/src-command-reservewithtimeoutcommand.html"><abbr title="src/Command/ReserveWithTimeoutCommand.php">ReserveWithTimeoutCommand.php</abbr></a></li>
                     <li><a href="files/src-contract-responseinterface.html"><abbr title="src/Contract/ResponseInterface.php">ResponseInterface.php</abbr></a></li>
-                    <li><a href="files/src-contract-responseparserinterface.html"><abbr title="src/Contract/ResponseParserInterface.php">ResponseParserInterface.php</abbr></a></li>
+                    <li><a href="files/src-values-responsetype.html"><abbr title="src/Values/ResponseType.php">ResponseType.php</abbr></a></li>
                 </ul>
                                     <h3>S</h3>
         <ul class="phpdocumentor-list">
@@ -181,34 +211,45 @@
                     <li><a href="files/src-exception-serverexception.html"><abbr title="src/Exception/ServerException.php">ServerException.php</abbr></a></li>
                     <li><a href="files/src-exception-serverinternalerrorexception.html"><abbr title="src/Exception/ServerInternalErrorException.php">ServerInternalErrorException.php</abbr></a></li>
                     <li><a href="files/src-exception-serveroutofmemoryexception.html"><abbr title="src/Exception/ServerOutOfMemoryException.php">ServerOutOfMemoryException.php</abbr></a></li>
+                    <li><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></li>
                     <li><a href="files/src-exception-serverunknowncommandexception.html"><abbr title="src/Exception/ServerUnknownCommandException.php">ServerUnknownCommandException.php</abbr></a></li>
-                    <li><a href="files/src-exception-socketexception.html"><abbr title="src/Exception/SocketException.php">SocketException.php</abbr></a></li>
                     <li><a href="files/src-socketfactory.html"><abbr title="src/SocketFactory.php">SocketFactory.php</abbr></a></li>
                     <li><a href="files/src-contract-socketfactoryinterface.html"><abbr title="src/Contract/SocketFactoryInterface.php">SocketFactoryInterface.php</abbr></a></li>
+                    <li><a href="files/src-values-socketimplementation.html"><abbr title="src/Values/SocketImplementation.php">SocketImplementation.php</abbr></a></li>
                     <li><a href="files/src-contract-socketinterface.html"><abbr title="src/Contract/SocketInterface.php">SocketInterface.php</abbr></a></li>
                     <li><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></li>
+                    <li><a href="files/src-staticfactorytrait.html"><abbr title="src/StaticFactoryTrait.php">StaticFactoryTrait.php</abbr></a></li>
                     <li><a href="files/src-command-statscommand.html"><abbr title="src/Command/StatsCommand.php">StatsCommand.php</abbr></a></li>
                     <li><a href="files/src-command-statsjobcommand.html"><abbr title="src/Command/StatsJobCommand.php">StatsJobCommand.php</abbr></a></li>
                     <li><a href="files/src-command-statstubecommand.html"><abbr title="src/Command/StatsTubeCommand.php">StatsTubeCommand.php</abbr></a></li>
                     <li><a href="files/src-socket-streamsocket.html"><abbr title="src/Socket/StreamSocket.php">StreamSocket.php</abbr></a></li>
+                    <li><a href="files/src-values-success.html"><abbr title="src/Values/Success.php">Success.php</abbr></a></li>
                 </ul>
                                     <h3>T</h3>
         <ul class="phpdocumentor-list">
+                    <li><a href="files/src-exception-timedoutexception.html"><abbr title="src/Exception/TimedOutException.php">TimedOutException.php</abbr></a></li>
+                    <li><a href="files/src-values-timeout.html"><abbr title="src/Values/Timeout.php">Timeout.php</abbr></a></li>
                     <li><a href="files/src-command-touchcommand.html"><abbr title="src/Command/TouchCommand.php">TouchCommand.php</abbr></a></li>
                     <li><a href="files/src-command-tubecommand.html"><abbr title="src/Command/TubeCommand.php">TubeCommand.php</abbr></a></li>
+                    <li><a href="files/src-values-tubecommandtemplate.html"><abbr title="src/Values/TubeCommandTemplate.php">TubeCommandTemplate.php</abbr></a></li>
+                    <li><a href="files/src-values-tubelist.html"><abbr title="src/Values/TubeList.php">TubeList.php</abbr></a></li>
+                    <li><a href="files/src-values-tubename.html"><abbr title="src/Values/TubeName.php">TubeName.php</abbr></a></li>
+                    <li><a href="files/src-exception-tubenotfoundexception.html"><abbr title="src/Exception/TubeNotFoundException.php">TubeNotFoundException.php</abbr></a></li>
+                    <li><a href="files/src-values-tubestats.html"><abbr title="src/Values/TubeStats.php">TubeStats.php</abbr></a></li>
                 </ul>
                                     <h3>U</h3>
         <ul class="phpdocumentor-list">
+                    <li><a href="files/src-exception-unsupportedresponseexception.html"><abbr title="src/Exception/UnsupportedResponseException.php">UnsupportedResponseException.php</abbr></a></li>
                     <li><a href="files/src-command-usecommand.html"><abbr title="src/Command/UseCommand.php">UseCommand.php</abbr></a></li>
                 </ul>
                                                         <h3>W</h3>
         <ul class="phpdocumentor-list">
                     <li><a href="files/src-command-watchcommand.html"><abbr title="src/Command/WatchCommand.php">WatchCommand.php</abbr></a></li>
-                    <li><a href="files/src-socket-writehistory.html"><abbr title="src/Socket/WriteHistory.php">WriteHistory.php</abbr></a></li>
                 </ul>
                                                         <h3>Y</h3>
         <ul class="phpdocumentor-list">
-                    <li><a href="files/src-yamlresponseparser.html"><abbr title="src/YamlResponseParser.php">YamlResponseParser.php</abbr></a></li>
+                    <li><a href="files/src-parser-yamldictionaryparser.html"><abbr title="src/Parser/YamlDictionaryParser.php">YamlDictionaryParser.php</abbr></a></li>
+                    <li><a href="files/src-parser-yamllistparser.html"><abbr title="src/Parser/YamlListParser.php">YamlListParser.php</abbr></a></li>
                 </ul>
                                                 <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">

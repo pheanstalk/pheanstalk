@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,26 +55,32 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/pheanstalk-command.html">Command</a>
+                <a href="namespaces/pheanstalk-command.html" class="">Command</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-contract.html">Contract</a>
+                <a href="namespaces/pheanstalk-contract.html" class="-active">Contract</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-exception.html">Exception</a>
+                <a href="namespaces/pheanstalk-exception.html" class="">Exception</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-response.html">Response</a>
+                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-socket.html">Socket</a>
+                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
@@ -81,7 +88,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
+</h4>
 
                         </section>
             
@@ -109,25 +118,33 @@
         
 
 <h3 id="interfaces_class_traits">
-    Interfaces, Classes and Traits
+    Interfaces, Classes, Traits and Enums
     <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-CommandInterface.html"><abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr></a></dt>
         <dd>A command to be sent to the beanstalkd server, and response processing logic.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-CommandWithDataInterface.html"><abbr title="\Pheanstalk\Contract\CommandWithDataInterface">CommandWithDataInterface</abbr></a></dt>
+        <dd>Some commands carry data besides their command line. Commands carrying data implement this interface so that it can
+be detected and sent by the dispatching code in Connection</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-DispatcherInterface.html"><abbr title="\Pheanstalk\Contract\DispatcherInterface">DispatcherInterface</abbr></a></dt>
+        <dd></dd>
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></dt>
         <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkInterface">PheanstalkInterface</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-JobIdResponseInterface.html"><abbr title="\Pheanstalk\Contract\JobIdResponseInterface">JobIdResponseInterface</abbr></a></dt>
+        <dd>A response from the beanstalkd server.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-JobResponseInterface.html"><abbr title="\Pheanstalk\Contract\JobResponseInterface">JobResponseInterface</abbr></a></dt>
+        <dd>A response from the beanstalkd server.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a></dt>
         <dd></dd>
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-ResponseInterface.html"><abbr title="\Pheanstalk\Contract\ResponseInterface">ResponseInterface</abbr></a></dt>
         <dd>A response from the beanstalkd server.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-ResponseParserInterface.html"><abbr title="\Pheanstalk\Contract\ResponseParserInterface">ResponseParserInterface</abbr></a></dt>
-        <dd>A parser for response data sent from the beanstalkd server.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a></dt>
         <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a></dt>
-        <dd>A mockable wrapper around PHP &quot;socket&quot; or &quot;file pointer&quot; access.</dd>
+    
     
     
     </dl>

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,26 +55,32 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/pheanstalk-command.html">Command</a>
+                <a href="namespaces/pheanstalk-command.html" class="">Command</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-contract.html">Contract</a>
+                <a href="namespaces/pheanstalk-contract.html" class="">Contract</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-exception.html">Exception</a>
+                <a href="namespaces/pheanstalk-exception.html" class="-active">Exception</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-response.html">Response</a>
+                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-socket.html">Socket</a>
+                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
@@ -81,7 +88,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
+</h4>
 
                         </section>
             
@@ -109,7 +118,7 @@
         
 
 <h3 id="interfaces_class_traits">
-    Interfaces, Classes and Traits
+    Interfaces, Classes, Traits and Enums
     <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
 </h3>
 
@@ -125,10 +134,20 @@
         <dd>An exception relating to the client connection to the beanstalkd server.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-DeadlineSoonException.html"><abbr title="\Pheanstalk\Exception\DeadlineSoonException">DeadlineSoonException</abbr></a></dt>
         <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ExpectedCrlfException.html"><abbr title="\Pheanstalk\Exception\ExpectedCrlfException">ExpectedCrlfException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-JobBuriedException.html"><abbr title="\Pheanstalk\Exception\JobBuriedException">JobBuriedException</abbr></a></dt>
+        <dd>Indicates that the given job body was buried due to the server being OOM</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-JobNotFoundException.html"><abbr title="\Pheanstalk\Exception\JobNotFoundException">JobNotFoundException</abbr></a></dt>
         <dd>Indicates that the given job was not found by the server</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-JobTooBigException.html"><abbr title="\Pheanstalk\Exception\JobTooBigException">JobTooBigException</abbr></a></dt>
         <dd>Indicates that the given job body is larger then the servers configured max-job-size</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-MalformedResponseException.html"><abbr title="\Pheanstalk\Exception\MalformedResponseException">MalformedResponseException</abbr></a></dt>
+        <dd>An exception indicating that the beanstalkd server sent a response in an incorrect or unsupported format</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-NoImplementationException.html"><abbr title="\Pheanstalk\Exception\NoImplementationException">NoImplementationException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-NotIgnoredException.html"><abbr title="\Pheanstalk\Exception\NotIgnoredException">NotIgnoredException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ServerBadFormatException.html"><abbr title="\Pheanstalk\Exception\ServerBadFormatException">ServerBadFormatException</abbr></a></dt>
         <dd>An exception originating as a beanstalkd server error.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ServerDrainingException.html"><abbr title="\Pheanstalk\Exception\ServerDrainingException">ServerDrainingException</abbr></a></dt>
@@ -141,8 +160,13 @@
         <dd>An exception originating as a beanstalkd server error.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ServerUnknownCommandException.html"><abbr title="\Pheanstalk\Exception\ServerUnknownCommandException">ServerUnknownCommandException</abbr></a></dt>
         <dd>An exception originating as a beanstalkd server error.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-SocketException.html"><abbr title="\Pheanstalk\Exception\SocketException">SocketException</abbr></a></dt>
-        <dd>An exception relating to the connection socket.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-TimedOutException.html"><abbr title="\Pheanstalk\Exception\TimedOutException">TimedOutException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-TubeNotFoundException.html"><abbr title="\Pheanstalk\Exception\TubeNotFoundException">TubeNotFoundException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-UnsupportedResponseException.html"><abbr title="\Pheanstalk\Exception\UnsupportedResponseException">UnsupportedResponseException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+    
     
     </dl>
 

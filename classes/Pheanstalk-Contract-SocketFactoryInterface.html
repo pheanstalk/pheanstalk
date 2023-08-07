@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,26 +55,32 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/pheanstalk-command.html">Command</a>
+                <a href="namespaces/pheanstalk-command.html" class="">Command</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-contract.html">Contract</a>
+                <a href="namespaces/pheanstalk-contract.html" class="">Contract</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-exception.html">Exception</a>
+                <a href="namespaces/pheanstalk-exception.html" class="">Exception</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-response.html">Response</a>
+                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-socket.html">Socket</a>
+                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
@@ -81,7 +88,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
+</h4>
 
                         </section>
             
@@ -118,7 +127,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/SocketFactoryInterface.php"><a href="files/src-contract-socketfactoryinterface.html"><abbr title="src/Contract/SocketFactoryInterface.php">SocketFactoryInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -138,10 +147,17 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -method -public">
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html#constant_DEFAULT_PORT">DEFAULT_PORT</a>
+    <span>
+        &nbsp;= 11300                            </span>
+</dt>
+<dd></dd>
+
+                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html#method_create">create()</a>
     <span>
-                        &nbsp;: <a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a>    </span>
+                                &nbsp;: <abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr>    </span>
 </dt>
 <dd>This function must return a connected socket that is ready for reading / writing.</dd>
 
@@ -150,6 +166,41 @@
 
 
         
+    <section class="phpdocumentor-constants">
+        <h3 class="phpdocumentor-elements__header" id="constants">
+            Constants
+            <a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_DEFAULT_PORT">
+        DEFAULT_PORT
+        <a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html#constant_DEFAULT_PORT" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/SocketFactoryInterface.php"><a href="files/src-contract-socketfactoryinterface.html"><abbr title="src/Contract/SocketFactoryInterface.php">SocketFactoryInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">12</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">DEFAULT_PORT</span>
+    = <span class="phpdocumentor-signature__default-value">11300</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
@@ -169,7 +220,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/SocketFactoryInterface.php"><a href="files/src-contract-socketfactoryinterface.html"><abbr title="src/Contract/SocketFactoryInterface.php">SocketFactoryInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -177,14 +228,30 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                <span class="phpdocumentor-signature__name">create</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></span></code>
 
     
     
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Pheanstalk-Exception-ConnectionException.html"><abbr title="\Pheanstalk\Exception\ConnectionException">ConnectionException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>when the underlying implementation is not able to create a connection</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a></span>
+    <span class="phpdocumentor-signature__response_type"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></span>
             &mdash;
         
     

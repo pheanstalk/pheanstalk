@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Documentation</title>
+            <title>Documentation</title>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="../">
     <link rel="icon" href="images/favicon.ico"/>
@@ -54,26 +55,32 @@
 <aside class="phpdocumentor-column -four phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
+</h4>
     <ul class="phpdocumentor-list">
                     <li>
-                <a href="namespaces/pheanstalk-command.html">Command</a>
+                <a href="namespaces/pheanstalk-command.html" class="">Command</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-contract.html">Contract</a>
+                <a href="namespaces/pheanstalk-contract.html" class="">Contract</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-exception.html">Exception</a>
+                <a href="namespaces/pheanstalk-exception.html" class="">Exception</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-response.html">Response</a>
+                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-socket.html">Socket</a>
+                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
+                
+            </li>
+                    <li>
+                <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
@@ -81,7 +88,9 @@
                         </section>
                 <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
-                                    <h4 class="phpdocumentor-sidebar__root-namespace"><a href="packages/Pheanstalk.html">Pheanstalk</a></h4>
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="packages/Pheanstalk.html" class="-active">Pheanstalk</a>
+</h4>
 
                         </section>
             
@@ -108,76 +117,33 @@
         
 
 <h3 id="interfaces_class_traits">
-    Interfaces, Classes and Traits
+    Interfaces, Classes, Traits and Enums
     <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-CommandInterface.html"><abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr></a></dt>
         <dd>A command to be sent to the beanstalkd server, and response processing logic.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-CommandWithDataInterface.html"><abbr title="\Pheanstalk\Contract\CommandWithDataInterface">CommandWithDataInterface</abbr></a></dt>
+        <dd>Some commands carry data besides their command line. Commands carrying data implement this interface so that it can
+be detected and sent by the dispatching code in Connection</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-DispatcherInterface.html"><abbr title="\Pheanstalk\Contract\DispatcherInterface">DispatcherInterface</abbr></a></dt>
+        <dd></dd>
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></dt>
         <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkInterface">PheanstalkInterface</abbr></a></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-JobIdResponseInterface.html"><abbr title="\Pheanstalk\Contract\JobIdResponseInterface">JobIdResponseInterface</abbr></a></dt>
+        <dd>A response from the beanstalkd server.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-JobResponseInterface.html"><abbr title="\Pheanstalk\Contract\JobResponseInterface">JobResponseInterface</abbr></a></dt>
+        <dd>A response from the beanstalkd server.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a></dt>
         <dd></dd>
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-ResponseInterface.html"><abbr title="\Pheanstalk\Contract\ResponseInterface">ResponseInterface</abbr></a></dt>
         <dd>A response from the beanstalkd server.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-ResponseParserInterface.html"><abbr title="\Pheanstalk\Contract\ResponseParserInterface">ResponseParserInterface</abbr></a></dt>
-        <dd>A parser for response data sent from the beanstalkd server.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a></dt>
         <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a></dt>
-        <dd>A mockable wrapper around PHP &quot;socket&quot; or &quot;file pointer&quot; access.</dd>
     
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-AbstractCommand.html"><abbr title="\Pheanstalk\Command\AbstractCommand">AbstractCommand</abbr></a></dt>
-        <dd>Common functionality for Command implementations.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-BuryCommand.html"><abbr title="\Pheanstalk\Command\BuryCommand">BuryCommand</abbr></a></dt>
-        <dd>The &#039;bury&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-DeleteCommand.html"><abbr title="\Pheanstalk\Command\DeleteCommand">DeleteCommand</abbr></a></dt>
-        <dd>The &#039;delete&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-IgnoreCommand.html"><abbr title="\Pheanstalk\Command\IgnoreCommand">IgnoreCommand</abbr></a></dt>
-        <dd>The &#039;ignore&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-JobCommand.html"><abbr title="\Pheanstalk\Command\JobCommand">JobCommand</abbr></a></dt>
-        <dd>A command that is executed against a single job</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-KickCommand.html"><abbr title="\Pheanstalk\Command\KickCommand">KickCommand</abbr></a></dt>
-        <dd>The &#039;kick&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-KickJobCommand.html"><abbr title="\Pheanstalk\Command\KickJobCommand">KickJobCommand</abbr></a></dt>
-        <dd>The &#039;kick-job&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-ListTubesCommand.html"><abbr title="\Pheanstalk\Command\ListTubesCommand">ListTubesCommand</abbr></a></dt>
-        <dd>The &#039;list-tubes&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-ListTubesWatchedCommand.html"><abbr title="\Pheanstalk\Command\ListTubesWatchedCommand">ListTubesWatchedCommand</abbr></a></dt>
-        <dd>The &#039;list-tubes-watched&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-ListTubeUsedCommand.html"><abbr title="\Pheanstalk\Command\ListTubeUsedCommand">ListTubeUsedCommand</abbr></a></dt>
-        <dd>The &#039;list-tube-used&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-PauseTubeCommand.html"><abbr title="\Pheanstalk\Command\PauseTubeCommand">PauseTubeCommand</abbr></a></dt>
-        <dd>The &#039;pause-tube&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-PeekCommand.html"><abbr title="\Pheanstalk\Command\PeekCommand">PeekCommand</abbr></a></dt>
-        <dd>The &#039;peek&#039;, &#039;peek-ready&#039;, &#039;peek-delayed&#039; and &#039;peek-buried&#039; commands.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-PeekJobCommand.html"><abbr title="\Pheanstalk\Command\PeekJobCommand">PeekJobCommand</abbr></a></dt>
-        <dd>The &#039;peek&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-PutCommand.html"><abbr title="\Pheanstalk\Command\PutCommand">PutCommand</abbr></a></dt>
-        <dd>The &#039;put&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-ReleaseCommand.html"><abbr title="\Pheanstalk\Command\ReleaseCommand">ReleaseCommand</abbr></a></dt>
-        <dd>The &#039;release&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-ReserveCommand.html"><abbr title="\Pheanstalk\Command\ReserveCommand">ReserveCommand</abbr></a></dt>
-        <dd>The &#039;reserve&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-ReserveWithTimeoutCommand.html"><abbr title="\Pheanstalk\Command\ReserveWithTimeoutCommand">ReserveWithTimeoutCommand</abbr></a></dt>
-        <dd>The &#039;reserve&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-StatsCommand.html"><abbr title="\Pheanstalk\Command\StatsCommand">StatsCommand</abbr></a></dt>
-        <dd>The &#039;stats&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-StatsJobCommand.html"><abbr title="\Pheanstalk\Command\StatsJobCommand">StatsJobCommand</abbr></a></dt>
-        <dd>The &#039;stats-job&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-StatsTubeCommand.html"><abbr title="\Pheanstalk\Command\StatsTubeCommand">StatsTubeCommand</abbr></a></dt>
-        <dd>The &#039;stats-tube&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-TouchCommand.html"><abbr title="\Pheanstalk\Command\TouchCommand">TouchCommand</abbr></a></dt>
-        <dd>The &#039;touch&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-TubeCommand.html"><abbr title="\Pheanstalk\Command\TubeCommand">TubeCommand</abbr></a></dt>
-        <dd>A command that is executed against a tube</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-UseCommand.html"><abbr title="\Pheanstalk\Command\UseCommand">UseCommand</abbr></a></dt>
-        <dd>The &#039;use&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Command-WatchCommand.html"><abbr title="\Pheanstalk\Command\WatchCommand">WatchCommand</abbr></a></dt>
-        <dd>The &#039;watch&#039; command.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Connection.html"><abbr title="\Pheanstalk\Connection">Connection</abbr></a></dt>
-        <dd>A connection to a beanstalkd server, backed by any type of socket.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ClientBadFormatException.html"><abbr title="\Pheanstalk\Exception\ClientBadFormatException">ClientBadFormatException</abbr></a></dt>
         <dd>Indicates that the client has sent unexpected data</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ClientException.html"><abbr title="\Pheanstalk\Exception\ClientException">ClientException</abbr></a></dt>
@@ -188,10 +154,20 @@
         <dd>An exception relating to the client connection to the beanstalkd server.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-DeadlineSoonException.html"><abbr title="\Pheanstalk\Exception\DeadlineSoonException">DeadlineSoonException</abbr></a></dt>
         <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ExpectedCrlfException.html"><abbr title="\Pheanstalk\Exception\ExpectedCrlfException">ExpectedCrlfException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-JobBuriedException.html"><abbr title="\Pheanstalk\Exception\JobBuriedException">JobBuriedException</abbr></a></dt>
+        <dd>Indicates that the given job body was buried due to the server being OOM</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-JobNotFoundException.html"><abbr title="\Pheanstalk\Exception\JobNotFoundException">JobNotFoundException</abbr></a></dt>
         <dd>Indicates that the given job was not found by the server</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-JobTooBigException.html"><abbr title="\Pheanstalk\Exception\JobTooBigException">JobTooBigException</abbr></a></dt>
         <dd>Indicates that the given job body is larger then the servers configured max-job-size</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-MalformedResponseException.html"><abbr title="\Pheanstalk\Exception\MalformedResponseException">MalformedResponseException</abbr></a></dt>
+        <dd>An exception indicating that the beanstalkd server sent a response in an incorrect or unsupported format</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-NoImplementationException.html"><abbr title="\Pheanstalk\Exception\NoImplementationException">NoImplementationException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-NotIgnoredException.html"><abbr title="\Pheanstalk\Exception\NotIgnoredException">NotIgnoredException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ServerBadFormatException.html"><abbr title="\Pheanstalk\Exception\ServerBadFormatException">ServerBadFormatException</abbr></a></dt>
         <dd>An exception originating as a beanstalkd server error.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ServerDrainingException.html"><abbr title="\Pheanstalk\Exception\ServerDrainingException">ServerDrainingException</abbr></a></dt>
@@ -204,32 +180,64 @@
         <dd>An exception originating as a beanstalkd server error.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-ServerUnknownCommandException.html"><abbr title="\Pheanstalk\Exception\ServerUnknownCommandException">ServerUnknownCommandException</abbr></a></dt>
         <dd>An exception originating as a beanstalkd server error.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-SocketException.html"><abbr title="\Pheanstalk\Exception\SocketException">SocketException</abbr></a></dt>
-        <dd>An exception relating to the connection socket.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-TimedOutException.html"><abbr title="\Pheanstalk\Exception\TimedOutException">TimedOutException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-TubeNotFoundException.html"><abbr title="\Pheanstalk\Exception\TubeNotFoundException">TubeNotFoundException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception-UnsupportedResponseException.html"><abbr title="\Pheanstalk\Exception\UnsupportedResponseException">UnsupportedResponseException</abbr></a></dt>
+        <dd>An exception originating from the beanstalkd client.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Exception.html"><abbr title="\Pheanstalk\Exception">Exception</abbr></a></dt>
         <dd>An exception originating from the Pheanstalk package.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Job.html"><abbr title="\Pheanstalk\Job">Job</abbr></a></dt>
-        <dd>A job in a beanstalkd server.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-JobId.html"><abbr title="\Pheanstalk\JobId">JobId</abbr></a></dt>
-        <dd>This class implements a value object for beanstalkd job IDs.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html"><abbr title="\Pheanstalk\Parser\YamlDictionaryParser">YamlDictionaryParser</abbr></a></dt>
+        <dd>A parser that parses Yaml a simple dictionary
+This is a very basic implementation that only supports single line strings and not any of the advanced YAML features
+like multiline strings.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Parser-YamlListParser.html"><abbr title="\Pheanstalk\Parser\YamlListParser">YamlListParser</abbr></a></dt>
+        <dd>A parser that parses Yaml lists of strings
+This is a very basic implementation that only supports single line strings and not any of the advanced YAML features
+like multiline strings.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Pheanstalk.html"><abbr title="\Pheanstalk\Pheanstalk">Pheanstalk</abbr></a></dt>
         <dd>Pheanstalk is a PHP client for the beanstalkd workqueue.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Response-ArrayResponse.html"><abbr title="\Pheanstalk\Response\ArrayResponse">ArrayResponse</abbr></a></dt>
-        <dd>A response with an ArrayObject interface to key =&gt; value data.</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Socket-FileSocket.html"><abbr title="\Pheanstalk\Socket\FileSocket">FileSocket</abbr></a></dt>
-        <dd>A Socket implementation using the standard file functions.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-PheanstalkManager.html"><abbr title="\Pheanstalk\PheanstalkManager">PheanstalkManager</abbr></a></dt>
+        <dd>This class implements &quot;management&quot; functions for the beanstalk protocol.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-PheanstalkPublisher.html"><abbr title="\Pheanstalk\PheanstalkPublisher">PheanstalkPublisher</abbr></a></dt>
+        <dd>Implements the methods in the dispatcher interface.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Socket-FsockopenSocket.html"><abbr title="\Pheanstalk\Socket\FsockopenSocket">FsockopenSocket</abbr></a></dt>
         <dd>A Socket implementation using the fsockopen</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Socket-SocketSocket.html"><abbr title="\Pheanstalk\Socket\SocketSocket">SocketSocket</abbr></a></dt>
         <dd>A Socket implementation using the Sockets extension</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Socket-StreamSocket.html"><abbr title="\Pheanstalk\Socket\StreamSocket">StreamSocket</abbr></a></dt>
         <dd>A Socket implementation using the Streams extension</dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Socket-WriteHistory.html"><abbr title="\Pheanstalk\Socket\WriteHistory">WriteHistory</abbr></a></dt>
-        <dd>A limited history of recent socket write length/success.</dd>
             <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-SocketFactory.html"><abbr title="\Pheanstalk\SocketFactory">SocketFactory</abbr></a></dt>
         <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-YamlResponseParser.html"><abbr title="\Pheanstalk\YamlResponseParser">YamlResponseParser</abbr></a></dt>
-        <dd>A response parser for commands that return a subset of YAML.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></dt>
+        <dd>A job in a beanstalkd server.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a></dt>
+        <dd>Simple value object that has a very basic render function</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a></dt>
+        <dd>This class implements a value object for beanstalkd job IDs.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a></dt>
+        <dd>Wraps the parts of a response to a beanstalkd</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a></dt>
+        <dd>This class indicates a successful operation with no (relevant) data
+We don&#039;t use `null` for this because we cannot narrow return values to just null.</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-TubeCommandTemplate.html"><abbr title="\Pheanstalk\Values\TubeCommandTemplate">TubeCommandTemplate</abbr></a></dt>
+        <dd>Simple value object that has a very basic render function</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></dt>
+        <dd>This class wraps a list of tube names</dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></dt>
+        <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></dt>
+        <dd></dd>
+    
+            <dt class="phpdocumentor-table-of-contents__entry -trait"><a href="classes/Pheanstalk-StaticFactoryTrait.html"><abbr title="\Pheanstalk\StaticFactoryTrait">StaticFactoryTrait</abbr></a></dt>
+        <dd></dd>
     
     </dl>
 
