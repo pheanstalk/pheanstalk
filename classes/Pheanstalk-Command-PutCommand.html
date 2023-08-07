@@ -110,12 +110,12 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk.html">Pheanstalk</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-socket.html">Socket</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-command.html">Command</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    SocketSocket
+    PutCommand
 
     
             <div class="phpdocumentor-element__package">
@@ -127,21 +127,37 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr>                    </span>
+                            <abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr>,                             <a href="classes/Pheanstalk-Contract-CommandWithDataInterface.html"><abbr title="\Pheanstalk\Contract\CommandWithDataInterface">CommandWithDataInterface</abbr></a>                    </span>
     
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">A Socket implementation using the Sockets extension</p>
+            <p class="phpdocumentor-summary">The &#039;put&#039; command.</p>
+
+    <section class="phpdocumentor-description"><p>Inserts a job into the client's currently used tube.</p>
+</section>
 
 
-
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Pheanstalk-Command-UseCommand.html"><abbr title="\Pheanstalk\Command\UseCommand">UseCommand</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                        </dl>
 
 
 
@@ -152,8 +168,11 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></dt>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr></dt>
         <dd></dd>
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-CommandWithDataInterface.html"><abbr title="\Pheanstalk\Contract\CommandWithDataInterface">CommandWithDataInterface</abbr></a></dt>
+        <dd>Some commands carry data besides their command line. Commands carrying data implement this interface so that it can
+be detected and sent by the dispatching code in Connection</dd>
     
     
     
@@ -167,58 +186,65 @@
 
 <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#property_socket">$socket</a>
+    <a href="classes/Pheanstalk-Command-PutCommand.html#property_data">$data</a>
     <span>
-                        &nbsp;: null|<abbr title="\Socket">Socket</abbr>            </span>
+                        &nbsp;: string            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-Command-PutCommand.html#property_delay">$delay</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-Command-PutCommand.html#property_priority">$priority</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-Command-PutCommand.html#property_ttr">$ttr</a>
+    <span>
+                        &nbsp;: int            </span>
 </dt>
 <dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method___construct">__construct()</a>
+    <a href="classes/Pheanstalk-Command-PutCommand.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
+<dd>Puts a job on the queue.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_disconnect">disconnect()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Disconnect the socket; subsequent usage of the socket will fail.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_getLine">getLine()</a>
+    <a href="classes/Pheanstalk-Command-PutCommand.html#method_getCommandLine">getCommandLine()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_read">read()</a>
+    <a href="classes/Pheanstalk-Command-PutCommand.html#method_getData">getData()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Reads up to $length bytes from the socket.</dd>
+<dd>The binary data to follow the command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_write">write()</a>
+    <a href="classes/Pheanstalk-Command-PutCommand.html#method_interpret">interpret()</a>
     <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Writes data to the socket.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_getSocket">getSocket()</a>
-    <span>
-                                &nbsp;: <abbr title="\Socket">Socket</abbr>    </span>
+                                &nbsp;: <a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a>    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_throwException">throwException()</a>
+    <a href="classes/Pheanstalk-Command-PutCommand.html#method_getDataLength">getDataLength()</a>
     <span>
-                                &nbsp;: never    </span>
+                                &nbsp;: int    </span>
 </dt>
 <dd></dd>
 
@@ -232,7 +258,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Pheanstalk-Socket-SocketSocket.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Pheanstalk-Command-PutCommand.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="
@@ -241,24 +267,126 @@
             -private
                                                 -read-only        "
 >
-    <h4 class="phpdocumentor-element__name" id="property_socket">
-        $socket
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#property_socket" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_data">
+        $data
+        <a href="classes/Pheanstalk-Command-PutCommand.html#property_data" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                         <small class="phpdocumentor-element__modifier">read-only</small>        </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">null|<abbr title="\Socket">Socket</abbr></span>
-    <span class="phpdocumentor-signature__name">$socket</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$data</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_delay">
+        $delay
+        <a href="classes/Pheanstalk-Command-PutCommand.html#property_delay" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">32</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$delay</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_priority">
+        $priority
+        <a href="classes/Pheanstalk-Command-PutCommand.html#property_priority" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">32</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$priority</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_ttr">
+        $ttr
+        <a href="classes/Pheanstalk-Command-PutCommand.html#property_ttr" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">32</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$ttr</span>
     </code>
 
         <section class="phpdocumentor-description"></section>
@@ -273,7 +401,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Pheanstalk-Socket-SocketSocket.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Pheanstalk-Command-PutCommand.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -283,62 +411,58 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Command-PutCommand.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Puts a job on the queue.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connectTimeout</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sendTimeout</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receiveTimeout</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$ttr</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$host</span>
+                <span class="phpdocumentor-signature__argument__name">$data</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The job data</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$port</span>
+                <span class="phpdocumentor-signature__argument__name">$priority</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>From 0 (most urgent) to 0xFFFFFFFF (least urgent)</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$connectTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$delay</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Seconds to wait before job becomes ready</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$sendTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$ttr</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$receiveTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Time To Run: seconds a job can be reserved for</p>
+</section>
 
             </dd>
             </dl>
@@ -357,69 +481,21 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_disconnect">
-        disconnect()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_disconnect" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getCommandLine">
+        getCommandLine()
+        <a href="classes/Pheanstalk-Command-PutCommand.html#method_getCommandLine" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Disconnect the socket; subsequent usage of the socket will fail.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">disconnect</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-        <section class="phpdocumentor-description"><p>This function is idempotent</p>
-</section>
-
-    
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">idempotent</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                             
-                                    </dd>
-                        </dl>
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getLine">
-        getLine()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_getLine" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getLine</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getCommandLine</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -438,36 +514,25 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_read">
-        read()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_read" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getData">
+        getData()
+        <a href="classes/Pheanstalk-Command-PutCommand.html#method_getData" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Reads up to $length bytes from the socket.</p>
+        <p class="phpdocumentor-summary">The binary data to follow the command.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">read</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$length</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">getData</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$length</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
+    
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -482,29 +547,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_write">
-        write()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_write" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_interpret">
+        interpret()
+        <a href="classes/Pheanstalk-Command-PutCommand.html#method_interpret" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Writes data to the socket.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">write</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">interpret</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a></span></code>
 
-    
+        <section class="phpdocumentor-description"></section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$response</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -515,7 +580,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a></span>
             &mdash;
         
     
@@ -526,21 +591,21 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSocket">
-        getSocket()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_getSocket" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getDataLength">
+        getDataLength()
+        <a href="classes/Pheanstalk-Command-PutCommand.html#method_getDataLength" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PutCommand.php"><a href="files/src-command-putcommand.html"><abbr title="src/Command/PutCommand.php">PutCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">getSocket</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Socket">Socket</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">getDataLength</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
         <section class="phpdocumentor-description"></section>
 
@@ -548,51 +613,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><abbr title="\Socket">Socket</abbr></span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_throwException">
-        throwException()
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#method_throwException" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/SocketSocket.php"><a href="files/src-socket-socketsocket.html"><abbr title="src/Socket/SocketSocket.php">SocketSocket.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">74</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">throwException</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Socket">Socket</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$socket</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">never</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$socket</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Socket">Socket</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">never</span>
+    <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
         
     
@@ -675,7 +696,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Pheanstalk-Socket-SocketSocket.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Pheanstalk-Command-PutCommand.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

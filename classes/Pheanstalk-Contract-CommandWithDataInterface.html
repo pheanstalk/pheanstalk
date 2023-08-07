@@ -118,7 +118,7 @@
     CommandWithDataInterface
             <span class="phpdocumentor-element__extends">
             extends
-                            <a href="classes/Pheanstalk-Contract-CommandInterface.html"><abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr></a>                    </span>
+                            <abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr>                    </span>
                 <div class="phpdocumentor-element__package">
             in
             <ul class="phpdocumentor-breadcrumbs">
@@ -152,27 +152,11 @@ be detected and sent by the dispatching code in Connection</p>
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-CommandInterface.html#method_getCommandLine">getCommandLine()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-<dd>The command line, without trailing CRLF.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Contract-CommandWithDataInterface.html#method_getData">getData()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>The binary data to follow the command.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-CommandInterface.html#method_interpret">interpret()</a>
-    <span>
-                                &nbsp;: int|<a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|<a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a>|<a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>|<a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a>|<a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a>|<a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a>|<a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a>|<a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a>    </span>
-</dt>
-<dd>Interprets a raw response object
-MUST throw an exception if the parser determines the response to be invalid
-MUST return the response type as defined in the PheanstalkInterface for the command type.</dd>
 
         </dl>
 
@@ -185,39 +169,6 @@ MUST return the response type as defined in the PheanstalkInterface for the comm
             Methods
             <a href="classes/Pheanstalk-Contract-CommandWithDataInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getCommandLine">
-        getCommandLine()
-        <a href="classes/Pheanstalk-Contract-CommandInterface.html#method_getCommandLine" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/CommandInterface.php"><a href="files/src-contract-commandinterface.html"><abbr title="src/Contract/CommandInterface.php">CommandInterface.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">25</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">The command line, without trailing CRLF.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCommandLine</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-        
-    
-</article>
                     <article
         class="phpdocumentor-element
             -method
@@ -247,53 +198,6 @@ MUST return the response type as defined in the PheanstalkInterface for the comm
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">string</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_interpret">
-        interpret()
-        <a href="classes/Pheanstalk-Contract-CommandInterface.html#method_interpret" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Contract/CommandInterface.php"><a href="files/src-contract-commandinterface.html"><abbr title="src/Contract/CommandInterface.php">CommandInterface.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">34</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Interprets a raw response object
-MUST throw an exception if the parser determines the response to be invalid
-MUST return the response type as defined in the PheanstalkInterface for the command type.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">interpret</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int|<a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|<a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a>|<a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>|<a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a>|<a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a>|<a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a>|<a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a>|<a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></span></code>
-
-        <section class="phpdocumentor-description"><p>If the PheanstalkInterface has return type void, the implementation MUST return EmptySuccessResponse</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$response</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int|<a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|<a href="classes/Pheanstalk-Values-JobId.html"><abbr title="\Pheanstalk\Values\JobId">JobId</abbr></a>|<a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>|<a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a>|<a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a>|<a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a>|<a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a>|<a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></span>
             &mdash;
         
     

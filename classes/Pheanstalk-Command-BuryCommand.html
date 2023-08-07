@@ -110,13 +110,16 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk.html">Pheanstalk</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-parser.html">Parser</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-command.html">Command</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    YamlDictionaryParser
+    BuryCommand
 
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\Pheanstalk\Command\JobCommand">JobCommand</abbr>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -129,16 +132,16 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parser/YamlDictionaryParser.php"><a href="files/src-parser-yamldictionaryparser.html"><abbr title="src/Parser/YamlDictionaryParser.php">YamlDictionaryParser.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/BuryCommand.php"><a href="files/src-command-burycommand.html"><abbr title="src/Command/BuryCommand.php">BuryCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">A parser that parses Yaml a simple dictionary
-This is a very basic implementation that only supports single line strings and not any of the advanced YAML features
-like multiline strings.</p>
+            <p class="phpdocumentor-summary">The &#039;bury&#039; command.</p>
 
+    <section class="phpdocumentor-description"><p>Puts a job into a 'buried' state, revived only by 'kick' command.</p>
+</section>
 
 
 
@@ -153,17 +156,31 @@ like multiline strings.</p>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html#method_parse">parse()</a>
+                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-Command-BuryCommand.html#property_priority">$priority</a>
     <span>
-                                &nbsp;: array&lt;string, bool|float|int|string&gt;    </span>
+                        &nbsp;: int            </span>
 </dt>
 <dd></dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html#method_cast">cast()</a>
+                <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Pheanstalk-Command-BuryCommand.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: bool|float|int|string    </span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Pheanstalk-Command-BuryCommand.html#method_interpret">interpret()</a>
+    <span>
+                                &nbsp;: <a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Pheanstalk-Command-BuryCommand.html#method_getCommandTemplate">getCommandTemplate()</a>
+    <span>
+                                &nbsp;: <a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a>    </span>
 </dt>
 <dd></dd>
 
@@ -174,11 +191,51 @@ like multiline strings.</p>
         
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/Pheanstalk-Command-BuryCommand.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_priority">
+        $priority
+        <a href="classes/Pheanstalk-Command-BuryCommand.html#property_priority" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/BuryCommand.php"><a href="files/src-command-burycommand.html"><abbr title="src/Command/BuryCommand.php">BuryCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$priority</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Pheanstalk-Command-BuryCommand.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -186,28 +243,37 @@ like multiline strings.</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_parse">
-        parse()
-        <a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html#method_parse" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/Pheanstalk-Command-BuryCommand.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parser/YamlDictionaryParser.php"><a href="files/src-parser-yamldictionaryparser.html"><abbr title="src/Parser/YamlDictionaryParser.php">YamlDictionaryParser.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/BuryCommand.php"><a href="files/src-command-burycommand.html"><abbr title="src/Command/BuryCommand.php">BuryCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">parse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string, bool|float|int|string&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobId</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-    
+        <section class="phpdocumentor-description"></section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$jobId</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$priority</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -218,7 +284,7 @@ like multiline strings.</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string, bool|float|int|string&gt;</span>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
             &mdash;
         
     
@@ -226,40 +292,32 @@ like multiline strings.</p>
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_cast">
-        cast()
-        <a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html#method_cast" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_interpret">
+        interpret()
+        <a href="classes/Pheanstalk-Command-BuryCommand.html#method_interpret" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parser/YamlDictionaryParser.php"><a href="files/src-parser-yamldictionaryparser.html"><abbr title="src/Parser/YamlDictionaryParser.php">YamlDictionaryParser.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/BuryCommand.php"><a href="files/src-command-burycommand.html"><abbr title="src/Command/BuryCommand.php">BuryCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">cast</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool|float|int|string</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">interpret</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a></span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$value</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$response</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -270,7 +328,40 @@ like multiline strings.</p>
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool|float|int|string</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCommandTemplate">
+        getCommandTemplate()
+        <a href="classes/Pheanstalk-Command-BuryCommand.html#method_getCommandTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/BuryCommand.php"><a href="files/src-command-burycommand.html"><abbr title="src/Command/BuryCommand.php">BuryCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">28</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getCommandTemplate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a></span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a></span>
             &mdash;
         
     
@@ -353,7 +444,7 @@ like multiline strings.</p>
 </section>
             </div>
         </div>
-        <a href="classes/Pheanstalk-Parser-YamlDictionaryParser.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Pheanstalk-Command-BuryCommand.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

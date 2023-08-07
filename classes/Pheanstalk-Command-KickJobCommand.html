@@ -110,15 +110,15 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk.html">Pheanstalk</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-socket.html">Socket</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-command.html">Command</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    FsockopenSocket
+    KickJobCommand
 
         <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Pheanstalk\Socket\FileSocket">FileSocket</abbr>
+        extends <abbr title="\Pheanstalk\Command\JobCommand">JobCommand</abbr>
     </span>
     
             <div class="phpdocumentor-element__package">
@@ -132,14 +132,19 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/FsockopenSocket.php"><a href="files/src-socket-fsockopensocket.html"><abbr title="src/Socket/FsockopenSocket.php">FsockopenSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickJobCommand.php"><a href="files/src-command-kickjobcommand.html"><abbr title="src/Command/KickJobCommand.php">KickJobCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">A Socket implementation using the fsockopen</p>
+            <p class="phpdocumentor-summary">The &#039;kick-job&#039; command.</p>
 
+    <section class="phpdocumentor-description"><p>Kicks a specific buried or delayed job into a 'ready' state.</p>
+<p>A variant of kick that operates with a single job. If the given job
+exists and is in a buried or delayed state, it will be moved to the
+ready queue of the same tube where it currently belongs.</p>
+</section>
 
 
 
@@ -155,9 +160,16 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Socket-FsockopenSocket.html#method___construct">__construct()</a>
+    <a href="classes/Pheanstalk-Command-KickJobCommand.html#method_interpret">interpret()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: <a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a>    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Pheanstalk-Command-KickJobCommand.html#method_getCommandTemplate">getCommandTemplate()</a>
+    <span>
+                                &nbsp;: <a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a>    </span>
 </dt>
 <dd></dd>
 
@@ -172,7 +184,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Pheanstalk-Socket-FsockopenSocket.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Pheanstalk-Command-KickJobCommand.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -180,53 +192,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/Pheanstalk-Socket-FsockopenSocket.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_interpret">
+        interpret()
+        <a href="classes/Pheanstalk-Command-KickJobCommand.html#method_interpret" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Socket/FsockopenSocket.php"><a href="files/src-socket-fsockopensocket.html"><abbr title="src/Socket/FsockopenSocket.php">FsockopenSocket.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickJobCommand.php"><a href="files/src-command-kickjobcommand.html"><abbr title="src/Command/KickJobCommand.php">KickJobCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connectTimeout</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$readTimeout</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">interpret</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a></span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$host</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$port</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$connectTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$readTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$response</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -237,7 +225,40 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a></span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCommandTemplate">
+        getCommandTemplate()
+        <a href="classes/Pheanstalk-Command-KickJobCommand.html#method_getCommandTemplate" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickJobCommand.php"><a href="files/src-command-kickjobcommand.html"><abbr title="src/Command/KickJobCommand.php">KickJobCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">35</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getCommandTemplate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a></span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a></span>
             &mdash;
         
     
@@ -320,7 +341,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Pheanstalk-Socket-FsockopenSocket.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Pheanstalk-Command-KickJobCommand.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

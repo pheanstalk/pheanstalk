@@ -110,16 +110,13 @@
             <div class="phpdocumentor-column -eight phpdocumentor-content">
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk.html">Pheanstalk</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-exception.html">Exception</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-command.html">Command</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ServerBadFormatException
+    KickCommand
 
-        <span class="phpdocumentor-element__extends">
-        extends <abbr title="\Pheanstalk\Exception\ServerException">ServerException</abbr>
-    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -128,24 +125,43 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr>                    </span>
     
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Exception/ServerBadFormatException.php"><a href="files/src-exception-serverbadformatexception.html"><abbr title="src/Exception/ServerBadFormatException.php">ServerBadFormatException.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickCommand.php"><a href="files/src-command-kickcommand.html"><abbr title="src/Command/KickCommand.php">KickCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">An exception originating as a beanstalkd server error.</p>
+            <p class="phpdocumentor-summary">The &#039;kick&#039; command.</p>
+
+    <section class="phpdocumentor-description"><p>Kicks buried or delayed jobs into a 'ready' state.
+If there are buried jobs, it will kick up to $max of them.
+Otherwise, it will kick up to $max delayed jobs.</p>
+</section>
 
 
 
 
 
 
+<h3 id="interfaces_class_traits">
+    Interfaces, Classes, Traits and Enums
+    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
+</h3>
 
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Pheanstalk\Contract\CommandInterface">CommandInterface</abbr></dt>
+        <dd></dd>
+    
+    
+    
+    </dl>
 
 
 <h3 id="toc">
@@ -154,10 +170,31 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                        <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Exception-ServerBadFormatException.html#method___construct">__construct()</a>
+                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Pheanstalk-Command-KickCommand.html#property_max">$max</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+<dd></dd>
+
+                <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Pheanstalk-Command-KickCommand.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Pheanstalk-Command-KickCommand.html#method_getCommandLine">getCommandLine()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Pheanstalk-Command-KickCommand.html#method_interpret">interpret()</a>
+    <span>
+                                &nbsp;: int    </span>
 </dt>
 <dd></dd>
 
@@ -168,11 +205,51 @@
         
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/Pheanstalk-Command-KickCommand.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_max">
+        $max
+        <a href="classes/Pheanstalk-Command-KickCommand.html#property_max" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickCommand.php"><a href="files/src-command-kickcommand.html"><abbr title="src/Command/KickCommand.php">KickCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$max</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Pheanstalk-Exception-ServerBadFormatException.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Pheanstalk-Command-KickCommand.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -182,27 +259,27 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Pheanstalk-Exception-ServerBadFormatException.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Command-KickCommand.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Exception/ServerBadFormatException.php"><a href="files/src-exception-serverbadformatexception.html"><abbr title="src/Exception/ServerBadFormatException.php">ServerBadFormatException.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickCommand.php"><a href="files/src-command-kickcommand.html"><abbr title="src/Command/KickCommand.php">KickCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$commandLine</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
         <section class="phpdocumentor-description"></section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$commandLine</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$max</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"></section>
@@ -214,6 +291,83 @@
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getCommandLine">
+        getCommandLine()
+        <a href="classes/Pheanstalk-Command-KickCommand.html#method_getCommandLine" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickCommand.php"><a href="files/src-command-kickcommand.html"><abbr title="src/Command/KickCommand.php">KickCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">27</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getCommandLine</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_interpret">
+        interpret()
+        <a href="classes/Pheanstalk-Command-KickCommand.html#method_interpret" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Command/KickCommand.php"><a href="files/src-command-kickcommand.html"><abbr title="src/Command/KickCommand.php">KickCommand.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">32</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">interpret</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$response</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$response</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
         
     
@@ -296,7 +450,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Pheanstalk-Exception-ServerBadFormatException.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Pheanstalk-Command-KickCommand.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

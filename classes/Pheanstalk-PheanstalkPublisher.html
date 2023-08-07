@@ -130,7 +130,7 @@
     
             <span class="phpdocumentor-element__extends">
             Uses
-                            <a href="classes/Pheanstalk-StaticFactoryTrait.html"><abbr title="\Pheanstalk\StaticFactoryTrait">StaticFactoryTrait</abbr></a>                    </span>
+                            <abbr title="\Pheanstalk\StaticFactoryTrait">StaticFactoryTrait</abbr>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
@@ -169,27 +169,6 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-StaticFactoryTrait.html#method___construct">__construct()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-StaticFactoryTrait.html#method_create">create()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd>Static constructor that uses auto-detection to choose an underlying socket implementation</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-StaticFactoryTrait.html#method_createWithFactory">createWithFactory()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-<dd>Static constructor that uses a given socket factory for underlying connections</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-PheanstalkPublisher.html#method_listTubeUsed">listTubeUsed()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>    </span>
@@ -223,162 +202,6 @@
             Methods
             <a href="classes/Pheanstalk-PheanstalkPublisher.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/Pheanstalk-StaticFactoryTrait.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/StaticFactoryTrait.php"><a href="files/src-staticfactorytrait.html"><abbr title="src/StaticFactoryTrait.php">StaticFactoryTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">12</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Pheanstalk\Connection">Connection</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connection</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$connection</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Pheanstalk\Connection">Connection</abbr></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_create">
-        create()
-        <a href="classes/Pheanstalk-StaticFactoryTrait.html#method_create" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/StaticFactoryTrait.php"><a href="files/src-staticfactorytrait.html"><abbr title="src/StaticFactoryTrait.php">StaticFactoryTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">18</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Static constructor that uses auto-detection to choose an underlying socket implementation</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">11300</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connectTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receiveTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$host</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$port</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">11300</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$connectTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$receiveTimeout</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_createWithFactory">
-        createWithFactory()
-        <a href="classes/Pheanstalk-StaticFactoryTrait.html#method_createWithFactory" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/StaticFactoryTrait.php"><a href="files/src-staticfactorytrait.html"><abbr title="src/StaticFactoryTrait.php">StaticFactoryTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">30</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Static constructor that uses a given socket factory for underlying connections</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createWithFactory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$factory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$factory</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">self</span>
-            &mdash;
-        
-    
-</article>
                     <article
         class="phpdocumentor-element
             -method
