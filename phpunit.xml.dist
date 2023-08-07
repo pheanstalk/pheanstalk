@@ -14,4 +14,11 @@
       <directory>./src</directory>
     </include>
   </source>
+  <php>
+    <ini name="display_errors" value="true"/>
+    <!-- error_reporting(E_ALL) -->
+    <ini name="error_reporting" value="32767"/>
+    <server name="SERVER_HOST" value="beanstalk"/>
+    <server name="UNIX_SERVER_HOST" value="unix:///shared/beanstalkd.sock"/>
+  </php>
 </phpunit>

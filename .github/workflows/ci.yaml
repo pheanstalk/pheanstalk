@@ -1,5 +1,5 @@
 ---
-name: Continous integration
+name: Continuous integration
 on:
   pull_request:
     branches:
@@ -9,18 +9,22 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.1', '8.2' ]
     steps:
-      - run: ls -la /tmp/
       - uses: actions/checkout@v3
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
-          tools: phpunit
+          php-version: ${{ matrix.php }}
       - name: Install dependencies including dev
-        run: composer install
+        uses: ramsey/composer-install@v2
       - name: Tests
         run: composer test
+        env:
+          PHP_VERSION: ${{ matrix.php }}
       - uses: codecov/codecov-action@v3.1.1
         with:
           files: ./tests/coverage/coverage.xml
@@ -35,11 +39,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: symplify/easy-coding-standard
+      - uses: ramsey/composer-install@v2
       - name: Test code style
-        run: ecs
-  static_analysis_src:
-    name: Static analysis of source
+        run: vendor/bin/ecs
+  static_analysis:
+    name: Static analysis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -47,26 +51,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: phpstan, psalm
       - name: Install dependencies
-        run: composer install --no-dev
+        uses: ramsey/composer-install@v2
       - name: Static analysis (phpstan)
-        run: phpstan analyse src
+        run: vendor/bin/phpstan
       - name: Static analysis (psalm)
-        run: psalm src/
-  static_analysis_tests:
-    name: Static analysis of tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          tools: phpstan, psalm
-      - name: Install dependencies including dev
-        run: composer install
-      - name: Static analysis of tests (psalm)
-        run: psalm tests/
-      - name: Static analysis of tests (phpstan)
-        run: phpstan analyse tests
+        run: vendor/bin/psalm

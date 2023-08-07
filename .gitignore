@@ -10,3 +10,4 @@ vendor/
 tests/coverage
 .idea
 .phpunit.result.cache
+.phpunit.cache
