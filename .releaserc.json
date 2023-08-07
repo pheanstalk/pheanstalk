@@ -5,6 +5,7 @@
       "range" : "4.x"
     },
     { "name": "v5",
+      "range": "5.x",
       "prerelease": "beta",
       "channel": "beta"
     }
