@@ -18,6 +18,8 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-phpunit
+      args:
+        PHP_VERSION: "${PHP_VERSION:-8.1}"
     environment:
       SERVER_HOST: beanstalk
       UNIX_SERVER_HOST: unix:///shared/beanstalkd.sock

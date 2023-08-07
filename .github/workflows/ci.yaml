@@ -19,11 +19,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: sockets pcov
       - name: Install dependencies including dev
         uses: ramsey/composer-install@v2
       - name: Tests
-        run: composer phpunit-native
+        run: composer test
+        env:
+          PHP_VERSION: ${{ matrix.php }}
       - uses: codecov/codecov-action@v3.1.1
         with:
           files: ./tests/coverage/coverage.xml
