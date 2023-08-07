@@ -51,7 +51,7 @@ class ConnectionTest extends TestCase
 
         $socket->expects(self::once())
             ->method('getLine')
-            ->will(self::returnValue($line));
+            ->willReturn($line);
 
         $socket->expects(self::once())->method('write');
 
