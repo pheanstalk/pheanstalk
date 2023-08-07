@@ -6,7 +6,7 @@ namespace Pheanstalk\Exception;
 
 use Pheanstalk\Values\ResponseType;
 
-class UnsupportedResponseException extends ClientException
+final class UnsupportedResponseException extends ClientException
 {
     public function __construct(ResponseType|null $type = null)
     {

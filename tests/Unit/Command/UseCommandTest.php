@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\UseCommand
  */
-class UseCommandTest extends TubeCommandTestBase
+final class UseCommandTest extends TubeCommandTestBase
 {
     public function testInterpretUsing(): void
     {

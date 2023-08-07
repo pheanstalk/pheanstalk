@@ -18,7 +18,6 @@ use Pheanstalk\Values\ResponseType;
  *
  * @see UseCommand
  *
- * @internal
  */
 final class PutCommand implements CommandInterface, CommandWithDataInterface
 {

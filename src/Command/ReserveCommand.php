@@ -19,7 +19,6 @@ use Pheanstalk\Values\ResponseType;
  *
  * Reserves/locks a ready job in a watched tube.
  *
- * @internal
  */
 final class ReserveCommand implements CommandInterface
 {

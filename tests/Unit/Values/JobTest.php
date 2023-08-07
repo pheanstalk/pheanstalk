@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\Job
  */
-class JobTest extends TestCase
+final class JobTest extends TestCase
 {
     public function testConstructor(): void
     {

@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\TubeCommandTemplate
  */
-class TubeCommandTemplateTest extends TestCase
+final class TubeCommandTemplateTest extends TestCase
 {
     public function testMissingPlaceholder(): void
     {

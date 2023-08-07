@@ -8,8 +8,9 @@ namespace Pheanstalk\Parser;
  * A parser that parses Yaml a simple dictionary
  * This is a very basic implementation that only supports single line strings and not any of the advanced YAML features
  * like multiline strings.
+ * @internal
  */
-class YamlDictionaryParser
+final class YamlDictionaryParser
 {
     /**
      * @return array<string, bool|float|int|string>

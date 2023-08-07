@@ -12,7 +12,7 @@ use Traversable;
  * @codeCoverageIgnore Remove this annotation if any significant functionality gets added to this class.
  * @implements \IteratorAggregate<int, TubeName>
  */
-class TubeList implements \IteratorAggregate
+final class TubeList implements \IteratorAggregate
 {
     /**
      * @var list<TubeName>

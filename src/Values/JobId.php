@@ -10,7 +10,7 @@ use Pheanstalk\Contract\JobIdInterface;
 /**
  * This class implements a value object for beanstalkd job IDs.
  */
-class JobId implements JobIdInterface
+final class JobId implements JobIdInterface
 {
     private readonly string $id;
 

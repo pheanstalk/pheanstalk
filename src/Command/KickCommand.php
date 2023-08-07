@@ -17,7 +17,6 @@ use Pheanstalk\Values\ResponseType;
  * If there are buried jobs, it will kick up to $max of them.
  * Otherwise, it will kick up to $max delayed jobs.
  *
- * @internal
  */
 final class KickCommand implements CommandInterface
 {

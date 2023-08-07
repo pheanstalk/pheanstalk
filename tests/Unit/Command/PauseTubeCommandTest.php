@@ -12,7 +12,7 @@ use Pheanstalk\Values\TubeName;
 /**
  * @covers \Pheanstalk\Command\PauseTubeCommand
  */
-class PauseTubeCommandTest extends TubeCommandTestBase
+final class PauseTubeCommandTest extends TubeCommandTestBase
 {
     public function testInterpretPaused(): void
     {

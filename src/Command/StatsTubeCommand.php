@@ -16,7 +16,6 @@ use Pheanstalk\Values\TubeStats;
 /**
  * The 'stats-tube' command.
  * Gives statistical information about the specified tube if it exists.
- * @internal
  */
 final class StatsTubeCommand extends TubeCommand
 {

@@ -9,7 +9,7 @@ use Pheanstalk\Contract\JobIdInterface;
 /**
  * A job in a beanstalkd server.
  */
-class Job implements JobIdInterface
+final class Job implements JobIdInterface
 {
     private readonly JobIdInterface $id;
     public function __construct(

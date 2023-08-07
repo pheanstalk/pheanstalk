@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\Timeout
  */
-class TimeoutTest extends TestCase
+final class TimeoutTest extends TestCase
 {
     public function testToFloat(): void
     {

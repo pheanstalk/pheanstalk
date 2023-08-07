@@ -18,7 +18,6 @@ use Pheanstalk\Values\TubeName;
  * the tube specified by this command. If no use command has been issued, jobs
  * will be put into the tube named "default".
  *
- * @internal
  */
 final class UseCommand extends TubeCommand
 {

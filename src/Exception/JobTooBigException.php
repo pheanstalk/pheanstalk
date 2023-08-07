@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Pheanstalk\Exception;
 
 /**
- * Indicates that the given job body is larger then the servers configured max-job-size
+ * Indicates that the given job body is larger than the servers configured max-job-size
  */
-class JobTooBigException extends ClientException
+final class JobTooBigException extends ClientException
 {
 }

@@ -14,7 +14,6 @@ use Pheanstalk\Values\TubeCommandTemplate;
  * The 'watch' command.
  * Adds a tube to the watchlist to reserve jobs from.
  *
- * @internal
  */
 final class WatchCommand extends TubeCommand
 {

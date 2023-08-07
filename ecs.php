@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 // ecs.php
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\ClassNotation\FinalInternalClassFixer;
+use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
 use PhpCsFixer\Fixer\LanguageConstruct\SingleSpaceAfterConstructFixer;
+use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -23,6 +26,13 @@ return static function (ECSConfig $config): void {
     $config->import(SetList::CLEAN_CODE);
 
     $config->ruleWithConfiguration(ArraySyntaxFixer::class, ['syntax' => 'short']);
+    $config->rule(NoUnusedImportsFixer::class);
+    $config->rule(DeclareStrictTypesFixer::class);
+    $config->ruleWithConfiguration(FinalInternalClassFixer::class, [
+        'annotation_exclude' => ['@extensible'],
+        'annotation_include' => [],
+        'consider_absent_docblock_as_internal_class' => \true
+    ]);
     $config->rule(SingleSpaceAfterConstructFixer::class);
     $config->lineEnding("\n");
 };

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\JobStats
  */
-class JobStatsTest extends TestCase
+final class JobStatsTest extends TestCase
 {
     private const SAMPLE = [
         'id' => 123,

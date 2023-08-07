@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\JobCommandTemplate
  */
-class JobCommandTemplateTest extends TestCase
+final class JobCommandTemplateTest extends TestCase
 {
     public function testMissingPlaceholder(): void
     {

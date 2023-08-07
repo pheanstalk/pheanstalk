@@ -17,7 +17,6 @@ use Pheanstalk\Values\TubeName;
  * The 'list-tubes' command.
  *
  * List all existing tubes.
- * @internal
  */
 final class ListTubesCommand implements CommandInterface
 {

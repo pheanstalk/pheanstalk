@@ -19,7 +19,6 @@ use Pheanstalk\Values\Success;
  * may periodically tell the server that it's still alive and processing a job
  * (e.g. it may do this on DEADLINE_SOON).
  *
- * @internal
  */
 final class TouchCommand extends JobCommand
 {

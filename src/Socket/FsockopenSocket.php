@@ -10,8 +10,9 @@ use Pheanstalk\Values\Timeout;
 
 /**
  * A Socket implementation using the fsockopen
+ * @internal
  */
-class FsockopenSocket extends FileSocket
+final class FsockopenSocket extends FileSocket
 {
     public function __construct(
         string $host,

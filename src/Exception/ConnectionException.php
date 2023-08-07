@@ -7,7 +7,7 @@ namespace Pheanstalk\Exception;
 /**
  * An exception relating to the client connection to the beanstalkd server.
  */
-class ConnectionException extends ClientException
+final class ConnectionException extends ClientException
 {
     /**
      * @param int    $errno  The connection error code

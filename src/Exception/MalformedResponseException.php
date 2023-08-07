@@ -7,7 +7,7 @@ namespace Pheanstalk\Exception;
 /**
  * An exception indicating that the beanstalkd server sent a response in an incorrect or unsupported format
  */
-class MalformedResponseException extends ClientException
+final class MalformedResponseException extends ClientException
 {
     public static function expectedDataAndIntegerArgument(): self
     {

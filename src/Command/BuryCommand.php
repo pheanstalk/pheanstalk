@@ -15,7 +15,6 @@ use Pheanstalk\Values\Success;
 /**
  * The 'bury' command.
  * Puts a job into a 'buried' state, revived only by 'kick' command.
- * @internal
  */
 final class BuryCommand extends JobCommand
 {

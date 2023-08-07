@@ -14,7 +14,6 @@ use Pheanstalk\Values\Success;
 /**
  * The 'delete' command.
  * Permanently deletes an already-reserved job.
- * @internal
  */
 final class DeleteCommand extends JobCommand
 {

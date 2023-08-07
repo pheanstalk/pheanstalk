@@ -16,7 +16,6 @@ use Pheanstalk\Values\TubeName;
  * The 'pause-tube' command.
  *
  * Temporarily prevent jobs being reserved from the given tube.
- * @internal
  */
 final class PauseTubeCommand extends TubeCommand
 {

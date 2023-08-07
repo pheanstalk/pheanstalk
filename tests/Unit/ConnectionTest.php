@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
  * Relies on a running beanstalkd server.
  * @covers \Pheanstalk\Connection
  */
-class ConnectionTest extends TestCase
+final class ConnectionTest extends TestCase
 {
     public function testDisconnect(): void
     {

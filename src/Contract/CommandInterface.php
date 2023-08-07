@@ -16,6 +16,7 @@ use Pheanstalk\Values\TubeStats;
 
 /**
  * A command to be sent to the beanstalkd server, and response processing logic.
+ * @internal
  */
 interface CommandInterface
 {

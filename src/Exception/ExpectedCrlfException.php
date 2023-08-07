@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Exception;
 
-class ExpectedCrlfException extends ClientException
+final class ExpectedCrlfException extends ClientException
 {
 }

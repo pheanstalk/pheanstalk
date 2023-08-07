@@ -7,6 +7,9 @@ namespace Pheanstalk;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Values\Timeout;
 
+/**
+ * @internal
+ */
 trait StaticFactoryTrait
 {
     public function __construct(private readonly Connection $connection)

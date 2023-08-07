@@ -12,7 +12,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\KickCommand
  */
-class KickCommandTest extends CommandTestBase
+final class KickCommandTest extends CommandTestBase
 {
     public function testInterpretKicked(): void
     {
