@@ -18,7 +18,6 @@ use Pheanstalk\Values\ResponseType;
  *
  * Gives statistical information about the specified job if it exists.
  *
- * @internal
  */
 final class StatsJobCommand extends JobCommand
 {

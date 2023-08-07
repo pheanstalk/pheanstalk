@@ -20,7 +20,6 @@ use Pheanstalk\Values\Success;
  * The peek commands let the client inspect a job in the system. There are four
  * variations. All but the first (peek) operate only on the currently used tube.
  *
- * @internal
  */
 final class PeekCommand implements CommandInterface
 {

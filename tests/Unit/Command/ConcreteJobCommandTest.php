@@ -16,7 +16,7 @@ use Pheanstalk\Values\ResponseType;
 /**
  * @covers \Pheanstalk\Command\JobCommand
  */
-class ConcreteJobCommandTest extends JobCommandTestBase
+final class ConcreteJobCommandTest extends JobCommandTestBase
 {
     protected static function getSupportedResponses(): array
     {

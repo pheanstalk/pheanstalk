@@ -18,7 +18,11 @@ use Pheanstalk\Values\TubeName;
 use Pheanstalk\Values\TubeStats;
 
 /**
- * Pheanstalk is a PHP client for the beanstalkd workqueue.
+ * Pheanstalk is a PHP client for the beanstalkd work queue.
+ * This class implements all functionality in one big object.
+ * It is recommended to instead inject instances of the more specific interface implementations.
+ * For example, your frontend is unlikely to subscribe to requests so probably does not need `PheanstalkPublisherInterface`
+ * or `PheanstalkManagerInterface`.
  */
 final class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublisherInterface, PheanstalkSubscriberInterface
 {

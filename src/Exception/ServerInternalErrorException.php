@@ -7,6 +7,6 @@ namespace Pheanstalk\Exception;
 /**
  * An exception originating as a beanstalkd server error.
  */
-class ServerInternalErrorException extends ServerException
+final class ServerInternalErrorException extends ServerException
 {
 }

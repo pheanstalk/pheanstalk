@@ -7,6 +7,6 @@ namespace Pheanstalk\Exception;
 /**
  * An exception originating as a beanstalkd server error.
  */
-class ServerOutOfMemoryException extends ServerException
+final class ServerOutOfMemoryException extends ServerException
 {
 }

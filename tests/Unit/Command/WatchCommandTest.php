@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\WatchCommand
  */
-class WatchCommandTest extends TubeCommandTestBase
+final class WatchCommandTest extends TubeCommandTestBase
 {
     public function testInterpretWatching(): void
     {

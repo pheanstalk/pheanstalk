@@ -18,7 +18,6 @@ use Pheanstalk\Values\Success;
  * The 'reserve' command.
  * Reserves/locks a ready job in a watched tube.
  *
- * @internal
  */
 final class ReserveWithTimeoutCommand implements CommandInterface
 {

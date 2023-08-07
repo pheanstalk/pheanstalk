@@ -9,7 +9,7 @@ use Pheanstalk\Contract\JobIdInterface;
 /**
  * Indicates that the given job body was buried due to the server being OOM
  */
-class JobBuriedException extends ClientException
+final class JobBuriedException extends ClientException
 {
     public function __construct(public readonly JobIdInterface $jobId)
     {

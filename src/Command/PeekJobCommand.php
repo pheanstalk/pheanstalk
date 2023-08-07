@@ -18,7 +18,6 @@ use Pheanstalk\Values\ResponseType;
  *
  * The peek command let the client inspect a specific job in the system.
  *
- * @internal
  */
 final class PeekJobCommand extends JobCommand
 {

@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 /**
  * @covers \Pheanstalk\Command\IgnoreCommand
  */
-class IgnoreCommandTest extends TubeCommandTestBase
+final class IgnoreCommandTest extends TubeCommandTestBase
 {
     public function testInterpretWatching(): void
     {

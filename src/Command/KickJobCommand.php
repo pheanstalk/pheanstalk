@@ -20,7 +20,6 @@ use Pheanstalk\Values\Success;
  * exists and is in a buried or delayed state, it will be moved to the
  * ready queue of the same tube where it currently belongs.
  *
- * @internal
  */
 final class KickJobCommand extends JobCommand
 {

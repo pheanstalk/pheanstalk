@@ -7,7 +7,7 @@ namespace Pheanstalk\Exception;
 /**
  * An exception originating as a beanstalkd server error.
  */
-class ServerBadFormatException extends ServerException
+final class ServerBadFormatException extends ServerException
 {
     public function __construct(string $commandLine)
     {

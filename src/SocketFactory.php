@@ -14,7 +14,7 @@ use Pheanstalk\Socket\StreamSocket;
 use Pheanstalk\Values\SocketImplementation;
 use Pheanstalk\Values\Timeout;
 
-class SocketFactory implements SocketFactoryInterface
+final class SocketFactory implements SocketFactoryInterface
 {
     private const DEFAULT_TIMEOUT = 10;
     public readonly SocketImplementation $implementation;

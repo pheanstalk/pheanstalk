@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Pheanstalk\Values;
 
 /**
- * Wraps the parts of a response to a beanstalkd
+ * Wraps the parts of a response to a beanstalkd command
  */
-class RawResponse
+final class RawResponse
 {
     public readonly int|string|null $argument;
 

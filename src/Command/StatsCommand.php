@@ -17,7 +17,6 @@ use Pheanstalk\Values\ServerStats;
  *
  * Statistical information about the system as a whole.
  *
- * @internal
  */
 final class StatsCommand implements CommandInterface
 {

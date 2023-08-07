@@ -14,7 +14,6 @@ use Pheanstalk\Values\TubeCommandTemplate;
 /**
  * The 'ignore' command.
  * Removes a tube from the watch list to reserve jobs from.
- * @internal
  */
 final class IgnoreCommand extends TubeCommand
 {

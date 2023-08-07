@@ -10,8 +10,9 @@ use Pheanstalk\Values\Timeout;
 
 /**
  * A Socket implementation using the Streams extension
+ * @internal
  */
-class StreamSocket extends FileSocket
+final class StreamSocket extends FileSocket
 {
     public function __construct(
         string $host,

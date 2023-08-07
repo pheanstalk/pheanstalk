@@ -11,6 +11,7 @@ use Pheanstalk\Values\Timeout;
 
 /**
  * A Socket implementation using the standard file functions.
+ * @internal
  */
 abstract class FileSocket implements SocketInterface
 {

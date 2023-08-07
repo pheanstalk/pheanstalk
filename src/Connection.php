@@ -23,7 +23,7 @@ use Pheanstalk\Values\ResponseType;
  * - dispatching commands
  * - parsing the response into a RawResponse object
  */
-class Connection
+final class Connection
 {
     private const CRLF = "\r\n";
     private const CRLF_LENGTH = 2;

@@ -14,7 +14,6 @@ use Pheanstalk\Values\ResponseType;
 
 /**
  * The 'reserve-job' command.
- * @internal
  */
 final class ReserveJobCommand extends JobCommand
 {

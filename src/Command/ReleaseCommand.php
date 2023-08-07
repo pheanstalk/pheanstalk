@@ -17,7 +17,6 @@ use Pheanstalk\Values\Success;
  *
  * Releases a reserved job back onto the ready queue.
  *
- * @internal
  */
 final class ReleaseCommand extends JobCommand
 {

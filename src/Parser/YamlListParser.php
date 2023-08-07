@@ -8,8 +8,9 @@ namespace Pheanstalk\Parser;
  * A parser that parses Yaml lists of strings
  * This is a very basic implementation that only supports single line strings and not any of the advanced YAML features
  * like multiline strings.
+ * @internal
  */
-class YamlListParser
+final class YamlListParser
 {
     /**
      * @param string $data

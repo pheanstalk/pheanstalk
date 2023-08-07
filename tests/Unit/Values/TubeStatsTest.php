@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\TubeStats
  */
-class TubeStatsTest extends TestCase
+final class TubeStatsTest extends TestCase
 {
     private const SAMPLE = [
         'name' => 'tubename',

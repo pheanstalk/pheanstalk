@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\RawResponse
  */
-class RawResponseTest extends TestCase
+final class RawResponseTest extends TestCase
 {
     public function testNumericStringsAreCast(): void
     {

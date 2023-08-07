@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Values;
 
-class ServerStats
+final class ServerStats
 {
     private const KEYS = [
         'current-jobs-urgent',

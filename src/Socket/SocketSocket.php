@@ -12,8 +12,9 @@ use Socket;
 
 /**
  * A Socket implementation using the Sockets extension
+ * @internal
  */
-class SocketSocket implements SocketInterface
+final class SocketSocket implements SocketInterface
 {
     private readonly null|\Socket $socket;
 

@@ -17,7 +17,6 @@ use Pheanstalk\Values\TubeName;
  * The 'list-tubes-watched' command.
  *
  * Lists the tubes on the watchlist.
- * @internal
  */
 final class ListTubesWatchedCommand implements CommandInterface
 {

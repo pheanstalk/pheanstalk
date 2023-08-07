@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Pheanstalk\Values\JobId
  */
-class JobIdTest extends TestCase
+final class JobIdTest extends TestCase
 {
     /**
      * @return list<array{0: string|int}>

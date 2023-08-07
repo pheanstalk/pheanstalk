@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Values;
 
-class TubeStats
+final class TubeStats
 {
     private const KEYS = [
         'name',

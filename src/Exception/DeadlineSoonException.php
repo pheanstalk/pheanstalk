@@ -5,6 +5,6 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Exception;
 
-class DeadlineSoonException extends ClientException
+final class DeadlineSoonException extends ClientException
 {
 }

@@ -16,7 +16,6 @@ use Pheanstalk\Values\TubeName;
  *
  * Returns the tube currently being used by the client.
  *
- * @internal
  */
 final class ListTubeUsedCommand implements CommandInterface
 {
