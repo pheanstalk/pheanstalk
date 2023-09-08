@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,7 +53,7 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -107,8 +108,9 @@
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk.html">Pheanstalk</a></li>
     </ul>
 
@@ -126,9 +128,16 @@
     
             <span class="phpdocumentor-element__implements">
             implements
-                            <a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a>,                             <a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a>,                             <abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr>                    </span>
+                            <a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a>,                             <a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a>,                             <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr></a>                    </span>
     
     </h2>
+
+<div class="phpdocumentor-label-line">
+
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Final</span><span>Yes</span></div>
+
+
+</div>
 
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -149,72 +158,77 @@ or <code class="prettyprint">PheanstalkManagerInterface</code>.</p>
 
 
 
-
-<h3 id="interfaces_class_traits">
-    Interfaces, Classes, Traits and Enums
-    <a href="#interfaces_class_traits" class="headerlink"><i class="fas fa-link"></i></a>
-</h3>
-
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a></dt>
-        <dd></dd>
-            <dt class="phpdocumentor-table-of-contents__entry -interface"><abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr></dt>
-        <dd></dd>
-    
-    
-    
-    </dl>
-
-
 <h3 id="toc">
     Table of Contents
-    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Pheanstalk-Pheanstalk.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
 </h3>
 
+
+
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/Pheanstalk-Pheanstalk.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr></a></dt>    </dl>
+
+
+
+
+
+
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/Pheanstalk-Pheanstalk.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Pheanstalk-Pheanstalk.html#property_connection">$connection</a>
     <span>
-                        &nbsp;: <abbr title="\Pheanstalk\Connection">Connection</abbr>            </span>
+                        &nbsp;: <a href="classes/Pheanstalk-Connection.html"><abbr title="\Pheanstalk\Connection">Connection</abbr></a>            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Pheanstalk-Pheanstalk.html#property_manager">$manager</a>
     <span>
                         &nbsp;: <a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a>            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Pheanstalk-Pheanstalk.html#property_publisher">$publisher</a>
     <span>
                         &nbsp;: <a href="classes/Pheanstalk-Contract-PheanstalkPublisherInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkPublisherInterface">PheanstalkPublisherInterface</abbr></a>            </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a href="classes/Pheanstalk-Pheanstalk.html#property_subscriber">$subscriber</a>
     <span>
-                        &nbsp;: <abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr>            </span>
+                        &nbsp;: <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr></a>            </span>
 </dt>
-<dd></dd>
 
-                <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    </dl>
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/Pheanstalk-Pheanstalk.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_bury">bury()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Puts a job into a &#039;buried&#039; state, revived only by &#039;kick&#039; command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_create">create()</a>
@@ -235,14 +249,14 @@ or <code class="prettyprint">PheanstalkManagerInterface</code>.</p>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Permanently deletes a job.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_ignore">ignore()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
-<dd></dd>
+<dd>Remove the specified tube from the watchlist.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_kick">kick()</a>
@@ -272,7 +286,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a>    </span>
 </dt>
-<dd></dd>
+<dd>The names of the tubes being watched, to reserve jobs from.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_listTubeUsed">listTubeUsed()</a>
@@ -328,28 +342,28 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Puts a reserved job back into the ready queue.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_reserve">reserve()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
-<dd></dd>
+<dd>Reserves/locks a ready job in a watched tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_reserveJob">reserveJob()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
-<dd></dd>
+<dd>Reserves/locks a specific job</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_reserveWithTimeout">reserveWithTimeout()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null    </span>
 </dt>
-<dd></dd>
+<dd>Reserves/locks a ready job in a watched tube, uses the &#039;reserve-with-timeout&#039; instead of &#039;reserve&#039;.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_resumeTube">resumeTube()</a>
@@ -384,7 +398,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Allows a worker to request more time to work on a job.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Pheanstalk-Pheanstalk.html#method_useTube">useTube()</a>
@@ -398,9 +412,10 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span>
                                 &nbsp;: int    </span>
 </dt>
-<dd></dd>
+<dd>Add the specified tube to the watchlist, to reserve jobs from.</dd>
 
-        </dl>
+    </dl>
+
 
 
 
@@ -411,6 +426,7 @@ ready queue of the the same tube where it currently belongs.</dd>
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
             <a href="classes/Pheanstalk-Pheanstalk.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -422,6 +438,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="property_connection">
         $connection
         <a href="classes/Pheanstalk-Pheanstalk.html#property_connection" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                         <small class="phpdocumentor-element__modifier">read-only</small>        </span>
     </h4>
@@ -435,14 +452,12 @@ ready queue of the the same tube where it currently belongs.</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Pheanstalk\Connection">Connection</abbr></span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Connection.html"><abbr title="\Pheanstalk\Connection">Connection</abbr></a></span>
     <span class="phpdocumentor-signature__name">$connection</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -456,6 +471,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="property_manager">
         $manager
         <a href="classes/Pheanstalk-Pheanstalk.html#property_manager" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -473,10 +489,8 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span class="phpdocumentor-signature__name">$manager</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -490,6 +504,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="property_publisher">
         $publisher
         <a href="classes/Pheanstalk-Pheanstalk.html#property_publisher" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -507,10 +522,8 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span class="phpdocumentor-signature__name">$publisher</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -524,6 +537,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="property_subscriber">
         $subscriber
         <a href="classes/Pheanstalk-Pheanstalk.html#property_subscriber" class="headerlink"><i class="fas fa-link"></i></a>
+
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -537,14 +551,12 @@ ready queue of the the same tube where it currently belongs.</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr></span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkSubscriberInterface">PheanstalkSubscriberInterface</abbr></a></span>
     <span class="phpdocumentor-signature__name">$subscriber</span>
     </code>
 
-        <section class="phpdocumentor-description"></section>
-
-        <section class="phpdocumentor-description"></section>
-
+    
+    
     
 
 </article>
@@ -554,6 +566,7 @@ ready queue of the the same tube where it currently belongs.</dd>
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
             <a href="classes/Pheanstalk-Pheanstalk.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="phpdocumentor-element
@@ -564,6 +577,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
         <a href="classes/Pheanstalk-Pheanstalk.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -575,28 +589,24 @@ ready queue of the the same tube where it currently belongs.</dd>
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Pheanstalk\Connection">Connection</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connection</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Connection.html"><abbr title="\Pheanstalk\Connection">Connection</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connection</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$connection</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Pheanstalk\Connection">Connection</abbr></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Connection.html"><abbr title="\Pheanstalk\Connection">Connection</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -608,6 +618,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method_bury">
         bury()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_bury" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -616,13 +627,15 @@ ready queue of the the same tube where it currently belongs.</dd>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Puts a job into a &#039;buried&#039; state, revived only by &#039;kick&#039; command.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">bury</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_PRIORITY</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -630,25 +643,19 @@ ready queue of the the same tube where it currently belongs.</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$priority</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_PRIORITY</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -660,6 +667,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method_create">
         create()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_create" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -674,6 +682,8 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$host</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$port</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">11300</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connectTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$receiveTimeout</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -682,42 +692,38 @@ ready queue of the the same tube where it currently belongs.</dd>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$port</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">11300</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$connectTimeout</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$receiveTimeout</span>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-Timeout.html"><abbr title="\Pheanstalk\Values\Timeout">Timeout</abbr></a></span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -728,6 +734,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method_createWithFactory">
         createWithFactory()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_createWithFactory" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -742,6 +749,8 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span class="phpdocumentor-signature__visibility">public</span>
             <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">createWithFactory</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$factory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -750,18 +759,17 @@ ready queue of the the same tube where it currently belongs.</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">static</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -772,6 +780,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method_delete">
         delete()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_delete" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -780,13 +789,15 @@ ready queue of the the same tube where it currently belongs.</dd>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Permanently deletes a job.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">delete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -794,17 +805,12 @@ ready queue of the the same tube where it currently belongs.</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -816,6 +822,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method_ignore">
         ignore()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_ignore" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -824,13 +831,15 @@ ready queue of the the same tube where it currently belongs.</dd>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Remove the specified tube from the watchlist.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">ignore</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -838,18 +847,21 @@ ready queue of the the same tube where it currently belongs.</dd>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The number of watched tubes for the connection</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -860,6 +872,7 @@ ready queue of the the same tube where it currently belongs.</dd>
     <h4 class="phpdocumentor-element__name" id="method_kick">
         kick()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_kick" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -874,6 +887,8 @@ ready queue of the the same tube where it currently belongs.</dd>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">kick</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><p>If there are buried jobs, it will kick up to $max of them.
 Otherwise, it will kick up to $max delayed jobs.</p>
 </section>
@@ -893,13 +908,15 @@ Otherwise, it will kick up to $max delayed jobs.</p>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Number of jobs kicked</p>
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Number of jobs kicked</p>
 </section>
 
-    
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -910,6 +927,7 @@ Otherwise, it will kick up to $max delayed jobs.</p>
     <h4 class="phpdocumentor-element__name" id="method_kickJob">
         kickJob()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_kickJob" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -926,6 +944,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">kickJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -934,17 +954,12 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -956,6 +971,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_listTubes">
         listTubes()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_listTubes" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -970,15 +986,17 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">listTubes</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -989,6 +1007,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_listTubesWatched">
         listTubesWatched()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_listTubesWatched" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -997,21 +1016,25 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">The names of the tubes being watched, to reserve jobs from.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">listTubesWatched</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span></code>
 
-        <section class="phpdocumentor-description"></section>
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Returns the watchlist, always queries the server</p>
+</section>
 
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1022,6 +1045,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_listTubeUsed">
         listTubeUsed()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_listTubeUsed" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1036,17 +1060,19 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">listTubeUsed</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
         <section class="phpdocumentor-description"><p>Always queries the server</p>
 </section>
 
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1057,6 +1083,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_pauseTube">
         pauseTube()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_pauseTube" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1071,6 +1098,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">pauseTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1079,8 +1108,7 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$delay</span>
@@ -1095,10 +1123,6 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1110,6 +1134,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_peek">
         peek()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_peek" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1124,6 +1149,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">peek</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1132,18 +1159,17 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1154,6 +1180,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_peekBuried">
         peekBuried()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_peekBuried" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1168,15 +1195,17 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">peekBuried</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1187,6 +1216,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_peekDelayed">
         peekDelayed()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_peekDelayed" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1201,15 +1231,17 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">peekDelayed</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1220,6 +1252,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_peekReady">
         peekReady()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_peekReady" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1234,15 +1267,17 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">peekReady</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1253,6 +1288,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_put">
         put()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_put" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1267,6 +1303,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">put</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_PRIORITY</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_DELAY</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$timeToRelease</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">self::DEFAULT_TTR</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1310,11 +1348,11 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1325,6 +1363,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_release">
         release()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_release" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1333,12 +1372,17 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Puts a reserved job back into the ready queue.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">release</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$priority</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">PheanstalkPublisherInterface::DEFAULT_PRIORITY</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">PheanstalkPublisherInterface::DEFAULT_DELAY</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>Marks the jobs state as &quot;ready&quot; to be run by any client.
+It is normally used when the job fails because of a transitory error.</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1347,15 +1391,15 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$priority</span>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">PheanstalkPublisherInterface::DEFAULT_PRIORITY</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>From 0 (most urgent) to 0xFFFFFFFF (least urgent)</p>
+</section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1363,17 +1407,14 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                  = <span class="phpdocumentor-signature__argument__default-value">PheanstalkPublisherInterface::DEFAULT_DELAY</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>Seconds to wait before job becomes ready</p>
+</section>
 
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1385,6 +1426,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_reserve">
         reserve()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_reserve" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1393,21 +1435,23 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Reserves/locks a ready job in a watched tube.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">reserve</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
+    
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1418,6 +1462,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_reserveJob">
         reserveJob()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_reserveJob" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1426,13 +1471,15 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Reserves/locks a specific job</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">reserveJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1440,18 +1487,17 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1462,6 +1508,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_reserveWithTimeout">
         reserveWithTimeout()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_reserveWithTimeout" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1470,12 +1517,19 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Reserves/locks a ready job in a watched tube, uses the &#039;reserve-with-timeout&#039; instead of &#039;reserve&#039;.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">reserveWithTimeout</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$timeout</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span></code>
 
-        <section class="phpdocumentor-description"></section>
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>A timeout value of 0 will cause the server to immediately return either a
+response or TIMED_OUT.  A positive value of timeout will limit the amount of
+time the client will block on the reserve request until a job becomes
+available.</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1484,18 +1538,17 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1506,6 +1559,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_resumeTube">
         resumeTube()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_resumeTube" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1520,6 +1574,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">resumeTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1528,17 +1584,12 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1550,6 +1601,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_stats">
         stats()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_stats" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1564,15 +1616,17 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">stats</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1583,6 +1637,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_statsJob">
         statsJob()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_statsJob" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1597,6 +1652,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">statsJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1605,18 +1662,17 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1627,6 +1683,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_statsTube">
         statsTube()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_statsTube" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1641,6 +1698,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">statsTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1649,18 +1708,17 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></span>
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -1671,6 +1729,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_touch">
         touch()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_touch" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1679,12 +1738,19 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Allows a worker to request more time to work on a job.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">touch</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>This is useful for jobs that potentially take a long time, but you still want
+the benefits of a TTR pulling a job away from an unresponsive worker.  A worker
+may periodically tell the server that it's still alive and processing a job
+(e.g. it may do this on DEADLINE_SOON).</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1693,17 +1759,12 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1715,6 +1776,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_useTube">
         useTube()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_useTube" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1729,6 +1791,8 @@ ready queue of the the same tube where it currently belongs.</p>
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">useTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
+    <div class="phpdocumentor-label-line">
+        </div>
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1737,17 +1801,12 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
     
 </article>
                     <article
@@ -1759,6 +1818,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <h4 class="phpdocumentor-element__name" id="method_watch">
         watch()
         <a href="classes/Pheanstalk-Pheanstalk.html#method_watch" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Pheanstalk.php"><a href="files/src-pheanstalk.html"><abbr title="src/Pheanstalk.php">Pheanstalk.php</abbr></a></abbr>
@@ -1767,13 +1827,15 @@ ready queue of the the same tube where it currently belongs.</p>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Add the specified tube to the watchlist, to reserve jobs from.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">watch</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
-        <section class="phpdocumentor-description"></section>
-
+    <div class="phpdocumentor-label-line">
+        </div>
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1781,85 +1843,181 @@ ready queue of the the same tube where it currently belongs.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
+                
             </dd>
             </dl>
 
     
 
+            <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-        
-    
+        <span class="phpdocumentor-signature__response_type">int</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The number of watched tubes for the connection</p>
+</section>
+
+            </section>
+
 </article>
             </section>
 
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Pheanstalk.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                                
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#toc-methods">Methods</a></li>
+                                    </ul>
+            </li>
+            
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li><a href="classes/Pheanstalk-Pheanstalk.html#property_connection">$connection<a href="classes/Pheanstalk-Pheanstalk.html"></li>
+                                                    <li><a href="classes/Pheanstalk-Pheanstalk.html#property_manager">$manager<a href="classes/Pheanstalk-Pheanstalk.html"></li>
+                                                    <li><a href="classes/Pheanstalk-Pheanstalk.html#property_publisher">$publisher<a href="classes/Pheanstalk-Pheanstalk.html"></li>
+                                                    <li><a href="classes/Pheanstalk-Pheanstalk.html#property_subscriber">$subscriber<a href="classes/Pheanstalk-Pheanstalk.html"></li>
+                                            </ul>
+                </li>
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method___construct">__construct()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_bury">bury()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_create">create()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_createWithFactory">createWithFactory()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_delete">delete()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_ignore">ignore()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_kick">kick()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_kickJob">kickJob()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_listTubes">listTubes()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_listTubesWatched">listTubesWatched()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_listTubeUsed">listTubeUsed()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_pauseTube">pauseTube()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_peek">peek()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_peekBuried">peekBuried()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_peekDelayed">peekDelayed()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_peekReady">peekReady()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_put">put()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_release">release()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_reserve">reserve()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_reserveJob">reserveJob()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_reserveWithTimeout">reserveWithTimeout()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_resumeTube">resumeTube()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_stats">stats()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_statsJob">statsJob()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_statsTube">statsTube()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_touch">touch()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_useTube">useTube()</a></li>
+                                            <li><a href="classes/Pheanstalk-Pheanstalk.html#method_watch">watch()</a></li>
+                                    </ul>
+            </li>
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -1870,7 +2028,6 @@ ready queue of the the same tube where it currently belongs.</p>
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pheanstalk-Pheanstalk.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 

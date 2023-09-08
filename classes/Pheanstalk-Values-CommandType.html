@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/base.css">
             <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/template.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/line-highlight/prism-line-highlight.css">
                 <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
         <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="js/template.js"></script>
         <script src="js/search.js"></script>
         <script defer src="js/searchIndex.js"></script>
     </head>
@@ -52,7 +53,7 @@
 <label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
     Menu
 </label>
-<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
+<aside class="phpdocumentor-column -three phpdocumentor-sidebar">
                     <section class="phpdocumentor-sidebar__category">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -107,8 +108,9 @@
     </section>
 </aside>
 
-            <div class="phpdocumentor-column -eight phpdocumentor-content">
-                    <ul class="phpdocumentor-breadcrumbs">
+            <div class="phpdocumentor-column -nine phpdocumentor-content">
+                                <section>
+                                        <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk.html">Pheanstalk</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/pheanstalk-values.html">Values</a></li>
     </ul>
@@ -124,6 +126,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Pheanstalk.html">Pheanstalk</a></li>
                             </ul>
         </div>
     
@@ -138,12 +141,175 @@
     </aside>
 
         
-    <section class="phpdocumentor-description"></section>
 
 
 
 
 
+<h3 id="toc">
+    Table of Contents
+    <a href="classes/Pheanstalk-Values-CommandType.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h3>
+
+
+
+
+
+
+
+
+<h4 id="toc-cases">
+    Cases
+    <a href="classes/Pheanstalk-Values-CommandType.html#toc-cases" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_BURY">BURY</a>
+    <span>
+                &nbsp;= &#039;bury&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_DELETE">DELETE</a>
+    <span>
+                &nbsp;= &#039;delete&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_IGNORE">IGNORE</a>
+    <span>
+                &nbsp;= &#039;ignore&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_KICK">KICK</a>
+    <span>
+                &nbsp;= &#039;kick&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_KICK_JOB">KICK_JOB</a>
+    <span>
+                &nbsp;= &#039;kick-job&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBE_USED">LIST_TUBE_USED</a>
+    <span>
+                &nbsp;= &#039;list-tube-used&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBES">LIST_TUBES</a>
+    <span>
+                &nbsp;= &#039;list-tubes&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBES_WATCHED">LIST_TUBES_WATCHED</a>
+    <span>
+                &nbsp;= &#039;list-tubes-watched&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PAUSE_TUBE">PAUSE_TUBE</a>
+    <span>
+                &nbsp;= &#039;pause-tube&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK">PEEK</a>
+    <span>
+                &nbsp;= &#039;peek&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_BURIED">PEEK_BURIED</a>
+    <span>
+                &nbsp;= &#039;peek-buried&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_DELAYED">PEEK_DELAYED</a>
+    <span>
+                &nbsp;= &#039;peek-delayed&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_READY">PEEK_READY</a>
+    <span>
+                &nbsp;= &#039;peek-ready&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PUT">PUT</a>
+    <span>
+                &nbsp;= &#039;put&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RELEASE">RELEASE</a>
+    <span>
+                &nbsp;= &#039;release&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE">RESERVE</a>
+    <span>
+                &nbsp;= &#039;reserve&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE_JOB">RESERVE_JOB</a>
+    <span>
+                &nbsp;= &#039;reserve-job&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE_WITH_TIMEOUT">RESERVE_WITH_TIMEOUT</a>
+    <span>
+                &nbsp;= &#039;reserve-with-timeout&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS">STATS</a>
+    <span>
+                &nbsp;= &#039;stats&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS_JOB">STATS_JOB</a>
+    <span>
+                &nbsp;= &#039;stats-job&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS_TUBE">STATS_TUBE</a>
+    <span>
+                &nbsp;= &#039;stats-tube&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_TOUCH">TOUCH</a>
+    <span>
+                &nbsp;= &#039;touch&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_USE">USE</a>
+    <span>
+                &nbsp;= &#039;use&#039;                    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -case -">
+    <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_WATCH">WATCH</a>
+    <span>
+                &nbsp;= &#039;watch&#039;                    </span>
+</dt>
+
+    </dl>
 
 
 
@@ -154,6 +320,7 @@
         <h3 class="phpdocumentor-elements__header" id="cases">
             Cases
             <a href="classes/Pheanstalk-Values-CommandType.html#cases" class="headerlink"><i class="fas fa-link"></i></a>
+
         </h3>
                     <article
         class="
@@ -163,7 +330,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_PUT">
         PUT
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PUT" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -174,8 +342,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -187,7 +354,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_USE">
         USE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_USE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -198,8 +366,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -211,7 +378,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_RESERVE">
         RESERVE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -222,8 +390,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -235,7 +402,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_RESERVE_WITH_TIMEOUT">
         RESERVE_WITH_TIMEOUT
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE_WITH_TIMEOUT" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -246,8 +414,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -259,7 +426,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_RESERVE_JOB">
         RESERVE_JOB
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE_JOB" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -270,8 +438,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -283,7 +450,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_DELETE">
         DELETE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_DELETE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -294,8 +462,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -307,7 +474,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_RELEASE">
         RELEASE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RELEASE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -318,8 +486,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -331,7 +498,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_TOUCH">
         TOUCH
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_TOUCH" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -342,8 +510,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -355,7 +522,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_BURY">
         BURY
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_BURY" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -366,8 +534,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -379,7 +546,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_WATCH">
         WATCH
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_WATCH" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -390,8 +558,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -403,7 +570,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_IGNORE">
         IGNORE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_IGNORE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -414,8 +582,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -427,7 +594,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_PEEK">
         PEEK
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -438,8 +606,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -451,7 +618,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_PEEK_READY">
         PEEK_READY
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_READY" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -462,8 +630,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -475,7 +642,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_PEEK_BURIED">
         PEEK_BURIED
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_BURIED" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -486,8 +654,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -499,7 +666,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_PEEK_DELAYED">
         PEEK_DELAYED
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_DELAYED" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -510,8 +678,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -523,7 +690,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_KICK">
         KICK
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_KICK" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -534,8 +702,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -547,7 +714,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_KICK_JOB">
         KICK_JOB
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_KICK_JOB" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -558,8 +726,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -571,7 +738,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_STATS_JOB">
         STATS_JOB
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS_JOB" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -582,8 +750,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -595,7 +762,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_STATS">
         STATS
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -606,8 +774,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -619,7 +786,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_STATS_TUBE">
         STATS_TUBE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS_TUBE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -630,8 +798,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -643,7 +810,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_LIST_TUBES">
         LIST_TUBES
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBES" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -654,8 +822,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -667,7 +834,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_LIST_TUBE_USED">
         LIST_TUBE_USED
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBE_USED" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -678,8 +846,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -691,7 +858,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_LIST_TUBES_WATCHED">
         LIST_TUBES_WATCHED
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBES_WATCHED" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -702,8 +870,7 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
@@ -715,7 +882,8 @@
 >
     <h4 class="phpdocumentor-element__name" id="enumcase_PAUSE_TUBE">
         PAUSE_TUBE
-        <a href="" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PAUSE_TUBE" class="headerlink"><i class="fas fa-link"></i></a>
+
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/CommandType.php"><a href="files/src-values-commandtype.html"><abbr title="src/Values/CommandType.php">CommandType.php</abbr></a></abbr>
@@ -726,78 +894,155 @@
 
     
     
-        <section class="phpdocumentor-description"></section>
-
+    
     
 
 </article>
             </section>
 
         
-        
+        <div class="phpdocumentor-modal" id="source-view">
+    <div class="phpdocumentor-modal-bg" data-exit-button></div>
+    <div class="phpdocumentor-modal-container">
+        <div class="phpdocumentor-modal-content">
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Values/CommandType.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+        </div>
+        <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
+    </div>
+</div>
+
     <script type="text/javascript">
-        function loadExternalCodeSnippets(line) {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach((pre) => {
-                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+        (function () {
+            function loadExternalCodeSnippet(el, url, line) {
+                Array.prototype.slice.call(el.querySelectorAll('pre[data-src]')).forEach((pre) => {
+                    const src = url || pre.getAttribute('data-src').replace(/\\/g, '/');
+                    const language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+                    const code = document.createElement('code');
+                    code.className = 'language-' + language;
+                    pre.textContent = '';
+                    pre.setAttribute('data-line', line)
+                    code.textContent = 'Loading…';
+                    pre.appendChild(code);
 
-                pre.textContent = '';
+                    var xhr = new XMLHttpRequest();
 
-                pre.setAttribute('data-line', line)
-                code.textContent = 'Loading…';
+                    xhr.open('GET', src, true);
 
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState !== 4) {
+                            return;
+                        }
 
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
-
                             Prism.highlightElement(code);
+                            return;
                         }
-                        else if (xhr.status >= 400) {
+
+                        if (xhr.status === 404) {
+                            code.textContent = '✖ Error: File could not be found';
+                            return;
+                        }
+
+                        if (xhr.status >= 400) {
                             code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            return;
                         }
-                        else {
-                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
-                        }
+
+                        code.textContent = '✖ Error: An unknown error occurred';
+                    };
+
+                    xhr.send(null);
+                });
+            }
+
+            const modalButtons = document.querySelectorAll("[data-modal]");
+            const openedAsLocalFile = window.location.protocol === 'file:';
+            if (modalButtons.length > 0 && openedAsLocalFile) {
+                console.warn(
+                    'Viewing the source code is unavailable because you are opening this page from the file:// scheme; ' +
+                    'browsers block XHR requests when a page is opened this way'
+                );
+            }
+
+            modalButtons.forEach(function (trigger) {
+                if (openedAsLocalFile) {
+                    trigger.setAttribute("hidden", "hidden");
+                }
+
+                trigger.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const modal = document.getElementById(trigger.dataset.modal);
+                    if (!modal) {
+                        console.error(`Modal with id "${trigger.dataset.modal}" could not be found`);
+                        return;
                     }
-                };
+                    modal.classList.add("phpdocumentor-modal__open");
 
-                xhr.send(null);
-            });
-        }
-
-        var modals = document.querySelectorAll("[data-modal]");
-
-        modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                //event.preventDefault();
-                const modal = document.getElementById(trigger.dataset.modal);
-                modal.classList.add("phpdocumentor-modal__open");
-                loadExternalCodeSnippets(trigger.dataset.line)
-                const exits = modal.querySelectorAll("[data-exit-button]");
-                exits.forEach(function (exit) {
-                    exit.addEventListener("click", function (event) {
-                        event.preventDefault();
-                        modal.classList.remove("phpdocumentor-modal__open");
+                    loadExternalCodeSnippet(modal, trigger.dataset.src || null, trigger.dataset.line)
+                    const exits = modal.querySelectorAll("[data-exit-button]");
+                    exits.forEach(function (exit) {
+                        exit.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            modal.classList.remove("phpdocumentor-modal__open");
+                        });
                     });
                 });
             });
-        });
+        })();
     </script>
 
     </article>
-                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+                                </section>
+                <section class="phpdocumentor-on-this-page__sidebar">
+                            
+    <section class="phpdocumentor-on-this-page__content">
+        <strong class="phpdocumentor-on-this-page__title">On this page</strong>
+
+        <ul class="phpdocumentor-list -clean">
+            <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/Pheanstalk-Values-CommandType.html#toc-cases">Cases</a></li>
+                                                        </ul>
+            </li>
+                            <li class="phpdocumentor-on-this-page-section__title">Cases</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PUT">PUT</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_USE">USE</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE">RESERVE</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE_WITH_TIMEOUT">RESERVE_WITH_TIMEOUT</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RESERVE_JOB">RESERVE_JOB</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_DELETE">DELETE</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_RELEASE">RELEASE</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_TOUCH">TOUCH</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_BURY">BURY</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_WATCH">WATCH</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_IGNORE">IGNORE</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK">PEEK</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_READY">PEEK_READY</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_BURIED">PEEK_BURIED</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PEEK_DELAYED">PEEK_DELAYED</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_KICK">KICK</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_KICK_JOB">KICK_JOB</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS_JOB">STATS_JOB</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS">STATS</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_STATS_TUBE">STATS_TUBE</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBES">LIST_TUBES</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBE_USED">LIST_TUBE_USED</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_LIST_TUBES_WATCHED">LIST_TUBES_WATCHED</a></li>
+                                                    <li><a href="classes/Pheanstalk-Values-CommandType.html#enumcase_PAUSE_TUBE">PAUSE_TUBE</a></li>
+                                            </ul>
+                </li>
+            
+                    </ul>
+    </section>
+
+                </section>
+                            </div>
+            <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
     <section class="phpdocumentor-search-results__dialog">
         <header class="phpdocumentor-search-results__header">
             <h2 class="phpdocumentor-search-results__title">Search results</h2>
@@ -808,7 +1053,6 @@
         </section>
     </section>
 </section>
-            </div>
         </div>
         <a href="classes/Pheanstalk-Values-CommandType.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
