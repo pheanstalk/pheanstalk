@@ -96,8 +96,8 @@ jobs:
           -p "@semantic-release/commit-analyzer"
           -p "@semantic-release/release-notes-generator"
           -p "@semantic-release/github"
-          -p conventional-changelog-conventionalcommits
+          -p conventional-changelog-conventionalcommits@6
           -p semantic-release
-          -- semantic-release 
+          -- semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
