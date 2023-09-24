@@ -23,16 +23,18 @@ Usage Example
 require __DIR__ . '/vendor/autoload.php';
 
 use Pheanstalk\Pheanstalk;
+use Pheanstalk\Values\TubeName;
 
 $pheanstalk = Pheanstalk::create('127.0.0.1');
+$tube       = new TubeName('testtube');
 
 // Queue a Job
 $pheanstalk
-  ->useTube('testtube')
+  ->useTube($tube)
   ->put("job payload goes here\n");
 
 $pheanstalk
-    ->useTube('testtube')
+    ->useTube($tube)
     ->put(
         json_encode(['test' => 'data']),  // encode data in payload
         Pheanstalk::DEFAULT_PRIORITY,     // default priority
@@ -48,11 +50,13 @@ $pheanstalk
 <?php
 require __DIR__ . '/vendor/autoload.php';
 use Pheanstalk\Pheanstalk;
+use Pheanstalk\Values\TubeName;
 
 $pheanstalk = Pheanstalk::create('127.0.0.1');
+$tube       = new TubeName('testtube');
 
 // we want jobs from 'testtube' only.
-$pheanstalk->watch('testtube');
+$pheanstalk->watch($tube);
 
 // this hangs until a Job is produced.
 $job = $pheanstalk->reserve();
