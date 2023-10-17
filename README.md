@@ -29,18 +29,16 @@ $pheanstalk = Pheanstalk::create('127.0.0.1');
 $tube       = new TubeName('testtube');
 
 // Queue a Job
-$pheanstalk
-  ->useTube($tube)
-  ->put("job payload goes here\n");
+$pheanstalk->useTube($tube);
+$pheanstalk>put("job payload goes here\n");
 
-$pheanstalk
-    ->useTube($tube)
-    ->put(
-        json_encode(['test' => 'data']),  // encode data in payload
-        Pheanstalk::DEFAULT_PRIORITY,     // default priority
-        30, // delay by 30s
-        60  // beanstalk will retry job after 60s
-     );
+$pheanstalk->useTube($tube);
+$pheanstalk->put(
+    data: json_encode(['test' => 'data']),
+    priority: Pheanstalk::DEFAULT_PRIORITY,
+    delay: 30,
+    timeToRelease: 60
+);
 
 ```
 
