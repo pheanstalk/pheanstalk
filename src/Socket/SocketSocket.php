@@ -16,7 +16,7 @@ use Socket;
  */
 final class SocketSocket implements SocketInterface
 {
-    private readonly null|\Socket $socket;
+    private null|\Socket $socket;
 
     public function __construct(
         string $host,
