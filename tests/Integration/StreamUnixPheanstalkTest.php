@@ -16,8 +16,10 @@ use Pheanstalk\Values\Timeout;
  * @covers \Pheanstalk\PheanstalkManager
  * @covers \Pheanstalk\PheanstalkPublisher
  */
-final class StreamUnixPheanstalkTest extends ConnectionTestBase
+final class StreamUnixPheanstalkTest extends PheanstalkTestBase
 {
+    use ConstructWithConnectionObjectTests;
+
     protected function getConnection(): Connection
     {
         return new Connection(new SocketFactory($this->getHost(), implementation: SocketImplementation::STREAM, connectTimeout: new Timeout(1)));

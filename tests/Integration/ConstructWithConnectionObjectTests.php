@@ -9,7 +9,10 @@ use Pheanstalk\Connection;
 use Pheanstalk\Pheanstalk;
 use Pheanstalk\Values\TubeName;
 
-abstract class ConnectionTestBase extends PheanstalkTestBase
+/**
+ * @psalm-require-extends PheanstalkTestBase
+ */
+trait ConstructWithConnectionObjectTests
 {
     public function testDispatchCommandAfterDisconnect(): void
     {
