@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Pheanstalk\Tests\Integration;
 
 use Pheanstalk\Connection;
-use Pheanstalk\Pheanstalk;
 use Pheanstalk\SocketFactory;
 use Pheanstalk\Values\SocketImplementation;
 use Pheanstalk\Values\Timeout;
@@ -19,8 +18,10 @@ use Pheanstalk\Values\Timeout;
  */
 final class StreamUnixPheanstalkTest extends PheanstalkTestBase
 {
-    protected function getPheanstalk(): Pheanstalk
+    use ConstructWithConnectionObjectTests;
+
+    protected function getConnection(): Connection
     {
-        return new Pheanstalk(new Connection(new SocketFactory($this->getHost(), implementation: SocketImplementation::STREAM, connectTimeout: new Timeout(1))));
+        return new Connection(new SocketFactory($this->getHost(), implementation: SocketImplementation::STREAM, connectTimeout: new Timeout(1)));
     }
 }
