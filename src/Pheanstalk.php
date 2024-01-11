@@ -395,7 +395,7 @@ class Pheanstalk implements PheanstalkInterface
         }
 
         if (!isset($this->watching[PheanstalkInterface::DEFAULT_TUBE])) {
-            $this->ignore(PheanstalkInterface::DEFAULT_TUBE);
+            $this->dispatch(new Command\IgnoreCommand(PheanstalkInterface::DEFAULT_TUBE));
         }
     }
 
