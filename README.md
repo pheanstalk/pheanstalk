@@ -30,7 +30,7 @@ $tube       = new TubeName('testtube');
 
 // Queue a Job
 $pheanstalk->useTube($tube);
-$pheanstalk>put("job payload goes here\n");
+$pheanstalk->put("job payload goes here\n");
 
 $pheanstalk->useTube($tube);
 $pheanstalk->put(
