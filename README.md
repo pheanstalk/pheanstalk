@@ -124,37 +124,34 @@ Example code for a job runner could look like this (this is real production code
 use Pheanstalk\Pheanstalk;
 use Pheanstalk\Values\TubeName;
 
-$pheanstalk = Pheanstalk::create('127.0.0.1');
+interface Task {
 
-class Task {
-    public static function fromData(string $data): self {
-        return new self();
-    }
 }
-class CommandBus {
-    public function handle(Task $task): void {
-    }
+interface TaskFactory {
+    public function fromData(string $data): Task;
+}
+interface CommandBus {
+    public function handle(Task $task): void;
 }
 
-$commandBus = new CommandBus();
+function run(\Pheanstalk\PheanstalkSubscriber $pheanstalk, CommandBus $commandBus, TaskFactory $taskFactory): void
+{
+    /**
+     * @phpstan-ignore-next-line
+     */
+    while (true) {
+        $job = $pheanstalk->reserveWithTimeout(50);
+        if (isset($job)) {
+            try {
 
-/**
- * @phpstan-ignore-next-line
- */ 
-while(true) {
-    $job = $pheanstalk->reserveWithTimeout(50);
-    echo ".";
-    if (isset($job)) {
-        try {
-            
-            $task = Task::fromData($job->getData());
-
-            $commandBus->handle($task);
-            echo "Deleting job: {$job->getId()}\n";
-            $pheanstalk->delete($job);
-        } catch (\Throwable $t) {
-            echo "Burying job: {$job->getId()}\n";
-            $pheanstalk->bury($job);
+                $task = $taskFactory->fromData($job->getData());
+                $commandBus->handle($task);
+                echo "Deleting job: {$job->getId()}\n";
+                $pheanstalk->delete($job);
+            } catch (\Throwable $t) {
+                echo "Burying job: {$job->getId()}\n";
+                $pheanstalk->bury($job);
+            }
         }
     }
 }
