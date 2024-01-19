@@ -44,7 +44,9 @@ final class JobStats
     /**
      * @param array<string, scalar> $data
      * @throws \InvalidArgumentException
+     * @psalm-suppress PossiblyUndefinedArrayOffset
      * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-suppress PossiblyInvalidArgument
      */
     public static function fromBeanstalkArray(array $data): self
     {

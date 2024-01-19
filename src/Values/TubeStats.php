@@ -46,6 +46,7 @@ final class TubeStats
     /**
      * @param array<string, string|int|bool|float> $data
      * @psalm-suppress ArgumentTypeCoercion
+     * @psalm-suppress PossiblyUndefinedArrayOffset
      */
     public static function fromBeanstalkArray(array $data): self
     {
