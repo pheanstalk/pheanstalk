@@ -20,6 +20,9 @@ return static function (ECSConfig $config): void {
     $config->paths([
         __DIR__ . '/src', __DIR__ . '/tests', __DIR__ . '/ecs.php'
     ]);
+    $config->skip([
+        __DIR__ . '/tests/snippets'
+    ]);
     // A. full sets
     $config->import(SetList::PSR_12);
     $config->import(SetList::STRICT);

@@ -6,6 +6,6 @@ parameters:
   treatPhpDocTypesAsCertain: false
   reportUnmatchedIgnoredErrors: true
   bootstrapFiles:
-    - tests/bootstrap.php
+    - tests/sa-bootstrap.php
 includes:
   - phpstan-baseline.neon
