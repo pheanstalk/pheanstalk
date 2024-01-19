@@ -91,6 +91,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - run: >
           npx
           -p "@semantic-release/commit-analyzer"
