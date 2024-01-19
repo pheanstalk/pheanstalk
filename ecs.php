@@ -6,7 +6,7 @@ declare(strict_types=1);
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\ClassNotation\FinalInternalClassFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
-use PhpCsFixer\Fixer\LanguageConstruct\SingleSpaceAfterConstructFixer;
+use PhpCsFixer\Fixer\LanguageConstruct\SingleSpaceAroundConstructFixer;
 use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
@@ -33,6 +33,6 @@ return static function (ECSConfig $config): void {
         'annotation_include' => [],
         'consider_absent_docblock_as_internal_class' => \true
     ]);
-    $config->rule(SingleSpaceAfterConstructFixer::class);
+    $config->rule(SingleSpaceAroundConstructFixer::class);
     $config->lineEnding("\n");
 };
