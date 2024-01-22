@@ -19,7 +19,7 @@ final class RawResponse
         // Cast numeric strings to integers, if possible.
         $this->argument = match (true) {
             $argument === null => null,
-            ctype_digit($argument) && !str_starts_with($argument, "0") && $argument < PHP_INT_MAX => (int)$argument,
+            ctype_digit($argument) && (!str_starts_with($argument, "0") || $argument === '0') && $argument < PHP_INT_MAX => (int)$argument,
             default => $argument
         };
     }
