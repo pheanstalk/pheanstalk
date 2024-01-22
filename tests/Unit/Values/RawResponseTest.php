@@ -18,6 +18,11 @@ final class RawResponseTest extends TestCase
         self::assertSame(123, (new RawResponse(ResponseType::DeadlineSoon, '123'))->argument);
     }
 
+    public function testTheNumberZeroIsCast(): void
+    {
+        self::assertSame(0, (new RawResponse(ResponseType::Kicked, '0'))->argument);
+    }
+
     public function testNull(): void
     {
         self::assertNull((new RawResponse(ResponseType::DeadlineSoon))->argument);

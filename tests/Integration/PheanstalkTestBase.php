@@ -385,6 +385,14 @@ abstract class PheanstalkTestBase extends TestCase
         self::assertSame(JobState::READY, $pheanstalk->statsJob($jobId)->state);
     }
 
+
+    public function testKickWillReturn0WhenNoJobsAreKilled(): void
+    {
+        $pheanstalk = $this->getPheanstalk();
+        self::assertSame(0, $pheanstalk->stats()->currentJobsBuried);
+        self::assertSame(0, $pheanstalk->kick(1));
+    }
+
     final protected function getHost(): string
     {
         if (str_contains(static::class, "Unix")) {
