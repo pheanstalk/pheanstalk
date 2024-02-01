@@ -82,7 +82,7 @@ Note that this does not aim to cover all possible scenarios or configurations.
 Description=My App Worker
 
 [Service]
-User=root
+User=deployer
 Group=www-data
 Restart=always
 ExecStart=/usr/bin/php /var/www/html/worker.php
