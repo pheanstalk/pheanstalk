@@ -75,6 +75,21 @@ catch(\Exception $e) {
 }
 ```
 
+#### Systemd configuration for Consumer / Worker
+Note that this does not aim to cover all possible scenarios or configurations.
+```cli
+[Unit]
+Description=My App Worker
+
+[Service]
+User=deployer
+Group=www-data
+Restart=always
+ExecStart=/usr/bin/php /var/www/html/worker.php
+
+[Install]
+WantedBy=multi-user.target
+```
 
 Running the tests
 -----------------
