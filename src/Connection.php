@@ -90,7 +90,7 @@ final class Connection
 
         if ($responseType->hasData()) {
             $dataLength = (int) array_pop($responseParts);
-            if ($dataLength <= 0) {
+            if ($dataLength < 0) {
                 throw MalformedResponseException::negativeDataLength();
             }
             $data = $this->readData($socket, $dataLength);
