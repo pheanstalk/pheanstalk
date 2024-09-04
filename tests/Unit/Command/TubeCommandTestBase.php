@@ -13,7 +13,7 @@ use PHPUnit\Framework\Assert;
 
 abstract class TubeCommandTestBase extends CommandTestBase
 {
-    abstract protected function getSubject(TubeName $tube = null): TubeCommand;
+    abstract protected function getSubject(?TubeName $tube = null): TubeCommand;
 
     public function testInterpretNotFound(): void
     {

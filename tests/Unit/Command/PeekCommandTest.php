@@ -48,7 +48,7 @@ final class PeekCommandTest extends CommandTestBase
         return [ResponseType::NotFound, ResponseType::Found];
     }
 
-    protected function getSubject(JobState $state = null): PeekCommand
+    protected function getSubject(?JobState $state = null): PeekCommand
     {
         return new PeekCommand($state ?? JobState::READY);
     }

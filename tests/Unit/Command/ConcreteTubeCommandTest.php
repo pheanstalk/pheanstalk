@@ -24,7 +24,7 @@ final class ConcreteTubeCommandTest extends TubeCommandTestBase
         ];
     }
 
-    protected function getSubject(TubeName $tube = null): TubeCommand
+    protected function getSubject(?TubeName $tube = null): TubeCommand
     {
         /** @psalm-suppress InternalClass */
         return new class($tube ?? new TubeName('default')) extends TubeCommand {

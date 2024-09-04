@@ -27,7 +27,7 @@ final class WatchCommandTest extends TubeCommandTestBase
         return [ResponseType::Watching];
     }
 
-    protected function getSubject(TubeName $tube = null): WatchCommand
+    protected function getSubject(?TubeName $tube = null): WatchCommand
     {
         return new WatchCommand($tube ?? new TubeName("default"));
     }

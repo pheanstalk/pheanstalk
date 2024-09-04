@@ -30,7 +30,7 @@ final class PeekJobCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Found];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): PeekJobCommand
+    protected function getSubject(?JobIdInterface $jobId = null): PeekJobCommand
     {
         return new PeekJobCommand($jobId ?? new JobId(5));
     }

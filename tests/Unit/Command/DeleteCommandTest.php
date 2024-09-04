@@ -27,7 +27,7 @@ final class DeleteCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Deleted];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): DeleteCommand
+    protected function getSubject(?JobIdInterface $jobId = null): DeleteCommand
     {
         return new DeleteCommand($jobId ?? new JobId(5));
     }

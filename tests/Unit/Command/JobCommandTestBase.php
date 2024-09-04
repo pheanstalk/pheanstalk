@@ -14,7 +14,7 @@ use PHPUnit\Framework\Assert;
 
 abstract class JobCommandTestBase extends CommandTestBase
 {
-    abstract protected function getSubject(JobIdInterface $jobId = null): JobCommand;
+    abstract protected function getSubject(?JobIdInterface $jobId = null): JobCommand;
 
     public function testInterpretNotFound(): void
     {

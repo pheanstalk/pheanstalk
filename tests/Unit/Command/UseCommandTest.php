@@ -30,7 +30,7 @@ final class UseCommandTest extends TubeCommandTestBase
         return [ResponseType::Using];
     }
 
-    protected function getSubject(TubeName $tube = null): UseCommand
+    protected function getSubject(?TubeName $tube = null): UseCommand
     {
         return new UseCommand($tube ?? new TubeName("default"));
     }
