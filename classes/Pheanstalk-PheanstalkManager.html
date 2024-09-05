@@ -54,7 +54,7 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
@@ -73,21 +73,13 @@
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
@@ -95,14 +87,14 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
@@ -131,7 +123,7 @@
                             <a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html"><abbr title="\Pheanstalk\Contract\PheanstalkManagerInterface">PheanstalkManagerInterface</abbr></a>                    </span>
     
             <span class="phpdocumentor-element__extends">
-            Uses
+            uses
                             <abbr title="\Pheanstalk\StaticFactoryTrait">StaticFactoryTrait</abbr>                    </span>
     </h2>
 
@@ -150,6 +142,9 @@
     </aside>
 
             <p class="phpdocumentor-summary">This class implements &quot;management&quot; functions for the beanstalk protocol.</p>
+
+
+
 
 
 
@@ -185,14 +180,14 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_kick">kick()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_kick">kick()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Kicks buried or delayed jobs into a &#039;ready&#039; state.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_kickJob">kickJob()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_kickJob">kickJob()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -201,89 +196,88 @@ exists and is in a buried or delayed state, it will be moved to the
 ready queue of the the same tube where it currently belongs.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_listTubes">listTubes()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_listTubes">listTubes()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a>    </span>
 </dt>
 <dd>The names of all tubes on the server.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_pauseTube">pauseTube()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_pauseTube">pauseTube()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Temporarily prevent jobs being reserved from the given tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_peek">peek()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_peek">peek()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
 <dd>Inspect a job in the system, regardless of what tube it is in.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_peekBuried">peekBuried()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_peekBuried">peekBuried()</a>
     <span>
                                 &nbsp;: null|<a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
 <dd>Inspect the next job in the list of buried jobs in the currently used tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_peekDelayed">peekDelayed()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_peekDelayed">peekDelayed()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null    </span>
 </dt>
 <dd>Inspect the shortest-remaining-delayed job in the currently used tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_peekReady">peekReady()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_peekReady">peekReady()</a>
     <span>
                                 &nbsp;: null|<a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
 <dd>Inspect the next ready job in the currently used tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_resumeTube">resumeTube()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_resumeTube">resumeTube()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Resume jobs for a given paused tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_stats">stats()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_stats">stats()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a>    </span>
 </dt>
 <dd>Gives statistical information about the beanstalkd system as a whole.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_statsJob">statsJob()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_statsJob">statsJob()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a>    </span>
 </dt>
 <dd>Gives statistical information about the specified job if it exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_statsTube">statsTube()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_statsTube">statsTube()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a>    </span>
 </dt>
 <dd>Gives statistical information about the specified tube if it exists.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_dispatch">dispatch()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_dispatch">dispatch()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-PheanstalkManager.html#method_peekState">peekState()</a>
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_peekState">peekState()</a>
     <span>
                                 &nbsp;: null|<a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
 
     </dl>
-
 
 
 
@@ -323,6 +317,7 @@ ready queue of the the same tube where it currently belongs.</dd>
 
     <div class="phpdocumentor-label-line">
         </div>
+    
         <section class="phpdocumentor-description"><p>If there are buried jobs, it will kick up to $max of them.
 Otherwise, it will kick up to $max delayed jobs.</p>
 </section>
@@ -339,6 +334,8 @@ Otherwise, it will kick up to $max delayed jobs.</p>
 
             </dd>
             </dl>
+
+    
 
     
 
@@ -381,6 +378,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -391,6 +389,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -424,6 +424,9 @@ ready queue of the the same tube where it currently belongs.</p>
         </div>
     
     
+    
+    
+
     
 
             <section>
@@ -459,6 +462,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -478,6 +482,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
             </dd>
             </dl>
+
+    
 
     
 
@@ -510,6 +516,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -520,6 +527,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -558,6 +567,9 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
     
+    
+
+    
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -593,6 +605,9 @@ ready queue of the the same tube where it currently belongs.</p>
         </div>
     
     
+    
+    
+
     
 
             <section>
@@ -630,6 +645,9 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
     
+    
+
+    
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -664,6 +682,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -674,6 +693,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -707,6 +728,9 @@ ready queue of the the same tube where it currently belongs.</p>
         </div>
     
     
+    
+    
+
     
 
             <section>
@@ -742,6 +766,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -752,6 +777,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -788,6 +815,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -798,6 +826,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -833,6 +863,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -843,6 +874,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -878,6 +911,7 @@ ready queue of the the same tube where it currently belongs.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -888,6 +922,8 @@ ready queue of the the same tube where it currently belongs.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -1010,20 +1046,20 @@ ready queue of the the same tube where it currently belongs.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_kick">kick()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_kickJob">kickJob()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_listTubes">listTubes()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_pauseTube">pauseTube()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_peek">peek()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekBuried">peekBuried()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekDelayed">peekDelayed()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekReady">peekReady()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_resumeTube">resumeTube()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_stats">stats()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_statsJob">statsJob()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_statsTube">statsTube()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_dispatch">dispatch()</a></li>
-                                            <li><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekState">peekState()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_kick">kick()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_kickJob">kickJob()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_listTubes">listTubes()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_pauseTube">pauseTube()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_peek">peek()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekBuried">peekBuried()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekDelayed">peekDelayed()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekReady">peekReady()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_resumeTube">resumeTube()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_stats">stats()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_statsJob">statsJob()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_statsTube">statsTube()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_dispatch">dispatch()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_peekState">peekState()</a></li>
                                     </ul>
             </li>
                     </ul>

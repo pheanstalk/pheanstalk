@@ -54,7 +54,7 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
@@ -73,21 +73,13 @@
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
@@ -95,14 +87,14 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
@@ -149,12 +141,15 @@
 
             <p class="phpdocumentor-summary">The &#039;touch&#039; command.</p>
 
+
     <section class="phpdocumentor-description"><p>The 'touch' command allows a worker to request more time to work on a job.
 This is useful for jobs that potentially take a long time, but you still want
 the benefits of a TTR pulling a job away from an unresponsive worker.  A worker
 may periodically tell the server that it's still alive and processing a job
 (e.g. it may do this on DEADLINE_SOON).</p>
 </section>
+
+
 
 
 
@@ -182,19 +177,18 @@ may periodically tell the server that it's still alive and processing a job
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Command-TouchCommand.html#method_interpret">interpret()</a>
+    <a class="" href="classes/Pheanstalk-Command-TouchCommand.html#method_interpret">interpret()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Pheanstalk-Command-TouchCommand.html#method_getCommandTemplate">getCommandTemplate()</a>
+    <a class="" href="classes/Pheanstalk-Command-TouchCommand.html#method_getCommandTemplate">getCommandTemplate()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-JobCommandTemplate.html"><abbr title="\Pheanstalk\Values\JobCommandTemplate">JobCommandTemplate</abbr></a>    </span>
 </dt>
 
     </dl>
-
 
 
 
@@ -234,6 +228,7 @@ may periodically tell the server that it's still alive and processing a job
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -244,6 +239,8 @@ may periodically tell the server that it's still alive and processing a job
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -280,6 +277,9 @@ may periodically tell the server that it's still alive and processing a job
         </div>
     
     
+    
+    
+
     
 
             <section>
@@ -401,8 +401,8 @@ may periodically tell the server that it's still alive and processing a job
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li><a href="classes/Pheanstalk-Command-TouchCommand.html#method_interpret">interpret()</a></li>
-                                            <li><a href="classes/Pheanstalk-Command-TouchCommand.html#method_getCommandTemplate">getCommandTemplate()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Command-TouchCommand.html#method_interpret">interpret()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Command-TouchCommand.html#method_getCommandTemplate">getCommandTemplate()</a></li>
                                     </ul>
             </li>
                     </ul>

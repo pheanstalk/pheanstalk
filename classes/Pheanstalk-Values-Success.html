@@ -54,7 +54,7 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
@@ -73,21 +73,13 @@
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
@@ -95,14 +87,14 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
@@ -147,6 +139,7 @@
             <p class="phpdocumentor-summary">This class indicates a successful operation with no (relevant) data
 We don&#039;t use `null` for this because we cannot narrow return values to just null.</p>
 
+
     <section class="phpdocumentor-description"><p>For example a command that either succeeds or throws an exception would look like this:
 <code class="prettyprint">public function interpret(RawResponse $response): null</code>, which is not valid.
 Instead we use this class so that we get:
@@ -157,12 +150,13 @@ Instead we use this class so that we get:
 
 
 
+
+
 <h3 id="toc">
     Table of Contents
     <a href="classes/Pheanstalk-Values-Success.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
-
 
 
 

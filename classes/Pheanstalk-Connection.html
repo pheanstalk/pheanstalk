@@ -54,7 +54,7 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
@@ -73,21 +73,13 @@
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
@@ -95,14 +87,14 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
@@ -145,6 +137,7 @@
 
             <p class="phpdocumentor-summary">A connection to a beanstalkd server, backed by any type of socket.</p>
 
+
     <section class="phpdocumentor-description"><p>The connection is responsible for:</p>
 <ul>
 <li>managing the connection to the server via its socket factory</li>
@@ -152,6 +145,8 @@
 <li>parsing the response into a RawResponse object</li>
 </ul>
 </section>
+
+
 
 
 
@@ -176,13 +171,13 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
-    <a href="classes/Pheanstalk-Connection.html#constant_CRLF">CRLF</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#constant_CRLF">CRLF</a>
     <span>
         &nbsp;= &quot;\r\n&quot;                            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
-    <a href="classes/Pheanstalk-Connection.html#constant_CRLF_LENGTH">CRLF_LENGTH</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#constant_CRLF_LENGTH">CRLF_LENGTH</a>
     <span>
         &nbsp;= 2                            </span>
 </dt>
@@ -197,13 +192,13 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pheanstalk-Connection.html#property_factory">$factory</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#property_factory">$factory</a>
     <span>
                         &nbsp;: <a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Pheanstalk-Connection.html#property_socket">$socket</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#property_socket">$socket</a>
     <span>
                         &nbsp;: <a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a>|null            </span>
 </dt>
@@ -217,52 +212,51 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Connection.html#method___construct">__construct()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Connection.html#method_connect">connect()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method_connect">connect()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Connect the socket, this is done automatically when dispatching commands</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Connection.html#method_disconnect">disconnect()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method_disconnect">disconnect()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Disconnect the socket.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Connection.html#method_dispatchCommand">dispatchCommand()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method_dispatchCommand">dispatchCommand()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-Connection.html#method_getSocket">getSocket()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method_getSocket">getSocket()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a>    </span>
 </dt>
 <dd>Socket handle for the connection to beanstalkd.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-Connection.html#method_readData">readData()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method_readData">readData()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Pheanstalk-Connection.html#method_readRawResponse">readRawResponse()</a>
+    <a class="" href="classes/Pheanstalk-Connection.html#method_readRawResponse">readRawResponse()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-RawResponse.html"><abbr title="\Pheanstalk\Values\RawResponse">RawResponse</abbr></a>    </span>
 </dt>
 
     </dl>
-
 
 
 
@@ -288,6 +282,7 @@
     </aside>
 
     
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -298,6 +293,8 @@
 
     
     
+    
+
     
 
 </article>
@@ -316,6 +313,7 @@
     </aside>
 
     
+    
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">mixed</span>
@@ -326,6 +324,8 @@
 
     
     
+    
+
     
 
 </article>
@@ -360,6 +360,7 @@
     </aside>
 
     
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Contract-SocketFactoryInterface.html"><abbr title="\Pheanstalk\Contract\SocketFactoryInterface">SocketFactoryInterface</abbr></a></span>
@@ -368,6 +369,8 @@
 
     
     
+    
+
     
 
 </article>
@@ -393,6 +396,7 @@
     </aside>
 
     
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type"><a href="classes/Pheanstalk-Contract-SocketInterface.html"><abbr title="\Pheanstalk\Contract\SocketInterface">SocketInterface</abbr></a>|null</span>
@@ -401,6 +405,8 @@
 
     
     
+    
+
     
 
 </article>
@@ -438,6 +444,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -448,6 +455,8 @@
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -482,6 +491,9 @@
     
     
     
+    
+
+    
 
     
 </article>
@@ -511,10 +523,13 @@
 
     <div class="phpdocumentor-label-line">
         </div>
+    
         <section class="phpdocumentor-description"><p>Subsequent socket operations will create a new connection.</p>
 </section>
 
     
+    
+
     
 
     
@@ -545,6 +560,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -555,6 +571,8 @@
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -593,6 +611,7 @@
     
     
     
+    
     <h5 class="phpdocumentor-tag-list__heading" id="tags">
         Tags
         <a href="classes/Pheanstalk-Connection.html#method_getSocket#tags" class="headerlink"><i class="fas fa-link"></i></a>
@@ -608,6 +627,8 @@
                                              
                                     </dd>
                                             </dl>
+
+    
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
@@ -640,6 +661,7 @@
 
     <div class="phpdocumentor-label-line">
         </div>
+    
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -676,6 +698,8 @@
                                     </dd>
                                             </dl>
 
+    
+
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
@@ -708,6 +732,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -718,6 +743,8 @@
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -840,29 +867,29 @@
                             <li class="phpdocumentor-on-this-page-section__title">Constants</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/Pheanstalk-Connection.html#constant_CRLF">CRLF</a></li>
-                                                    <li><a href="classes/Pheanstalk-Connection.html#constant_CRLF_LENGTH">CRLF_LENGTH</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Connection.html#constant_CRLF">CRLF</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Connection.html#constant_CRLF_LENGTH">CRLF_LENGTH</a></li>
                                             </ul>
                 </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/Pheanstalk-Connection.html#property_factory">$factory<a href="classes/Pheanstalk-Connection.html"></li>
-                                                    <li><a href="classes/Pheanstalk-Connection.html#property_socket">$socket<a href="classes/Pheanstalk-Connection.html"></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Connection.html#property_factory">$factory</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Connection.html#property_socket">$socket</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li><a href="classes/Pheanstalk-Connection.html#method___construct">__construct()</a></li>
-                                            <li><a href="classes/Pheanstalk-Connection.html#method_connect">connect()</a></li>
-                                            <li><a href="classes/Pheanstalk-Connection.html#method_disconnect">disconnect()</a></li>
-                                            <li><a href="classes/Pheanstalk-Connection.html#method_dispatchCommand">dispatchCommand()</a></li>
-                                            <li><a href="classes/Pheanstalk-Connection.html#method_getSocket">getSocket()</a></li>
-                                            <li><a href="classes/Pheanstalk-Connection.html#method_readData">readData()</a></li>
-                                            <li><a href="classes/Pheanstalk-Connection.html#method_readRawResponse">readRawResponse()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method_connect">connect()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method_disconnect">disconnect()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method_dispatchCommand">dispatchCommand()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method_getSocket">getSocket()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method_readData">readData()</a></li>
+                                            <li class=""><a href="classes/Pheanstalk-Connection.html#method_readRawResponse">readRawResponse()</a></li>
                                     </ul>
             </li>
                     </ul>

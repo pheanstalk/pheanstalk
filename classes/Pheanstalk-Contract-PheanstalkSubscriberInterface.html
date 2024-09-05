@@ -54,7 +54,7 @@
     Menu
 </label>
 <aside class="phpdocumentor-column -three phpdocumentor-sidebar">
-                    <section class="phpdocumentor-sidebar__category">
+                    <section class="phpdocumentor-sidebar__category -namespaces">
             <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="namespaces/pheanstalk.html" class="">Pheanstalk</a>
@@ -73,21 +73,13 @@
                 
             </li>
                     <li>
-                <a href="namespaces/pheanstalk-parser.html" class="">Parser</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/pheanstalk-socket.html" class="">Socket</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/pheanstalk-values.html" class="">Values</a>
                 
             </li>
             </ul>
 
                         </section>
-                <section class="phpdocumentor-sidebar__category">
+                <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
     <a href="packages/Pheanstalk.html" class="">Pheanstalk</a>
@@ -95,14 +87,14 @@
 
                         </section>
             
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -reports">
         <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
                 <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
     </section>
 
-    <section class="phpdocumentor-sidebar__category">
+    <section class="phpdocumentor-sidebar__category -indices">
         <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
         <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
     </section>
@@ -139,6 +131,9 @@
 
 
 
+
+
+
 <h3 id="toc">
     Table of Contents
     <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -161,70 +156,70 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_bury">bury()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_bury">bury()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Puts a job into a &#039;buried&#039; state, revived only by &#039;kick&#039; command.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_delete">delete()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_delete">delete()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Permanently deletes a job.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_ignore">ignore()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_ignore">ignore()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
 <dd>Remove the specified tube from the watchlist.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_listTubesWatched">listTubesWatched()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_listTubesWatched">listTubesWatched()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a>    </span>
 </dt>
 <dd>The names of the tubes being watched, to reserve jobs from.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_release">release()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_release">release()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Puts a reserved job back into the ready queue.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserve">reserve()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserve">reserve()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
 <dd>Reserves/locks a ready job in a watched tube.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveJob">reserveJob()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveJob">reserveJob()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>    </span>
 </dt>
 <dd>Reserves/locks a specific job</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveWithTimeout">reserveWithTimeout()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveWithTimeout">reserveWithTimeout()</a>
     <span>
                                 &nbsp;: <a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null    </span>
 </dt>
 <dd>Reserves/locks a ready job in a watched tube, uses the &#039;reserve-with-timeout&#039; instead of &#039;reserve&#039;.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_touch">touch()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_touch">touch()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Allows a worker to request more time to work on a job.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_watch">watch()</a>
+    <a class="" href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_watch">watch()</a>
     <span>
                                 &nbsp;: int    </span>
 </dt>
@@ -270,6 +265,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -287,6 +283,8 @@
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -319,6 +317,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -329,6 +328,8 @@
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -361,6 +362,7 @@
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -371,6 +373,8 @@
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -410,10 +414,13 @@
 
     <div class="phpdocumentor-label-line">
         </div>
+    
         <section class="phpdocumentor-description"><p>Returns the watchlist, always queries the server</p>
 </section>
 
     
+    
+
     
 
             <section>
@@ -448,6 +455,7 @@
 
     <div class="phpdocumentor-label-line">
         </div>
+    
         <section class="phpdocumentor-description"><p>Marks the jobs state as &quot;ready&quot; to be run by any client.
 It is normally used when the job fails because of a transitory error.</p>
 </section>
@@ -484,6 +492,8 @@ It is normally used when the job fails because of a transitory error.</p>
     
 
     
+
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -513,6 +523,9 @@ It is normally used when the job fails because of a transitory error.</p>
         </div>
     
     
+    
+    
+
     
 
             <section>
@@ -548,6 +561,7 @@ It is normally used when the job fails because of a transitory error.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -558,6 +572,8 @@ It is normally used when the job fails because of a transitory error.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -593,6 +609,7 @@ It is normally used when the job fails because of a transitory error.</p>
 
     <div class="phpdocumentor-label-line">
         </div>
+    
         <section class="phpdocumentor-description"><p>A timeout value of 0 will cause the server to immediately return either a
 response or TIMED_OUT.  A positive value of timeout will limit the amount of
 time the client will block on the reserve request until a job becomes
@@ -609,6 +626,8 @@ available.</p>
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -644,6 +663,7 @@ available.</p>
 
     <div class="phpdocumentor-label-line">
         </div>
+    
         <section class="phpdocumentor-description"><p>This is useful for jobs that potentially take a long time, but you still want
 the benefits of a TTR pulling a job away from an unresponsive worker.  A worker
 may periodically tell the server that it's still alive and processing a job
@@ -660,6 +680,8 @@ may periodically tell the server that it's still alive and processing a job
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -692,6 +714,7 @@ may periodically tell the server that it's still alive and processing a job
     <div class="phpdocumentor-label-line">
         </div>
     
+    
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -702,6 +725,8 @@ may periodically tell the server that it's still alive and processing a job
                 
             </dd>
             </dl>
+
+    
 
     
 
@@ -827,16 +852,16 @@ may periodically tell the server that it's still alive and processing a job
                             <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_bury">bury()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_delete">delete()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_ignore">ignore()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_listTubesWatched">listTubesWatched()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_release">release()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserve">reserve()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveJob">reserveJob()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveWithTimeout">reserveWithTimeout()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_touch">touch()</a></li>
-                                                    <li><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_watch">watch()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_bury">bury()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_delete">delete()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_ignore">ignore()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_listTubesWatched">listTubesWatched()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_release">release()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserve">reserve()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveJob">reserveJob()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_reserveWithTimeout">reserveWithTimeout()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_touch">touch()</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Contract-PheanstalkSubscriberInterface.html#method_watch">watch()</a></li>
                                             </ul>
                 </li>
             
