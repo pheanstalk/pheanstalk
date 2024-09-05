@@ -30,7 +30,7 @@ final class ReserveJobCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Reserved];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): ReserveJobCommand
+    protected function getSubject(?JobIdInterface $jobId = null): ReserveJobCommand
     {
         return new ReserveJobCommand($jobId ?? new JobId(5));
     }

@@ -23,7 +23,7 @@ final class ConcreteJobCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): JobCommand
+    protected function getSubject(?JobIdInterface $jobId = null): JobCommand
     {
         /** @psalm-suppress InternalClass */
         return new class($jobId ?? new JobId(5)) extends JobCommand {

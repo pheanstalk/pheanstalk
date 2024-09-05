@@ -36,9 +36,9 @@ final class SocketFactory implements SocketFactoryInterface
         private readonly string $host,
         private readonly int $port = self::DEFAULT_PORT,
         null|SocketImplementation $implementation = null,
-        Timeout $connectTimeout = null,
-        Timeout $receiveTimeout = null,
-        Timeout $sendTimeout = null,
+        ?Timeout $connectTimeout = null,
+        ?Timeout $receiveTimeout = null,
+        ?Timeout $sendTimeout = null,
     ) {
         $this->implementation = $implementation ?? $this->detectImplementation();
 

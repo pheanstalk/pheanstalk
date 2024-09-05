@@ -35,7 +35,7 @@ final class IgnoreCommandTest extends TubeCommandTestBase
         return [ResponseType::NotIgnored, ResponseType::Watching];
     }
 
-    protected function getSubject(TubeName $tube = null): IgnoreCommand
+    protected function getSubject(?TubeName $tube = null): IgnoreCommand
     {
         return new IgnoreCommand($tube ?? new TubeName("default"));
     }

@@ -28,7 +28,7 @@ final class BuryCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Buried];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): BuryCommand
+    protected function getSubject(?JobIdInterface $jobId = null): BuryCommand
     {
         return new BuryCommand($jobId ?? new JobId(5), 1);
     }

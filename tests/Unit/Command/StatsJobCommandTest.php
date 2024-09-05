@@ -49,7 +49,7 @@ final class StatsJobCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Ok];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): StatsJobCommand
+    protected function getSubject(?JobIdInterface $jobId = null): StatsJobCommand
     {
         return new StatsJobCommand($jobId ?? new JobId(5));
     }

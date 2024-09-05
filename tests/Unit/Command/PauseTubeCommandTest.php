@@ -26,7 +26,7 @@ final class PauseTubeCommandTest extends TubeCommandTestBase
         return [ResponseType::NotFound, ResponseType::Paused];
     }
 
-    protected function getSubject(TubeName $tube = null): PauseTubeCommand
+    protected function getSubject(?TubeName $tube = null): PauseTubeCommand
     {
         return new PauseTubeCommand($tube ?? new TubeName("default"), 123);
     }

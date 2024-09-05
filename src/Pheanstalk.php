@@ -43,8 +43,8 @@ final class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublishe
     public static function create(
         string $host,
         int $port = 11300,
-        Timeout $connectTimeout = null,
-        Timeout $receiveTimeout = null
+        ?Timeout $connectTimeout = null,
+        ?Timeout $receiveTimeout = null
     ): static {
         return static::createWithFactory(new SocketFactory($host, $port, null, $connectTimeout, $receiveTimeout));
     }

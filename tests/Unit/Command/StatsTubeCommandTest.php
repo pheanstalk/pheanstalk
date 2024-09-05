@@ -61,7 +61,7 @@ final class StatsTubeCommandTest extends TubeCommandTestBase
         return [ResponseType::NotFound, ResponseType::Ok];
     }
 
-    protected function getSubject(TubeName $tube = null): StatsTubeCommand
+    protected function getSubject(?TubeName $tube = null): StatsTubeCommand
     {
         return new StatsTubeCommand($tube ?? new TubeName("default"));
     }

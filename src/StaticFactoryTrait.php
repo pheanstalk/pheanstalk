@@ -21,8 +21,8 @@ trait StaticFactoryTrait
     public static function create(
         string $host,
         int $port = 11300,
-        Timeout $connectTimeout = null,
-        Timeout $receiveTimeout = null
+        ?Timeout $connectTimeout = null,
+        ?Timeout $receiveTimeout = null
     ): self {
         return self::createWithFactory(new SocketFactory($host, $port, null, $connectTimeout, $receiveTimeout));
     }

@@ -27,7 +27,7 @@ final class KickJobCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Kicked];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): KickJobCommand
+    protected function getSubject(?JobIdInterface $jobId = null): KickJobCommand
     {
         return new KickJobCommand($jobId ?? new JobId(5));
     }

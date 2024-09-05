@@ -27,7 +27,7 @@ final class TouchCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Touched];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): TouchCommand
+    protected function getSubject(?JobIdInterface $jobId = null): TouchCommand
     {
         return new TouchCommand($jobId ?? new JobId(5));
     }

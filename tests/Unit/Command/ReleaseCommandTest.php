@@ -28,7 +28,7 @@ final class ReleaseCommandTest extends JobCommandTestBase
         return [ResponseType::NotFound, ResponseType::Released];
     }
 
-    protected function getSubject(JobIdInterface $jobId = null): ReleaseCommand
+    protected function getSubject(?JobIdInterface $jobId = null): ReleaseCommand
     {
         return new ReleaseCommand($jobId ?? new JobId(5), 123, 321);
     }
