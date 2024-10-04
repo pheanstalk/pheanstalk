@@ -102,6 +102,18 @@ Make sure you have docker-compose installed.
 
 # History
 
+## Pheanstalk 5
+
+### Migration to v5
+
+Some breaking/important changes:
+* no more chaining of `->watch->ignore->reserve/reserveWithTimeout`: each call should be made on its own
+* use of `new TubeName()` instead of strings for tube names
+* some constants from `PheanstalkInterface` have been moved to other interfaces:
+  * `DEFAULT_PORT`  to `SocketFactoryInterface`,
+  * `DEFAULT_DELAY/DEFAULT_PRIORITY/DEFAULT_TTR` to `PheanstalkPublisherInterface`
+* `put` method 4th parameter name changed from `ttr` to `timeToRelease`
+
 ## Pheanstalk 4
 
 In 2018 [Sam Mousa][3] took on the responsibility of maintaining Pheanstalk.
