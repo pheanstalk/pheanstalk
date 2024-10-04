@@ -8,9 +8,9 @@ use Pheanstalk\Values\TubeName;
 
 interface PheanstalkPublisherInterface
 {
-    public const DEFAULT_DELAY = 0; // no delay
-    public const DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
-    public const DEFAULT_TTR = 60; // 1 minute
+    public const int DEFAULT_DELAY = 0; // no delay
+    public const int DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295
+    public const int DEFAULT_TTR = 60; // 1 minute
 
     /**
      * The name of the current tube used for publishing jobs to.

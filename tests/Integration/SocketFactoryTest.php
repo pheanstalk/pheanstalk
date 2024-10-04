@@ -15,6 +15,7 @@ use Pheanstalk\SocketFactory;
 use Pheanstalk\Values\SocketImplementation;
 use Pheanstalk\Values\Timeout;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -55,9 +56,9 @@ final class SocketFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider factoryProvider
      * @param class-string<SocketInterface> $expectedImplementationClass
      */
+    #[DataProvider('factoryProvider')]
     public function testImplementations(SocketFactoryInterface $factory, string $expectedImplementationClass): void
     {
         Assert::assertInstanceOf($expectedImplementationClass, $factory->create());
