@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Values;
 
-use function mb_strlen;
 use Stringable;
+use function mb_strlen;
 
 final class TubeName implements Stringable
 {
