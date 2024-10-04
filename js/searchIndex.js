@@ -741,6 +741,11 @@ Search.appendIndex(
             "summary": "Disconnect\u0020the\u0020socket\u003B\u0020subsequent\u0020usage\u0020of\u0020the\u0020socket\u0020will\u0020fail.",
             "url": "classes/Pheanstalk-Contract-SocketInterface.html#method_disconnect"
         },                {
+            "fqsen": "\\Pheanstalk\\Exception\\ClientException",
+            "name": "ClientException",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
+            "url": "classes/Pheanstalk-Exception-ClientException.html"
+        },                {
             "fqsen": "\\Pheanstalk\\Exception\\ConnectionException",
             "name": "ConnectionException",
             "summary": "An\u0020exception\u0020relating\u0020to\u0020the\u0020client\u0020connection\u0020to\u0020the\u0020beanstalkd\u0020server.",
@@ -753,12 +758,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\DeadlineSoonException",
             "name": "DeadlineSoonException",
-            "summary": "",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-DeadlineSoonException.html"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\ExpectedCrlfException",
             "name": "ExpectedCrlfException",
-            "summary": "",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-ExpectedCrlfException.html"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\JobBuriedException",
@@ -823,7 +828,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\NoImplementationException",
             "name": "NoImplementationException",
-            "summary": "",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-NoImplementationException.html"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\NotIgnoredException",
@@ -846,6 +851,11 @@ Search.appendIndex(
             "summary": "An\u0020exception\u0020originating\u0020as\u0020a\u0020beanstalkd\u0020server\u0020error.",
             "url": "classes/Pheanstalk-Exception-ServerDrainingException.html"
         },                {
+            "fqsen": "\\Pheanstalk\\Exception\\ServerException",
+            "name": "ServerException",
+            "summary": "An\u0020exception\u0020originating\u0020as\u0020a\u0020beanstalkd\u0020server\u0020error.",
+            "url": "classes/Pheanstalk-Exception-ServerException.html"
+        },                {
             "fqsen": "\\Pheanstalk\\Exception\\ServerInternalErrorException",
             "name": "ServerInternalErrorException",
             "summary": "An\u0020exception\u0020originating\u0020as\u0020a\u0020beanstalkd\u0020server\u0020error.",
@@ -863,23 +873,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\TimedOutException",
             "name": "TimedOutException",
-            "summary": "",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-TimedOutException.html"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\TubeNotFoundException",
             "name": "TubeNotFoundException",
-            "summary": "",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-TubeNotFoundException.html"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\UnsupportedResponseException",
             "name": "UnsupportedResponseException",
-            "summary": "",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-UnsupportedResponseException.html"
         },                {
             "fqsen": "\\Pheanstalk\\Exception\\UnsupportedResponseException\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
             "url": "classes/Pheanstalk-Exception-UnsupportedResponseException.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception",
+            "name": "Exception",
+            "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020Pheanstalk\u0020package.",
+            "url": "classes/Pheanstalk-Exception.html"
         },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk",
             "name": "Pheanstalk",
