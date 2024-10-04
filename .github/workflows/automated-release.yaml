@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '8.1', '8.2' ]
+        php: [ '8.3', '8.4' ]
     steps:
       - uses: actions/checkout@v3
       - name: Set up PHP
@@ -38,7 +38,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php }}
       - uses: ramsey/composer-install@v2
       - name: Test code style
         run: vendor/bin/ecs
@@ -50,13 +50,17 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php }}
+          tools: phive
       - name: Install dependencies
         uses: ramsey/composer-install@v2
       - name: Static analysis (phpstan)
         run: vendor/bin/phpstan
+      - name: Install psalm
+        run: phive install psalm
       - name: Static analysis (psalm)
-        run: vendor/bin/psalm
+        run: tools/psalm
+
   docs:
     name: Docs
     needs:
@@ -67,7 +71,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: ${{ matrix.php }}
           tools: phpDocumentor
       - name: Generate docs
         run: phpdoc run
@@ -80,7 +84,6 @@ jobs:
     name: Automated release
     needs:
       - code_style
-      - static_analysis
       - static_analysis
       - tests
     permissions:

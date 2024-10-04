@@ -56,7 +56,7 @@ jobs:
         uses: ramsey/composer-install@v2
       - name: Static analysis (phpstan)
         run: vendor/bin/phpstan
-      - name: Static analysis (psalm)
+      - name: Install psalm
         run: phive install psalm
       - name: Static analysis (psalm)
         run: tools/psalm
