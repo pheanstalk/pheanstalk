@@ -26,6 +26,7 @@ final class ServerStats
         'cmd-release',
         'cmd-bury',
         'cmd-kick',
+        'cmd-touch',
         'cmd-stats',
 
         'cmd-reserve-with-timeout',
@@ -48,9 +49,11 @@ final class ServerStats
         'version',
         'rusage-utime',
         'rusage-stime',
+        'uptime',
         'binlog-oldest-index',
         'binlog-current-index',
         'binlog-max-size',
+        'binlog-records-migrated',
         'binlog-records-written',
         'draining',
         'id',
@@ -107,6 +110,9 @@ final class ServerStats
         public readonly string $hostname,
         public readonly string $os,
         public readonly string $platform,
+        public readonly int $cmdTouch,
+        public readonly int $uptime,
+        public readonly int $binlogRecordsMigrated,
     ) {
     }
     private static function camelize(string $key): string
