@@ -57,7 +57,7 @@ jobs:
       - name: Static analysis (phpstan)
         run: vendor/bin/phpstan
       - name: Install psalm
-        run: phive install psalm
+        run: phive install --trust-gpg-keys 12CE0F1D262429A5 psalm
       - name: Static analysis (psalm)
         run: tools/psalm
 
