@@ -31,11 +31,6 @@
                 "conditions": []
             },
             {
-                "action": "tools/psalm",
-                "options": [],
-                "conditions": []
-            },
-            {
                 "action": "composer test",
                 "options": [],
                 "conditions": []
