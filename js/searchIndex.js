@@ -2016,6 +2016,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-Values-ServerStats.html#property_platform"
         },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024cmdTouch",
+            "name": "cmdTouch",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_cmdTouch"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024uptime",
+            "name": "uptime",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_uptime"
+        },                {
+            "fqsen": "\\Pheanstalk\\Values\\ServerStats\u003A\u003A\u0024binlogRecordsMigrated",
+            "name": "binlogRecordsMigrated",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-ServerStats.html#property_binlogRecordsMigrated"
+        },                {
             "fqsen": "\\Pheanstalk\\Values\\SocketImplementation",
             "name": "SocketImplementation",
             "summary": "",
@@ -2255,16 +2270,6 @@ Search.appendIndex(
             "name": "Exception",
             "summary": "",
             "url": "namespaces/pheanstalk-exception.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Parser",
-            "name": "Parser",
-            "summary": "",
-            "url": "namespaces/pheanstalk-parser.html"
-        },                {
-            "fqsen": "\\Pheanstalk\\Socket",
-            "name": "Socket",
-            "summary": "",
-            "url": "namespaces/pheanstalk-socket.html"
         },                {
             "fqsen": "\\Pheanstalk\\Values",
             "name": "Values",

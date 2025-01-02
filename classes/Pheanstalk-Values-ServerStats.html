@@ -166,7 +166,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/Pheanstalk-Values-ServerStats.html#constant_KEYS">KEYS</a>
     <span>
-        &nbsp;= [&#039;current-jobs-urgent&#039;, &#039;current-jobs-ready&#039;, &#039;current-jobs-reserved&#039;, &#039;current-jobs-delayed&#039;, &#039;current-jobs-buried&#039;, &#039;cmd-put&#039;, &#039;cmd-peek&#039;, &#039;cmd-peek-ready&#039;, &#039;cmd-peek-delayed&#039;, &#039;cmd-peek-buried&#039;, &#039;cmd-reserve&#039;, &#039;cmd-use&#039;, &#039;cmd-watch&#039;, &#039;cmd-ignore&#039;, &#039;cmd-delete&#039;, &#039;cmd-release&#039;, &#039;cmd-bury&#039;, &#039;cmd-kick&#039;, &#039;cmd-stats&#039;, &#039;cmd-reserve-with-timeout&#039;, &#039;cmd-stats-job&#039;, &#039;cmd-stats-tube&#039;, &#039;cmd-list-tubes&#039;, &#039;cmd-list-tube-used&#039;, &#039;cmd-list-tubes-watched&#039;, &#039;cmd-pause-tube&#039;, &#039;job-timeouts&#039;, &#039;total-jobs&#039;, &#039;max-job-size&#039;, &#039;current-tubes&#039;, &#039;current-connections&#039;, &#039;current-producers&#039;, &#039;current-workers&#039;, &#039;current-waiting&#039;, &#039;total-connections&#039;, &#039;pid&#039;, &#039;version&#039;, &#039;rusage-utime&#039;, &#039;rusage-stime&#039;, &#039;binlog-oldest-index&#039;, &#039;binlog-current-index&#039;, &#039;binlog-max-size&#039;, &#039;binlog-records-written&#039;, &#039;draining&#039;, &#039;id&#039;, &#039;hostname&#039;, &#039;os&#039;, &#039;platform&#039;]                            </span>
+        &nbsp;= [&#039;current-jobs-urgent&#039;, &#039;current-jobs-ready&#039;, &#039;current-jobs-reserved&#039;, &#039;current-jobs-delayed&#039;, &#039;current-jobs-buried&#039;, &#039;cmd-put&#039;, &#039;cmd-peek&#039;, &#039;cmd-peek-ready&#039;, &#039;cmd-peek-delayed&#039;, &#039;cmd-peek-buried&#039;, &#039;cmd-reserve&#039;, &#039;cmd-reserve-with-timeout&#039;, &#039;cmd-delete&#039;, &#039;cmd-release&#039;, &#039;cmd-use&#039;, &#039;cmd-watch&#039;, &#039;cmd-ignore&#039;, &#039;cmd-bury&#039;, &#039;cmd-kick&#039;, &#039;cmd-touch&#039;, &#039;cmd-stats&#039;, &#039;cmd-stats-job&#039;, &#039;cmd-stats-tube&#039;, &#039;cmd-list-tubes&#039;, &#039;cmd-list-tube-used&#039;, &#039;cmd-list-tubes-watched&#039;, &#039;cmd-pause-tube&#039;, &#039;job-timeouts&#039;, &#039;total-jobs&#039;, &#039;max-job-size&#039;, &#039;current-tubes&#039;, &#039;current-connections&#039;, &#039;current-producers&#039;, &#039;current-workers&#039;, &#039;current-waiting&#039;, &#039;total-connections&#039;, &#039;pid&#039;, &#039;version&#039;, &#039;rusage-utime&#039;, &#039;rusage-stime&#039;, &#039;uptime&#039;, &#039;binlog-oldest-index&#039;, &#039;binlog-current-index&#039;, &#039;binlog-records-migrated&#039;, &#039;binlog-records-written&#039;, &#039;binlog-max-size&#039;, &#039;draining&#039;, &#039;id&#039;, &#039;hostname&#039;, &#039;os&#039;, &#039;platform&#039;]                            </span>
 </dt>
 
     </dl>
@@ -192,6 +192,12 @@
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Pheanstalk-Values-ServerStats.html#property_binlogOldestIndex">$binlogOldestIndex</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Pheanstalk-Values-ServerStats.html#property_binlogRecordsMigrated">$binlogRecordsMigrated</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
@@ -312,6 +318,12 @@
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Pheanstalk-Values-ServerStats.html#property_cmdStatsTube">$cmdStatsTube</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Pheanstalk-Values-ServerStats.html#property_cmdTouch">$cmdTouch</a>
     <span>
                         &nbsp;: int            </span>
 </dt>
@@ -461,6 +473,12 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a class="" href="classes/Pheanstalk-Values-ServerStats.html#property_uptime">$uptime</a>
+    <span>
+                        &nbsp;: int            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
     <a class="" href="classes/Pheanstalk-Values-ServerStats.html#property_version">$version</a>
     <span>
                         &nbsp;: string            </span>
@@ -523,7 +541,7 @@
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">KEYS</span>
-    = <span class="phpdocumentor-signature__default-value">[&#039;current-jobs-urgent&#039;, &#039;current-jobs-ready&#039;, &#039;current-jobs-reserved&#039;, &#039;current-jobs-delayed&#039;, &#039;current-jobs-buried&#039;, &#039;cmd-put&#039;, &#039;cmd-peek&#039;, &#039;cmd-peek-ready&#039;, &#039;cmd-peek-delayed&#039;, &#039;cmd-peek-buried&#039;, &#039;cmd-reserve&#039;, &#039;cmd-use&#039;, &#039;cmd-watch&#039;, &#039;cmd-ignore&#039;, &#039;cmd-delete&#039;, &#039;cmd-release&#039;, &#039;cmd-bury&#039;, &#039;cmd-kick&#039;, &#039;cmd-stats&#039;, &#039;cmd-reserve-with-timeout&#039;, &#039;cmd-stats-job&#039;, &#039;cmd-stats-tube&#039;, &#039;cmd-list-tubes&#039;, &#039;cmd-list-tube-used&#039;, &#039;cmd-list-tubes-watched&#039;, &#039;cmd-pause-tube&#039;, &#039;job-timeouts&#039;, &#039;total-jobs&#039;, &#039;max-job-size&#039;, &#039;current-tubes&#039;, &#039;current-connections&#039;, &#039;current-producers&#039;, &#039;current-workers&#039;, &#039;current-waiting&#039;, &#039;total-connections&#039;, &#039;pid&#039;, &#039;version&#039;, &#039;rusage-utime&#039;, &#039;rusage-stime&#039;, &#039;binlog-oldest-index&#039;, &#039;binlog-current-index&#039;, &#039;binlog-max-size&#039;, &#039;binlog-records-written&#039;, &#039;draining&#039;, &#039;id&#039;, &#039;hostname&#039;, &#039;os&#039;, &#039;platform&#039;]</span>
+    = <span class="phpdocumentor-signature__default-value">[&#039;current-jobs-urgent&#039;, &#039;current-jobs-ready&#039;, &#039;current-jobs-reserved&#039;, &#039;current-jobs-delayed&#039;, &#039;current-jobs-buried&#039;, &#039;cmd-put&#039;, &#039;cmd-peek&#039;, &#039;cmd-peek-ready&#039;, &#039;cmd-peek-delayed&#039;, &#039;cmd-peek-buried&#039;, &#039;cmd-reserve&#039;, &#039;cmd-reserve-with-timeout&#039;, &#039;cmd-delete&#039;, &#039;cmd-release&#039;, &#039;cmd-use&#039;, &#039;cmd-watch&#039;, &#039;cmd-ignore&#039;, &#039;cmd-bury&#039;, &#039;cmd-kick&#039;, &#039;cmd-touch&#039;, &#039;cmd-stats&#039;, &#039;cmd-stats-job&#039;, &#039;cmd-stats-tube&#039;, &#039;cmd-list-tubes&#039;, &#039;cmd-list-tube-used&#039;, &#039;cmd-list-tubes-watched&#039;, &#039;cmd-pause-tube&#039;, &#039;job-timeouts&#039;, &#039;total-jobs&#039;, &#039;max-job-size&#039;, &#039;current-tubes&#039;, &#039;current-connections&#039;, &#039;current-producers&#039;, &#039;current-workers&#039;, &#039;current-waiting&#039;, &#039;total-connections&#039;, &#039;pid&#039;, &#039;version&#039;, &#039;rusage-utime&#039;, &#039;rusage-stime&#039;, &#039;uptime&#039;, &#039;binlog-oldest-index&#039;, &#039;binlog-current-index&#039;, &#039;binlog-records-migrated&#039;, &#039;binlog-records-written&#039;, &#039;binlog-max-size&#039;, &#039;draining&#039;, &#039;id&#039;, &#039;hostname&#039;, &#039;os&#039;, &#039;platform&#039;]</span>
 </code>
 
 
@@ -560,7 +578,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">105</span>
 
     </aside>
 
@@ -596,7 +614,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">103</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
     </aside>
 
@@ -632,7 +650,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">101</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
@@ -642,6 +660,42 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$binlogOldestIndex</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_binlogRecordsMigrated">
+        $binlogRecordsMigrated
+        <a href="classes/Pheanstalk-Values-ServerStats.html#property_binlogRecordsMigrated" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">115</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$binlogRecordsMigrated</span>
     </code>
 
     
@@ -668,7 +722,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">107</span>
 
     </aside>
 
@@ -704,7 +758,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">82</span>
 
     </aside>
 
@@ -740,7 +794,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -776,7 +830,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">76</span>
+    <span class="phpdocumentor-element-found-in__line">79</span>
 
     </aside>
 
@@ -812,7 +866,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -848,7 +902,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -884,7 +938,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">86</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -920,7 +974,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
@@ -956,7 +1010,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -992,7 +1046,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
@@ -1028,7 +1082,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -1064,7 +1118,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -1100,7 +1154,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -1136,7 +1190,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
@@ -1172,7 +1226,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -1208,7 +1262,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
@@ -1244,7 +1298,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -1280,7 +1334,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">84</span>
 
     </aside>
 
@@ -1316,7 +1370,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">82</span>
+    <span class="phpdocumentor-element-found-in__line">85</span>
 
     </aside>
 
@@ -1352,7 +1406,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">83</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -1362,6 +1416,42 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$cmdStatsTube</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_cmdTouch">
+        $cmdTouch
+        <a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdTouch" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">113</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$cmdTouch</span>
     </code>
 
     
@@ -1388,7 +1478,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -1424,7 +1514,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">75</span>
+    <span class="phpdocumentor-element-found-in__line">78</span>
 
     </aside>
 
@@ -1460,7 +1550,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">92</span>
+    <span class="phpdocumentor-element-found-in__line">95</span>
 
     </aside>
 
@@ -1496,7 +1586,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">69</span>
 
     </aside>
 
@@ -1532,7 +1622,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -1568,7 +1658,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">63</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -1604,7 +1694,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
@@ -1640,7 +1730,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">65</span>
 
     </aside>
 
@@ -1676,7 +1766,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">93</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
@@ -1712,7 +1802,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">91</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -1748,7 +1838,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">98</span>
 
     </aside>
 
@@ -1784,7 +1874,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">97</span>
 
     </aside>
 
@@ -1820,7 +1910,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">105</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -1856,7 +1946,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
@@ -1892,7 +1982,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">106</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
@@ -1928,7 +2018,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -1964,7 +2054,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">90</span>
+    <span class="phpdocumentor-element-found-in__line">93</span>
 
     </aside>
 
@@ -2000,7 +2090,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">111</span>
 
     </aside>
 
@@ -2036,7 +2126,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">100</span>
 
     </aside>
 
@@ -2072,7 +2162,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">112</span>
 
     </aside>
 
@@ -2108,7 +2198,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">100</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
@@ -2144,7 +2234,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">102</span>
 
     </aside>
 
@@ -2180,7 +2270,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">96</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -2216,7 +2306,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
@@ -2226,6 +2316,42 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$totalJobs</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                -read-only        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_uptime">
+        $uptime
+        <a href="classes/Pheanstalk-Values-ServerStats.html#property_uptime" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">114</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">int</span>
+    <span class="phpdocumentor-signature__name">$uptime</span>
     </code>
 
     
@@ -2252,7 +2378,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">98</span>
+    <span class="phpdocumentor-element-found-in__line">101</span>
 
     </aside>
 
@@ -2293,14 +2419,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">61</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsUrgent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsReady</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsReserved</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsDelayed</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsBuried</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPut</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeek</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeekReady</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeekDelayed</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdReserveWithTimeout</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeekBuried</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdReserve</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdUse</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdWatch</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdIgnore</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdDelete</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdRelease</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdBury</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdKick</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdStats</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdStatsJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdStatsTube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdListTubes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdListTubeUsed</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdListTubesWatched</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPauseTube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobTimeouts</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$totalJobs</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxJobSize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentTubes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentConnections</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentProducers</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentWorkers</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentWaiting</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$totalConnections</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pid</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$version</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rusageUtime</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rusageStime</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogOldestIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogCurrentIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogMaxSize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogRecordsWritten</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$draining</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$hostname</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$os</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$platform</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsUrgent</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsReady</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsReserved</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsDelayed</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentJobsBuried</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPut</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeek</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeekReady</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeekDelayed</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdReserveWithTimeout</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPeekBuried</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdReserve</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdUse</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdWatch</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdIgnore</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdDelete</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdRelease</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdBury</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdKick</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdStats</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdStatsJob</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdStatsTube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdListTubes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdListTubeUsed</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdListTubesWatched</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdPauseTube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$jobTimeouts</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$totalJobs</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxJobSize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentTubes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentConnections</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentProducers</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentWorkers</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentWaiting</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$totalConnections</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$pid</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$version</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rusageUtime</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">float&nbsp;</span><span class="phpdocumentor-signature__argument__name">$rusageStime</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogOldestIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogCurrentIndex</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogMaxSize</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogRecordsWritten</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$draining</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$hostname</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$os</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$platform</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$cmdTouch</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$uptime</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$binlogRecordsMigrated</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -2644,6 +2770,27 @@
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$cmdTouch</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$uptime</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$binlogRecordsMigrated</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
             </dl>
 
     
@@ -2666,7 +2813,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">133</span>
 
     </aside>
 
@@ -2730,7 +2877,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Values/ServerStats.php"><a href="files/src-values-serverstats.html"><abbr title="src/Values/ServerStats.php">ServerStats.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">112</span>
+    <span class="phpdocumentor-element-found-in__line">118</span>
 
     </aside>
 
@@ -2887,6 +3034,7 @@
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_binlogCurrentIndex">$binlogCurrentIndex</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_binlogMaxSize">$binlogMaxSize</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_binlogOldestIndex">$binlogOldestIndex</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_binlogRecordsMigrated">$binlogRecordsMigrated</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_binlogRecordsWritten">$binlogRecordsWritten</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdBury">$cmdBury</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdDelete">$cmdDelete</a></li>
@@ -2907,6 +3055,7 @@
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdStats">$cmdStats</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdStatsJob">$cmdStatsJob</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdStatsTube">$cmdStatsTube</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdTouch">$cmdTouch</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdUse">$cmdUse</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_cmdWatch">$cmdWatch</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_currentConnections">$currentConnections</a></li>
@@ -2931,6 +3080,7 @@
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_rusageUtime">$rusageUtime</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_totalConnections">$totalConnections</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_totalJobs">$totalJobs</a></li>
+                                                    <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_uptime">$uptime</a></li>
                                                     <li class=""><a href="classes/Pheanstalk-Values-ServerStats.html#property_version">$version</a></li>
                                             </ul>
                 </li>
