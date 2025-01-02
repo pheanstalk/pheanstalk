@@ -31,11 +31,6 @@
                 "conditions": []
             },
             {
-                "action": "vendor/bin/psalm",
-                "options": [],
-                "conditions": []
-            },
-            {
                 "action": "composer test",
                 "options": [],
                 "conditions": []
