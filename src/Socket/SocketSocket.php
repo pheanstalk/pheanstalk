@@ -31,7 +31,9 @@ final class SocketSocket implements SocketInterface
             $socket = @socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         }
         if ($socket === false) {
-            throw new ConnectionException(0, "Failed to create socket");
+            $errorCode = socket_last_error();
+            $errorMessage = socket_strerror($errorCode);
+            throw new ConnectionException($errorCode, "Failed to create socket: $errorMessage");
         }
 
 
