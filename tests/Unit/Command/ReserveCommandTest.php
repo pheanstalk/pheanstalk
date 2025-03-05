@@ -10,10 +10,9 @@ use Pheanstalk\Exception\TimedOutException;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\ReserveCommand
- */
+#[CoversClass(ReserveCommand::class)]
 final class ReserveCommandTest extends CommandTestBase
 {
     public function testInterpretDeadlineSoon(): void

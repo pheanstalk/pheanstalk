@@ -8,10 +8,9 @@ use Pheanstalk\Command\StatsCommand;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\StatsCommand
- */
+#[CoversClass(StatsCommand::class)]
 final class StatsCommandTest extends CommandTestBase
 {
     private const SAMPLE = [

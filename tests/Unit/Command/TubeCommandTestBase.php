@@ -10,6 +10,7 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 abstract class TubeCommandTestBase extends CommandTestBase
 {
@@ -40,9 +41,7 @@ abstract class TubeCommandTestBase extends CommandTestBase
         yield ["ab(14\$--_.4"];
     }
 
-    /**
-     * @dataProvider tubeNameProvider
-     */
+    #[DataProvider('tubeNameProvider')]
     public function testCommandLineIncludesTubeName(string $tubeName): void
     {
         $commandLine = $this->getSubject(new TubeName($tubeName))->getCommandLine();

@@ -12,10 +12,9 @@ use Pheanstalk\Values\JobCommandTemplate;
 use Pheanstalk\Values\JobId;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\JobCommand
- */
+#[CoversClass(JobCommand::class)]
 final class ConcreteJobCommandTest extends JobCommandTestBase
 {
     protected static function getSupportedResponses(): array

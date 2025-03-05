@@ -9,10 +9,9 @@ use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Values\JobId;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\BuryCommand
- */
+#[CoversClass(BuryCommand::class)]
 final class BuryCommandTest extends JobCommandTestBase
 {
     public function testInterpretBuried(): void

@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Values;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\JobStats;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\JobStats
- */
+#[CoversClass(JobStats::class)]
 final class JobStatsTest extends TestCase
 {
     private const SAMPLE = [
@@ -61,12 +62,12 @@ final class JobStatsTest extends TestCase
     }
 
     /**
-     * @dataProvider sampleWithSingleMissingKeyProvider
      * @param array<string, scalar> $sample
      */
+    #[DataProvider('sampleWithSingleMissingKeyProvider')]
     public function testMissingKey(array $sample): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         JobStats::fromBeanstalkArray($sample);
     }
 
@@ -74,7 +75,7 @@ final class JobStatsTest extends TestCase
     {
         $sample = self::SAMPLE;
         $sample['state'] = 'invalid_state';
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         JobStats::fromBeanstalkArray($sample);
     }
 }

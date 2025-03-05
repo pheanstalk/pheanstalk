@@ -9,6 +9,7 @@ use Pheanstalk\Exception\UnsupportedResponseException;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 abstract class CommandTestBase extends TestCase
@@ -34,8 +35,8 @@ abstract class CommandTestBase extends TestCase
      * This test confirms that for each response type that the command supports at least one test method exists.
      * Note: While this test failing is a clear indicator something is wrong, passing this test does not mean that
      * your test class is properly covering all or any functionality of the command class
-     * @dataProvider supportedResponseProvider
      */
+    #[DataProvider('supportedResponseProvider')]
     final public function testSupportedResponseIsTested(ResponseType $type): void
     {
         $method = "testInterpret" . ucfirst($type->name);
@@ -55,9 +56,7 @@ abstract class CommandTestBase extends TestCase
         }
     }
 
-    /**
-     * @dataProvider unsupportedResponseProvider
-     */
+    #[DataProvider('unsupportedResponseProvider')]
     final public function testUnsupportedResponses(ResponseType $type): void
     {
         $this->expectException(UnsupportedResponseException::class);

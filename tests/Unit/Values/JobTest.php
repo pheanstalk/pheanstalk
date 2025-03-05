@@ -6,11 +6,10 @@ namespace Pheanstalk\Tests\Unit\Values;
 
 use Pheanstalk\Values\Job;
 use Pheanstalk\Values\JobId;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\Job
- */
+#[CoversClass(Job::class)]
 final class JobTest extends TestCase
 {
     public function testConstructor(): void

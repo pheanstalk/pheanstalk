@@ -7,11 +7,11 @@ namespace Pheanstalk\Tests\Unit\Command;
 use Pheanstalk\Command\ListTubesWatchedCommand;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\ListTubesWatchedCommand
- */
+#[CoversClass(ListTubesWatchedCommand::class)]
 final class ListTubesWatchedCommandTest extends CommandTestBase
 {
     public function testInterpretOk(): void
@@ -25,7 +25,7 @@ final class ListTubesWatchedCommandTest extends CommandTestBase
             - \$(a.4)((b
         DATA
         ));
-        /** @var \Pheanstalk\Values\TubeName[] $tubeNames */
+        /** @var TubeName[] $tubeNames */
         $tubeNames = iterator_to_array($result);
         Assert::assertSame('abc', $tubeNames[0]->value);
         Assert::assertSame('ab-cwf', $tubeNames[1]->value);

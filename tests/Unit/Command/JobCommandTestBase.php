@@ -11,6 +11,7 @@ use Pheanstalk\Values\JobId;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 abstract class JobCommandTestBase extends CommandTestBase
 {
@@ -35,9 +36,7 @@ abstract class JobCommandTestBase extends CommandTestBase
         yield ["00001123"];
     }
 
-    /**
-     * @dataProvider jobIdProvider
-     */
+    #[DataProvider('jobIdProvider')]
     public function testCommandLineIncludesId(string $id): void
     {
         $commandLine = $this->getSubject(new JobId($id))->getCommandLine();

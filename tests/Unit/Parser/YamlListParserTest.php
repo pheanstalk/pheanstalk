@@ -6,11 +6,11 @@ namespace Pheanstalk\Tests\Unit\Parser;
 
 use Pheanstalk\Parser\YamlListParser;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Parser\YamlListParser
- */
+#[CoversClass(YamlListParser::class)]
 final class YamlListParserTest extends TestCase
 {
     /**
@@ -22,9 +22,9 @@ final class YamlListParserTest extends TestCase
     }
 
     /**
-     * @dataProvider yamlListProvider
      * @param list<string> $expected
      */
+    #[DataProvider('yamlListProvider')]
     public function testParse(string $rawData, array $expected): void
     {
         $parser = new YamlListParser();

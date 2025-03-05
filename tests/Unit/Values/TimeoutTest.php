@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Pheanstalk\Tests\Unit\Values;
 
 use Pheanstalk\Values\Timeout;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\Timeout
- */
+#[CoversClass(Timeout::class)]
 final class TimeoutTest extends TestCase
 {
     public function testToFloat(): void

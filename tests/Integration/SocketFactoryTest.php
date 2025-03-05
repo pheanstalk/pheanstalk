@@ -15,15 +15,14 @@ use Pheanstalk\SocketFactory;
 use Pheanstalk\Values\SocketImplementation;
 use Pheanstalk\Values\Timeout;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\SocketFactory
- * @covers \Pheanstalk\Socket\SocketSocket
- * @covers \Pheanstalk\Socket\FsockopenSocket
- * @covers \Pheanstalk\Socket\StreamSocket
- */
+#[CoversClass(SocketFactory::class)]
+#[CoversClass(SocketSocket::class)]
+#[CoversClass(FsockopenSocket::class)]
+#[CoversClass(StreamSocket::class)]
 final class SocketFactoryTest extends TestCase
 {
     /**
@@ -78,9 +77,7 @@ final class SocketFactoryTest extends TestCase
         }
     }
 
-    /**
-     * @dataProvider invalidHostProvider
-     */
+    #[DataProvider("invalidHostProvider")]
     public function testExceptionOnNonExistentHost(string $host, SocketImplementation|null $implementation): void
     {
         $factory = new SocketFactory(host: $host, implementation: $implementation, connectTimeout: new Timeout(0, 500000));

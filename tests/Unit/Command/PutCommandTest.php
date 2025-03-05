@@ -12,10 +12,10 @@ use Pheanstalk\Exception\ServerDrainingException;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * @covers \Pheanstalk\Command\PutCommand
- */
+#[CoversClass(PutCommand::class)]
 final class PutCommandTest extends CommandTestBase
 {
     public function testInterpretBuried(): void
@@ -85,9 +85,7 @@ final class PutCommandTest extends CommandTestBase
         }
     }
 
-    /**
-     * @dataProvider dataProvider
-     */
+    #[DataProvider('dataProvider')]
     public function testData(string $data, int $expectedLength): void
     {
         $command = new PutCommand($data, 5, 5, 4);

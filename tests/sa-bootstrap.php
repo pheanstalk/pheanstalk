@@ -7,7 +7,7 @@ require __DIR__ . '/bootstrap.php';
 // Extract snippets from readme.
 $readme = file(__DIR__ . '/../README.md', FILE_SKIP_EMPTY_LINES + FILE_IGNORE_NEW_LINES);
 if ($readme === false) {
-    throw new \RuntimeException("Failed to open readme file");
+    throw new RuntimeException("Failed to open readme file");
 }
 
 passthru('rm -r ' . __DIR__ . '/snippets');

@@ -11,10 +11,9 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeCommandTemplate;
 use Pheanstalk\Values\TubeName;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\TubeCommand
- */
+#[CoversClass(TubeCommand::class)]
 final class ConcreteTubeCommandTest extends TubeCommandTestBase
 {
     protected static function getSupportedResponses(): array

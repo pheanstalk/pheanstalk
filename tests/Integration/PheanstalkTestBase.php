@@ -11,19 +11,26 @@ use Pheanstalk\Exception\JobNotFoundException;
 use Pheanstalk\Exception\JobTooBigException;
 use Pheanstalk\Exception\NotIgnoredException;
 use Pheanstalk\Pheanstalk;
+use Pheanstalk\PheanstalkManager;
+use Pheanstalk\PheanstalkPublisher;
+use Pheanstalk\PheanstalkSubscriber;
 use Pheanstalk\Values\Job;
 use Pheanstalk\Values\JobState;
+use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Pheanstalk
- * @covers \Pheanstalk\Values\ResponseType
- * @covers \Pheanstalk\PheanstalkSubscriber
- * @covers \Pheanstalk\PheanstalkManager
- * @covers \Pheanstalk\PheanstalkPublisher
- */
+#[CoversClass(Pheanstalk::class)]
+#[CoversClass(ResponseType::class)]
+#[CoversClass(PheanstalkSubscriber::class)]
+#[CoversClass(PheanstalkManager::class)]
+#[CoversClass(PheanstalkPublisher::class)]
+#[CoversMethod(Pheanstalk::class, 'release')]
+#[CoversMethod(Pheanstalk::class, 'kickJob')]
 abstract class PheanstalkTestBase extends TestCase
 {
     use BugfixConnectionTests;
@@ -57,9 +64,7 @@ abstract class PheanstalkTestBase extends TestCase
         yield ['0.5'];
     }
 
-    /**
-     * @dataProvider tubeNameProvider
-     */
+    #[DataProvider('tubeNameProvider')]
     public function testUseTube(string $name): void
     {
         $pheanstalk = $this->getPheanstalk();
@@ -107,9 +112,6 @@ abstract class PheanstalkTestBase extends TestCase
         $pheanstalk->delete($job);
     }
 
-    /**
-     * @covers \Pheanstalk\Pheanstalk::release
-     */
     public function testRelease(): void
     {
         $pheanstalk = $this->getPheanstalk();
@@ -295,9 +297,6 @@ abstract class PheanstalkTestBase extends TestCase
         Assert::assertSame($response->getData(), __METHOD__);
     }
 
-    /**
-     * @covers \Pheanstalk\Pheanstalk::kickJob
-     */
     public function testKickJob(): void
     {
         $pheanstalk = $this->getPheanstalk();

@@ -6,11 +6,11 @@ namespace Pheanstalk\Tests\Unit\Parser;
 
 use Pheanstalk\Parser\YamlDictionaryParser;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Parser\YamlDictionaryParser
- */
+#[CoversClass(YamlDictionaryParser::class)]
 final class YamlDictionaryParserTest extends TestCase
 {
     /**
@@ -37,9 +37,9 @@ final class YamlDictionaryParserTest extends TestCase
     }
 
     /**
-     * @dataProvider yamlDictionaryProvider
      * @param array<string, int|string|bool|float> $expected
      */
+    #[DataProvider('yamlDictionaryProvider')]
     public function testParse(string $rawData, array $expected): void
     {
         $parser = new YamlDictionaryParser();

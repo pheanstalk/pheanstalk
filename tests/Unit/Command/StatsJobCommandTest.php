@@ -10,10 +10,9 @@ use Pheanstalk\Values\JobId;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\StatsJobCommand
- */
+#[CoversClass(StatsJobCommand::class)]
 final class StatsJobCommandTest extends JobCommandTestBase
 {
     public function testInterpretOk(): void

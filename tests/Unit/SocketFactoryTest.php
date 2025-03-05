@@ -7,11 +7,10 @@ namespace Pheanstalk\Tests\Unit;
 
 use Pheanstalk\SocketFactory;
 use Pheanstalk\Values\SocketImplementation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\SocketFactory
- */
+#[CoversClass(SocketFactory::class)]
 final class SocketFactoryTest extends TestCase
 {
     public function testDetection(): void

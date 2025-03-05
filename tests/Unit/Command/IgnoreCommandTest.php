@@ -10,10 +10,9 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\IgnoreCommand
- */
+#[CoversClass(IgnoreCommand::class)]
 final class IgnoreCommandTest extends TubeCommandTestBase
 {
     public function testInterpretWatching(): void
