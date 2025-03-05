@@ -6,6 +6,8 @@ services:
     volumes:
       - ".:/data:ro"
       - "./docs/:/data/docs"
+    command:
+      - "--cache-folder=/tmp"
   beanstalk-unix:
     image: ghcr.io/sammousa/beanstalkd:latest
     entrypoint:
