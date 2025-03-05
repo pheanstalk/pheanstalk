@@ -34,7 +34,9 @@
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-strict-rules": "^2",
-        "rector/rector": "^2.0"
+        "rector/rector": "^2.0",
+        "php-mock/php-mock": "^2.5",
+        "php-mock/php-mock-phpunit": "^2.10"
     },
     "autoload-dev": {
         "psr-4": {
