@@ -8,6 +8,7 @@ use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\CommandWithDataInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\MalformedResponseException;
 use Pheanstalk\Exception\ServerBadFormatException;
 use Pheanstalk\Exception\ServerInternalErrorException;
@@ -117,8 +118,13 @@ final class Connection
             $buffer .= $command->getData() . self::CRLF;
         }
 
-        $socket->write($buffer);
-        return $this->readRawResponse($commandLine);
+        try {
+            $socket->write($buffer);
+            return $this->readRawResponse($commandLine);
+        } catch (ConnectionException $connectionException) {
+            $socket->disconnect();
+            throw $connectionException;
+        }
     }
 
     /**

@@ -9,6 +9,7 @@ use Pheanstalk\Connection;
 use Pheanstalk\Contract\CommandInterface;
 use Pheanstalk\Contract\SocketFactoryInterface;
 use Pheanstalk\Contract\SocketInterface;
+use Pheanstalk\Exception\ConnectionException;
 use Pheanstalk\Exception\ServerBadFormatException;
 use Pheanstalk\Exception\ServerInternalErrorException;
 use Pheanstalk\Exception\ServerOutOfMemoryException;
@@ -55,6 +56,11 @@ final class ConnectionTest extends TestCase
 
         $socket->expects(self::once())->method('write');
 
+        return $this->createConnectionBySocket($socket);
+    }
+
+    private function createConnectionBySocket(SocketInterface $socket): Connection
+    {
         return new Connection(new class($socket) implements SocketFactoryInterface {
             public function __construct(private readonly SocketInterface $socket)
             {
@@ -89,5 +95,21 @@ final class ConnectionTest extends TestCase
     {
         $this->expectException(ServerUnknownCommandException::class);
         $this->getConnection(ResponseType::UnknownCommand->value)->dispatchCommand($this->getCommand());
+    }
+
+    public function testSocketCloseOnIOError(): void
+    {
+        $this->expectException(ConnectionException::class);
+        $socket = $this->getMockBuilder(SocketInterface::class)
+            ->getMock();
+
+        $socket->expects(self::once())
+            ->method('write')
+            ->willThrowException(new ConnectionException(4, 'Interrupted system call'));
+
+        $socket->expects(self::once())->method('disconnect');
+
+        $connection = $this->createConnectionBySocket($socket);
+        $connection->dispatchCommand($this->getCommand());
     }
 }
