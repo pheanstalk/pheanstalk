@@ -1,6 +1,11 @@
 volumes:
   shared:
 services:
+  phpdoc:
+    image: phpdoc/phpdoc:3
+    volumes:
+      - ".:/data:ro"
+      - "./docs/:/data/docs"
   beanstalk-unix:
     image: ghcr.io/sammousa/beanstalkd:latest
     entrypoint:

@@ -50,7 +50,8 @@
         "phpunit-native": "phpunit --config phpunit.xml.dist",
         "test": [
             "@phpunit"
-        ]
+        ],
+        "phpdoc": "docker run --rm "
     },
     "config": {
         "allow-plugins": {

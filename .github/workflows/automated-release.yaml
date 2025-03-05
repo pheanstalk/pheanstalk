@@ -3,8 +3,7 @@ name: Automated releases
 on:
   push:
     branches:
-      - v4
-      - v5
+      - master
 jobs:
   tests:
     name: Tests
@@ -67,9 +66,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: phpDocumentor
       - name: Generate docs
-        run: phpdoc run
+        run: docker compose run --rm phpdoc
       - name: Deploy docs to pages
         uses: peaceiris/actions-gh-pages@v3
         with:
