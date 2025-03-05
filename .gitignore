@@ -12,3 +12,5 @@ tests/coverage
 .phpunit.result.cache
 .phpunit.cachetests/snippets
 tests/snippets
+docs
+.phpunit.cache

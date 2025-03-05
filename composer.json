@@ -28,12 +28,13 @@
     "require-dev": {
         "phpunit/phpunit": "^12",
         "symplify/easy-coding-standard": "^12",
-        "phpstan/phpstan": "^1",
+        "phpstan/phpstan": "^2",
         "captainhook/plugin-composer": "^5.3",
         "ramsey/conventional-commits": "^1.2",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpstan/phpstan-strict-rules": "^1.1"
+        "phpstan/phpstan-phpunit": "^2",
+        "phpstan/phpstan-strict-rules": "^2",
+        "rector/rector": "^2.0"
     },
     "autoload-dev": {
         "psr-4": {
