@@ -3,8 +3,7 @@ name: Continuous integration
 on:
   pull_request:
     branches:
-      - v4
-      - v5
+      - master
 jobs:
   tests:
     name: Tests
