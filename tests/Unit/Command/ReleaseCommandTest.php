@@ -9,10 +9,9 @@ use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Values\JobId;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\ReleaseCommand
- */
+#[CoversClass(ReleaseCommand::class)]
 final class ReleaseCommandTest extends JobCommandTestBase
 {
     public function testInterpretReleased(): void

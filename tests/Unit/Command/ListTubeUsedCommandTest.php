@@ -8,10 +8,9 @@ use Pheanstalk\Command\ListTubeUsedCommand;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\ListTubeUsedCommand
- */
+#[CoversClass(ListTubeUsedCommand::class)]
 final class ListTubeUsedCommandTest extends CommandTestBase
 {
     public function testInterpretUsing(): void

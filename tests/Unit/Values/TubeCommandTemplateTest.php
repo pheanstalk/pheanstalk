@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Values;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\TubeCommandTemplate;
 use Pheanstalk\Values\TubeName;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\TubeCommandTemplate
- */
+#[CoversClass(TubeCommandTemplate::class)]
 final class TubeCommandTemplateTest extends TestCase
 {
     public function testMissingPlaceholder(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new TubeCommandTemplate('invalid');
     }

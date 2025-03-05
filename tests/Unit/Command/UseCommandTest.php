@@ -9,10 +9,9 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\UseCommand
- */
+#[CoversClass(UseCommand::class)]
 final class UseCommandTest extends TubeCommandTestBase
 {
     public function testInterpretUsing(): void

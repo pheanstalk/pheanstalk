@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Values;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\TubeStats;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\TubeStats
- */
+#[CoversClass(TubeStats::class)]
 final class TubeStatsTest extends TestCase
 {
     private const SAMPLE = [
@@ -75,12 +76,12 @@ final class TubeStatsTest extends TestCase
     }
 
     /**
-     * @dataProvider sampleWithSingleMissingKeyProvider
      * @param array<string, string|int> $sample
      */
+    #[DataProvider('sampleWithSingleMissingKeyProvider')]
     public function testMissingKey(array $sample): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         TubeStats::fromBeanstalkArray($sample);
     }
 }

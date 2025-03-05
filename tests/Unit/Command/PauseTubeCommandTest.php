@@ -8,10 +8,9 @@ use Pheanstalk\Command\PauseTubeCommand;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\PauseTubeCommand
- */
+#[CoversClass(PauseTubeCommand::class)]
 final class PauseTubeCommandTest extends TubeCommandTestBase
 {
     public function testInterpretPaused(): void

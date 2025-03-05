@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Values;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\JobId;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\JobId
- */
+#[CoversClass(JobId::class)]
 final class JobIdTest extends TestCase
 {
     /**
@@ -37,9 +38,7 @@ final class JobIdTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider validSamples
-     */
+    #[DataProvider('validSamples')]
     public function testConstructor(int|string $value): void
     {
         $jobId = new JobId($value);
@@ -50,12 +49,10 @@ final class JobIdTest extends TestCase
         self::assertSame($jobId->getId(), $nested->getId());
     }
 
-    /**
-     * @dataProvider invalidSamples
-     */
+    #[DataProvider('invalidSamples')]
     public function testConstructorException(int|string $value): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new JobId($value);
     }
 }

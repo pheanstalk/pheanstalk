@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\ServerStats;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\ServerStats
- */
+#[CoversClass(ServerStats::class)]
 final class ServerStatsTest extends TestCase
 {
     private const SAMPLE = [
@@ -82,12 +83,12 @@ final class ServerStatsTest extends TestCase
     }
 
     /**
-     * @dataProvider sampleWithSingleMissingKeyProvider
      * @param array<string, scalar> $sample
      */
+    #[DataProvider('sampleWithSingleMissingKeyProvider')]
     public function testMissingKey(array $sample): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         ServerStats::fromBeanstalkArray($sample);
     }
 

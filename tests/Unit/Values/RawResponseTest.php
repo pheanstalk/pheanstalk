@@ -6,11 +6,10 @@ namespace Pheanstalk\Tests\Unit\Values;
 
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\RawResponse
- */
+#[CoversClass(RawResponse::class)]
 final class RawResponseTest extends TestCase
 {
     public function testNumericStringsAreCast(): void

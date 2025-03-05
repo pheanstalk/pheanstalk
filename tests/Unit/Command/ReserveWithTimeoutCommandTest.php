@@ -11,10 +11,9 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\Success;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\ReserveWithTimeoutCommand
- */
+#[CoversClass(ReserveWithTimeoutCommand::class)]
 final class ReserveWithTimeoutCommandTest extends CommandTestBase
 {
     public function testInterpretDeadlineSoon(): void

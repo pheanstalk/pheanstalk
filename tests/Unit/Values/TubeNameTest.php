@@ -4,31 +4,32 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Values;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\TubeName;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\TubeName
- */
+#[CoversClass(TubeName::class)]
 final class TubeNameTest extends TestCase
 {
     public function testNameTooLong(): void
     {
         new TubeName(str_repeat("a", 200));
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new TubeName(str_repeat("a", 201));
     }
 
     public function testStartingWithHyphen(): void
     {
         new TubeName("ab-test");
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new TubeName("-test");
     }
 
     public function testUtf8(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new TubeName("WЁЇrd");
     }
 
@@ -44,9 +45,7 @@ final class TubeNameTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider nameProvider
-     */
+    #[DataProvider('nameProvider')]
     public function testName(int|string $name): void
     {
         $tube = new TubeName($name);

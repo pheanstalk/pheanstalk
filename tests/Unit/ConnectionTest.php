@@ -16,13 +16,14 @@ use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\TubeName;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the Connection.
  * Relies on a running beanstalkd server.
- * @covers \Pheanstalk\Connection
  */
+#[CoversClass(Connection::class)]
 final class ConnectionTest extends TestCase
 {
     public function testDisconnect(): void

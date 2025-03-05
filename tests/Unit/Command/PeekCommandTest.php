@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Command;
 
+use InvalidArgumentException;
 use Pheanstalk\Command\PeekCommand;
 use Pheanstalk\Values\Job;
 use Pheanstalk\Values\JobState;
@@ -11,15 +12,14 @@ use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use Pheanstalk\Values\Success;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\PeekCommand
- */
+#[CoversClass(PeekCommand::class)]
 final class PeekCommandTest extends CommandTestBase
 {
     public function testPeekReserved(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new PeekCommand(JobState::RESERVED);
     }
 

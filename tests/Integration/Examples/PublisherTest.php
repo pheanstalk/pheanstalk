@@ -6,16 +6,14 @@ namespace Pheanstalk\Tests\Integration\Examples;
 
 use Pheanstalk\PheanstalkPublisher;
 use Pheanstalk\Values\TubeName;
+use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @coversNothing
- */
+#[CoversNothing]
 final class PublisherTest extends TestCase
 {
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testPublishJob(): void
     {
         if (SERVER_HOST === '') {

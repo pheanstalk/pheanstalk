@@ -9,10 +9,9 @@ use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Values\JobId;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\DeleteCommand
- */
+#[CoversClass(DeleteCommand::class)]
 final class DeleteCommandTest extends JobCommandTestBase
 {
     public function testInterpretDeleted(): void

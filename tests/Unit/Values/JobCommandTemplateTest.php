@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Tests\Unit\Values;
 
+use InvalidArgumentException;
 use Pheanstalk\Values\JobCommandTemplate;
 use Pheanstalk\Values\JobId;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Pheanstalk\Values\JobCommandTemplate
- */
+#[CoversClass(JobCommandTemplate::class)]
 final class JobCommandTemplateTest extends TestCase
 {
     public function testMissingPlaceholder(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         new JobCommandTemplate('invalid');
     }

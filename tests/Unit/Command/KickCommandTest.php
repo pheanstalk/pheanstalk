@@ -8,10 +8,9 @@ use Pheanstalk\Command\KickCommand;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Attributes\CoversClass;
 
-/**
- * @covers \Pheanstalk\Command\KickCommand
- */
+#[CoversClass(KickCommand::class)]
 final class KickCommandTest extends CommandTestBase
 {
     public function testInterpretKicked(): void
