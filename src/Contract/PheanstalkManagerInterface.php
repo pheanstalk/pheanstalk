@@ -93,4 +93,14 @@ interface PheanstalkManagerInterface
      * Gives statistical information about the beanstalkd system as a whole.
      */
     public function stats(): ServerStats;
+
+    /**
+     * Closes the current connection and releases all associated resources.
+     *
+     * This method ensures that after the call, no resources are held by the client,
+     * allowing garbage collection to safely reclaim memory. If no connection is open,
+     * this method does nothing (noop). Future command dispatches will automatically
+     * establish a new connection if needed.
+     */
+    public function disconnect(): void;
 }
