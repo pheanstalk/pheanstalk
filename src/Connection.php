@@ -122,7 +122,7 @@ final class Connection
             $socket->write($buffer);
             return $this->readRawResponse($commandLine);
         } catch (ConnectionException $connectionException) {
-            $socket->disconnect();
+            $this->disconnect();
             throw $connectionException;
         }
     }
