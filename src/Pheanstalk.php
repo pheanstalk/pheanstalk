@@ -118,6 +118,11 @@ final class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublishe
         return $this->manager->stats();
     }
 
+    public function disconnect(): void
+    {
+        $this->manager->disconnect();
+    }
+
     public function bury(JobIdInterface $job, int $priority = self::DEFAULT_PRIORITY): void
     {
         $this->subscriber->bury($job, $priority);

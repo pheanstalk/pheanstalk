@@ -114,4 +114,9 @@ final class PheanstalkManager implements PheanstalkManagerInterface
         $command = new Command\StatsCommand();
         return $command->interpret($this->dispatch($command));
     }
+
+    public function disconnect(): void
+    {
+        $this->connection->disconnect();
+    }
 }
