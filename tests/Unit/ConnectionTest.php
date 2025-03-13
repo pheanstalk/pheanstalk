@@ -100,17 +100,30 @@ final class ConnectionTest extends TestCase
 
     public function testSocketCloseOnIOError(): void
     {
-        $this->expectException(ConnectionException::class);
         $socket = $this->getMockBuilder(SocketInterface::class)
             ->getMock();
-
-        $socket->expects(self::once())
+        $socket->expects(self::exactly(2))
             ->method('write')
-            ->willThrowException(new ConnectionException(4, 'Interrupted system call'));
+            ->willReturnCallback(static function () {
+                static $firstRun = true;
+                if ($firstRun) {
+                    $firstRun = false;
+                    throw new ConnectionException(4, 'Interrupted system call');
+                }
+            });
 
         $socket->expects(self::once())->method('disconnect');
 
         $connection = $this->createConnectionBySocket($socket);
+
+        try {
+            $connection->dispatchCommand($this->getCommand());
+            self::fail('Expected ConnectionException was not thrown');
+        } catch (ConnectionException) {
+        }
+        $socket->expects(self::exactly(1))
+            ->method('getLine')
+            ->willReturn(ResponseType::Released->value);
         $connection->dispatchCommand($this->getCommand());
     }
 }
