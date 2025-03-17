@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pheanstalk;
 
+use LogicException;
 use Pheanstalk\Contract\JobIdInterface;
 use Pheanstalk\Contract\PheanstalkManagerInterface;
 use Pheanstalk\Contract\PheanstalkPublisherInterface;
@@ -116,6 +117,14 @@ final class Pheanstalk implements PheanstalkManagerInterface, PheanstalkPublishe
     public function stats(): ServerStats
     {
         return $this->manager->stats();
+    }
+
+    public function disconnect(): void
+    {
+        if ($this->manager instanceof PheanstalkManager) {
+            $this->manager->disconnect();
+        }
+        throw new LogicException('Unsupported implementation: ' . $this->manager::class);
     }
 
     public function bury(JobIdInterface $job, int $priority = self::DEFAULT_PRIORITY): void

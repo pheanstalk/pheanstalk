@@ -37,6 +37,25 @@ final class ConnectionTest extends TestCase
         $connection->disconnect();
     }
 
+    public function testReconnectAfterDispatch(): void
+    {
+        $socket = $this->getMockBuilder(SocketInterface::class)->getMock();
+        $socket->expects(self::once())->method('disconnect');
+        $socket->expects(self::once())
+            ->method('getLine')
+            ->willReturn(ResponseType::Using->value);
+
+        $factory = $this->getMockBuilder(SocketFactoryInterface::class)->getMock();
+        $factory->expects(self::exactly(2))
+            ->method('create')
+            ->willReturn($socket);
+
+        $connection = new Connection($factory);
+        $connection->connect();
+        $connection->disconnect();
+        $connection->dispatchCommand(new UseCommand(new TubeName('foo')));
+    }
+
     private function getCommand(): CommandInterface
     {
         return new UseCommand(new TubeName('tube5'));
