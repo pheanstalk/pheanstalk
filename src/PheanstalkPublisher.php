@@ -40,4 +40,9 @@ final class PheanstalkPublisher implements PheanstalkPublisherInterface
         $command = new PutCommand($data, $priority, $delay, $timeToRelease);
         return $command->interpret($this->connection->dispatchCommand($command));
     }
+
+    public function disconnect(): void
+    {
+        $this->connection->disconnect();
+    }
 }

@@ -8,7 +8,7 @@ use Pheanstalk\Values\Job;
 use Pheanstalk\Values\TubeList;
 use Pheanstalk\Values\TubeName;
 
-interface PheanstalkSubscriberInterface
+interface PheanstalkSubscriberInterface extends PheanstalkClientInterface
 {
     /**
      * Permanently deletes a job.

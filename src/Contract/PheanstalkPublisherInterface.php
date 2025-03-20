@@ -6,7 +6,7 @@ namespace Pheanstalk\Contract;
 
 use Pheanstalk\Values\TubeName;
 
-interface PheanstalkPublisherInterface
+interface PheanstalkPublisherInterface extends PheanstalkClientInterface
 {
     public const int DEFAULT_DELAY = 0; // no delay
     public const int DEFAULT_PRIORITY = 1024; // most urgent: 0, least urgent: 4294967295

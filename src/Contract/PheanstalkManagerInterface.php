@@ -11,7 +11,7 @@ use Pheanstalk\Values\TubeList;
 use Pheanstalk\Values\TubeName;
 use Pheanstalk\Values\TubeStats;
 
-interface PheanstalkManagerInterface
+interface PheanstalkManagerInterface extends PheanstalkClientInterface
 {
     /**
      * Kicks buried or delayed jobs into a 'ready' state.

@@ -102,4 +102,9 @@ final class PheanstalkSubscriber implements PheanstalkSubscriberInterface
         $command = new ReserveJobCommand($job);
         return $command->interpret($this->dispatch($command));
     }
+
+    public function disconnect(): void
+    {
+        $this->connection->disconnect();
+    }
 }
