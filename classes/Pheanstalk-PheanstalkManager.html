@@ -180,6 +180,13 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_disconnect">disconnect()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Closes the current connection and releases all associated resources.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Pheanstalk-PheanstalkManager.html#method_kick">kick()</a>
     <span>
                                 &nbsp;: int    </span>
@@ -291,6 +298,48 @@ ready queue of the the same tube where it currently belongs.</dd>
             <a href="classes/Pheanstalk-PheanstalkManager.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_disconnect">
+        disconnect()
+        <a href="classes/Pheanstalk-PheanstalkManager.html#method_disconnect" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/PheanstalkManager.php"><a href="files/src-pheanstalkmanager.html"><abbr title="src/PheanstalkManager.php">PheanstalkManager.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">118</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Closes the current connection and releases all associated resources.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">disconnect</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method ensures that after the call, no resources are held by the client,
+allowing garbage collection to safely reclaim memory. If no connection is open,
+this method does nothing (noop). Future command dispatches will automatically
+establish a new connection if needed.</p>
+<p>Note: If the client has any reserved jobs at the time of disconnection, beanstalkd
+will automatically release them back into the ready queue.</p>
+</section>
+
+    
+    
+
+    
+
+    
+</article>
                     <article
         class="phpdocumentor-element
             -method
@@ -1046,6 +1095,7 @@ ready queue of the the same tube where it currently belongs.</p>
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_disconnect">disconnect()</a></li>
                                             <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_kick">kick()</a></li>
                                             <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_kickJob">kickJob()</a></li>
                                             <li class=""><a href="classes/Pheanstalk-PheanstalkManager.html#method_listTubes">listTubes()</a></li>

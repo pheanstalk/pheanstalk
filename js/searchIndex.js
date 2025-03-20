@@ -541,6 +541,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-Contract-JobResponseInterface.html#method_getData"
         },                {
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkClientInterface",
+            "name": "PheanstalkClientInterface",
+            "summary": "",
+            "url": "classes/Pheanstalk-Contract-PheanstalkClientInterface.html"
+        },                {
+            "fqsen": "\\Pheanstalk\\Contract\\PheanstalkClientInterface\u003A\u003Adisconnect\u0028\u0029",
+            "name": "disconnect",
+            "summary": "Closes\u0020the\u0020current\u0020connection\u0020and\u0020releases\u0020all\u0020associated\u0020resources.",
+            "url": "classes/Pheanstalk-Contract-PheanstalkClientInterface.html#method_disconnect"
+        },                {
             "fqsen": "\\Pheanstalk\\Contract\\PheanstalkManagerInterface",
             "name": "PheanstalkManagerInterface",
             "summary": "",
@@ -976,6 +986,11 @@ Search.appendIndex(
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020beanstalkd\u0020system\u0020as\u0020a\u0020whole.",
             "url": "classes/Pheanstalk-Pheanstalk.html#method_stats"
         },                {
+            "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Adisconnect\u0028\u0029",
+            "name": "disconnect",
+            "summary": "Closes\u0020the\u0020current\u0020connection\u0020and\u0020releases\u0020all\u0020associated\u0020resources.",
+            "url": "classes/Pheanstalk-Pheanstalk.html#method_disconnect"
+        },                {
             "fqsen": "\\Pheanstalk\\Pheanstalk\u003A\u003Abury\u0028\u0029",
             "name": "bury",
             "summary": "Puts\u0020a\u0020job\u0020into\u0020a\u0020\u0027buried\u0027\u0020state,\u0020revived\u0020only\u0020by\u0020\u0027kick\u0027\u0020command.",
@@ -1136,6 +1151,11 @@ Search.appendIndex(
             "summary": "Gives\u0020statistical\u0020information\u0020about\u0020the\u0020beanstalkd\u0020system\u0020as\u0020a\u0020whole.",
             "url": "classes/Pheanstalk-PheanstalkManager.html#method_stats"
         },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkManager\u003A\u003Adisconnect\u0028\u0029",
+            "name": "disconnect",
+            "summary": "Closes\u0020the\u0020current\u0020connection\u0020and\u0020releases\u0020all\u0020associated\u0020resources.",
+            "url": "classes/Pheanstalk-PheanstalkManager.html#method_disconnect"
+        },                {
             "fqsen": "\\Pheanstalk\\PheanstalkPublisher",
             "name": "PheanstalkPublisher",
             "summary": "Implements\u0020the\u0020methods\u0020in\u0020the\u0020dispatcher\u0020interface.",
@@ -1155,6 +1175,11 @@ Search.appendIndex(
             "name": "put",
             "summary": "Puts\u0020a\u0020job\u0020on\u0020the\u0020queue.",
             "url": "classes/Pheanstalk-PheanstalkPublisher.html#method_put"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkPublisher\u003A\u003Adisconnect\u0028\u0029",
+            "name": "disconnect",
+            "summary": "Closes\u0020the\u0020current\u0020connection\u0020and\u0020releases\u0020all\u0020associated\u0020resources.",
+            "url": "classes/Pheanstalk-PheanstalkPublisher.html#method_disconnect"
         },                {
             "fqsen": "\\Pheanstalk\\PheanstalkSubscriber",
             "name": "PheanstalkSubscriber",
@@ -1215,6 +1240,11 @@ Search.appendIndex(
             "name": "reserveJob",
             "summary": "Reserves\/locks\u0020a\u0020specific\u0020job",
             "url": "classes/Pheanstalk-PheanstalkSubscriber.html#method_reserveJob"
+        },                {
+            "fqsen": "\\Pheanstalk\\PheanstalkSubscriber\u003A\u003Adisconnect\u0028\u0029",
+            "name": "disconnect",
+            "summary": "Closes\u0020the\u0020current\u0020connection\u0020and\u0020releases\u0020all\u0020associated\u0020resources.",
+            "url": "classes/Pheanstalk-PheanstalkSubscriber.html#method_disconnect"
         },                {
             "fqsen": "\\Pheanstalk\\SocketFactory",
             "name": "SocketFactory",
