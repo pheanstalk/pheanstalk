@@ -32,7 +32,6 @@
         "captainhook/plugin-composer": "^5.3",
         "ramsey/conventional-commits": "^1.2",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-phpunit": "^2",
         "phpstan/phpstan-strict-rules": "^2",
         "rector/rector": "^2.0"
     },
