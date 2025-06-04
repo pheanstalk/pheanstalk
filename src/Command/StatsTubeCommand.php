@@ -25,7 +25,7 @@ final class StatsTubeCommand extends TubeCommand
             return TubeStats::fromBeanstalkArray((new YamlDictionaryParser())->parse($response->data));
         }
         throw match ($response->type) {
-            ResponseType::NotFound => new TubeNotFoundException(),
+            ResponseType::NotFound => new TubeNotFoundException($this->tube),
             ResponseType::Ok => MalformedResponseException::expectedData(),
             default => new UnsupportedResponseException($response->type)
         };

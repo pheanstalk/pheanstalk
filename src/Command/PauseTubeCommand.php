@@ -30,7 +30,7 @@ final class PauseTubeCommand extends TubeCommand
     public function interpret(RawResponse $response): Success
     {
         return match ($response->type) {
-            ResponseType::NotFound => throw new Exception\TubeNotFoundException(),
+            ResponseType::NotFound => throw new Exception\TubeNotFoundException($this->tube),
             ResponseType::Paused => new Success(),
             default => throw new UnsupportedResponseException($response->type)
         };
