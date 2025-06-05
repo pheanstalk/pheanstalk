@@ -16,7 +16,7 @@ use Socket;
  */
 final class SocketSocket implements SocketInterface
 {
-    private \Socket $socket;
+    private null|\Socket $socket;
 
     public function __construct(
         string $host,
@@ -90,8 +90,6 @@ final class SocketSocket implements SocketInterface
 
     /**
      * Reads up to $length bytes from the socket.
-     *
-     * @return string
      */
     public function read(int $length): string
     {
@@ -137,7 +135,7 @@ final class SocketSocket implements SocketInterface
     {
         if (isset($this->socket)) {
             socket_close($this->socket);
-            unset($this->socket);
+            $this->socket = null;
         }
     }
 }
