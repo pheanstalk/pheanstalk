@@ -68,6 +68,9 @@ final class SocketSocket implements SocketInterface
         while ($data !== "") {
             $written = @socket_write($socket, $data);
             if ($written === false) {
+                if ($this->isInterruptedSystemCall($socket)) {
+                    continue;
+                }
                 $this->throwException($socket);
             }
             $data = substr($data, $written);
@@ -99,6 +102,9 @@ final class SocketSocket implements SocketInterface
         while (mb_strlen($buffer, '8bit') < $length) {
             $result = @socket_read($socket, $length - mb_strlen($buffer, '8bit'));
             if ($result === false) {
+                if ($this->isInterruptedSystemCall($socket)) {
+                    continue;
+                }
                 $this->throwException($socket);
             }
             $buffer .= $result;
@@ -116,6 +122,9 @@ final class SocketSocket implements SocketInterface
         while (!str_ends_with($buffer, "\n")) {
             $result = @socket_read($socket, 1024, PHP_NORMAL_READ);
             if ($result === false) {
+                if ($this->isInterruptedSystemCall($socket)) {
+                    continue;
+                }
                 $this->throwException($socket);
             }
             $buffer .= $result;
@@ -124,6 +133,11 @@ final class SocketSocket implements SocketInterface
 
 
         return rtrim($buffer);
+    }
+
+    private function isInterruptedSystemCall(Socket $socket): bool
+    {
+        return \SOCKET_EINTR === socket_last_error($socket);
     }
 
     /**
