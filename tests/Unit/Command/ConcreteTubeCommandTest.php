@@ -31,7 +31,7 @@ final class ConcreteTubeCommandTest extends TubeCommandTestBase
                 RawResponse $response
             ): never {
                 throw match ($response->type) {
-                    ResponseType::NotFound => new TubeNotFoundException(),
+                    ResponseType::NotFound => new TubeNotFoundException($this->tube),
                     default => new UnsupportedResponseException($response->type)
                 };
             }

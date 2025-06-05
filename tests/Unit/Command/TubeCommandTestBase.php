@@ -21,6 +21,7 @@ abstract class TubeCommandTestBase extends CommandTestBase
         if (in_array(ResponseType::NotFound, static::getSupportedResponses(), true)) {
             $command = $this->getSubject();
             $this->expectException(TubeNotFoundException::class);
+            $this->expectExceptionMessage('Tube "default" not found.');
             $command->interpret(new RawResponse(ResponseType::NotFound));
         } else {
             $this->expectNotToPerformAssertions();
