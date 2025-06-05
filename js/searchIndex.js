@@ -891,6 +891,21 @@ Search.appendIndex(
             "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
             "url": "classes/Pheanstalk-Exception-TubeNotFoundException.html"
         },                {
+            "fqsen": "\\Pheanstalk\\Exception\\TubeNotFoundException\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-TubeNotFoundException.html#method___construct"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\TubeNotFoundException\u003A\u003AUNKNOWN_TUBE",
+            "name": "UNKNOWN_TUBE",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-TubeNotFoundException.html#constant_UNKNOWN_TUBE"
+        },                {
+            "fqsen": "\\Pheanstalk\\Exception\\TubeNotFoundException\u003A\u003A\u0024tube",
+            "name": "tube",
+            "summary": "",
+            "url": "classes/Pheanstalk-Exception-TubeNotFoundException.html#property_tube"
+        },                {
             "fqsen": "\\Pheanstalk\\Exception\\UnsupportedResponseException",
             "name": "UnsupportedResponseException",
             "summary": "An\u0020exception\u0020originating\u0020from\u0020the\u0020beanstalkd\u0020client.",
