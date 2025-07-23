@@ -7,11 +7,11 @@ namespace Pheanstalk\Values;
 use Stringable;
 use function mb_strlen;
 
-final class TubeName implements Stringable
+final readonly class TubeName implements Stringable
 {
-    private const NAME_REGEX = '~^[A-Za-z0-9+/;.$_()][A-Za-z0-9\-+/;.$_()]*$~';
+    private const string NAME_REGEX = '~^[A-Za-z0-9+/;.$_()][A-Za-z0-9\-+/;.$_()]*$~';
 
-    public readonly string $value;
+    public string $value;
 
     public function __construct(int|string $value)
     {
@@ -29,5 +29,10 @@ final class TubeName implements Stringable
     public function __toString(): string
     {
         return $this->value;
+    }
+
+    public static function default(): self
+    {
+        return new self('default');
     }
 }
