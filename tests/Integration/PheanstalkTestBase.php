@@ -392,6 +392,31 @@ abstract class PheanstalkTestBase extends TestCase
         self::assertSame(0, $pheanstalk->kick(1));
     }
 
+    public function testSignalsWillNotThrowException(): void
+    {
+        $pheanstalk = $this->getPheanstalk();
+
+        $oldAsyncValue = pcntl_async_signals(true);
+
+        $signalHandled = false;
+        pcntl_signal(\SIGALRM, function () use (&$signalHandled) {
+            $signalHandled = true;
+        });
+
+        pcntl_alarm(1);
+
+        try {
+            $response = $pheanstalk->reserveWithTimeout(2);
+        } finally {
+            pcntl_async_signals($oldAsyncValue);
+            pcntl_signal(\SIGALRM, \SIG_DFL);
+            pcntl_alarm(0);
+        }
+
+        self::assertTrue($signalHandled);
+        self::assertNull($response);
+    }
+
     final protected function getHost(): string
     {
         if (str_contains(static::class, "Unix")) {
