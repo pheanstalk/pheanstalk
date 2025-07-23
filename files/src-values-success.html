@@ -109,14 +109,12 @@
         <h2 class="phpdocumentor-content__title">Success.php</h2>
 
         
+        
+        
+        
 
 
-
-
-
-
-
-
+        
 <h3 id="toc">
     Table of Contents
     <a href="files/src-values-success.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -134,7 +132,6 @@
     <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/Pheanstalk-Values-Success.html"><abbr title="\Pheanstalk\Values\Success">Success</abbr></a></dt><dd>This class indicates a successful operation with no (relevant) data
 We don&#039;t use `null` for this because we cannot narrow return values to just null.</dd>    </dl>
-
 
 
 
@@ -183,6 +180,8 @@ We don&#039;t use `null` for this because we cannot narrow return values to just
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

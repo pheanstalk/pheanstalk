@@ -229,14 +229,14 @@ variations. All but the first (peek) operate only on the currently used tube.</p
             phpdocumentor-element
             -property
             -private
-                                                -read-only        "
+                                                -read-only                    "
 >
     <h4 class="phpdocumentor-element__name" id="property_command">
         $command
         <a href="classes/Pheanstalk-Command-PeekCommand.html#property_command" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
-                        <small class="phpdocumentor-element__modifier">read-only</small>        </span>
+                        <small class="phpdocumentor-element__modifier">read-only</small>                    </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Command/PeekCommand.php"><a href="files/src-command-peekcommand.html"><abbr title="src/Command/PeekCommand.php">PeekCommand.php</abbr></a></abbr>
@@ -248,13 +248,15 @@ variations. All but the first (peek) operate only on the currently used tube.</p
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type">string</span>
     <span class="phpdocumentor-signature__name">$command</span>
     </code>
 
     
     
+    
+
     
 
     
@@ -436,6 +438,8 @@ variations. All but the first (peek) operate only on the currently used tube.</p
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
