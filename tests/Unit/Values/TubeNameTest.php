@@ -45,6 +45,12 @@ final class TubeNameTest extends TestCase
         ];
     }
 
+    public function testDefault(): void
+    {
+        $tube = TubeName::default();
+        self::assertSame('default', $tube->value);
+    }
+
     #[DataProvider('nameProvider')]
     public function testName(int|string $name): void
     {
