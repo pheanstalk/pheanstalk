@@ -2191,6 +2191,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-Values-TubeName.html#method___toString"
         },                {
+            "fqsen": "\\Pheanstalk\\Values\\TubeName\u003A\u003Adefault\u0028\u0029",
+            "name": "default",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-TubeName.html#method_default"
+        },                {
             "fqsen": "\\Pheanstalk\\Values\\TubeName\u003A\u003ANAME_REGEX",
             "name": "NAME_REGEX",
             "summary": "",
