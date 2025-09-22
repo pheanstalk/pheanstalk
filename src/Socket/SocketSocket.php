@@ -47,7 +47,7 @@ final class SocketSocket implements SocketInterface
                 throw new ConnectionException(0, "Could not resolve hostname $host");
             }
             if (@socket_connect($socket, $addresses[0], $port) === false) {
-                $this->throwException($socket);
+                $this->throwException($socket, "Connection failed or timed out");
             }
         } elseif (@socket_connect($socket, substr($host, 7)) === false) {
             $this->throwException($socket);
@@ -77,10 +77,11 @@ final class SocketSocket implements SocketInterface
         }
     }
 
-    private function throwException(Socket $socket): never
+    private function throwException(Socket $socket, string|null $errorPrefix = null): never
     {
-        $error = socket_last_error($socket);
-        throw new ConnectionException($error, socket_strerror($error));
+        $errorCode = socket_last_error($socket);
+        $error = socket_strerror($errorCode);
+        throw new ConnectionException($errorCode, isset($errorPrefix) ? "$errorPrefix: $error" : $error);
     }
 
     private function getSocket(): Socket
