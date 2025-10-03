@@ -119,19 +119,16 @@ final class SocketSocket implements SocketInterface
         $socket = $this->getSocket();
 
         $buffer = '';
-        // Reading stops at \r or \n. In case it stopped at \r we must continue reading.
-        while (!str_ends_with($buffer, "\n")) {
-            $result = @socket_read($socket, 1024, PHP_NORMAL_READ);
-            if ($result === false) {
+        do {
+            $byteRead = @socket_read($socket, 1);
+            if ($byteRead === false) {
                 if ($this->isInterruptedSystemCall($socket)) {
                     continue;
                 }
                 $this->throwException($socket);
             }
-            $buffer .= $result;
-        }
-
-
+            $buffer .= $byteRead;
+        } while ($byteRead !== "\n");
 
         return rtrim($buffer);
     }
