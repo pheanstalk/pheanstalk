@@ -16,6 +16,7 @@ use Pheanstalk\Exception\ServerOutOfMemoryException;
 use Pheanstalk\Exception\ServerUnknownCommandException;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\ResponseType;
+use Pheanstalk\Values\Timeout;
 
 /**
  * A connection to a beanstalkd server, backed by any type of socket.
@@ -75,12 +76,12 @@ final class Connection
     }
 
 
-    private function readRawResponse(string $commandLine): RawResponse
+    private function readRawResponse(string $commandLine, ?Timeout $timeout = null): RawResponse
     {
         $socket = $this->getSocket();
 
         // This is always a simple line consisting of a response type name and 0 - 2 optional numerical arguments.
-        $responseLine = $socket->getLine();
+        $responseLine = $socket->getLine($timeout);
 
 
         $responseParts = explode(' ', $responseLine);
@@ -109,7 +110,7 @@ final class Connection
         };
     }
 
-    public function dispatchCommand(CommandInterface $command): RawResponse
+    public function dispatchCommand(CommandInterface $command, ?Timeout $timeout = null): RawResponse
     {
         $socket = $this->getSocket();
         $commandLine = $command->getCommandLine();
@@ -120,7 +121,7 @@ final class Connection
 
         try {
             $socket->write($buffer);
-            return $this->readRawResponse($commandLine);
+            return $this->readRawResponse($commandLine, $timeout);
         } catch (ConnectionException $connectionException) {
             $this->disconnect();
             throw $connectionException;

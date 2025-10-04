@@ -23,7 +23,7 @@ final class SocketSocket implements SocketInterface
         int $port,
         Timeout $connectTimeout,
         Timeout $sendTimeout,
-        Timeout $receiveTimeout
+        private Timeout $receiveTimeout
     ) {
         if (str_starts_with($host, 'unix://')) {
             $socket = @socket_create(AF_UNIX, SOCK_STREAM, SOL_SOCKET);
@@ -54,7 +54,7 @@ final class SocketSocket implements SocketInterface
         }
 
         socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $sendTimeout->toArray());
-        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $receiveTimeout->toArray());
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $this->receiveTimeout->toArray());
 
         $this->socket = $socket;
     }
@@ -114,9 +114,15 @@ final class SocketSocket implements SocketInterface
         return $buffer;
     }
 
-    public function getLine(): string
+    public function getLine(?Timeout $readTimeout = null): string
     {
         $socket = $this->getSocket();
+        socket_set_option(
+            $socket,
+            SOL_SOCKET,
+            SO_RCVTIMEO,
+            $this->receiveTimeout->add($readTimeout)->toArray()
+        );
 
         $buffer = '';
         do {
@@ -129,6 +135,8 @@ final class SocketSocket implements SocketInterface
             }
             $buffer .= $byteRead;
         } while ($byteRead !== "\n");
+
+        socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $this->receiveTimeout->toArray());
 
         return rtrim($buffer);
     }

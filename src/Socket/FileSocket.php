@@ -21,13 +21,13 @@ abstract class FileSocket implements SocketInterface
      */
     private $socket;
 
-    protected function __construct(mixed $socket, Timeout $receiveTimeout)
+    protected function __construct(mixed $socket, protected Timeout $receiveTimeout)
     {
         if (!is_resource($socket)) {
             throw new \InvalidArgumentException("A valid resource is required");
         }
 
-        stream_set_timeout($socket, $receiveTimeout->seconds, $receiveTimeout->microSeconds);
+        stream_set_timeout($socket, $this->receiveTimeout->seconds, $this->receiveTimeout->microSeconds);
         $this->socket = $socket;
     }
 
@@ -98,13 +98,19 @@ abstract class FileSocket implements SocketInterface
      * Reads up to the next new-line.
      * Trailing whitespace is trimmed.
      */
-    public function getLine(): string
+    public function getLine(?Timeout $receiveTimeout = null): string
     {
         $socket = $this->getSocket();
+        $receiveTotalTimeout = $this->receiveTimeout->add($receiveTimeout);
+        stream_set_timeout($socket, $receiveTotalTimeout->seconds, $receiveTotalTimeout->microSeconds);
+
         $result = fgets($socket, 8192);
         if ($result === false) {
             $this->throwException();
         }
+
+        stream_set_timeout($socket, $this->receiveTimeout->seconds, $this->receiveTimeout->microSeconds);
+
         return rtrim($result);
     }
 

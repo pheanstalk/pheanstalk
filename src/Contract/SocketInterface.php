@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Pheanstalk\Contract;
 
+use Pheanstalk\Values\Timeout;
+
 interface SocketInterface
 {
     /**
@@ -20,8 +22,9 @@ interface SocketInterface
     /**
      * Reads up to the next new-line.
      * Trailing whitespace is trimmed.
+     * @param Timeout|null $readTimeout
      */
-    public function getLine(): string;
+    public function getLine(?Timeout $readTimeout = null): string;
 
     /**
      * Disconnect the socket; subsequent usage of the socket will fail.

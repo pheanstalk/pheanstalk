@@ -32,6 +32,22 @@ final class Timeout
         ];
     }
 
+    /**
+     * @param Timeout|null $other
+     * @return static
+     */
+    public function add(?Timeout $other = null): static
+    {
+        if ($other === null) {
+            return clone $this;
+        }
+
+        return new static(
+            $other->seconds + $this->seconds + intval(($other->microSeconds + $this->microSeconds) / 1000000),
+            ($other->microSeconds + $this->microSeconds) % 1000000
+        );
+    }
+
     public function toFloat(): float
     {
         return $this->seconds + ($this->microSeconds / 1000000);

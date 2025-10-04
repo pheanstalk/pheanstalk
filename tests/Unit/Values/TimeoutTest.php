@@ -69,4 +69,40 @@ final class TimeoutTest extends TestCase
             'usec' => 500000
         ], (new Timeout(1, 500000))->toArray());
     }
+
+    public function testAddNullReturnsSameValue(): void
+    {
+        $timeout = (new Timeout(1, 500000))->add();
+        self::assertSame([
+            'sec' => 1,
+            'usec' => 500000
+        ], $timeout->toArray());
+    }
+
+    public function testAddWithNoMsReturnsExpectedValue(): void
+    {
+        $timeout = (new Timeout(1, 500000))->add(new Timeout(2));
+        self::assertSame([
+            'sec' => 3,
+            'usec' => 500000
+        ], $timeout->toArray());
+    }
+
+    public function testAddWithNotOverflowingMsReturnsExpectedValue(): void
+    {
+        $timeout = (new Timeout(1, 500000))->add(new Timeout(2, 200000));
+        self::assertSame([
+            'sec' => 3,
+            'usec' => 700000
+        ], $timeout->toArray());
+    }
+
+    public function testAddWithOverflowingMsReturnsExpectedValue(): void
+    {
+        $timeout = (new Timeout(1, 500000))->add(new Timeout(2, 800000));
+        self::assertSame([
+            'sec' => 4,
+            'usec' => 300000
+        ], $timeout->toArray());
+    }
 }
