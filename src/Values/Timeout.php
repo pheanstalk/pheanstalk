@@ -6,8 +6,19 @@ namespace Pheanstalk\Values;
 
 final class Timeout
 {
-    public function __construct(public readonly int $seconds, public readonly int $microSeconds = 0)
+    public readonly int $seconds;
+    public readonly int $microSeconds;
+
+    public function __construct(int $seconds, int $microSeconds = 0)
     {
+        $this->seconds = match (true) {
+            $seconds >= 0 => $seconds,
+            default => throw new \InvalidArgumentException('seconds value must be >= 0')
+        };
+        $this->microSeconds = match (true) {
+            $microSeconds >= 0 => $microSeconds,
+            default => throw new \InvalidArgumentException('microSeconds value must be >= 0')
+        };
     }
 
     /**
