@@ -21,7 +21,7 @@ abstract class FileSocket implements SocketInterface
      */
     private $socket;
 
-    protected function __construct(mixed $socket, protected Timeout $receiveTimeout)
+    protected function __construct(mixed $socket, private Timeout $receiveTimeout)
     {
         if (!is_resource($socket)) {
             throw new \InvalidArgumentException("A valid resource is required");
