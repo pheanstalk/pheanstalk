@@ -13,6 +13,7 @@ use Pheanstalk\Contract\PheanstalkSubscriberInterface;
 use Pheanstalk\Values\Job;
 use Pheanstalk\Values\RawResponse;
 use Pheanstalk\Values\Success;
+use Pheanstalk\Values\Timeout;
 use Pheanstalk\Values\TubeList;
 use Pheanstalk\Values\TubeName;
 
@@ -20,9 +21,9 @@ final class PheanstalkSubscriber implements PheanstalkSubscriberInterface
 {
     use StaticFactoryTrait;
 
-    private function dispatch(CommandInterface $command): RawResponse
+    private function dispatch(CommandInterface $command, ?Timeout $timeout = null): RawResponse
     {
-        return $this->connection->dispatchCommand($command);
+        return $this->connection->dispatchCommand($command, $timeout);
     }
 
     public function delete(JobIdInterface $job): void
@@ -70,7 +71,7 @@ final class PheanstalkSubscriber implements PheanstalkSubscriberInterface
     public function reserveWithTimeout(int $timeout): null|Job
     {
         $command = new Command\ReserveWithTimeoutCommand($timeout);
-        $response = $command->interpret($this->dispatch($command));
+        $response = $command->interpret($this->dispatch($command, new Timeout($timeout)));
 
         if ($response instanceof Success) {
             return null;
