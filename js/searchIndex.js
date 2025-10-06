@@ -2116,6 +2116,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Pheanstalk-Values-Timeout.html#method_toArray"
         },                {
+            "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "",
+            "url": "classes/Pheanstalk-Values-Timeout.html#method_add"
+        },                {
             "fqsen": "\\Pheanstalk\\Values\\Timeout\u003A\u003AtoFloat\u0028\u0029",
             "name": "toFloat",
             "summary": "",
