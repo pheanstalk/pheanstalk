@@ -102,7 +102,7 @@ final class SocketSocket implements SocketInterface
         $buffer = '';
         while (mb_strlen($buffer, '8bit') < $length) {
             $result = @socket_read($socket, $length - mb_strlen($buffer, '8bit'));
-            if ($result === false) {
+            if ($result === false || $result === '') {
                 if ($this->isInterruptedSystemCall($socket)) {
                     continue;
                 }
@@ -127,7 +127,7 @@ final class SocketSocket implements SocketInterface
         $buffer = '';
         do {
             $byteRead = @socket_read($socket, 1);
-            if ($byteRead === false) {
+            if ($byteRead === false || $byteRead === '') {
                 if ($this->isInterruptedSystemCall($socket)) {
                     continue;
                 }
