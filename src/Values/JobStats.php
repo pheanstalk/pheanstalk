@@ -68,17 +68,17 @@ final class JobStats
         $id = new JobId($data['id']);
 
         // WSL2/Beanstalkd compatibility: Cast int fields to ensure strict typing (handles float drift like -1.0 → -1)
-        $priority = (int) ($data['pri'] ?? 0);
-        $age = (int) ($data['age'] ?? 0);
-        $delay = (int) ($data['delay'] ?? 0);
-        $timeToRelease = (int) ($data['ttr'] ?? 0);
-        $timeLeft = (int) ($data['time-left'] ?? 0);
-        $file = (int) ($data['file'] ?? 0);
-        $reserves = (int) ($data['reserves'] ?? 0);
-        $timeouts = (int) ($data['timeouts'] ?? 0);
-        $releases = (int) ($data['releases'] ?? 0);
-        $buries = (int) ($data['buries'] ?? 0);
-        $kicks = (int) ($data['kicks'] ?? 0);
+        $priority = (int) $data['pri'];
+        $age = (int) $data['age'];
+        $delay = (int) $data['delay'];
+        $timeToRelease = (int) $data['ttr'];
+        $timeLeft = (int) $data['time-left'];
+        $file = (int) $data['file'];
+        $reserves = (int) $data['reserves'];
+        $timeouts = (int) $data['timeouts'];
+        $releases = (int) $data['releases'];
+        $buries = (int) $data['buries'];
+        $kicks = (int) $data['kicks'];
 
         return new self(
             id: $id,
