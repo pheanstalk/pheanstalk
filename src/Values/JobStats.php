@@ -66,21 +66,35 @@ final class JobStats
         }
 
         $id = new JobId($data['id']);
+
+        // WSL2/Beanstalkd compatibility: Cast int fields to ensure strict typing (handles float drift like -1.0 → -1)
+        $priority = (int) $data['pri'];
+        $age = (int) $data['age'];
+        $delay = (int) $data['delay'];
+        $timeToRelease = (int) $data['ttr'];
+        $timeLeft = (int) $data['time-left'];
+        $file = (int) $data['file'];
+        $reserves = (int) $data['reserves'];
+        $timeouts = (int) $data['timeouts'];
+        $releases = (int) $data['releases'];
+        $buries = (int) $data['buries'];
+        $kicks = (int) $data['kicks'];
+
         return new self(
             id: $id,
             tube: $tube,
             state: $state,
-            priority: $data['pri'],
-            age: $data['age'],
-            delay: $data['delay'],
-            timeToRelease: $data['ttr'],
-            timeLeft: $data['time-left'],
-            file: $data['file'],
-            reserves: $data['reserves'],
-            timeouts: $data['timeouts'],
-            releases: $data['releases'],
-            buries: $data['buries'],
-            kicks: $data['kicks']
+            priority: $priority,
+            age: $age,
+            delay: $delay,
+            timeToRelease: $timeToRelease,
+            timeLeft: $timeLeft,
+            file: $file,
+            reserves: $reserves,
+            timeouts: $timeouts,
+            releases: $releases,
+            buries: $buries,
+            kicks: $kicks
         );
     }
 }
