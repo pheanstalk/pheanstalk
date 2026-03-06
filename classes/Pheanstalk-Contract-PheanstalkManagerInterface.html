@@ -133,10 +133,8 @@
 
 
 
-
-
-
-
+    
+    
 <h3 id="toc">
     Table of Contents
     <a href="classes/Pheanstalk-Contract-PheanstalkManagerInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
@@ -302,8 +300,8 @@ will automatically release them back into the ready queue.</p>
     
     
 
+        
     
-
     
 </article>
                     <article
@@ -328,7 +326,7 @@ will automatically release them back into the ready queue.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">kick</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+                    <span class="phpdocumentor-signature__name">kick</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -340,8 +338,8 @@ Otherwise, it will kick up to $max delayed jobs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$max</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                <span class="phpdocumentor-argument-list__argument__name">$max</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>The maximum jobs to kick</p>
@@ -352,8 +350,8 @@ Otherwise, it will kick up to $max delayed jobs.</p>
 
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">int</span>
@@ -388,7 +386,7 @@ ready queue of the the same tube where it currently belongs.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">kickJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">kickJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -397,8 +395,8 @@ ready queue of the the same tube where it currently belongs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$job</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$job</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -407,8 +405,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+        
     
-
     
 </article>
                     <article
@@ -442,8 +440,8 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeList.html"><abbr title="\Pheanstalk\Values\TubeList">TubeList</abbr></a></span>
@@ -472,7 +470,7 @@ ready queue of the the same tube where it currently belongs.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">pauseTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">pauseTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$delay</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -481,15 +479,15 @@ ready queue of the the same tube where it currently belongs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tube</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$tube</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$delay</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                <span class="phpdocumentor-argument-list__argument__name">$delay</span>
+                : <span class="phpdocumentor-argument-list__argument__type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                     <section class="phpdocumentor-description"><p>Seconds before jobs may be reserved from this queue.</p>
@@ -500,8 +498,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+        
     
-
     
 </article>
                     <article
@@ -526,7 +524,7 @@ ready queue of the the same tube where it currently belongs.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">peek</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">peek</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -535,8 +533,8 @@ ready queue of the the same tube where it currently belongs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$job</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$job</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -545,8 +543,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a></span>
@@ -584,8 +582,8 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
@@ -623,8 +621,8 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
@@ -662,8 +660,8 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-Job.html"><abbr title="\Pheanstalk\Values\Job">Job</abbr></a>|null</span>
@@ -692,7 +690,7 @@ ready queue of the the same tube where it currently belongs.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">resumeTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">resumeTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -701,8 +699,8 @@ ready queue of the the same tube where it currently belongs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tube</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$tube</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -711,8 +709,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+        
     
-
     
 </article>
                     <article
@@ -746,8 +744,8 @@ ready queue of the the same tube where it currently belongs.</p>
     
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-ServerStats.html"><abbr title="\Pheanstalk\Values\ServerStats">ServerStats</abbr></a></span>
@@ -776,7 +774,7 @@ ready queue of the the same tube where it currently belongs.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">statsJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">statsJob</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$job</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -785,8 +783,8 @@ ready queue of the the same tube where it currently belongs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$job</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$job</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Pheanstalk-Contract-JobIdInterface.html"><abbr title="\Pheanstalk\Contract\JobIdInterface">JobIdInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -795,8 +793,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-JobStats.html"><abbr title="\Pheanstalk\Values\JobStats">JobStats</abbr></a></span>
@@ -825,7 +823,7 @@ ready queue of the the same tube where it currently belongs.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">statsTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">statsTube</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tube</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -834,8 +832,8 @@ ready queue of the the same tube where it currently belongs.</p>
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$tube</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
+                <span class="phpdocumentor-argument-list__argument__name">$tube</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Pheanstalk-Values-TubeName.html"><abbr title="\Pheanstalk\Values\TubeName">TubeName</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -844,8 +842,8 @@ ready queue of the the same tube where it currently belongs.</p>
 
     
 
+        
     
-
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Pheanstalk-Values-TubeStats.html"><abbr title="\Pheanstalk\Values\TubeStats">TubeStats</abbr></a></span>
