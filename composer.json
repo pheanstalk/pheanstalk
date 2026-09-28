@@ -27,10 +27,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^12",
-        "symplify/easy-coding-standard": "^12 || ^13",
+        "symplify/easy-coding-standard": "^13",
         "phpstan/phpstan": "^2",
         "captainhook/plugin-composer": "^5.3",
-        "ramsey/conventional-commits": "^1.2",
+        "ramsey/conventional-commits": "^1",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-strict-rules": "^2",
         "rector/rector": "^2.0"
